@@ -1,0 +1,261 @@
+% vim: spl=pt
+\begin{theorem}{Operadores tensoriais irredutíveis}{tensorial_irredutível}
+   Seja \(T^{(\ell)} = \set{T^{(\ell)}_{m}}\) um conjunto de \(2\ell + 1\) operadores, com \(\ell \in \mathbb{N}_0\) e \(m \in \set{-\ell, 1-\ell, \dots, \ell}.\) As afirmações a seguir são equivalentes:
+   \begin{enumerate}[label=(\alph*)]
+      \item \(T^{(\ell)}\) é um operador tensorial irredutível de ordem \(\ell\), isto é, para toda rotação \(R\) vale
+         \begin{equation*}
+            \herm{D}(R) T^{(\ell)}_m D(R) = \sum_{m' = -\ell}^{\ell}{D^{(\ell)}_{m m'}(R)^*T^{(\ell)}_{m'}},
+         \end{equation*}
+         com \(D^{(\ell)}_{m m'}(R) = \bra{\ell m}D(R)\ket{\ell m'}.\)
+      \item \(T^{(\ell)}\) satisfaz as relações de comutação
+         \begin{equation*}
+            \commutator{\vetor{n}\cdot \vetor{J}}{T^{(\ell)}_{m}} = \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}\vetor{n}\cdot\vetor{J}\ket{\ell m} T^{(\ell)}_{m'}}
+         \end{equation*}
+         para qualquer \(\vetor{n} \in \mathbb{R}^3\) com \(\norm{\vetor{n}} = 1.\)
+      \item \(T^{(\ell)}_m\ket{0}\) se comporta como \(\ket{\ell m},\) por satisfazer as relações de comutação
+         \begin{equation*}
+            \commutator{J_z}{T^{(\ell)}_m} = m T^{(\ell)}_m,\quad\text{e}\quad\commutator{J_{\pm}}{T^{(\ell)}_m} = a_\pm(\ell m) T^{(\ell)}_{m\pm1},
+         \end{equation*}
+         onde \(a_\pm(\ell m)\) é dado por \(J_{\pm}\ket{\ell m} = a_\pm(\ell m)\ket{\ell {m \pm 1}}\).
+   \end{enumerate}
+\end{theorem}
+\begin{proof}
+   Suponhamos que vale (a), isto é, que \(T^{(\ell)}\) é operador tensorial irredutível. Consideramos uma rotação infinitesimal \(R\) em torno do eixo \(\vetor{n}\) por um ângulo infinitesimal \(\delta\varphi,\) então
+   \begin{align*}
+      \herm{D}(R) T^{(\ell)}_m D(R) &= (\unity + i \delta\varphi \vetor{n}\cdot \vetor{J})T^{(\ell)}_m(\unity - i \delta \varphi \vetor{n} \cdot \vetor{J})\\
+                                &= T^{(\ell)}_m + i \delta\varphi \commutator{\vetor{n}\cdot \vetor{J}}{T^{(\ell)}_m}
+   \end{align*}
+   e, de (a),
+   \begin{align*}
+      \herm{D}(R) T^{(\ell)}_m D(R) &= \sum_{m' = -\ell}^{\ell}{D^{(\ell)}_{mm'}(R)^*T^{(\ell)}_{m'}}\\
+                                    &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m}D(R)\ket{\ell m'}^* T^{(\ell)}_{m'}}\\
+                                    &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}\herm{D}(R)\ket{\ell m} T^{(\ell)}_{m'}}\\
+                                    &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}\unity + i \delta \varphi \vetor{n}\cdot \vetor{J}\ket{\ell m} T^{(\ell)}_{m'}}\\
+                                    &= T^{(\ell)}_{m} + i \delta \varphi\sum_{m' = - \ell}^{\ell}{\bra{\ell m'}\vetor{n}\cdot \vetor{J}\ket{\ell m} T^{(\ell)}_{m'}},
+   \end{align*}
+   logo
+   \begin{equation*}
+      \commutator{\vetor{n}\cdot \vetor{J}}{T^{(\ell)}_{m}} = \sum_{m' = -\ell}^{(\ell)}{\bra{\ell m'}\vetor{n}\cdot\vetor{J}\ket{\ell m} T^{(\ell)}_{m'}},
+   \end{equation*}
+   isto é, (b) é satisfeita.
+
+   Suponhamos que vale (b). Recordemos o lema de Campbell\footnote{Mostrado no \href{https://github.com/louisradial/4305001-mecanica-quantica/releases/tag/lista2}{Exercício 7 da Lista 2,} página 17.}, que garante que para operadores \(A\) e \(B\) independentes de um parâmetro contínuo \(t\) vale
+   \begin{equation*}
+      e^{tA}Be^{-tA} = B + \sum_{k = 1}^\infty{\frac{t^k}{k!} \commutator{A}{B}^{[k]}},
+   \end{equation*}
+   onde \(\commutator{\noarg}{\noarg}^{[k]}\) denota o comutador iterado definido por 
+   \begin{equation*}
+      \commutator{A}{B}^{[1]} = \commutator{A}{B}, \quad\text{e}\quad
+      \commutator{A}{B}^{[k+1]} = \commutator{A}{\commutator{A}{B}^{[k]}}
+   \end{equation*}
+   para todo \(k \in \mathbb{N}.\) Para \(\vetor{n} \in \mathbb{R}^3\) com \(\norm{\vetor{n}} = 1,\) consideramos o conjunto
+   \begin{equation*}
+      S = \setc*{k \in \mathbb{N}}{\commutator{\vetor{n}\cdot \vetor{J}}{T^{(\ell)}_m}^{[k]} = \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}(\vetor{n}\cdot \vetor{J})^k\ket{\ell m} T^{(\ell)}_{m'}}},
+   \end{equation*}
+   que é não vazio pois \(1 \in S\) por hipótese. Seja \(k \in S,\) então
+   \begin{align*}
+      \commutator{\vetor{n}\cdot\vetor{J}}{T^{(\ell)}_m}^{[k + 1]} 
+      &= \commutator{\vetor{n}\cdot\vetor{J}}{\commutator{\vetor{n}\cdot \vetor{J}}{T^{(\ell)}_m}^{[k]}}\\
+      &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}(\vetor{n}\cdot\vetor{J})^k\ket{\ell m} \commutator{\vetor{n}\cdot\vetor{J}}{T^{(\ell)}_{m'}}}\\
+      &= \sum_{m' = - \ell}^{\ell}{\sum_{m'' = -\ell}^{\ell}{\bra{\ell m'}(\vetor{n}\cdot\vetor{J})^k\ketbra{\ell m}{\ell m''}\vetor{n}\cdot\vetor{J}\ket{\ell m'} T^{(\ell)}_{m''}}}\\
+      &= \sum_{m' = - \ell}^{\ell}{\sum_{m'' = -\ell}^{\ell}{ \bra{\ell m'}\vetor{n}\cdot\vetor{J}\ketbra{\ell m''}{\ell m''} (\vetor{n}\cdot\vetor{J})^k \ket{\ell m}T^{(\ell)}_{m'}}}\\
+      &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}(\vetor{n}\cdot \vetor{J})^{k+1}\ket{\ell m} T^{(\ell)}_{m'}},
+   \end{align*}
+   isto é, \(k + 1 \in S.\) Pelo princípio de indução finita, temos \(S = \mathbb{N}.\) Seja \(R \in \mathrm{SO}(3),\) então existem \(\theta \in [0,2\pi)\) e \(\vetor{n}\in \mathbb{R}^3\) com \(\norm{\vetor{n}} = 1\) tais que \(D(R) = e^{-i\theta\vetor{n}\cdot \vetor{J}},\) logo
+   \begin{align*}
+      \herm{D}(R) T^{(\ell)}_m D(R) &= T^{(\ell)}_m + \sum_{k = 1}^\infty{\frac{(i\theta)^k}{k!} \commutator{\vetor{n}\cdot\vetor{J}}{T^{(\ell)}_m}^{[k]}}\\
+                                    &= T^{(\ell)}_m + \sum_{k = 1}^\infty{\sum_{m' = - \ell}^{\ell}{\frac{(i\theta)^k}{k!} \bra{\ell m'}(\vetor{n}\cdot \vetor{J})^k\ket{\ell m}T^{(\ell)}_{m'}}}\\
+                                    &= T^{(\ell)}_m + \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}\sum_{k = 1}^\infty{\frac{(i\theta \vetor{n}\cdot \vetor{J})^k}{k!}}\ket{\ell m}T^{(\ell)}_{m'}}\\
+                                    &= T^{(\ell)}_m + \sum_{m' = - \ell}^{\ell}{\bra{\ell m'} \herm{D}(R) - \unity \ket{\ell m} T^{(\ell)}_{m'}}\\
+                                    &= \sum_{m' = - \ell}^{\ell}{\bra{\ell m}D(R)\ket{\ell m'}^*T^{(\ell)}_{m'}}\\
+                                    &= \sum_{m' = - \ell}^{\ell}{D^{(\ell)}_{mm'}(R)^* T^{(\ell)}_{m'}},
+   \end{align*}
+   isto é, \(T^{(\ell)}\) é um operador tensorial irredutível, portanto (a) é satisfeita. Ainda, temos
+   \begin{align*}
+      \commutator{J_z}{T^{(\ell)}_m} 
+      &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}J_z\ket{\ell m} T^{(\ell)}_{m'}}&
+      \commutator{J_\pm}{T^{(\ell)}_m} 
+      &= \sum_{m' = -\ell}^{\ell}{\bra{\ell m'}J_\pm\ket{\ell m} T^{(\ell)}_{m'}}\\
+      &= m\sum_{m' = - \ell}^\ell{\braket{\ell m'}{\ell m} T^{(\ell)}_{m'}}&
+      &= a_{\pm}(\ell m)\sum_{m' = - \ell}^\ell{\braket{\ell m'}{\ell {m\pm1}} T^{(\ell)}_{m'}}\\
+      &= m T^{(\ell)}_{m}&
+      &= a_{\pm}(\ell m) T^{(\ell)}_{m}
+   \end{align*}
+   portanto (c) é satisfeita.
+
+   Suponhamos que (c) é satisfeita. Seja \(\vetor{n} \in \mathbb{R}^3\) com \(\norm{\vetor{n}} = 1,\) e notemos que
+   \begin{align*}
+      n_z J_z - n_+ J_- - n_- J_+ &= n_z J_z + \frac12(n_x + i n_y) (J_x - i J_y) + \frac12(n_x - i n_x) (J_x + i J_y)\\
+                                  &= n_z J_z + n_x J_x + n_y J_y\\
+                                  &= \vetor{n}\cdot \vetor{J}.
+   \end{align*}
+   Assim, 
+   \begin{align*}
+      \commutator{\vetor{n}\cdot\vetor{J}}{T^{(\ell)}_m} 
+      &= n_z\commutator{J_z}{T^{(\ell)}_m} - n_+\commutator{J_-}{T^{(\ell)}_m} - n_-\commutator{J_+}{T^{(\ell)}_m}\\
+      &= n_z m T^{(\ell)}_m - n_+ a_-(\ell m) T^{(\ell)}_m - n_- a_+(\ell m) T^{(\ell)}_m\\
+      &= n_z \sum_{m' = -\ell}^\ell{\bra{\ell m'}J_z\ket{\ell m} T^{(\ell)}_{m'}} - n_- \sum_{m' = - \ell}^\ell{\bra{\ell m'}J_+\ket{\ell m}T^{(\ell)}_{m'}}- n_+ \sum_{m' = - \ell}^\ell{\bra{\ell m'}J_-\ket{\ell m}T^{(\ell)}_{m'}}\\
+      &= \sum_{m' = - \ell}^{\ell}{\bra{\ell m'} n_z J_z - n_+ J_- - n_- J_+\ket{\ell m} T^{(\ell)}_{m'}}\\
+      &= \sum_{m' = - \ell}^{\ell}{\bra{\ell m'} \vetor{n}\cdot\vetor{J} \ket{\ell m} T^{(\ell)}_{m'}},
+   \end{align*}
+   isto é, (b) é satisfeita.
+\end{proof}
+\begin{exercício}{Operadores tensoriais}{ex7}
+   Considere um operador vetorial \(\vetor{V}\) e suas componentes na base esférica, 
+   \begin{equation*}
+      V^{(1)}_+ = - \frac{1}{\sqrt{2}}(V_x + i V_y),\quad
+      V^{(1)}_0 = V_z,\quad\text{e}\quad
+      V^{(1)}_- = \frac{1}{\sqrt{2}}(V_x - i V_y).
+   \end{equation*}
+   A partir das componentes \(V_p^{(1)}\) e \(W_q^{(1)}\) de operadores vetoriais \(\vetor{V}\) e \(\vetor{W},\) construímos os operadores
+   \begin{equation*}
+      U^{(K)}_M = \sum_p \sum_q \braket{11pq}{KM} V_p^{(1)} W_q^{(1)}
+   \end{equation*}
+   onde \(\braket{11pq}{KM}\) são coeficientes de Clebsch-Gordan.
+   \begin{enumerate}[label=(\alph*)]
+      \item Mostre que \(U^{(0)}_0\) é proporcional ao produto escalar \(\vetor{V} \cdot \vetor{W}.\)
+      \item Mostre que os três operadores \(U^{(1)}_M\) são proporcionais às três componentes do operador vetorial \(\vetor{V} \times \vetor{W}.\)
+      \item Escreva as cinco componentes de \(U_M^{(2)}\) como função das componentes de \(\vetor{V}\) e \(\vetor{W}\) na base esférica.
+      \item Considere agora os \(2\ell + 1\) operadores \(T^{(\ell)}_m\), com \(\ell \in \mathbb{N}_0\) e \(m = - \ell, 1 - \ell , \dots, \ell\) que são componentes de um operador tensorial irredutível. Mostre que um operador escalar é um operador tensorial irredutível de ordem \(\ell = 0\) e que as três componentes de um operador vetorial na base esférica são componentes de um operador tensorial irredutível de ordem \(\ell = 1\).
+      \item Mostre que para uma partícula de spin nulo, os operadores de multipolo elétrico \(Q_{\ell m}\) são operadores tensoriais irredutíveis de ordem \(\ell\) no espaço de Hilbert da partícula. Determine as regras de seleção \(Q_{\ell m}\) devem obedecer na base \(\ket{\alpha j \ell  m}\) obtida pela adição de momento angular \(\vetor{j} = \vetor{L} + \vetor{S}.\)
+   \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+   Notemos que
+   \begin{equation*}
+      \ket{00} = \frac{1}{\sqrt{3}} \left(\ket{+}\ket{-} + \ket{-}\ket{+} - \ket{0}\ket{0}\right),
+   \end{equation*}
+   então
+   \begin{align*}
+      U^{(0)}_0 
+      &= \sum_{p = -1}^1 \sum_{q = -1}^1 \braket{11pq}{00} V_p^{(1)} W_q^{(1)}\\
+      &= \frac1{\sqrt{3}} \left[V^{(1)}_{-} W^{(1)}_{+} + V^{(1)}_{+} W^{(1)}_- - V^{(1)}_0 W^{(1)}_0\right]\\
+      &= -\frac{1}{2\sqrt{3}} \left[(V_x - i V_y)(W_x + i W_y) + (V_x + i V_y)(W_x - i W_y) + 2V_z W_z\right]\\
+      &= - \frac{1}{\sqrt{3}} \left[V_x W_x + V_y W_y + V_z W_z\right]\\
+      &= - \frac{1}{\sqrt{3}} \vetor{V}\cdot \vetor{W}.
+   \end{align*}
+   Como
+   \begin{equation*}
+      \ket{11} = \frac{1}{\sqrt{2}} \left(\ket{+}\ket{0} - \ket{0}\ket{+}\right),\quad
+      \ket{10} = \frac{1}{\sqrt{2}} \left(\ket{+}\ket{-} - \ket{-}\ket{+}\right),\quad\text{e}\quad
+      \ket{1{-1}} = \frac{1}{\sqrt{2}} \left(\ket{0}\ket{-} - \ket{-}\ket{0}\right),
+   \end{equation*}
+   temos
+   \begin{align*}
+      U^{(1)}_+ 
+      &= \sum_{p = -1}^1 \sum_{q = -1}^1 \braket{11pq}{11} V_p^{(1)} W_q^{(1)}&
+      U^{(1)}_-
+      &= \sum_{p = -1}^1 \sum_{q = -1}^1 \braket{11pq}{1{-1}} V_p^{(1)} W_q^{(1)}\\
+      &= \frac{1}{\sqrt{2}}\left[V_+ W_0 - V_0 W_+\right]&
+      &= \frac{1}{\sqrt{2}}\left[V_0 W_- - V_- W_0\right]\\
+      &= \frac12 \left[V_z(W_x + i W_y) - (V_x + i V_y) W_z\right]&
+      &= \frac12 \left[V_z(W_x - i W_y) - (V_x - i V_y) W_z\right]\\
+      &= \frac12 \left[(V_z W_x - V_x W_z) - i (V_y W_z - V_z W_y)\right]&
+      &= \frac12 \left[(V_z W_x - V_x W_z) + i (V_y W_z - V_z W_y)\right]\\
+      &= -\frac{i}2 \left[(\vetor{V}\times \vetor{W})_x + i(\vetor{V}\times \vetor{W})_y\right]&
+      &= \frac{i}{2}\left[(\vetor{V}\times \vetor{W})_x - i(\vetor{V}\times \vetor{W})_y\right]\\
+      &= \frac{i}{\sqrt{2}} (\vetor{V}\times \vetor{W})_+&
+      &= \frac{i}{\sqrt{2}} (\vetor{V}\times \vetor{W})_-
+   \end{align*}
+   e
+   \begin{align*}
+      U^{(1)}_0 
+      &=\sum_{p = -1}^1 \sum_{q = -1}^1 \braket{11pq}{10} V_p^{(1)} W_q^{(1)}\\
+      &= \frac{1}{2\sqrt{2}} \left[(V_x - i V_y)(W_x + i W_y) - (V_x + i V_y)(W_x - i W_y)\right]\\
+      % &= \frac{1}{2\sqrt{2}} \left[V_xW_x + i V_x W_y - i V_y W_x + V_y W_y - V_x W_x + iV_xW_y - i V_y W_x - V_y W_y\right]\\
+        &= \frac{i}{\sqrt{2}}\left[V_x W_y - V_y W_x\right]\\
+        &= \frac{i}{\sqrt{2}} (\vetor{V}\times \vetor{W})_z\\
+        &= \frac{i}{\sqrt{2}} (\vetor{V}\times \vetor{W})_0,
+   \end{align*}
+   isto é,
+   \begin{equation*}
+      U^{(1)}_m = \frac{i}{\sqrt{2}}(\vetor{V}\times \vetor{W})_m
+   \end{equation*}
+   com \(m \in \set{-1,0,1}.\) De forma análoga, obtemos 
+   \begin{align*}
+      U_{+2}^{(2)} &= V_+^{(1)}W_+^{(1)},\\
+      U_{+1}^{(2)} &= \frac1{\sqrt{2}}\left[V_+^{(1)} W_0^{(1)} + V_0^{(1)} W_+^{(1)}\right],\\
+      U_{0}^{(2)} &= \frac{1}{\sqrt{6}} \left[V_+^{(1)}W_-^{(1)} + 2 V_0^{(1)}W_0^{(1)} + V_-^{(1)}W_+^{(1)}\right],\\
+      U_{-1}^{(2)} &= \frac1{\sqrt{2}}\left[V_-^{(1)} W_0^{(1)} + V_0^{(1)} W_-^{(1)}\right]\\
+      U_{-2}^{(2)} &= V_-^{(1)}W_-^{(1)}
+   \end{align*}
+   como as componentes de \(U^{(2)}.\)
+
+   Por definição, se temos
+   \begin{equation*}
+      \herm{D}(R) T^{(\ell)}_m D(R) = \sum_{m' = - \ell}^\ell D^{(\ell)}_{mm'}(R)^* T^{(\ell)}_{m'}
+   \end{equation*}
+   como a transformação de um conjunto de operadores \(T^{(\ell)}\) sob a rotação \(R,\) então \(T^{\ell}\) é um operador tensorial irredutível de ordem \(\ell\). Notemos que
+   \begin{equation*}
+      D^{(0)}_{00}(R) = \bra{00}D(R)\ket{00} = \bra{00}e^{-i \vetor{\omega}\cdot \vetor{J}}\ket{00} = \braket{00}{00} = 1,
+   \end{equation*}
+   portanto para um operador escalar \(S\) temos
+   \begin{equation*}
+      \commutator{S}{D(R)} = 0 \implies \herm{D}(R) S D(R) = S = D^{(0)}_{00}(R) S,
+   \end{equation*}
+   para toda rotação \(R,\) logo \(S\) é um operador tensorial irredutível de ordem \(\ell = 0.\) Para um operador vetorial \(\vetor{V}\) temos\footnote{Mostrado no \href{https://github.com/louisradial/4305001-mecanica-quantica/releases/tag/lista5}{Exercício 8 da Lista 5,} página 11}
+   \begin{equation*}
+      \commutator{J_z}{V_m} = m V_m\quad\text{e}\quad\commutator{J_\pm}{V_m} = a_\pm(1m)V_{m\pm1}
+   \end{equation*}
+   na base esférica, portanto segue do \cref{thm:tensorial_irredutível} que \(V\) é um operador tensorial irredutível de ordem \(\ell = 1.\)
+
+   Seja \(\rho\) uma distribuição de cargas de carga total \(q\) com suporte compacto em \(\Sigma\) e seja \(\vetor{r} \notin \Sigma,\) então o potencial eletrostático em \(\vetor{r}\) é dado por
+   \begin{align*}
+      \phi(\vetor{r}) &= \frac{1}{4\pi \epsilon_0} \int_{\Sigma} \dln3{\tilde{r}} \frac{\rho(\vetor{\tilde{r}})}{\norm{\vetor{\vetor{r} - \vetor{\tilde{r}}}}}\\
+                      &= \frac{1}{4\pi \epsilon_0} \int_{\Sigma}\dln3{\tilde{r}}\rho(\vetor{\tilde{r}})\sum_{\ell = 0}^\infty{\frac{4\pi}{2\ell + 1}\frac{\tilde{r}^\ell}{r^{\ell + 1}}\sum_{m = - \ell}^\ell{Y_{\ell m}(\tilde{\Omega})Y_{\ell m}(\Omega)^*}}\\
+                      &= \frac{1}{4\pi \epsilon_0}\sum_{\ell = 0}^\infty{\sum_{m = - \ell}^\ell{c_{\ell m} \frac{Y_{\ell m}(\Omega)^*}{r^{\ell + 1}}}},
+   \end{align*}
+   onde definimos os momentos de multipolo elétrico \(c_{\ell m}\) por
+   \begin{equation*}
+      c_{\ell m} = \frac{4\pi}{2\ell + 1} \int_{\Sigma}\dln3{\tilde{r}} \rho(\vetor{\tilde{r}}) \tilde{r}^\ell Y_{\ell m}(\tilde{\Omega}).
+   \end{equation*}
+   Para definir os operadores de multipolo elétrico \(Q_{\ell m}\), vamos escrever os momentos \(c_{\ell m}\) como o valor esperado de \(Q_{\ell m}\) em um estado \(\ket{\psi},\) com \(\rho(\vetor{r}') = q\abs{\braket{\vetor{r}'}{\psi}}^2.\) Temos
+   \begin{align*}
+      c_{\ell m} &= \frac{4\pi q}{2\ell + 1} \int_{\Sigma}\dln3{\tilde{r}} \abs{\braket{\vetor{\tilde{r}}}{\psi}}^2 \tilde{r}^\ell Y_{\ell m}(\tilde{\Omega})\\
+                 &= \frac{4\pi q}{2\ell + 1} \int_{\Sigma} \dln3{\tilde{r}} \braket{\psi}{\vetor{\tilde{r}}} \tilde{r}^\ell Y_{\ell m}(\tilde{\Omega}) \braket{\vetor{\tilde{r}}}{\psi}\\
+                 &= \frac{4\pi q}{2\ell + 1} \int_{\Sigma}\dln3{\tilde{r}}\bra{\psi}r^\ell Y_{\ell m}(\Omega) \ket{\vetor{\tilde{r}}} \braket{\tilde{r}}{\psi}\\
+                 &= \bra{\psi}\frac{4\pi q}{2\ell + 1} r^\ell Y_{\ell m}(\Omega)\ket{\psi},
+   \end{align*}
+   portanto
+   \begin{equation*}
+      Q_{\ell m} = \frac{4\pi q}{2\ell + 1} r^{\ell} Y_{\ell m}(\Omega)
+   \end{equation*}
+   são os operadores de multipolo elétrico. Sob rotação, temos
+   \begin{align*}
+      \herm{D}(R) Q_{\ell m} D(R) &= \frac{4\pi q}{2\ell + 1} r^{\ell} \herm{D}(R) Y_{\ell m}(\Omega) D(R)\\
+                                  &= \frac{4\pi q}{2\ell + 1} r^\ell Y_{\ell m}(R \Omega)\\
+                                  &= \frac{4\pi q}{2\ell + 1} r^\ell \sum_{m' = -\ell}^{\ell} D^{(\ell)}_{mm'}(R)^* Y_{\ell m'}(\Omega)\\
+                                  &= \sum_{m' = -\ell}^{\ell} D^{(\ell)}_{mm'}(R)^* Q_{\ell m'},
+   \end{align*}
+   portanto \(Q_{\ell m}\) é a componente \(m\) de de um operador tensorial irredutível de ordem \(\ell.\) Para uma partícula de spin \(s,\) temos pelo teorema de Wigner-Eckart que
+   % \begin{equation*}
+   %    \ket{j \ell m_j} = \sum_{m_s = -s}^{s} \sum_{m_\ell = - \ell}^{\ell} \ket{s m_s \ell m_\ell}\braket{s m_s \ell m_\ell}{j \ell m_j},
+   % \end{equation*}
+   % então
+   \begin{align*}
+      \bra{j \ell m_j} Q_{LM} \ket{j' \ell' m_j'} &= \sum_{m_\ell = - \ell}^{\ell} \sum_{m_\ell' = - \ell'}^{\ell'}\sum_{m_s,m_s' = - s}^{s} \braket{j\ell m_j}{s m_s \ell m_\ell}\bra{s m_s \ell m_\ell} Q_{LM}\ket{sm_s' \ell' m_\ell'}\braket{sm_s' \ell' m_\ell'}{j'\ell'm_j'}\\
+                                                  &= \sum_{m_\ell = - \ell}^{\ell} \sum_{m_\ell' = - \ell'}^{\ell'}\sum_{m_s= - s}^{s} \braket{j\ell m_j}{s m_s \ell m_\ell}\bra{\ell m_\ell} Q_{LM}\ket{\ell' m_\ell'}\braket{sm_s \ell' m_\ell'}{j'\ell'm_j'}\\
+                                                  &= \sum_{m_\ell = - \ell}^{\ell} \sum_{m_\ell' = - \ell'}^{\ell'}\sum_{m_s= - s}^{s} \braket{j\ell m_j}{s m_s \ell m_\ell}\frac{\langle \ell \norm{Q_{L}} \ell'\rangle}{\sqrt{2 \ell + 1}} \braket{\ell m_\ell}{\ell' m_{\ell}' L M} \braket{sm_s \ell' m_\ell'}{j'\ell'm_j'},
+   \end{align*}
+   portanto devemos ter
+   \begin{equation*}
+      \abs{\ell - \ell'} \leq L \leq \ell + \ell',\quad\text{e}\quad m_\ell - m_\ell' = M,
+   \end{equation*}
+   e
+   \begin{equation*}
+      \abs{\ell - s} \leq j \leq \ell + s,\quad\abs{\ell' - s} \leq j' \leq \ell' + s,\quad m_j' = m_s + m_\ell'\quad\text{e}\quad m_j = m_s + m_\ell,
+   \end{equation*}
+   logo, temos as regras de seleção
+   \begin{equation*}
+      \abs{\ell - \ell'} \leq L \leq \ell + \ell',\quad\text{e}\quad m_j - m_j' = M.
+   \end{equation*}
+   Ainda, sob paridade temos 
+   \begin{equation*}
+      \herm{\Pi} Q_{LM} \Pi = \frac{4\pi q}{2\ell + 1} r^\ell \herm{\Pi} Y_{LM}(\Omega) \Pi = (-1)^L Q_{LM},
+   \end{equation*}
+   portanto para \(L\) par \(Q_{LM}\) é axial e para \(L\) ímpar \(Q_{LM}\) é polar. Dessa forma, o elemento de matriz
+   \begin{equation*}
+      \bra{\alpha j \ell m_j}Q_{LM}\ket{\alpha' j' \ell' m_j'}
+   \end{equation*}
+   é não nulo se as regras de seleção acima são satisfeitas e se \((-1)^{\alpha + \ell} = (-1)^{\alpha' + \ell' + L},\) onde \((-1)^{\alpha}\) é a paridade associada aos números quânticos que \(\alpha\) descreve.
+\end{proof}
