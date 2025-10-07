@@ -1,0 +1,66 @@
+% vim: spl=pt
+\begin{exercício}{Reversão temporal e uma partícula de spin nulo}{ex2}
+    Considere uma partícula de spin nulo ligada a um centro por um potencial \(V(\vetor{r})\) tão assimétrico de tal sorte que nenhum nível de energia é degenerado. Usando invariância por reversão temporal, mostre que \(\mean{\vetor{L}} = \vetor{0}\) para qualquer autoestado de energia. Isso é conhecido como extinção do momento angular orbital. Se a função de onda de um autoestado não degenerado de energia é da forma
+    \begin{equation*}
+        \sum_{\ell} \sum_m F_{\ell m}(r) Y_{\ell m}(\theta, \phi),
+    \end{equation*}
+    que restrições de fase obtemos para \(F_{\ell m}(r)?\)
+\end{exercício}
+\begin{proof}[Resolução]
+    Consideramos um Hamiltoniano \(H\) invariante por reversão temporal, \(\herm{I_t} H I_t = H,\) com espectro não degenerado. Seja \(\ket{\psi}\) um autoestado de energia \(E\) de \(H,\) então \(\ket{\psi^R} = I_t \ket{\psi}\) é também autoestado de energia \(E,\) já que
+    \begin{equation*}
+        H \ket{\psi} = E \ket{\psi} \implies \herm{I_t} H I_t \ket{\psi} = E \ket{\psi} \implies \herm{I_t} H \ket{\psi^R} = E \ket{\psi} \implies H \ket{\psi^R} = E \ket{\psi^R}.
+    \end{equation*}
+    Assim, como \(H\) tem espectro não degenerado, existe \(c \in \mathbb{C}\) tal que \(\ket{\psi^R} = c\ket{\psi}.\) Como \(I_t\) é antilinear e antiunitário, segue que \(\ket{\psi^R}\) é normalizado, portanto \(c \in U(1),\) isto é, existe \(\alpha \in [0, 2\pi)\) tal que \(c = e^{i \alpha}.\) Consideramos \(\ket{\phi} = e^{\frac12 i \alpha} \ket{\psi},\) então
+    \begin{equation*}
+        I_t \ket{\phi} = I_t e^{\frac12 i \alpha} \ket{\psi} = e^{-\frac12 i \alpha} I_t \ket{\psi} = e^{-\frac12 i \alpha} \ket{\psi^R} = e^{\frac12 i \alpha} \ket{\psi} = \ket{\phi},
+    \end{equation*}
+    isto é, podemos redefinir os autoestados de energia de tal sorte que sejam invariantes por reversão temporais.
+
+    Adotando essa convenção, consideramos um autoestado de energia \(\ket{\varphi}.\) O valor esperado de momento angular orbital \(\mean{\vetor{L}}\) nesse estado satisfaz
+    \begin{equation*}
+        \mean{\vetor{L}} = \bra{\varphi} \vetor{L} \ket{\varphi} = \bra{\varphi} \herm{I_t}\vetor{L} I_t \ket{\varphi} = - \bra{\varphi}\vetor{L}\ket{\varphi} = - \mean{\vetor{L}},
+    \end{equation*}
+    logo \(\mean{\vetor{L}} = \vetor{0}.\) Escrevendo esse estado na base de momento angular
+    \begin{equation*}
+        \ket{\varphi} = \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} F_{\ell m} \ket{\ell m}
+    \end{equation*}
+    onde os coeficientes \(F_{\ell m}\) são escalares, a extinção do momento angular orbital implica, por exemplo, que
+    \begin{equation*}
+        \sum_{\ell = 0}^{\infty} \sum_{m= - \ell}^\ell \abs{F_{\ell m}}^2 m = 0 \implies  \sum_{\ell = 0}^\infty \sum_{m = 1}^\ell m \left(\abs{F_{\ell m}}^2 - \abs{F_{\ell {-m}}}^2\right) = 0.
+    \end{equation*}
+    Notemos que
+    \begin{equation*}
+        L_zI_t\ket{\ell m} = - I_t L_z \ket{\ell m} = - m I_t \ket{\ell m}
+    \end{equation*}
+    e que
+    \begin{equation*}
+        \vetor{L}^2 I_t \ket{\ell m} = I_t \herm{I_t} \vetor{L}^2 I_t \ket{\ell m} = I_t \vetor{L}^2 \ket{\ell m} = \ell (\ell + 1) I_t \ket{\ell m},
+    \end{equation*}
+    portanto existe \(c_{\ell m} \in U(1)\) de forma que \(I_t \ket{\ell m} = c_{\ell m} \ket{\ell {-m}}.\) Consideramos
+    \begin{equation*}
+        \herm{I_t} L_\pm I_t = \herm{I_t} (L_x \pm i L_y) I_t = - L_x \pm i L_y = - L_\mp,
+    \end{equation*}
+    então temos
+    \begin{align*}
+        L_{\pm} I_t \ket{\ell m} &= c_{\ell m} L_{\pm} \ket{\ell {-m}} = c_{\ell m} \sqrt{\ell(\ell + 1) + m(-m \pm 1)} \ket{\ell {-m \pm 1}}\\
+                                 &= -I_t L_{\mp}\ket{\ell m} 
+                                 % = - \sqrt{\ell(\ell + 1) - m(m \mp 1)} I_t \ket{\ell m \mp 1} 
+                                 = - c_{\ell m \mp 1}\sqrt{\ell(\ell + 1) + m(-m \pm 1)} \ket{\ell {-m}\pm 1},
+    \end{align*}
+    isto é, \(c_{\ell m} = - c_{\ell m \mp 1}.\) Com isso, podemos tomar \(c_{\ell m} = (-1)^{m} c_{\ell},\) com \(c_{\ell} \in U(1)\) de modo que
+    \begin{align*}
+        \ket{\varphi} = I_t \ket{\varphi} &\implies \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} F_{\ell m} \ket{\ell m} = \sum_{\ell = 0}^\infty c_{\ell}^* \sum_{m = -\ell}^{\ell}  (-1)^{m} F^*_{\ell m}\ket{\ell - m}\\
+                                          &\implies \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} \left[F_{\ell m} - (-1)^m c^*_\ell F^*_{\ell {-m}}\right] \ket{\ell m} = 0\\
+                                          &\implies F^*_{\ell m} = (-1)^m c_{\ell} F_{\ell {-m}}.
+    \end{align*}
+    Se tomarmos os autovetores de momento angular com \(c_{\ell} = 1,\) temos a restrição de fase para os coeficientes \(F_{\ell m}\) dada por
+    \begin{equation*}
+        F_{\ell m}^* = (-1)^m F_{\ell {-m}},
+    \end{equation*}
+    e notamos que esta restrição de fase trivializa a relação encontrada a partir da extinção do momento angular orbital. Assim, a função de onda satisfaz
+    \begin{equation*}
+        \varphi^*(\vetor{r}) = \sum_{\ell = 0}^\infty \sum_{m = -\ell}^\ell \left[F_{\ell m}(r) Y_{\ell m}\left(\frac{\vetor{r}}{r}\right)\right]^* = \sum_{\ell = 0}^\infty \sum_{m = -\ell}^\ell F_{\ell {-m}}(r) Y_{\ell {-m}}\left(\frac{\vetor{r}}{r}\right) = \sum_{\ell = 0}^\infty \sum_{m = -\ell}^{\ell} F_{\ell m}(r) Y_{\ell m}\left(\frac{\vetor{r}}{r}\right) = \varphi(\vetor{r}),
+    \end{equation*}
+    isto é, é uma função real.
+\end{proof}
