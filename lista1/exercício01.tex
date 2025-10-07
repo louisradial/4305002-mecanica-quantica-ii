@@ -1,0 +1,47 @@
+% vim: spl=pt
+\begin{exercício}{Operador de reversão temporal}{ex1}
+    O operador de reversão temporal pode ser escrito como \(I_t = UK,\) onde \(U\) é um operador unitário dependente da base escolhida. Seja \(W\) a transformação unitária que relaciona duas bases e seja \(\tilde{U}\) tal que \(I_t = \tilde{U} \tilde{K}\) nessa outra base.
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que \(\tilde{U} = W^\top U W,\) que não é unitário, salvo o caso em que \(W\) é ortogonal.
+        \item Mostre que \(I_t^2\) não depende da representação.
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    Sejam \(\set{\ket{n}}\) e \(\set{\ket{\tilde{n}}}\) bases ortonormais com \(\ket{n} = W\ket{\tilde{n}},\) onde \(W\) é um operador unitário. Como o operador de reversão temporal \(I_t\) é antilinear e antiunitário, segue que \(\set{I_t \ket{n}}\) e \(\set{I_t \ket{\tilde{n}}}\) são bases ortonormais, logo
+    \begin{equation*}
+        U = \sum_{n}{\ketbra{n^R}{n}}\quad\text{e}\quad \tilde{U} = \sum_{n}{\ketbra{\tilde{n}^R}{\tilde{n}}}
+    \end{equation*}
+    são operadores unitários, onde \(\ket{n^R} = I_t\ket{n}\) e \(\ket{\tilde{n}^R} = I_t \ket{\tilde{n}}.\) Assim, na base \(\set{\ket{n}}\) temos \(I_t = U K,\) onde \(K\) é o operador antilinear involutivo definido por \(K\ket{n} = \ket{n},\) e similarmente temos \(I_t = \tilde{U} \tilde{K}\) na base \(\set{\ket{\tilde{n}}}.\) 
+
+    Consideramos agora a relação entre os operadores \(U\) e \(\tilde{U}.\) Notemos que
+    \begin{equation*}
+        K\ket{\tilde{n}} = K \herm{W}\ket{n} = K \sum_{m}{\ketbra{m}{m}\herm{W}\ket{n}}= \sum_{m}{\ketbra{m}{m}\herm{W} \ket{n}^*} = \sum_{m}{\ketbra{m}{n}W\ket{m}} = W^\top\ket{n},
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \ket{\tilde{n}^R} = I_t \ket{\tilde{n}} = I_t \herm{W} \ket{n} = U K \herm{W} \ket{n} = U W^\top \ket{n}.
+    \end{equation*}
+    Com isso, temos
+    \begin{equation*}
+        \tilde{U} = \sum_{n}{\ketbra{\tilde{n}^R}{\tilde{n}}} = \sum_{n}{U W^\top\ketbra{n}{n}W} = UW^\top W,
+    \end{equation*}
+    então no caso particular em que \(W\) é ortogonal, temos \(\tilde{U} = U.\)
+
+    Consideramos agora \(I_t^2,\) que é um operador linear unitário pois temos
+    \begin{equation*}
+        I_t^2(\alpha \ket{\varphi} + \beta \ket{\psi}) = I_t (\alpha^* I_t\ket{\varphi} + \beta^* I_t \ket{\psi}) = \alpha I_t^2 \ket{\varphi} + \beta I_t^2 \ket{\psi}
+    \end{equation*}
+    e
+    \begin{equation*}
+        \bra{\varphi}I_t^2\ket{\psi} = \bra{\varphi}I_t\ket{\psi}^* = \braket{\varphi}{\psi}.
+    \end{equation*}
+    Adaptando o resultado \(K \herm{W} \ket{n} = W^\top \ket{n},\) concluímos que 
+    \begin{equation*}
+        I_t^2\ket{n} = I_t U\ket{n} = U U^* \ket{n}
+    \end{equation*}
+    e, analogamente,
+    \begin{equation*}
+        I_t^2\ket{n} = I_t \tilde{U} \tilde{K} W \ket{\tilde{n}} = I_t \tilde{U} W^* \ket{\tilde{n}} = \tilde{U} \tilde{U}^* W \ket{\tilde{n}} = \tilde{U} \tilde{U}^* \ket{n}.
+    \end{equation*}
+    Podemos concluir, portanto, que se o operador unitário \(V\) relaciona uma base com sua reversão temporal, então \(I_t^2 = VV^*.\)
+\end{proof}
