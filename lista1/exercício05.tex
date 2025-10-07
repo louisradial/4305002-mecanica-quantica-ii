@@ -1,0 +1,116 @@
+% vim: spl=pt
+\begin{exercício}{Grupo pseudo-ortogonal e geradores do grupo de Lorentz}{ex5}
+    Seja \(p, q, N \in \mathbb{N}\) com \(p + q = N, \) e seja \(\eta\) a forma bilinear com seus elementos dados por
+    \begin{equation*}
+        \eta_{ij} = \begin{cases}
+            1,&i=j \leq p\\
+            -1, &i=j > p\\
+            0,& i \neq j.
+        \end{cases}
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que 
+            \begin{equation*}
+                \mathrm{O}(p,q) = \setc{M \in \mathrm{Mat}(\mathbb{R}, N)}{M^\top \eta M = \eta}
+            \end{equation*}
+            é um grupo em relação à multiplicação matricial, chamado de grupo pseudo-ortogonal. Constate que \(\det M = \pm 1\) para toda \(M \in \mathrm{O}(p,q).\) O grupo de Lorentz \(\mathrm{O}(1,3)\) é um grupo pseudo-ortogonal e o subgrupo de Lorentz ortócrono próprio \(\mathrm{SO}^+(1,3)\) é o grupo
+            \begin{equation*}
+                \mathrm{SO}^+(1,3) = \setc{\Lambda \in O(1,3)}{\Lambda\indices{^0_0} \geq 1 \land \det\Lambda = 1},
+            \end{equation*}
+            que consiste em rotações e boosts.
+        \item Determine os geradores \(L_i\) de \(\mathrm{SO}(3)\) na representação dada por \(R(\vetor{\phi}) = \exp(-i \vetor{\phi} \cdot \vetor{L})\) assim como suas representações matriciais \(\mathrm{Mat}(\mathbb{R}, 3).\)
+        \item Determine os geradores \(K_i\) de boosts de Lorentz em suas representações matriciais \(\mathrm{Mat}(\mathbb{R}, 4).\)
+        \item Determine \(\commutator{K_i}{K_j}\) e \(\commutator{L_i}{K_j},\) estendendo os geradores \(L_i\) para representações matriciais \(\mathrm{Mat}(\mathbb{R}, 4)\) e utilizando as suas relações de comutação.
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    É claro que \(\mathrm{O}(p,q) \subset \mathrm{GL}(\mathbb{R}^N)\) e que \(\unity \in \mathrm{O}(p,q),\) portanto precisamos verificar apenas que \(\mathrm{O}(p,q)\) é fechado em relação a multiplicação matricial. Sejam \(A, B \in \mathrm{O}(p,q),\) então
+    \begin{equation*}
+        (AB)^\top \eta (AB) = B^\top A^\top \eta A B = B^\top \eta B = \eta,
+    \end{equation*}
+    logo \(AB \in \mathrm{O}(p,q),\) concluindo que \(\mathrm{O}(p,q)\) é subgrupo do grupo geral linear em \(\mathbb{R}^N.\) Seja \(M \in \mathrm{O}(p,q),\) então
+    \begin{equation*}
+        \det \eta = \det{M^\top \eta M} =\det \eta (\det M)^2 \implies (\det M)^2 = 1,
+    \end{equation*}
+    logo \(\det M = \pm1.\) Consideremos \(M^\top \eta M = \eta\) em componentes,
+    \begin{equation*}
+        \eta_{\mu\nu} M\indices{^\mu_\sigma} M\indices{^\nu_\rho} = \eta_{\sigma \rho},
+    \end{equation*}
+    então
+    \begin{equation*}
+        1 = \eta_{00} = \eta_{\mu\nu} M\indices{^\mu_0} M\indices{^\nu_0} = \left(M\indices{^0_0}\right)^2 - \sum_{j = 1}^{N - 1} \left(M\indices{^j_0}\right)^2 \implies \left(M\indices{^0_0}\right)^2 = 1 + \sum_{j = 1}^{N - 1} \left(M\indices{^j_0}\right)^2 \geq 1,
+    \end{equation*}
+    logo ou \(M\indices{^0_0} \geq 1\) ou \(M\indices{^0_0} \leq -1.\) Como o determinante é uma função contínua, segue que o grupo de transformações de Lorentz próprias e ortócronas \(\mathrm{SO}^+(1,3) = \setc{M \in \mathrm{O}(1,3)}{\det M = 1 \land M\indices{^0_0} \geq 1}\) é a componente da identidade do grupo pseudo-ortogonal \(\mathrm{O}(1,3)\).
+
+    Consideremos uma transformação de Lorentz infinitesimal \(\Lambda\indices{^\mu_\nu} = \delta\indices{^\mu_\nu} + \omega\indices{^\mu_\nu}\) então
+    \begin{align*}
+        \eta_{\mu\nu} = \eta_{\sigma \rho} \Lambda\indices{^\sigma_\mu} \Lambda\indices{^\rho_\nu}
+        &\implies \eta_{\mu\nu} \left[(\delta\indices{^\mu_\alpha} + \omega\indices{^\mu_\alpha}) (\delta\indices{^\nu_\beta} + \omega\indices{^\nu_\beta}) - \delta\indices{^\mu_\alpha} \delta\indices{^\nu_\beta}\right] = 0\\
+        &\implies (g_{\nu\alpha} \omega\indices{^\nu_\beta} + g_{\mu \beta}\omega\indices{^\mu_\alpha}) = 0\\
+        &\implies \omega_{\nu\mu} = -\omega_{\mu\nu}.
+    \end{align*}
+    Para o grupo \(\mathrm{SO}(3)\subset \mathrm{SO}^+(1,3)\) consideramos a rotação por um ângulo \(\varphi\) ao redor do eixo \(\vetor{n},\) dada por \(R(\varphi\vetor{n}) = \exp(-i \varphi \vetor{n}\cdot \vetor{L}),\) onde \(\vetor{L}\) corresponde aos geradores de \(\mathrm{so}(3).\) Tomando uma rotação por um ângulo infinitesimal \(\dl{\varphi}\) ao redor do eixo \(\vetor{n},\)
+    \begin{equation*}
+        x_i \to \tilde{x}_i = x_i + \dl{\varphi} \epsilon_{ijk} n_j x_k,
+    \end{equation*}
+    então em termos dos geradores, temos
+    \begin{equation*}
+        -i  n_k (L_k)_{ij} x_j = \epsilon_{abc} n_b x_c \implies (L_k)_{ij} = i \epsilon_{ikj} = -i \epsilon_{ijk},
+    \end{equation*}
+    logo
+    \begin{equation*}
+        L_1 \doteq \begin{pmatrix}
+            0 && 0 && 0\\
+            0 && 0 && -i\\
+            0 && i && 0
+        \end{pmatrix},
+        \quad
+        L_2 \doteq \begin{pmatrix}
+            0 && 0 && i\\
+            0 && 0 && 0\\
+            -i && 0 && 0
+        \end{pmatrix},
+        \quad\text{e}\quad
+        L_3 \doteq \begin{pmatrix}
+            0 && -i && 0\\
+            i && 0 && 0\\
+            0 && 0 && 0
+        \end{pmatrix}
+    \end{equation*}
+    são representações matriciais dos geradores de rotação em três dimensões. Para um boost na direção \(\vetor{n}\) segundo a velocidade infinitesimal \(\dli{\beta},\)
+    \begin{equation*}
+        \begin{cases}
+            x^0 \to \tilde{x}^0 = x^0 - \dli{\beta} \delta_{ij} n^i x^j\\
+            x^i \to \tilde{x}^i = x^i - x^0 \dli{\beta} n^i
+        \end{cases}
+    \end{equation*}
+    temos
+    \begin{equation*}
+        (K_k)\indices{^0_\nu} = \delta_{k\nu}\quad\text{e}\quad
+        (K_k)\indices{^i_\nu} = \delta_{0\nu} \delta\indices{^i_k},
+    \end{equation*}
+    logo
+    \begin{equation*}
+        K_1 \doteq \begin{pmatrix}
+            0 && 1 && 0 && 0\\
+            1 && 0 && 0 && 0\\
+            0 && 0 && 0 && 0\\
+            0 && 0 && 0 && 0
+        \end{pmatrix},
+        \quad
+        K_2 \doteq \begin{pmatrix}
+            0 && 0 && 1 && 0\\
+            0 && 0 && 0 && 0\\
+            1 && 0 && 0 && 0\\
+            0 && 0 && 0 && 0
+        \end{pmatrix},
+        \quad\text{e}\quad
+        K_3 \doteq \begin{pmatrix}
+            0 && 0 && 0 && 1\\
+            0 && 0 && 0 && 0\\
+            0 && 0 && 0 && 0\\
+            1 && 0 && 0 && 0
+        \end{pmatrix}
+    \end{equation*}
+    são representações matriciais dos geradores de boosts.
+\end{proof}
