@@ -1,0 +1,40 @@
+% vim: spl=pt
+\begin{exercício}{Transformação entre bases de helicidade}{ex1}
+   Consideremos um sistema de duas partículas com spin \(j_1\) e \(j_2\) no referencial de centro de momento. Seja a base de helicidade esférica \(\ket{jm \lambda_1 \lambda_2},\) onde \(j\) é o momento angular total, \(m\) é a projeção do momento angular total no eixo \(\vetor{e}_3\), e \(\lambda_1, \lambda_2\) são as helicidades das partículas, com normalização dada por
+   \begin{equation*}
+      \braket{j'm'\lambda_1'\lambda_2'}{jm\lambda_1 \lambda_2} = \delta_{jj'} \delta_{mm'} \delta_{\lambda_1 \lambda_1'} \delta_{\lambda_2 \lambda_2'}.
+   \end{equation*}
+   Seja a base de helicidade de onda plana \(\ket{\theta \phi \lambda_1 \lambda_2},\) onde \(\theta\) e \(\phi\) são os ângulos que definem a direção da partícula 1, com normalização
+   \begin{equation*}
+      \braket{\theta' \phi' \lambda_1' \lambda_2'}{\theta \phi \lambda_1 \lambda_2} = \delta(\Omega' - \Omega) \delta_{\lambda_1\lambda_1'} \delta_{\lambda_2 \lambda_2'},
+   \end{equation*}
+   onde \(\delta(\Omega' - \Omega)\) é o elemento de ângulo sólido para a partícula 1. Mostre que
+   \begin{equation*}
+      \ket{\theta\phi \lambda_1 \lambda_2} = \sum_{j, m} c_j \ket{jm \lambda_1 \lambda_2} D^j_{m \alpha}(\phi, \theta, -\phi),
+   \end{equation*}
+   onde \(\alpha = \lambda_1 - \lambda_2\) e determine \(c_j\).
+\end{exercício}
+\begin{proof}[Resolução]
+   No centro de momento, temos \(\vetor{p}_1 = p \vetor{n} = - \vetor{p}_2,\) portanto 
+   \begin{equation*}
+      \vetor{J}\cdot\vetor{n} = \vetor{J}_1 \cdot \vetor{n} + \vetor{J}_2 \cdot \vetor{n} = \vetor{J}_1 \cdot \frac{\vetor{p}_1}{p_1} - \vetor{J}_2 \cdot \frac{\vetor{p}_2}{p_2} = h_1 - h_2,
+   \end{equation*}
+   e, assim, o autovalor de \(\vetor{J}\cdot\vetor{n}\) é \(\alpha = \lambda_1 - \lambda_2.\) Se \(\vetor{n}\) é descrito pelos ângulos \(\theta\) e \(\phi,\) isto é,
+   \begin{equation*}
+      \vetor{n} = \cos\phi\sin\theta\vetor{e}_x + \sin\phi\sin\theta \vetor{e}_y + \cos\theta \vetor{e}_z,
+   \end{equation*}
+   então
+   \begin{equation*}
+      \ket{\vetor{n} \lambda_1 \lambda_2} = D(\vetor{n}) \ket{\vetor{e}_z \lambda_1 \lambda_2},
+   \end{equation*}
+   com \(D(\vetor{n}) = e^{-i\phi J_z}e^{-i\theta J_y} e^{i\phi J_z}.\) Ainda, \(\ket{\vetor{e}_z \lambda_1 \lambda_2}\) é autovetor de \(J_z\) com autovalor \(\alpha\), então
+   \begin{equation*}
+      \ket{\vetor{e}_z \lambda_1 \lambda_2} = \sum_{j = \abs{\alpha}}^\infty \ket{j \alpha \lambda_1 \lambda_2} \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2}
+   \end{equation*}
+   e obtemos
+   \begin{align*}
+      \ket{\vetor{n} \lambda_1 \lambda_2} = \sum_{j = \abs{\alpha}}^\infty D(\vetor{n}) \ket{j \alpha \lambda_1 \lambda_2} \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2}
+                                          =\sum_{j = \abs{\alpha}}^\infty \sum_{m = -j}^{j} D^{(j)}_{m \alpha}(\vetor{n}) \ket{j m \lambda_1 \lambda_2} \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2},
+   \end{align*}
+   portanto \(c_j = \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2}.\)
+\end{proof}
