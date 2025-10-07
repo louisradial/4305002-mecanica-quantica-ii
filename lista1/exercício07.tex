@@ -1,0 +1,24 @@
+% vim: spl=pt
+\begin{exercício}{Generalização da decomposição em ondas planas}{ex7}
+    Um estado de partícula com momento \(p\vetor{n}\) e helicidade \(\lambda\) pode ser escrito em termos da base \(\ket{pjm \lambda}\) como
+    \begin{equation*}
+        \ket{p\vetor{n}, \lambda} = \sum_{j = \abs{\lambda}}^\infty \sum_{m = -j}^{j} \ket{pjm \lambda} D_{m \lambda}^j(\vetor{n}) \braket{pj \lambda}{p \vetor{e}_z, \lambda}.
+    \end{equation*}
+    Mostre que essa relação é uma generalização para partículas com spin da expansão de ondas planas em função de ondas esféricas,
+    \begin{equation*}
+        e^{i \vetor{k}\cdot \vetor{r}} = 4\pi \sum_{\ell = 0}^{\infty} \sum_{m = -\ell}^{\ell} i^\ell j_{\ell}(k r) Y_{\ell m}^*\left(\frac{\vetor{k}}{k}\right) Y_{\ell m}\left(\frac{\vetor{r}}{r}\right)
+    \end{equation*}
+    tomando o produto escalar com um autovetor de posição no caso \(s = 0.\)
+\end{exercício}
+\begin{proof}[Resolução]
+    Para uma partícula de spin nulo e massa \(M\), temos \(\vetor{j} = \vetor{L}\) e \(\lambda = 0,\) então um estado de onda plana pode ser escrito como
+    \begin{equation*}
+        \ket{p\vetor{n}} = \sum_{\ell = 0}^\infty \sum_{m = -\ell}^{\ell} \ket{p\ell m}D^{(\ell)}_{m0}(\vetor{n})\braket{p\ell0}{p\vetor{e}_z}.
+    \end{equation*}
+    Em termos de sua função de onda, temos
+    \begin{align*}
+        \braket{\vetor{r}}{p\vetor{n}} &= \sum_{\ell = 0}^\infty \sum_{m = - \ell}^{\ell} \braket{\vetor{r}}{p\ell m} D^{(\ell)}_{m0}(\vetor{n}) \braket{p \ell 0}{p\vetor{e}_z}\\
+                                       &= \frac{2M}{\pi}\sum_{\ell = 0}^\infty \sum_{m = -\ell}^{\ell} \sqrt{\frac{4\pi}{2\ell + 1}}i^{\ell} j_{\ell}(p r) Y_{\ell m}\left(\frac{\vetor{r}}{r}\right)Y_{\ell m}^*(\vetor{n}) Y_{\ell 0}^*(\vetor{n})\\
+                                       &= \frac{2M}{\pi} \sum_{\ell = 0}^\ell
+    \end{align*}
+\end{proof}
