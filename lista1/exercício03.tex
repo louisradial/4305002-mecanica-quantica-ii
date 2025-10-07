@@ -1,0 +1,83 @@
+% vim: spl=pt
+\begin{exercício}{Rotação de operadores vetoriais}{ex3}
+    Considere a rotação de um operador vetorial \(\vetor{V}\) ao redor do eixo \(\vetor{n}\),
+    \begin{equation*}
+        e^{i\theta \vetor{J}\cdot \vetor{n}} \vetor{V} e^{-i \theta \vetor{J} \cdot \vetor{n}} = \vetor{V} \cos\theta + \vetor{n} (\vetor{V}\cdot \vetor{n}) (1 - \cos\theta) + (\vetor{n}\times \vetor{V}) \sin\theta.
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item Determine \(d_{mm}^{(1)}(\beta)\) expandindo \(e^{-iJ_y \beta}\). Compare com o resultado geral para a representação de rotações.
+        \item A partir do resultado anterior, determine a transformação para as componentes do operador vetorial na base esférica,
+            \begin{equation*}
+                V_\pm = \mp \frac{1}{\sqrt{2}} \left(V_x \pm i V_y\right),\quad
+                V_0 = V_z,
+            \end{equation*}
+            sob a rotação em torno de \(\vetor{e}_y\) por um ângulo \(\beta.\) Verifique que o resultado é consistente com a expressão para a rotação do operador vetorial.
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    Computando \(J_+\) e \(J_-\) na base de \(J_z,\) determinamos
+    \begin{equation*}
+        J_y \doteq \frac{i}{\sqrt{2}}\begin{pmatrix}
+            0 && -1 && 0\\
+            1 && 0 && -1\\
+            0 && 1 && 0
+        \end{pmatrix}
+        \implies J_y^2 \doteq \frac{1}{2} \begin{pmatrix}
+            1 && 0 &&-1\\
+            0 && 2 && 0\\
+            -1&& 0 && 1
+        \end{pmatrix}.
+    \end{equation*}
+    Pelo teorema de Cayley-Hamilton, temos \((J_y - 1)J_y(J_y + 1) = 0,\) portanto \(J_y^3 = J_y.\) Assim,
+    \begin{align*}
+        \exp(-i\beta J_y) &= \unity + \sum_{k = 1}^\infty \frac{(-i \beta J_y)^k}{k!}\\
+                          &= \unity + \sum_{k = 1}^\infty \frac{(-i \beta)^{2k - 1}}{(2k - 1)!} K_y + \sum_{k = 1}^\infty \frac{(-i \beta)^{2k}}{(2 k)!}J_y^2\\
+                          &= \unity - i J_y \sum_{k = 1}^\infty \frac{(-1)^{k + 1} \beta^{2 k - 1}}{(2k - 1)!} - J_y^2 \sum_{k = 1}^{\infty} \frac{(-1)^{k+1} \beta^{2k}}{(2k)!}\\
+                          &= \unity - i J_y \sin \beta - J_y^2 (1 - \cos \beta)\\
+                          &\doteq \begin{pmatrix}
+                              \frac12 + \frac12 \cos\beta && -\frac{1}{\sqrt{2}}\sin\beta && \frac12 - \frac12 \cos\beta\\
+                              \frac{1}{\sqrt{2}} \sin\beta && \cos\beta && -\frac{1}{\sqrt{2}} \sin\beta\\
+                              \frac12 - \frac12 \cos\beta && \frac{1}{\sqrt{2}} \sin \beta && \frac12 + \frac12 \cos\beta\\
+                          \end{pmatrix}
+    \end{align*}
+    e obtemos
+    \begin{equation*}
+        d^{(1)}_{m m'} = \bra{1m}\exp(-i \beta J_y)\ket{1m'} = \begin{cases}
+            \frac12 + \frac12 \cos\beta,& m = m' = \pm 1\\
+            \cos\beta,&m = m' = 0\\
+            \pm \frac1{\sqrt{2}}\sin\beta, &m = m' \pm 1\\
+            \frac12 - \frac12 \cos\beta,& m = -m' \neq 0.
+        \end{cases}
+    \end{equation*}
+    \todo[Comparar com representação]
+
+    Utilizando \(d_{mm'}^{(1)},\) temos
+    \begin{equation*}
+        \tilde{V}_{\mu} = \sum_{\nu} d^{(1)}_{\nu\mu} V_{\nu},
+    \end{equation*}
+    portanto
+    \begin{align*}
+        \tilde{V}_+ &= d_{++} V_+ + d_{0+} V_0 + d_{-+} V_-&
+        \tilde{V}_0 &= d_{+0} V_+ + d_{00} V_0 + d_{-0} V_-\\
+                    &= \left(\frac12 + \frac12 \cos \beta\right) V_+ - \frac{1}{\sqrt{2}} \sin\beta V_0 + \left(\frac12 - \frac12 \cos\beta\right) V_-&
+                    &= \frac1{\sqrt{2}} \sin\beta V_+ + \cos\beta V_0 - \frac{1}{\sqrt{2}} \sin\beta V_-\\
+                    &= \frac12 (V_+ + V_-) - \frac1{\sqrt{2}} \sin\beta V_z + \frac12 \cos\beta (V_+ - V_-)&
+                    &= \frac{1}{\sqrt{2}}\sin\beta (V_+ - V_-) + \cos\beta V_z\\
+                    &= - \frac{1}{\sqrt{2}} \left(\cos\beta V_x + i V_y + \sin\beta V_z\right)&
+                    &= - \sin\beta V_x + \cos\beta V_z,
+    \end{align*}
+    isto é,
+    \begin{equation*}
+        \tilde{V}_x = \cos\beta V_x + \sin\beta V_z,\quad
+        \tilde{V}_y = V_y,\quad\text{e}\quad
+        \tilde{V}_z = -\sin\beta V_x + \cos\beta V_z.
+    \end{equation*}
+    Assim,
+    \begin{align*}
+        e^{i\beta J_y} \vetor{V} e^{-i\beta J_y} &= \tilde{V}_x \vetor{e}_x + \tilde{V}_y \vetor{e}_y + \tilde{V}_z \vetor{e}_z\\
+                                                 &= \cos\beta (V_x \vetor{e}_x + V_z \vetor{e}_z) + \sin\beta (V_z \vetor{e}_x - V_x \vetor{e}_z) + V_y \vetor{e}_y\\
+                                                 &= \cos\beta (\vetor{V} - V_y \vetor{e}_y) + \sin\beta \vetor{e}_y \times \vetor{V} + V_y \vetor{e}_y\\
+                                                 &= \cos\beta \vetor{V} + \sin\beta (\vetor{e}_y \times \vetor{V}) + (\vetor{V} \cdot \vetor{e}_y)\vetor{e}_y (1 - \cos\beta),
+    \end{align*}
+    como esperado.
+\end{proof}
