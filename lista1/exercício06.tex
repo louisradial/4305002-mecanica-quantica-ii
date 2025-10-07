@@ -1,0 +1,81 @@
+% vim: spl=pt
+\begin{exercício}{O grupo cíclico \(\mathbb{Z}_2\) como centro de \(\mathrm{SU}(2)\)}{ex6}
+    O centro \(Z(G)\) de um grupo \(G\) é definido como o conjunto de elementos de \(G\) que comutam com todos os elementos de \(G,\) 
+    \begin{equation*}
+        Z(G) = \setc{z \in G}{\forall g \in G: zg = gz}.
+    \end{equation*}
+    O grupo cíclico \(\mathbb{Z}_2\) é o grupo com elementos \(\set{e, a}\) tal que \(a^2 = e.\)
+    \begin{enumerate}[label=(\alph*)]
+        \item Mostre que \(\mathbb{Z}_2\) é um grupo abeliano e determine uma representação unidimensional desse grupo.
+        \item Determine uma representação bidimensional desse grupo e mostre que \(Z(\mathrm{SU}(2)) = \mathbb{Z}_2.\)
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    Como \(\mathbb{Z}_2\) é um grupo de apenas dois elementos, segue que é abeliano, já que um dos elementos é a identidade. Seja \(V\) um espaço vetorial sobre o corpo \(\mathbb{K}\) (\(\mathbb{R}\) ou \(\mathbb{C}\)) e seja \(\mathcal{L}(V)\) o conjunto de transformações lineares sobre \(V.\) Consideramos a aplicação \(\rho : \mathbb{Z}_2 \to \mathcal{L}(V)\) definida por \(\rho(e) = \unity\) e \(\rho(a) = -\unity.\) Temos
+    \begin{align*}
+        \rho(e) \rho(e) &= \unity&
+        \rho(e) \rho(a) &= -\unity&
+        \rho(a)\rho(a)  &= \unity\\
+                            &= \rho(e)&
+                            &= \rho(a)&
+                            &= \rho(e)\\
+                            &= \rho(e^2)&
+                            &= \rho(ea)&
+                            &= \rho(a^2),
+    \end{align*}
+    portanto \(\rho\) é um homomorfismo. Como \(\unity\) é trivialmente bijetiva, concluímos que \(\rho\) é uma representação de \(\mathbb{Z}_2\) em \(V.\)
+
+    Consideramos \(\mathrm{SU}(2)\) e a aplicação
+    \begin{align*}
+        \Pi : \mathbb{R}^4 &\to \mathrm{Mat}(\mathbb{C}, 2)\\
+                         a &\mapsto a_0 \unity + i \vetor{a} \cdot \vetor{\sigma}.
+    \end{align*}
+    Seja \(a \in S^3 = \setc{x \in \mathbb{R}^4}{\norm{x} = 1}\) e seja \(A = \Pi(a)\), então
+    \begin{align*}
+        \herm{A}A &= (a_0 \unity - i \vetor{a} \cdot \vetor{\sigma}) (a_0 \unity + i \vetor{a} \cdot \vetor{\sigma})\\
+                  &= a_0^2 \unity + a_i a_j \sigma_i \sigma_j\\
+                  &= \norm{a}^2 \unity\\
+                  &= \unity
+    \end{align*}
+    e
+    \begin{equation*}
+        \det(A) = \det \begin{pmatrix}
+            a_0 + ia_3 & a_2 + ia_1\\
+            -a_2 + ia_1& a_0 - ia_3
+        \end{pmatrix} = \norm{a}^2 = 1,
+    \end{equation*}
+    portanto \(\mathrm{SU}(2) \supset \Pi(S^3).\) Seja \(A \in \mathrm{SU}(2),\) então existem \(\alpha, \beta \in \mathbb{C}\) com \(\abs{\alpha}^2 + \abs{\beta}^2 = 1\) tais que
+    \begin{equation*}
+        A = \begin{pmatrix}
+            \alpha && \beta\\
+            - \conj{\beta} && \conj{\alpha}
+        \end{pmatrix}
+    \end{equation*}
+    portanto definindo \(a \in \mathbb{R}^4\) a partir de
+    \begin{equation*}
+        a_0 = \Re(\alpha),\quad
+        a_1 = \Im(\beta),\quad
+        a_2 = \Re(\beta),\quad\text{e}\quad
+        a_3 = \Im(\alpha),
+    \end{equation*}
+    segue que \(A = \Pi(a)\) e \(\norm{a} = 1,\) logo \(\mathrm{SU}(2) = \Pi(S^3).\) 
+
+    Consideramos agora \(a, b \in S^3\) e então
+    \begin{align*}
+        \Pi(a)\Pi(b) &= (a_0 \unity + i \vetor{a} \cdot \vetor{\sigma})(b_0 \unity + i \vetor{b} \cdot \vetor{\sigma})\\
+                     &= a_0 b_0 \unity + i (a_0 \vetor{b} + b_0 \vetor{a})\cdot\vetor{\sigma} - a_i b_j \sigma_i \sigma_j\\
+                     &= (a_0 b_0 - \vetor{a} \cdot \vetor{b}) \unity + i (a_0 \vetor{b} + b_0 \vetor{a})\cdot \vetor{\sigma} - i \epsilon_{ijk} a_i b_j \sigma_k\\
+                     &= \Pi(a_0 b_0 - \vetor{a} \cdot \vetor{b}, a_0 \vetor{b} + b_0\vetor{a} - \vetor{a} \times \vetor{b}).
+    \end{align*}
+    Com isso, vemos que a não comutatividade dos elementos de \(\mathrm{SU}(2)\) se dá, em termos dos parâmetros da 3-esfera, apenas pelo produto vetorial \(\vetor{a} \times \vetor{b}.\) 
+
+    Consideramos agora o centro de \(\mathrm{SU}(2)\) e um de seus elementos, \(A = \Pi(a),\) com \(a \in S^3.\) Assim, para todo \(b \in S^3\) devemos ter
+    \begin{equation*}
+        \Pi(a) \Pi(b) = \Pi(b) \Pi(a) \implies \vetor{a} \times \vetor{b} = \vetor{b} \times \vetor{a} \implies \vetor{a}\times\vetor{b} = \vetor{0},
+    \end{equation*}
+    portanto \(\vetor{a} = \vetor{0}.\) Com isso, como \(\norm{a} = 1,\) devemos ter \(a_0 = \pm1.\) Isto é, 
+    \begin{equation*}
+        Z(\mathrm{SU}(2)) = \set{\unity, -\unity} = \rho(\mathbb{Z}_2),
+    \end{equation*}
+    concluindo que \(\mathbb{Z}_2\) é isomórfico ao centro de \(\mathrm{SU}(2).\)
+\end{proof}
