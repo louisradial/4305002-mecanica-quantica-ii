@@ -1,0 +1,186 @@
+% vim: spl=pt
+\begin{exercício}{Grupos unitários}{ex4}
+    A relação entre os grupos \(\mathrm{U}(N)\) e \(\mathrm{SU}(N)\) é dada por \(\mathrm{U}(N) = \mathrm{SU}(N) \times \mathrm{U}(1),\) isto é, se \(D\) é uma representação matricial \(\mathrm{Mat}(\mathbb{C}, N)\) de \(\mathrm{U}(N),\) temos para todo \(g \in \mathrm{U}(N)\) que
+    \begin{equation*}
+        D(g) = D(h) \exp\left(-\frac{i}{\hbar}\alpha_0 T_0\right),
+    \end{equation*}
+    onde \(h \in \mathrm{SU}(N)\) e \(T_0 \propto \unity_{N\times N}\). Como \(\mathrm{U}(N)\) é um grupo de Lie, podemos escrever
+    \begin{equation*}
+        D(\alpha) = \exp\left(-\frac{i}{\hbar}\sum_{j = 0}^{n(N)} \alpha_j T_j\right),
+    \end{equation*}
+    onde \(T_j,\) com \(j = 1, \dots, n(N),\) denotam os geradores de \(\mathrm{SU}(N),\) que satisfazem as relações de comutação
+    \begin{equation*}
+        \commutator{T_a}{T_b} = i\hbar\sum_{c = 1}^{n(N)} f_{abc} T_c
+    \end{equation*}
+    e satisfazem as relações de anticomutação
+    \begin{equation*}
+    \anticommutator{T_a}{T_b} = \frac{\hbar^2}{N} \delta_{ab} \unity + \hbar \sum_{c = 1}^{n(N)} d_{abc} T_c.
+    \end{equation*}
+    \begin{enumerate}[label=(\alph*)]
+        \item Determine o número \(n(N)\) de geradores de \(\mathrm{SU}(N)\) como função de \(N\).
+        \item Determine \(T_0\) de forma que a relação de ortogonalidade \(\Tr(T_a T_b) = \frac12 \hbar^2 \delta_{ab}\) seja satisfeita para todos \(a,b = 0,1, \dots, n(N).\)
+        \item Mostre que
+            \begin{equation*}
+                f_{abc} = \frac{2}{i \hbar^3} \Tr\left(\commutator{T_a}{T_b}T_c\right)
+                \quad\text{e que}\quad
+                d_{abc} = \frac{2}{\hbar^3} \Tr\left(\anticommutator{T_a}{T_b}T_c\right).
+            \end{equation*}
+        \item Mostre que 
+            \begin{equation*}
+                C_1 = \sum_{a = 1}^{n(N)} \sum_{b = 1}^{n(N)} \sum_{c = 1}^{n(N)} f_{abc} T_a T_b T_c\quad\text{e}\quad C_2 = \sum_{a = 1}^{n(N)} \sum_{b = 1}^{n(N)} \sum_{c = 1}^{n(N)} d_{abc} T_a T_b T_c
+            \end{equation*}
+            são operadores de Casimir do grupo \(\mathrm{SU}(N)\) e calcule \(C_1\) explicitamente para \(\mathrm{SU}(2).\)
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    Mostraremos que \(\mathrm{su}(N) = \setc{A \in \mathrm{Mat}(\mathbb{C}, N)}{\herm{A} = -A \land \Tr(A) = 0}\) é tal que \(\mathrm{SU}(N) = \exp\left[\mathrm{su}(N)\right],\) e determinaremos que \(\mathrm{SU}(N)\) tem \(n(N) = N^2 - 1\) geradores, já que é esta a dimensão da álgebra real \(\mathrm{su}(N)\) das matrizes antihermitianas de traço nulo. Seja \(U \in \mathrm{SU}(N),\) e consideremos os operadores hermitianos \(\Re(U) = \frac12 (U + \herm{U})\) e \(\Im(U) = \frac{1}{2i} (U + \herm{U}),\) com \(U = \Re(U) + i \Im(U).\) De \(\herm{U}U = \unity = U \herm{U},\) segue que \(\commutator{U}{\herm{U}} = 0\) e, por conseguinte,
+    \begin{equation*}
+        \commutator{\Re(U)}{\Im(U)} = \frac{1}{2i} \commutator{\herm{U}}{U} = 0.
+    \end{equation*}
+    Assim, podemos diagonalizar \(\Re(U)\) e \(\Im(U)\) simultaneamente, portanto \(U\) é diagonalizável. Seja \(U = P D \herm{P},\) com \(P\) unitário e \(D = \operatorname{diag}(u_1,\dots, u_N)\) a matriz diagonal cujas entradas são os autovalores de \(U.\) De \(U \herm{U} = \unity,\) temos \(D \herm{D} = \unity,\) logo \(u_k = e^{i \mu_k}\) com \(\mu_k \in \mathbb{R}\), já que \(\abs{u_k} = 1\) para todo \(k = 1, \dots, N.\) Como \(\det U = 1,\) temos
+    \begin{equation*}
+        1 = \det U = \prod_{k = 1}^N u_k = \prod_{k = 1}^N e^{i \mu_k} = \exp\left(i \sum_{k = 1}^N \mu_k\right) \implies \exists m \in \mathbb{Z} : \sum_{k = 1}^N \mu_k = 2\pi m.
+    \end{equation*}
+    Notando que \(u_k = e^{i\mu_k} = e^{i (\mu_k - 2\pi m)},\) podemos tomar \(u_k = e^{i \lambda_k}\) com
+    \begin{equation*}
+        \lambda_k = \begin{cases}
+            \mu_k - 2\pi m,& k = 1\\
+            \mu_k,& k > 1,
+        \end{cases}
+    \end{equation*}
+    de forma que \(\sum_{k = 1}^N \lambda_k = 0.\) Com isso, definimos \(\Lambda = \operatorname{diag}(i \lambda_1, \dots, i \lambda_N)\) e \(A = P L \herm{P},\) de tal sorte que \(\herm{A} = -A,\) \(\Tr(A) = 0\) e
+    \begin{equation*}
+        \exp(A) = \exp(P L \herm{P}) = P \exp(L) \herm{P} = P D \herm{P} = U,
+    \end{equation*}
+    logo \(\mathrm{SU}(N) \subset \exp\left[\mathrm{su}(N)\right].\) Seja agora \(A \in \mathrm{su}(N),\) então \(\det \exp(A) = \exp \Tr(A) = 1\) e 
+    \begin{equation*}
+        \herm{\exp(A)} = \exp(\herm{A}) = \exp(-A) = \exp(A)^{-1}
+    \end{equation*}
+    isto é, \(\exp(A) \in \mathrm{SU}(N),\) concluindo que \(\mathrm{SU}(N) = \exp\left[\mathrm{su}(N)\right].\)
+
+    Os geradores de \(\mathrm{SU}(N)\) são as \(n(N)\) matrizes hermitianas de traço nulo \(T_j\) de forma que o conjunto \(\set{i T_1, \dots, i T_{n(N)}}\) é uma base de \(\mathrm{su}(N)\) e satisfazem
+    \begin{equation*}
+        T_a T_b = \frac{\hbar^2}{2N} \delta_{ab} \unity + \frac{\hbar}{2} \sum_{c = 1}^{n(N)} (d_{abc} + i f_{abc}) T_c,
+    \end{equation*}
+    com \(d_{abc} = d_{bac}\) e \(f_{abc} = -f_{bac}.\) Escrevendo \(T_0 = t \unity,\) temos
+    \begin{equation*}
+        \Tr(T_0 T_a) = t \Tr(T_a) = t \delta_{0a} \Tr(t \unity) = N t^2 \delta_{0a},
+    \end{equation*}
+    portanto tomando \(t^2 = \frac{\hbar^2}{2N^2}\) obtemos
+    \begin{equation*}
+        \Tr(T_a T_b) = \frac{\hbar^2}{2N} \delta_{ab}
+    \end{equation*}
+    para todos \(a,b = 0, 1, \dots, n(N).\) Assim, definimos \(T_0 = \frac{\hbar}{N\sqrt{2}}\unity.\)
+
+    Notemos que
+    \begin{align*}
+        \commutator{T_a}{T_b}T_c &= i\hbar \sum_{d = 1}^{n(N)} f_{abd} T_d T_c\\
+                                 &= i\hbar \sum_{d = 1}^{n(N)} f_{abd}\left[\frac{\hbar^2}{2N} \delta_{dc} \unity + \frac{\hbar}{2} \sum_{e = 1}^{n(N)} (d_{dce} + if_{dce}) T_e\right]\\
+                                 &= \frac{i \hbar^3}{2N} f_{abc} \unity + \frac{i\hbar^2}{2} \sum_{d = 1}^{n(N)} \sum_{e = 1}^{n(N)} f_{abd}(d_{dce} + i f_{dce}) T_e
+    \end{align*}
+    portanto \(\Tr(\commutator{T_a}{T_b}T_c) = \frac{i\hbar^3}{2}f_{abc}\). De forma similar, temos
+    \begin{align*}
+        \anticommutator{T_a}{T_b}T_c &= \left(\frac{\hbar^2}{N}\delta_{ab} \unity + \hbar \sum_{d = 1}^{n(N)} d_{abd} T_d\right)T_c\\
+                                     &= \frac{\hbar^2}{N} \delta_{ab} T_c + \hbar \sum_{d = 1}^{n(N)} d_{abd} \left[\frac{\hbar^2}{2N}\delta_{dc} \unity + \frac{\hbar}{2}\sum_{e = 1}^{n(N)} (d_{dce} + i f_{dce})T_e \right]\\
+                                     &= \frac{\hbar^2}{N} \delta_{ab} T_c + \frac{\hbar^3}{2N} d_{abc} \unity + \frac{\hbar^2}{2} \sum_{d = 1}^{n(N)} \sum_{e = 1}^{n(N)} d_{abd} (d_{dce} + i f_{dce}) T_e,
+    \end{align*}
+    logo \(\Tr(\anticommutator{T_a}{T_b}T_c) = \frac{\hbar^3}{2}d_{abc}.\) Com essas relações aprendemos que \(f_{abc}\) e \(d_{abc}\) são totalmente antissimétrico e totalmente simétrico, respectivamente, e também concluímos que
+    \begin{equation*}
+        \Tr(T_a T_b T_c) = \frac{\hbar^3}{4} (d_{abc} + i f_{abc}).
+    \end{equation*}
+
+    Da identidade de Jacobi,
+    \begin{equation*}
+        \commutator{T_i}{\commutator{T_j}{T_k}} +
+        \commutator{T_j}{\commutator{T_k}{T_i}} +
+        \commutator{T_k}{\commutator{T_i}{T_j}} = 0,
+    \end{equation*}
+    obtemos
+    \begin{equation*}
+        f_{jkm}f_{im \ell} + f_{kim}f_{j m \ell} + f_{ijm}f_{km \ell} = 0 \implies f_{imk} f_{m \ell j} = - \left(f_{jkm}f_{im \ell} + f_{ijm}f_{km \ell}\right)
+    \end{equation*}
+    Dessa relação segue que \(C_1 = f_{abc} T_a T_b T_c\) é um operador de Casimir, pois temos
+    \begin{align*}
+        \commutator{C_1}{T_\ell} &= f_{ijk} \commutator{T_i T_j T_k}{T_\ell}\\
+                                 &= f_{ijk} \left(T_i T_j\commutator{T_k}{T_\ell} + \commutator{T_i T_j}{T_\ell} T_k\right)\\
+                                 &= f_{ijk} \left(i f_{k\ell m} T_i T_j T_m + T_i \commutator{T_j}{T_{\ell}} T_k + \commutator{T_i}{T_\ell} T_j T_k\right)\\
+                                 &= i f_{ijk}\left( f_{k\ell m} T_i T_j T_m + f_{j\ell m} T_i T_m T_k + f_{i \ell m} T_m T_j T_k\right)\\
+                                 &= i \left(f_{ijm} f_{m\ell k} + f_{imk} f_{m\ell j} + f_{mjk} f_{m \ell i}\right)T_i T_j T_k\\
+                                 &= i \left(f_{ijm} f_{m \ell k} - f_{jkm}f_{im \ell} - f_{ijm}f_{km \ell} + f_{mjk} f_{m\ell i}\right) T_i T_j T_m\\
+                                 &= 0,
+    \end{align*}
+    onde usamos a ciclicidade dos índices das constantes de estrutura. No caso \(N = 2,\) temos \(T_i = \frac\hbar2 \sigma_i,\) \(f_{ijk} = \epsilon_{ijk}\) e \(d_{ijk} = 0,\) portanto
+    \begin{align*}
+        C_1^{\mathrm{SU}(2)} &= \epsilon_{ijk} T_i T_j T_k\\
+                             &= \epsilon_{ijk} T_i \left(\frac{\hbar^2}{4} \delta_{jk} \unity + \frac{\hbar}{2} i\epsilon_{jk\ell} T_\ell\right)\\
+                             &= \frac{i\hbar}{2}\epsilon_{ijk} \epsilon_{jk\ell} T_i T_\ell\\
+                             &= i \hbar \delta_{i \ell} T_i T_\ell\\
+                             &= \frac{i\hbar^2}{4} \delta_{i \ell} \sigma_i \sigma_\ell\\
+                             &= \frac{3i \hbar^2}{4} \unity.
+    \end{align*}
+
+    Consideramos agora o conjunto \(\set{T_0, \dots, T_{n(N)}}\) e a combinação linear nula
+    \begin{equation*}
+        \sum_{j = 0}^{n(N)} \alpha_j T_j = 0,
+    \end{equation*}
+    com \(\alpha_j \in \mathbb{C}.\) Multiplicando por \(T_i\) e tomando o traço obtemos
+    \begin{equation*}
+        \sum_{j = 0}^{n(N)} \alpha_j T_i T_j = 0 \implies \frac12 \hbar^2 \sum_{j = 0}^{n(N)} \delta_{ij} \alpha_j = 0 \implies \alpha_i = 0,
+    \end{equation*}
+    isto é, o conjunto \(\set{T_0, \dots, T_{n(N)}}\) é uma base do espaço vetorial \(\mathrm{Mat}(\mathbb{C}, N)\) sobre o corpo dos complexos por ser um conjunto linearmente independente de \(N^2\) matrizes. Desse modo, uma dada matriz \(M \in \mathrm{Mat}(\mathbb{C}, N)\) pode ser escrita como \(M = \sum_{i = 0}^{n(N)} m_i T_i\) com \(m_i = \frac{2}{\hbar^2}\Tr(T_iM),\) isto é,
+    \begin{equation*}
+        M = \frac{\Tr(M)}{N} \unity + \frac{2}{\hbar^2} \Tr(T_i M) T_i.
+    \end{equation*}
+    Consideramos agora os elementos de matriz da relação acima,
+    \begin{equation*}
+        M^{\alpha \beta} = \frac{M^{\nu\mu} \delta^{\mu\nu}}{N} \delta^{\alpha \beta} + \frac{2}{\hbar^2} (T_i)^{\mu \nu} M^{\nu \mu} (T_i)^{\alpha \beta} \implies \left(\delta^{\alpha \nu} \delta^{\beta \mu} - \frac{1}{N} \delta^{\mu\nu} \delta^{\alpha \beta} - \frac{2}{\hbar^2}(T_i)^{\mu\nu} (T_i)^{\alpha \beta}\right)M^{\nu\mu} = 0,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        (T_i)^{\mu\nu} (T_i)^{\alpha \beta} = \frac{\hbar^2}{2} \left(\delta^{\alpha \nu} \delta^{\beta \mu} - \frac{1}{N} \delta^{\mu\nu} \delta^{\alpha \beta}\right)
+    \end{equation*}
+    já que \(M\) é uma matriz arbitrária. Com isso,
+    \begin{align*}
+        (T_i T_j T_i)^{\mu \beta} &= (T_i)^{\mu\nu} (T_j)^{\nu \alpha} (T_i)^{\alpha \beta} \\
+                                  &= \frac{\hbar^2}{2} \left(\delta^{\alpha \nu} \delta^{\beta \mu} - \frac{1}{N} \delta^{\mu\nu} \delta^{\alpha \beta}\right) (T_j)^{\nu \alpha} \\
+                                  &= \frac{\hbar^2}{2} \left(\Tr(T_j) \delta^{\mu \beta} - \frac{1}{N} \delta^{\mu\nu} (T_j)^{\nu \alpha} \delta^{\alpha \beta}\right) \\
+                                  &= - \frac{\hbar^2}{2N} (T_j)^{\mu \beta},
+    \end{align*}
+    portanto
+    \begin{equation*}
+        T_i T_j T_i = - \frac{\hbar^2}{2N} T_j.
+    \end{equation*}
+    Dessa forma, temos \(\Tr(T_i T_j T_i) = 0\) e
+    \begin{equation*}
+        d_{iik} = \frac{2}{\hbar^3} \Tr\left(\anticommutator{T_i}{T_i} T_k\right) = \frac{4}{\hbar^3} \Tr(T_i T_i T_k) = \frac{4}{\hbar^3} \Tr(T_i T_k T_i) = 0,
+    \end{equation*}
+    assim como
+    \begin{equation*}
+        T_i T_j T_i T_k = - \frac{\hbar^2}{2N} T_j T_k \implies \Tr(T_i T_j T_i T_k) = - \frac{\hbar^4}{4N^2} \delta_{jk}.
+    \end{equation*}
+
+    Consideramos
+    \begin{equation*}
+        d_{kij} T_k = d_{ijk} T_k = \frac{1}{\hbar}\anticommutator{T_i}{T_j} - \frac{\hbar}{N}\delta_{ij}\unity,
+    \end{equation*}
+    então
+    \begin{align*}
+        d_{ijk} \Tr(T_i T_j T_\ell) &= \Tr\left[\left(\frac{1}{\hbar}\anticommutator{T_j}{T_k} - \frac{\hbar}{N} \delta_{jk} \unity\right)T_j T_\ell\right]\\
+                                    &= \frac{1}{\hbar}\Tr(T_j T_k T_j T_\ell) + \frac1{\hbar}\Tr(T_k T_j T_j T_\ell) - \frac{\hbar}{N} \Tr(T_k T_\ell)\\
+                                    &= - \frac{\hbar^3}{2N^2} \delta_{k \ell} + \frac{\hbar(N^2 - 1)}{2N}\Tr(T_k T_\ell) - \frac{\hbar}{N} \Tr(T_k T_\ell)\\
+                                    &= \frac{(N^2 - 4)\hbar^3}{4N^2} \delta_{k \ell},
+    \end{align*}
+    isto é, 
+    \begin{equation*}
+        \frac{\hbar^3}{4}d_{ijk} (d_{ij\ell} + i f_{ij\ell}) = \frac{(N^2 - 4)\hbar^3}{4N^2} \delta_{k \ell} \implies d_{ijk} d_{ij\ell} = \frac{N^2 - 4}{N^2} \delta_{k\ell}.
+    \end{equation*}
+    Por fim, temos
+    \begin{equation*}
+        d_{ijk}T_i T_j = d_{ijk}\left[\frac{\hbar^2}{2N} \delta_{ij} \unity + \frac{\hbar}{2} (d_{ij\ell} + i f_{ij\ell})T_\ell\right] = \frac{\hbar^2}{2N} d_{iik} \unity + \frac{\hbar}{2} d_{ijk} d_{ij\ell} T_\ell = \frac{(N^2 - 4)\hbar}{2N^2} T_k,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        C_2 = d_{ijk}T_i T_j T_k = \frac{(N^2 - 4)\hbar}{2N^2} T_k T_k = \frac{(N^2 - 4)(N^2 - 1)\hbar^3}{4N^3} \unity,
+    \end{equation*}
+    concluindo a demonstração de que \(C_2\) é um operador de Casimir para \(\mathrm{SU}(N).\)
+\end{proof}
