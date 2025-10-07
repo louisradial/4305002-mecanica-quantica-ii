@@ -1,0 +1,91 @@
+% vim: spl=pt
+\begin{exercício}{Propriedades das matrizes \(d^{(j)}\)}{ex2}
+   Mostre que
+   \begin{equation*}
+      d^{(j)}_{mm'}(\beta) = (-1)^{m - m'} d^{(j)}_{-m'{-m}}(-\beta).
+   \end{equation*}
+   Determine as expressões
+   \begin{enumerate}[label=(\alph*)]
+      \item \(\displaystyle A^{(j)}_{m'}(\beta) = \sum_{m = -j}^{j}{m \abs*{d^{(j)}_{mm'}(\beta)}^2}\)
+      \item \(\displaystyle B^{(j)}_{m'}(\beta) = \sum_{m = -j}^{j}{m^2 \abs*{d^{(j)}_{mm'}(\beta)}^2}\)
+   \end{enumerate}
+   e verifique os resultados explicitamente para \(j = \frac12\).
+\end{exercício}
+\begin{proof}[Resolução]
+   Recordemos a expressão geral para a matriz de rotação,
+   \begin{equation*}
+      d^{(j)}_{mm'}(\beta) = (-1)^{m - m'}  \cos\left(\frac\beta2\right)^{2j} \Sigma^{(j)}_{mm'}(\beta),
+   \end{equation*}
+   com
+   \begin{equation*}
+      \Sigma^{(j)}_{mm'}(\beta) = \sqrt{\frac{(j+m)!(j-m)!}{(j + m')!(j - m')!}}\sum_{\mu = \max\set{0,m' - m}}^{\min\set{j+m', j-m}} (-1)^\mu \binom{j + m'}{\mu}\binom{j - m'}{j - m - \mu}\left(\tan\frac\beta2\right)^{m - m' + 2\mu}.
+   \end{equation*}
+   É claro que \(\Sigma^{(j)}_{mm'}(-\beta) = (-1)^{m - m'} \Sigma^{(j)}_{mm'}(\beta)\) e, portanto, o mesmo vale para a matriz de rotação, \(d^{(j)}_{mm'}(-\beta) = (-1)^{m - m'} d^{(j)}_{mm'}(\beta).\) Ainda, notando que \(m' - m\) e \(\min\set{j+m',j-m}\) são invariantes sob a mudança \(m \to -m'\) e \(m' \to -m,\) temos
+   \begin{align*}
+      \Sigma^{(j)}_{mm'}(\beta) &= \sqrt{\frac{(j+m)!(j-m)!}{(j + m')!(j - m')!}}\sum_{\mu = \max\set{0,m' - m}}^{\min\set{j+m', j-m}} (-1)^\mu \binom{j + m'}{\mu}\binom{j - m'}{j - m - \mu}\left(\tan\frac\beta2\right)^{m - m' + 2\mu}\\
+                                &= \sum_{\mu}{(-1)^\mu \frac{\sqrt{(j+m)!(j - m)!(j+m')!(j-m')!}}{(j - m - \mu)!\mu!(m - m' + \mu)!(j + m' - \mu)!}\left(\tan\frac\beta2\right)^{m - m' + 2\mu}}\\
+                                &=\sqrt{\frac{(j+m')!(j-m')!}{(j + m)!(j - m)!}}\sum_{\mu}{(-1)^\mu \frac{(j - m)!(j + m)!}{(j + m' - \mu)!\mu! (m - m' + \mu)!(j - m - \mu)!}\left(\tan\frac\beta2\right)^{m - m' + 2\mu}}\\
+                                &= \sqrt{\frac{(j+m')!(j-m')!}{(j + m)!(j - m)!}}\sum_{\mu = \max\set{0,m' - m}}^{\min\set{j+m', j-m}} (-1)^\mu \binom{j - m}{\mu}\binom{j + m}{j + m' - \mu}\left(\tan\frac\beta2\right)^{m - m' + 2\mu}\\
+                                &= \Sigma^{(j)}_{-m'{-m}}(\beta),
+   \end{align*}
+   portanto o mesmo vale para a matriz de rotação, \(d^{(j)}_{mm'}(\beta) = d^{(j)}_{-m'{-m}}(\beta).\) Assim, segue que 
+   \begin{equation*}
+      d^{(j)}_{mm'}(\beta) = (-1)^{m - m'} d^{(j)}_{mm'}(-\beta) = (-1)^{m - m'} d^{(j)}_{-m'{-m}}(-\beta)
+   \end{equation*}
+   usando os resultados preliminares.
+
+   No subespaço de \(\vetor{J}^2 = j(j+1),\) temos a representação espectral
+   \begin{equation*}
+      J_z = \sum_{m = -j}^{j} m\ketbra{jm}{jm},
+   \end{equation*}
+   logo
+   \begin{align*}
+      A^{(j)}_{m'}(\beta) &= \sum_{m = - j}^j m\abs*{d^{(j)}_{mm'}(\beta)}^2\\
+                          &= \sum_{m = - j}^j m\bra{jm'}e^{i \beta J_y}\ketbra{jm}{jm}e^{-i\beta J_y}\ket{jm'}\\
+                          &= \bra{jm'} e^{i\beta J_y} \sum_{m = - j}^{j} m\ketbra{jm}{jm} e^{-i\beta J_y} \ket{jm'}\\
+                          &= \bra{jm'} e^{i \beta J_y} J_z e^{-i \beta J_y} \ket{jm'}\\
+                          &= \bra{jm'} \sum_{\mu = -1}^1 d^{(1)}_{0\mu}(\beta)^* J_\mu \ket{jm'}\\
+                          &= d^{(1)}_{00}(\beta) m'\\
+                          &= m' \cos\beta,
+   \end{align*}
+   onde usamos que \(\vetor{J}\) é um operador vetorial e usamos o resultado do \href{teste}{Exercício 3 da Lista 1, página 5}. De forma análoga, temos
+   \begin{align*}
+      B^{(j)}_{m'}(\beta) &= \sum_{m = - j}^j m^2\abs*{d^{(j)}_{mm'}(\beta)}^2\\
+                          &= \sum_{m = - j}^j m^2\bra{jm'}e^{i \beta J_y}\ketbra{jm}{jm}e^{-i\beta J_y}\ket{jm'}\\
+                          &= \bra{jm'} e^{i\beta J_y} \sum_{m = - j}^{j} m^2\ketbra{jm}{jm} e^{-i\beta J_y} \ket{jm'}\\
+                          &= \bra{jm'} e^{i \beta J_y} J_z e^{-i\beta J_y} e^{i \beta J_y} J_z e^{-i \beta J_y} \ket{jm'}\\
+                          &= \bra{jm'} \sum_{\mu = -1}^1 \sum_{\nu = - 1}^1 d^{(1)}_{0\mu}(\beta)^* d^{(1)}_{0\nu}(\beta)^*J_\mu J_\nu\ket{jm'}\\
+                          &= \sum_{\mu = -1}^1 d^{(1)}_{0{-\mu}}(\beta)^* d^{(1)}_{0\mu}(\beta)^* \bra{jm'}J_{-\mu} J_\mu \ket{jm'}\\
+                          &= -\frac12d^{(1)}_{01}(\beta)^* d^{(1)}_{0{-1}}(\beta)^* \left(\bra{jm'}\herm{J}_+J_+\ket{jm'} +\bra{jm'}\herm{J}_-J_-\ket{jm'}\right) + \abs{d^{(1)}_{00}(\beta)}^2 m'^2\\
+                          &= \frac14 \sin^2\beta \left[a_+(jm')^2 + a_-(jm')^2\right] + m'^2\cos^2\beta\\
+                          &= \frac14 \sin^2\beta \left[2j(j+1) - m'(m' + 1) - m'(m' - 1)\right] + m'^2 \cos^2\beta\\
+                          &= \frac12 \sin^2\beta \left[j(j+1) - m'^2\right] + m'^2 \cos^2\beta,
+   \end{align*}
+   onde usamos que \(J_{\pm1} = \mp \frac{1}{\sqrt{2}} J_{\pm}\) e \(\herm{J}_{\pm} = J_{\mp}.\)
+
+   Para \(j = \frac12,\) temos
+   \begin{equation*}
+      e^{-i \beta J_y} = \cos\left(\frac{\beta}{2}\right)\unity -2i \sin\left(\frac{\beta}{2}\right) J_y,
+   \end{equation*}
+   portanto
+   \begin{equation*}
+      d^{(\frac12)}_{mm'}(\beta) = \bra*{\frac12m}e^{-i\beta J_y}\ket*{\frac12m'} = \delta_{mm'}\cos\left(\frac\beta2\right) - 2m\delta_{m,{-m'}}\sin\left(\frac{\beta}{2}\right)
+   \end{equation*}
+   e então
+   \begin{equation*}
+      \abs*{d^{(\frac12)}_{mm'}(\beta)}^2 = \delta_{mm'} \cos^2\left(\frac{\beta}{2}\right) + \delta_{m,-m'} \sin^2\left(\frac{\beta}{2}\right).
+   \end{equation*}
+   Desta forma, temos
+   \begin{align*}
+      A^{(\frac12)}_{m'}(\beta) = \sum_{m = -\frac12}^{\frac12} m\left[\delta_{mm'}\cos^2\left(\frac\beta2\right) + \delta_{m,-m'} \sin^2\left(\frac{\beta}{2}\right)\right]
+                                = m' \cos^2\left(\frac\beta2\right) - m' \sin^2\left(\frac\beta2\right)
+                                = m' \cos\beta
+   \end{align*}
+   e
+   \begin{equation*}
+      B^{(\frac12)}_{m'}(\beta) = \sum_{m = -\frac12}^{\frac12} m^2\left[\delta_{mm'}\cos^2\left(\frac\beta2\right) + \delta_{m,-m'} \sin^2\left(\frac{\beta}{2}\right)\right]
+      = m'^2 \left[\cos^2\left(\frac\beta2\right) + \sin^2\left(\frac\beta2\right)\right]
+                                = m'^2
+   \end{equation*}
+   que coincidem com os resultados gerais obtidos.
+\end{proof}
