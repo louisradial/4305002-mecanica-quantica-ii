@@ -1,6 +1,10 @@
 % vim: spl=pt
-\begin{exercício}{}{ex3}
-    
+\begin{exercício}{Modelo solúvel com spin}{ex3}
+   Generalize o modelo estudado para o caso em que \(a\) e \(b\) têm spins \(s_a\) e \(s_b\), \(\ket{0}\) tem spin nulo, \(\ket{1}\) tem spin \(j,\) e \((s_a,s_b,j)\) devem ser ou todos inteiros ou semi-inteiros. Sendo \(H_a\) e \(H_b\) as interações de \(a\) e \(b,\) mostre que a invariância por rotação leva \(H_a\) para ter a forma
+   \begin{equation*}
+      H_a = \sum_{m = -j}^j \sum_{\lambda = -s_a}^{s_a} \int \dln3k \left[f_{\lambda}^*(k) D^{(j)}_{m \lambda}(\vetor{k})^* \herm{A}_{\vetor{k}, \lambda} \xi_m + \mathrm{h.c.}\right],
+   \end{equation*}
+   onde \(\lambda\) é a helicidade de \(a,\) e com uma expressão análoga para \(H_b\). Mostre que a equação de evolução temporal para \(a\) incidente envolve uma amplitude não conhecida para os \((2\ell + 1)\) estados intermediários, e que, portanto, é solúvel. Por outro lado, mostre que mesmo que apenas o espalhamento elástico é possível, a matriz \(S\) é não trivial por envolver acoplamentos entre os diversos estados de helicidade. Considere também a imposição e consequências da invariância de paridade para o espalhamento elástico.
 \end{exercício}
 \begin{proof}[Resolução]
     

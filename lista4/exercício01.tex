@@ -1,6 +1,24 @@
 % vim: spl=pt
-\begin{exercício}{}{ex1}
-    
+\begin{exercício}{Espalhamento férmion-férmion}{ex1}
+   A forma mais geral de uma matriz densidade para o sistema nêutron-próton é
+   \begin{equation*}
+      \rho = \frac14 \left(\unity + \vetor{\sigma}_1 \cdot \vetor{P}_1 + \vetor{\sigma}_2 \cdot \vetor{P}_2 + \sum_{ij}C_{ij}{\sigma_{1,i}\sigma_{2,j}}\right)
+   \end{equation*}
+   onde \(\vetor{P}_1,\vetor{P}_2\) são, respectivamente, as polarizações de spin do próton e do nêutron.
+   \begin{enumerate}[label=(\alph*)]
+      \item Mostre que mesmo que o estado inicial seja aleatório, \(\rho_i = \frac14\), há correlação entre os estados de spin após o espalhamento. Determine os coeficientes de correlação \(C_{ij}\) em termos da matriz de espalhamento \(\mathcal{M}(\vetor{k}_f,\vetor{k}_i)\) nesse caso.
+      \item Novamente nesse caso, calcule a seção de choque diferencial elástica considerando a interação spin-spin,
+         \begin{equation*}
+            V = V_0(r) + \vetor{\sigma}_1 \cdot \vetor{\sigma}_2 V_1(r),
+         \end{equation*}
+         em termos das amplitudes \(f_{s}(\theta, k)\) e \(f_t(\theta,k).\)
+      \item Determine os coeficientes \(C_{ij}\) em termos de \(f_s(\theta,k)\) e \(f_t(\theta,k).\)
+      \item Considere agora o espalhamento próton-próton com o mesmo potencial de interação. Se o estado inicial é não polarizado, mostre que os coeficientes de correlação são \(C_{ij} = \delta_{ij} C,\)
+         \begin{equation*}
+            C = \frac{\abs{f_t(\theta) - f_t(\pi - \theta)}^2 - \abs{f_s(\theta) + f_s(\pi - \theta)}^2}{3 \abs{f_t(\theta) - f_t(\pi - \theta)}^2 + \abs{f_s(\theta) + f_s(\pi - \theta)}^2}.
+         \end{equation*}
+         Mostre que \(\frac13 \geq C \geq -1,\) onde estes limites correspondem aos espalhamentos apenas nos estados de tripleto e de singleto. Dê um exemplo desses limites.
+   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
     

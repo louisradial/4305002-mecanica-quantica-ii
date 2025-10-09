@@ -1,6 +1,14 @@
 % vim: spl=pt
 \begin{exercício}{}{ex4}
-    
+   Esse problema ilustra a análise padrão de espalhamento ressonante, e é basicamente um exercício numérico. Considere a amplitude de espalhamento elástico \(a(E),\)
+   \begin{equation*}
+      a(E) = e^{i \delta} \sin \delta = \frac{\frac12 \Gamma_a}{E_* - E - \frac{i}{2} \Gamma_\mathrm{tot}},
+   \end{equation*}
+   assumindo que \(\Sigma = E_* - E_0\) e as larguras \(\Gamma\) são independentes de energia. A ressonância é suposta ser bem acima do limiar inelástico.
+   \begin{enumerate}[label=(\alph*)]
+      \item Faça um gráfico de \(a(E)\) no plano complexo. Assuma que \(\Gamma_{\mathrm{tot}}\) é consideravelmente menor que a energia de ressonância \(E_*\) e determine vários valores da \todo[branching fraction] \(\frac{\Gamma_a}{\Gamma_{\mathrm{tot}}}\). Anote os pontos de \(a(E)\) em intervalos constantes de \(\frac{E}{E_*}\) e observe como a \emph{velocidade} ao longo dessa \emph{trajetória} varia conforme \(E\) passa pela ressonância.
+      \item Em geral, a amplitude elástica ressonante não é completamente dominada pela ressonância, mas tem um \todo[slowly varying background] também. Adicione uma amplitude constante \(b = \abs{b}e^{i\alpha}\) a \(a(E),\) escolhida para saturar o limite da unitariedade. Faça um gráfico da seção de choque para \(\alpha = 0, \pm \frac{\pi}{4},\pm \frac{\pi}{2}.\) Perceba o efeito dramático isso pode ter no aparecimento da ressonância, e que em particular a ressonância pode não aparecer como um pico proeminente na seção de choque, apesar de sempre aparecer como um ponto \todo[swiftly moving] no plano de Argand-Gauss.
+   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
     
