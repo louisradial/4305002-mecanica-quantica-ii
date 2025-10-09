@@ -1,6 +1,45 @@
 % vim: spl=pt
-\begin{exercício}{}{ex5}
-    
+\begin{exercício}{Expansão em ondas parciais com interação spin-órbita\cite{gottfried}}{ex5}
+   Considere o espalhamento elástico devido à interação spin-órbita descrita pelo potencial
+   \begin{equation*}
+      V = V_0(r) + \vetor{\sigma} \cdot \vetor{L} V_1(r).
+   \end{equation*}
+   \begin{enumerate}[label=(\alph*)]
+       \item Mostre que a solução da equação de evolução temporal pode ser escrita como
+          \begin{equation*}
+             \ket{\psi} = \sum_{\ell = 0}^{\infty} \sqrt{4\pi (2\ell + 1)} i^\ell \left[c_\ell^+ R_{\ell}^+(r) \Lambda_{\ell}^+ + c_{\ell}^- R_{\ell}^-(r) \Lambda_\ell^-\right]Y_{\ell 0}(\theta) \ket{\nu_i},
+          \end{equation*}
+          onde \(\Lambda_{\ell}^{\pm}\) são os projetores ortogonais nos subespaços \(j = \ell \pm \frac12\), dados por
+          \begin{equation*}
+             \Lambda_{\ell}^+ = \frac{\ell + 1 + \vetor{\sigma}\cdot\vetor{L}}{2\ell + 1}\quad\text{e}\quad
+             \Lambda_{\ell}^- = \frac{\ell - \vetor{\sigma}\cdot\vetor{L}}{2\ell + 1},
+          \end{equation*}
+          \(c_{\ell}^\pm\) são constantes determinadas pelas condições de contorno, e as funções radiais \(R_{\ell}^\pm\) são soluções de
+          \begin{equation*}
+             \left[\frac{1}{r^2} \diff{}{r}r^2 \diff{}{r} - \frac{\ell (\ell + 1)}{r^2} + k^2 - 2m V_{\ell}^{\pm}(r)\right]R_{\ell}^{\pm}(r) = 0,
+          \end{equation*}
+          com
+          \begin{equation*}
+             V_{\ell}^{+} = V_0(r) + \ell V_1(r)\quad\text{e}\quad V_{\ell}^{-} = V_0(r) - (\ell + 1)V_1(r).
+          \end{equation*}
+       \item Seja \(\delta_{\ell}^{\pm}\) as defasagens nos estados de momento angular total \(j = \ell \pm \frac12,\) isto é,
+          \begin{equation*}
+             R_{\ell}^\pm \sim \frac{e^{i \delta_{\ell}^\pm}}{kr}\sin\left(kr - \ell \frac\pi2 + \delta_\ell^\pm\right)
+          \end{equation*}
+          no limite assintótico \(r \to \infty.\) Mostre que as funções \(g\) e \(h\) que aparecem na matriz de espalhamento \(M\) são
+          \begin{equation*}
+             g(k,\theta) = \frac1k \sum_{\ell = 0}^\infty \left(\frac{4\pi}{2\ell + 1}\right)^{\frac12} \left[(\ell + 1) a_\ell^+ + \ell a_\ell^-\right]Y_{\ell 0}(\theta)
+          \end{equation*}
+          e
+          \begin{equation*}
+             h(k,\theta) = \frac1k \sum_{\ell = 0}^\infty \left(\frac{4\pi}{2\ell + 1}\right)^{\frac12} \left[a_\ell^+ - a_\ell^-\right]i\sin\theta\diff*{Y_{\ell 0}(\theta)}{\cos\theta},
+          \end{equation*}
+          onde \(a_{\ell}^\pm = e^{i \delta_{\ell}^\pm} \sin\delta_{\ell}^{\pm}.\)
+       \item Mostre que a seção de choque total é
+          \begin{equation*}
+             \sigma = \frac{4\pi}{k^2} \sum_{\ell} \left[(\ell + 1)\sin\delta^+_\ell + \ell \sin^2 \delta_\ell^-\right].
+          \end{equation*}
+   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
     

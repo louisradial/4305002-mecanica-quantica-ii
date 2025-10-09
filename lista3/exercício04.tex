@@ -1,6 +1,23 @@
 % vim: spl=pt
-\begin{exercício}{}{ex4}
-    
+\begin{exercício}{Multipleto de \(N\) partículas não idênticas}{ex4}
+   Consideramos agora espalhamentos inelásticos. Por exemplo, suponhamos que há um multipleto de \(N\) partículas não idênticas, todas com massa \(m.\) \todo[Consideramos o espalhamento por um centro de força esfericamente simétrico com a propriedade de que a interação pode trocar um número do multipleto para outro membro.] Podemos nesse caso expressar a amplitude de espalhamento por \(f_{\alpha\beta}(k; \cos\theta),\) com \(\alpha, \beta = 1, \dots, N,\) correspondente a uma matriz \(S\)
+   \begin{equation*}
+      S_{\alpha\beta}(\vetor{k}_f;\vetor{k}_i) = \delta_{\alpha\beta}\delta(\vetor{k}_f - \vetor{k}_i) + \frac{i}{2\pi k_i}\delta(k_f - k_i) f_{\alpha\beta}(\vetor{k}_f; \vetor{k}_i),
+   \end{equation*}
+   com \(\beta\) identificando a partícula inicial e \(\alpha\) a partícula final. A generalização de ondas parciais é
+   \begin{equation*}
+      f_{\alpha\beta}(k,\cos\theta) = \frac{1}{2ik} \sum_{\ell = 0}^\infty (2\ell + 1)(A_{\alpha\beta}^{(\ell)} - \delta_{\alpha\beta})P_{\ell}(\cos\theta),
+   \end{equation*}
+   onde \(A^{(\ell)}\) é a matriz
+   \begin{equation*}
+      A^{(\ell)} = \exp(2i \Delta_{\ell}(k))
+   \end{equation*}
+   com \(\Delta_{\ell}\) a matriz hermitiana de defasagem e com \(f_{\alpha\alpha}\) a amplitude de espalhamento elástico para a partícula \(\alpha\).
+   \begin{enumerate}[label=(\alph*)]
+      \item Encontre expressões, em termos de \(A^{(\ell)}(k)\), para as seções de choque totais nos casos elástico, inelástico e elástico com inelástico.
+      \item Determine uma generalização para o teorema ótico para o espalhamento de partículas no multipleto.
+      \item Usando as seções de choque totais elástica e inelástica em termos da matriz \(A^{(\ell)}_{\alpha\beta}\) na expansão de ondas parciais, determine o contorno da região hachurada na figura 8.9 do problema 8.8.1 de \cite{gottfried}.
+   \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
     
