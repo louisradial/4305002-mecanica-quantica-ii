@@ -37,4 +37,31 @@
                                           =\sum_{j = \abs{\alpha}}^\infty \sum_{m = -j}^{j} D^{(j)}_{m \alpha}(\vetor{n}) \ket{j m \lambda_1 \lambda_2} \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2},
    \end{align*}
    portanto \(c_j = \braket{j \alpha \lambda_1 \lambda_2}{\vetor{e}_z \lambda_1 \lambda_2}.\)
+
+   Para determinar \(c_j,\) notemos que
+   \begin{equation*}
+      c_j D^{(j)}_{m \alpha}(\vetor{n}) = \braket{j m \lambda_1 \lambda_2}{\vetor{n} \lambda_1 \lambda_2}
+   \end{equation*}
+   portanto
+   \begin{equation*}
+      c_j c_{j'}^* D^{(j)}_{m \alpha}(\vetor{n}) D^{(j')}_{m' \alpha}(\vetor{n})^* = \braket{j m \lambda_1 \lambda_2}{\vetor{n} \lambda_1 \lambda_2} \braket{\vetor{n} \lambda_1 \lambda_2}{j' m' \lambda_1 \lambda_2}.
+   \end{equation*}
+   Da ortogonalidade na base de helicidade de onda plana, temos a relação de completeza
+   \begin{equation*}
+      \int \dli{\Omega'} \ketbra{\vetor{n'} \lambda_1 \lambda_2}{\vetor{n'} \lambda_1 \lambda_2} = \unity
+   \end{equation*}
+   no subespaço de helicidade \(\alpha = \lambda_1 - \lambda_2\),
+   portanto integrando a relação anterior obtemos
+   \begin{equation*}
+      c_j c_{j'}^* \frac{4\pi}{2j + 1} \delta_{jj'} \delta_{mm'} = \braket{jm \lambda_1 \lambda_2}{j' m' \lambda_1 \lambda_2} = \delta_{jj'} \delta_{mm'},
+   \end{equation*}
+   isto é, 
+   \begin{equation*}
+      \abs{c_j}^2 = \frac{2j + 1}{4\pi}.
+   \end{equation*}
+   Com isso, tomamos \(c_j\) real e obtemos
+   \begin{equation*}
+      \ket{\vetor{n} \lambda_1 \lambda_2} = \sum_{j = \abs{\alpha}}^{\infty}{\sum_{m = -j}^{j}{\sqrt{\frac{2j + 1}{4\pi}} D^{(j)}_{m \alpha}(\vetor{n}) \ket{j m \lambda_1 \lambda_2}}}
+   \end{equation*}
+   como a transformação entre as bases.
 \end{proof}
