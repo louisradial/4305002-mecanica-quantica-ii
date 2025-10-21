@@ -7,5 +7,15 @@
    são independentes de \(M,\) com \(\Lambda = \lambda_b - \lambda_c.\) Em contrapartida, mostre que se \(M\) é determinado e se as helicidades de \(B\) e \(C\) não são medidas, então a distribuição angular é, em geral, não isotrópica, independente da validade de invariância de paridade.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Assumindo que o estado inicial do processo é uma mistura de estados com os valores de \(M\) uniformemente distribuídos, temos
+    \begin{equation*}
+       A(i \to f) \propto \frac{1}{2s_{a}+1}\sum_{M = -s_a}^{s_a} c_{\lambda_b \lambda_c}\braket{s_a M}{p \vetor{n} \lambda_b \lambda_c} \propto \frac{c_{\lambda_b \lambda_c}}{2s_a + 1} \sum_{M = -s_{a}}^{s_a} D^{(s_a)}_{M \Lambda}(\vetor{n}) = \frac{c_{\lambda_b \lambda_c}}{2s_a + 1},
+    \end{equation*}
+    isto é, a distribuição angular é isotrópica.
+
+    Se \(M\) é determinado e se não medimos as helicidades dos estados finais, temos
+    \begin{equation*}
+       A(M \to f) \propto \sum_{\lambda_b} \sum_{\lambda_c} \braket{s_a M}{p \vetor{n} \lambda_b \lambda_c} \propto \sum_{\lambda_b}{\sum_{\lambda_c}{c_{\lambda_b} c_{\lambda_c} D^{(s_a)}_{M \Lambda}(\vetor{n})}},
+    \end{equation*}
+    que não é, em geral, isotrópica.
 \end{proof}
