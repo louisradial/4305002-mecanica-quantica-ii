@@ -22,5 +22,25 @@
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    A condição de estados ligados é dada pela expressão
+    \begin{equation*}
+        \frac{j_{\ell}\left(a\sqrt{\frac{2\mu (V_0 + E)}{\hbar^2}}\right)}{\sqrt{1 + \frac{V_0}{E}} j'_{\ell}\left(a\sqrt{\frac{2\mu (V_0 + E)}{\hbar^2}}\right)} = \frac{h^+_{\ell}\left(ia\sqrt{\frac{2\mu \abs{E}}{\hbar^2}}\right)}{{h^+_\ell}'\left(ia\sqrt{\frac{2\mu \abs{E}}{\hbar^2}}\right)},
+    \end{equation*}
+    como mostrado no \href{https://github.com/louisradial/4305001-mecanica-quantica/releases/tag/lista7}{Exercício 3 da Lista 7 de Mecânica Quântica I}. Assim, para \(\ell = 0\) temos
+    \begin{equation*}
+        j_0(z) = \frac{\sin z}{z},\quad
+        j_0'(z) = \frac{z\cos z - \sin z}{z^2},\quad
+        h^+_0(z) = -i \frac{e^{iz}}{z},\quad\text{e}\quad
+        {h^+_0}'(z) = -i\frac{i z - 1}{z^2} e^{iz}
+    \end{equation*}
+    e então
+    \begin{equation*}
+        \frac{j_0(z)}{j_0'(z)} = \frac{z \sin z}{z \cos z - \sin z} = \frac{z}{z \cot z - 1}
+        \quad\text{e}\quad
+        \frac{h^+_0(z)}{{h^+_0}'(z)} = \frac{z}{iz - 1},
+    \end{equation*}
+    logo
+    \begin{equation*}
+        \frac{\left(a\sqrt{\frac{2\mu (V_0 + E)}{\hbar^2}}\right)}{\left(a\sqrt{\frac{2\mu (V_0 + E)}{\hbar^2}}\right) \cot\left(a\sqrt{\frac{2\mu (V_0 + E)}{\hbar^2}}\right) - 1} = -\frac{\left(ia\sqrt{\frac{2\mu \abs{E}}{\hbar^2}}\right)}{\left(a\sqrt{\frac{2\mu \abs{E}}{\hbar^2}}\right) + 1}
+    \end{equation*}
 \end{proof}
