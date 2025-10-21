@@ -7,5 +7,35 @@
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   Para um estado inicial com \(j = 1\) e \(M = \pm 1,\) devemos ter
+   \begin{equation*}
+      A(i \to f) \propto \frac12 \sum_{M \in \set{-1,1}} \sum_{\lambda_1 \in \set{-\frac12,\frac12}} \sum_{\lambda_2 \in \set{-\frac12,\frac12}} C_{\lambda_1 \lambda_2} D_{M \Lambda}^{(1)}(\vetor{n})
+   \end{equation*}
+   para a amplitude do decaimento em duas partículas de spin \(\frac12\). Assim,
+   \begin{align*}
+      \diff{\Gamma}{\Omega} &\propto \frac14 \sum_{M = \pm1} \sum_{\lambda_1} \sum_{\lambda_2} \abs{C_{\lambda_1 \lambda_2}}^2 \abs{D^{(1)}_{M \Lambda}(\vetor{n})}^2\\
+                            &= \frac14 \sum_{M = \pm1}\left[\left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\abs{D^{(1)}_{M0}(\vetor{n})}^2 + \abs{C_{+-}}^2\abs{D^{(1)}_{M1}(\vetor{n})}^2 + \abs{C_{-+}}^2 \abs{D^{(1)}_{M{-1}}(\vetor{n})}^2\right]\\
+                            &= \frac14 \left\{\left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\sin^2\theta +\left(\abs{C_{+-}}^2 + \abs{C_{-+}}^2\right)\left[\left(\frac{1 + \cos\theta}{2}\right)^2 + \left(\frac{1 - \cos\theta}{2}\right)^2\right]\right\}\\
+                            &= \frac14 \left\{\left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\sin^2\theta + \left(\abs{C_{+-}}^2 + \abs{C_{-+}}^2\right)\frac{1 + \cos^2\theta}{2}\right\},
+   \end{align*}
+   portanto em termos da taxa total,
+   \begin{equation*}
+      \frac{1}{\Gamma}\diff{\Gamma}{\Omega} = \frac{3}{16\pi}\frac{2\left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\sin^2\theta + \left(\abs{C_{+-}}^2 + \abs{C_{-+}}^2\right)\left(1 + \cos^2\theta\right)}{\abs{C_{++}}^2 + \abs{C_{+-}}^2 + \abs{C_{-+}}^2 + \abs{C_{--}}^2}.
+   \end{equation*}
+
+   No caso em que o momento angular orbital é nulo, devemos ter apenas os casos em que \(M = \Lambda,\) já que esses estados correspondem aos estados de momento angular \(\ket{11}\) e \(\ket{1{-1}}.\)
+   \begin{align*}
+      \diff{\Gamma}{\Omega} &\propto \frac14 \left[\abs{C_{+-}}^2 \abs{D^{(1)}_{11}(\vetor{n})}^2 + \abs{C_{-+}}^2 \abs{D^{(1)}_{-1{-1}}(\vetor{n})}^2\right]\\
+                            &= \frac14 \left[\abs{C_{+-}}^2 + \abs{C_{-+}}^2\right] \frac{1 + 2\cos\theta + \cos^2\theta}{4}
+   \end{align*}
+   isto é,
+   \begin{equation*}
+      \frac1\Gamma\diff{\Gamma}{\Omega} = \frac{3}{\pi} (1 + 2\cos\theta + \cos^2\theta).
+   \end{equation*}
+
+   No caso em que os estados finais de spin são tais que \(m = \pm 1,\) devemos ter o caso anterior além do caso de singleto de spin, em que a helicidades das partículas são iguais, logo
+   \begin{align*}
+      \diff{\Gamma}{\Omega} &\propto \frac14 \left[\abs{C_{+-}}^2 \abs{D^{(1)}_{11}(\vetor{n})}^2 + \abs{C_{-+}}^2 \abs{D^{(1)}_{-1{-1}}(\vetor{n})}^2 + \left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\left(\abs{D^{(1)}_{10}(\vetor{n})}^2 + \abs{D^{(1)}_{{-1}0}(\vetor{n})}^2\right)\right]\\
+                            &= \frac14 \left[\left(\abs{C_{+-}}^2 + \abs{C_{-+}}^2\right) \frac{1 + 2\cos\theta + \cos^2\theta}{4} + \left(\abs{C_{++}}^2 + \abs{C_{--}}^2\right)\sin^2\theta\right]
+   \end{align*}
 \end{proof}
