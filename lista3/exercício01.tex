@@ -20,5 +20,56 @@
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   Na aproximação de Born, temos
+   \begin{equation*}
+      f(\theta) = (2\pi)^2 \mu \hbar \bra{\phi_f}V\ket{\phi_i},
+   \end{equation*}
+   onde o potencial de interação é
+   \begin{equation*}
+      V(\vetor{x}) = Ze^2 \int_{\mathbb{R}^3} \dln3{x'}\frac{\rho(\vetor{x'})}{\norm{\vetor{x} - \vetor{x'}}}
+   \end{equation*}
+   e os estados inicial e final têm funções de onda
+   \begin{equation*}
+      \phi_i(\vetor{x}) = \frac{1}{(2\pi \hbar)^{\frac32}}e^{i\vetor{k}\cdot \vetor{x}}
+      \quad\text{e}\quad
+      \phi_f(\vetor{x}) = \frac{1}{(2\pi \hbar)^{\frac32}}e^{i\vetor{k'}\cdot \vetor{x}},
+   \end{equation*}
+   com \(\vetor{k}\cdot\vetor{k'} = k^2 \cos\theta.\) Definindo \(\vetor{q} = \vetor{k} - \vetor{k'}\) com \(q^2 = 4k^2 \sin^2\frac\theta2,\) temos
+   \begin{align*}
+      V_{fi} &= \bra{\phi_f}V\ket{\phi_i}\\
+             &= \frac{Ze^2}{(2\pi \hbar)^3}\int_{\mathbb{R}^3} \dln3{x} \int_{\mathbb{R}^3} \dln{3}{x'} e^{i \vetor{q}\cdot\vetor{x}} \frac{\rho(\vetor{x'})}{\norm{\vetor{x} - \vetor{x'}}}\\
+             &= -\frac{Ze^2}{(2\pi \hbar)^3}\int_{\mathbb{R}^3} \dln3{x} \int_{\mathbb{R}^3} \dln{3}{x'} \frac{1}{q^2}\nabla^2\left( e^{i \vetor{q}\cdot\vetor{x}}\right)\frac{\rho(\vetor{x'})}{\norm{\vetor{x} - \vetor{x'}}}\\
+             &= -\frac{Ze^2}{(2\pi \hbar)^3q^2}\int_{\mathbb{R}^3} \dln3{x} \int_{\mathbb{R}^3} \dln{3}{x'} e^{i \vetor{q}\cdot\vetor{x}}\nabla^2\left[\frac{\rho(\vetor{x'})}{\norm{\vetor{x} - \vetor{x'}}}\right]\\
+             &= \frac{4\pi Ze^2}{(2\pi \hbar)^3q^2} \int_{\mathbb{R}^3} \dln3{x} \int_{\mathbb{R}^3} \dln3{x'} e^{i\vetor{q}\cdot\vetor{x}} \rho(\vetor{x}') \delta(\vetor{x} - \vetor{x'})\\
+             &= \frac{4\pi Ze^2}{(2\pi \hbar)^3q^2} \int_{\mathbb{R}^3} \dln3{x}  e^{i\vetor{q}\cdot\vetor{x}} \rho(\vetor{x}).
+   \end{align*}
+   Assumindo \(\rho\) com simetria radial temos
+   \begin{align*}
+      V_{fi} &= \frac{Ze^2}{\pi \hbar^3 q^2} \int_{0}^\infty \dli{r} r^2 \int_{-1}^{1} \dli{(\cos \chi)} e^{i q r \cos\chi} \rho(r)\\
+             &= \frac{2Ze^2}{\pi \hbar^3 q^2} \int_{0}^\infty \dli{r} r^2 \frac{\sin(qr)}{qr} \rho(r)\\
+             &= \frac{Ze^2}{2\pi^2 \hbar^3 q^2} F(q),
+   \end{align*}
+   onde
+   \begin{equation*}
+      F(q) = 4\pi \int_0^\infty \dli{r} r^2 \rho(r) \frac{\sin(qr)}{qr}
+   \end{equation*}
+   é o fator de forma. Com isso,
+   \begin{equation*}
+      f(\theta) = (2\pi)^2 \mu \hbar V_{fi} = Ze^2\frac{2\mu}{\hbar^2 q^2} F(q) = f_0(\theta) F(q),
+   \end{equation*}
+   onde
+   \begin{equation*}
+      f_0(\theta) = \frac{Ze^2}{4E \sin^2\frac{\theta}2}
+   \end{equation*}
+   é a amplitude de espalhamento de Rutherford.
+
+   Se aproximarmos a densidade do núcleo como uma constante e com um raio finito \(a,\) temos
+   \begin{equation*}
+      \int_{0}^\infty \dln3x \rho(\vetor{x}) = 1 \implies \rho(r) = \frac{3}{4\pi a^3}\theta(a - r),
+   \end{equation*}
+   portanto 
+   \begin{equation*}
+      F(q) = \frac{3}{a^3q} \int_0^{a} \dli{r} r \sin(qr) = 3 \frac{\sin(q a) - qa \cos(qa)}{(qa)^3} = \frac{3j_1(qa)}{qa}
+   \end{equation*}
+   é a expressão para o fator de forma nesta aproximação, onde \(j_1\) é a função de Bessel esférica de primeiro tipo de ordem um.
 \end{proof}
