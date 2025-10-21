@@ -2,7 +2,7 @@
 \begin{exercício}{Potencial de Yukawa}{ex2}
    Considere o espalhamento pelo potencial de Yukawa
    \begin{equation*}
-      V(r) = \frac1r\exp\left(-\frac{r}{a}\right).
+      V(r) = V_0\frac{a}r\exp\left(-\frac{r}{a}\right).
    \end{equation*}
    \begin{enumerate}[label=(\alph*)]
        \item Determine a amplitude de espalhamento e a seção de choque total usando a aproximação de Born.
@@ -10,9 +10,92 @@
           \begin{equation*}
              \frac{2m}{\hbar^2}\abs*{\int\dln3r \frac{e^{ikr}}{4\pi r} V(\vetor{r}) e^{ikz}} \ll 1.
           \end{equation*}
-       \item Mostre que a seção de choque total é menor que que a seção transversal geométrica \(4\pi a^2\) quando a aproximação de Born é válida independente de momento.
+       \item Mostre que a seção de choque total é menor que a seção transversal geométrica \(4\pi a^2\) quando a aproximação de Born é válida independente de momento.
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   Como o potencial de Yukawa é esfericamente simétrico, temos na aproximação de Born
+   \begin{equation*}
+      f(k, \theta) = -\frac{2\mu}{q \hbar^2}\int_{0}^\infty \dli{r'} r' V(r') \sin(qr')
+   \end{equation*}
+   com \(q^2 = 2k^2(1 - \cos\theta) = 4k^2 \sin^2\frac{\theta}{2}\) Assim,
+   \begin{align*}
+      f(k,\theta) &= -\frac{2\mu V_0 a}{q \hbar^2} \int_0^\infty \dli{r'} \exp\left(-\frac{r'}{a}\right) \sin(qr')\\
+                  &= -\frac{2\mu V_0 a}{q \hbar^2} \left.\frac{a\exp\left(-\frac{r'}{a}\right)}{1 + q^2a^2}\left[\sin(qr) - aq \cos(qr)\right]\right|_0^\infty\\
+                  &= -\frac{2\mu V_0 a^3}{\hbar^2(1 + q^2 a^2)}\\
+                  &= - \frac{2\mu V_0 a}{\hbar^2} \frac{1}{\frac1{a^2} + 4k^2\sin^2\frac\theta2}
+   \end{align*}
+   e a seção de choque total é
+   \begin{align*}
+      \sigma &= 2\pi\int_{0}^\pi \dli{\theta} \sin\theta \abs{f(k,\theta)}^2\\
+             &= \frac{8\pi^2 \mu^2V_0^2a^2}{\hbar^4} \int_{-1}^{1} \dli{(\cos\theta)} \frac{1}{\left[\frac{1}{a^2} + 2k^2(1 - \cos\theta) \right]^2}\\
+             &= \frac{8\pi^2 \mu^2V_0^2a^2}{2k^2\hbar^4} \left\{\frac{1}{\frac{1}{a^2} + 2k^2 (1 - \cos\theta)}\right\}_{-1}^{1}\\
+             &= \frac{16\pi^2 \mu^2V_0^2}{\hbar^4} \frac{a^6}{1 + 4a^2k^2}.
+   \end{align*}
+
+   Para a validade da aproximação de Born, consideramos 
+   \begin{equation*}
+      I(k) = \int_{\mathbb{R}^3} \dln3r \frac{e^{ikr}}{4\pi r} V(r) e^{ikr\cos\theta} = V_0 a \int_{0}^\infty \dli{r} \frac{e^{(-\frac{1}{a} + ik)r}}{kr} \sin(kr)
+   \end{equation*}
+   e vamos determinar os valores de \(k\) tais que
+   \begin{equation*}
+      \frac{2\mu}{\hbar^2}\abs{I(k)} \ll 1.
+   \end{equation*}
+   Definindo \(\beta^{-1} = ka\) e escrevendo seno em sua forma exponencial, obtemos \(I(k)\) como uma integral de Frullani,
+   \begin{equation*}
+      I(k) = \frac{V_0a}{2ik} \int_0^\infty \dli{x} \frac{e^{(-\beta + 2i)x} - e^{-\beta x}}{x}
+   \end{equation*}
+   portanto como \(\beta > 0,\) obtemos
+   \begin{equation*}
+      I(k) = \frac{V_0 a}{2ik} \ln\left(\frac{\beta}{\beta - 2i}\right) = \frac{V_0 a}{2ik}\left[ \ln\left(\frac{\beta}{\sqrt{\beta^2 + 4}}\right) + i \tan^{-1}\left(\frac{2}{\beta}\right)\right] =  \frac{V_0 a}{k} \left[\frac12 \tan^{-1}\left(2ka\right) + \frac{i}{4}\ln\left(1 + 4k^2 a^2\right)\right].
+   \end{equation*}
+   Assim, como temos as expansões com \(x \ll 1\)
+   \begin{equation*}
+      \tan^{-1}(x) = x - \frac{x^3}{3} + O(x^5)\quad\text{e}\quad
+      \ln(1 + x) = x - \frac{x^2}{2}+ O(x^3)
+   \end{equation*}
+   temos para \(ka \ll 1\) que
+   \begin{equation*}
+      I(k) = V_0 a^2\left[1 - \frac{4(ka)^2}{3} + i ka + O(k^3a^3)\right]
+   \end{equation*}
+   enquanto que para \(ka \gg 1\) temos
+   \begin{equation*}
+      I(k) \simeq \frac{V_0 a^2}{ka} \left[\frac{\pi}{4} + \frac{i}{2} \ln\left(2ka\right)\right],
+   \end{equation*}
+   portanto a condição de validade da aproximação de Born é 
+   \begin{equation*}
+      \frac{2\mu V_0 a^2}{\hbar^2} \ll 1
+   \end{equation*}
+   para altas e baixas energias. Com essa condição, notamos que
+   \begin{equation*}
+      \frac{\sigma}{4\pi^2 a^2} = \frac{4 \mu^2 V_0^2}{\hbar^4} \frac{a^4}{1 + 4a^2 k^2} = \left(\frac{2\mu V_0 a^2}{\hbar^2}\right)^2 \frac{1}{1 + (2ka)^2} \leq \left(\frac{2\mu V_0 a^2}{\hbar^2}\right)^2 \ll 1,
+   \end{equation*}
+   isto é, a seção de choque total é muito menor do que a seção transversal geométrica.
+\end{proof}
+
+\begin{lemma}{Integral de Frullani}{frullani}
+   Seja \(f : \mathbb{\mathbb{C}} \to \mathbb{C}\) uma função diferenciável com o limite real \(f(x) \to f_\infty\) conforme \(x \to+\infty.\) Então
+   \begin{equation*}
+      \int_{0}^\infty \dli{x} \frac{f(bx) - f(ax)}{x} = \left[f_\infty - f(0)\right] \ln\left(\frac{b}{a}\right)
+   \end{equation*}
+   desde que \(\Re{\frac{b}{a}} > 0\).
+\end{lemma}
+\begin{proof}
+   Consideramos a função
+   \begin{equation*}
+      I(\alpha) = \int_0^\infty \dli{x} \frac{f(\alpha x) - f(x)}{x}
+   \end{equation*}
+   com \(I(1) = 0.\) Temos
+   \begin{equation*}
+      I'(\alpha) = \int_0^\infty \dli{x} \diffp*{\frac{f(\alpha x) - f(x)}{x}}{\alpha} = \int_0^\infty \dli{x} \diff{f(\alpha x)}{(\alpha x)} = \frac{f_\infty - f(0)}{\alpha}
+   \end{equation*}
+   portanto
+   \begin{equation*}
+       I(\alpha) = \int_1^\alpha \dli\xi I'(\alpha) = \left(f_\infty - f(0)\right) \ln\alpha.
+   \end{equation*}
+   Com isso,
+   \begin{equation*}
+      \int_{0}^\infty \dli{x} \frac{f(bx) - f(ax)}{x} = \int_0^{\infty} \dli{x} \frac{f\left(\frac{b}{a}x\right) - f(x)}{x} = I\left(\frac{b}{a}\right) = \left[f_\infty - f(0)\right] \ln\left(\frac{b}{a}\right)
+   \end{equation*}
+   concluindo a demonstração.
 \end{proof}
