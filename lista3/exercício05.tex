@@ -78,7 +78,7 @@
 
    Para determinar \(M\) escrevemos a forma assintótica do estado de espalhamento como
    \begin{equation*}
-      \Psi \sim e^{i \vetor{k}_i \cdot \vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{r} M(\vetor{k}_f, \vetor{k_i}) \ket{\nu_i}.
+      \braket{\vetor{r}}{\psi} \sim e^{i \vetor{k}_i \cdot \vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{r} M(\vetor{k}_f, \vetor{k_i}) \ket{\nu_i}.
    \end{equation*}
    Assim, utilizando a expansão
    \begin{equation*}
@@ -86,19 +86,21 @@
    \end{equation*}
    temos da expressão da função de onda do estado assintótico
    \begin{align*}
-      \psi &= \sum_{\ell=0}^\infty \sqrt{4\pi(2\ell + 1)} i^\ell \left(\sum_{s \in \set{-,+}} c^s_{\ell} R_\ell^s(r) \Lambda_\ell^s \right) Y_{\ell 0}(\theta) \ket{\nu_i}\\
-           &\mathop{\sim}^{r\to\infty} \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{e^{i \delta_\ell^s}}{kr}\left(\frac{e^{i(kr - \ell \frac\pi2 + \delta_\ell^s)} - e^{-i(kr - \ell \frac\pi2 + \delta_{\ell}^s)}}{2i}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
-           &= \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \left(\frac{e^{2i \delta_{\ell}^s}e^{i(kr - \ell \frac\pi2)} - e^{-i(kr - \ell \frac\pi2)}}{2ikr}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
-           &= \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \left(\frac{e^{i(kr - \ell \frac\pi2)} - e^{-i(kr - \ell \frac\pi2)}}{2ikr}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i} + \\
-           &{}\phantom{= + } + 
-           \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{\left(e^{2i \delta_{\ell}^s} - 1\right)e^{i(kr - \ell \frac\pi2)}}{2ikr}\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
-           &\mathop{\sim}^{r\to\infty}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} j_{\ell}(kr)\left[\sum_{s \in\set{-,+}}c_\ell^s \Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i} +\\
-           &{}\phantom{\mathop{\sim}^{r\to\infty} + } + \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{\left(e^{2i \delta_{\ell}^s} - 1\right)e^{i(kr - \ell \frac\pi2)}}{2ikr}\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}
+      \braket{\vetor{r}}{\psi} 
+      &= \sum_{\ell=0}^\infty \sqrt{4\pi(2\ell + 1)} i^\ell \left(\sum_{s \in \set{-,+}} c^s_{\ell} R_\ell^s(r) \Lambda_\ell^s \right) Y_{\ell 0}(\theta) \ket{\nu_i}\\
+      &\mathop{\sim}^{r\to\infty} \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{e^{i \delta_\ell^s}}{kr}\left(\frac{e^{i(kr - \ell \frac\pi2 + \delta_\ell^s)} - e^{-i(kr - \ell \frac\pi2 + \delta_{\ell}^s)}}{2i}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
+      &= \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \left(\frac{e^{2i \delta_{\ell}^s}e^{i(kr - \ell \frac\pi2)} - e^{-i(kr - \ell \frac\pi2)}}{2ikr}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
+      &= \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \left(\frac{e^{i(kr - \ell \frac\pi2)} - e^{-i(kr - \ell \frac\pi2)}}{2ikr}\right)\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i} + \\
+      &{}\phantom{= + } + 
+      \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{\left(e^{2i \delta_{\ell}^s} - 1\right)e^{i(kr - \ell \frac\pi2)}}{2ikr}\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}\\
+      &\mathop{\sim}^{r\to\infty}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} j_{\ell}(kr)\left[\sum_{s \in\set{-,+}}c_\ell^s \Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i} +\\
+      &{}\phantom{\mathop{\sim}^{r\to\infty} + } + \sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} i^{\ell} \left[\sum_{s \in\set{-,+}}c_\ell^s \frac{\left(e^{2i \delta_{\ell}^s} - 1\right)e^{i(kr - \ell \frac\pi2)}}{2ikr}\Lambda^s_\ell\right] Y_{\ell 0}(\theta) \ket{\nu_i}
    \end{align*}
-   que \(c_\ell^{\pm} = 1\) e, portanto,
+   que \(c_\ell^{\pm} = 1\) para que no limite \(r \to \infty\) a solução recupere a onda plana \(e^{i\vetor{k}\cdot\vetor{r}}\ket{\nu_i}\). Assim,
    \begin{align*}
-      \psi &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} \left[\sum_{s \in \set{-,+}} e^{i \delta_{\ell}^s}\sin(\delta_{\ell}^s) \Lambda_{\ell}^{s}\right] Y_{\ell 0}(\theta)\ket{\nu_i}\\
-           &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)}  \left(a_{\ell}^+ \Lambda_\ell^+ + a_{\ell}^- \Lambda_\ell^-\right)Y_{\ell 0}(\theta)\ket{\nu_i},
+      \braket{\vetor{r}}{\psi} 
+      &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} \left[\sum_{s \in \set{-,+}} e^{i \delta_{\ell}^s}\sin(\delta_{\ell}^s) \Lambda_{\ell}^{s}\right] Y_{\ell 0}(\theta)\ket{\nu_i}\\
+      &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)}  \left(a_{\ell}^+ \Lambda_\ell^+ + a_{\ell}^- \Lambda_\ell^-\right)Y_{\ell 0}(\theta)\ket{\nu_i},
    \end{align*}
    onde definimos \(a_{\ell}^s = e^{i \delta_{\ell}^s} \sin(\delta_{\ell}^{s}).\) Notemos que
    \begin{equation*}
@@ -126,4 +128,51 @@
       \;\;\text{e}\;\;
       h(k,\theta) = \frac{i}{k}\sum_{\ell = 0}^\infty \sqrt{\frac{4\pi}{2\ell + 1}} (a_{\ell}^+ - a_{\ell}^-)\sin\theta \diff{Y_{\ell0}(\theta)}{(\cos\theta)}.
    \end{equation*}
+
+   Para um estado inicial descrito pela matriz densidade \(\rho_i = \frac12 (\unity + \vetor{P}\cdot \vetor{\sigma})\) temos o estado final dado por
+   \begin{equation*}
+      \diff{\sigma}{\Omega} \rho_f = M \rho_i \herm{M},
+   \end{equation*}
+   portanto a seção de choque diferencial é dada por
+   \begin{align*}
+      \diff{\sigma}{\Omega} &= \Tr(\rho_i \herm{M} M)\\
+                            &= \frac12\Tr\left[(\unity + \vetor{P}\cdot\vetor{\sigma})(g^* + h^*\vetor{n}\cdot\vetor{\sigma})(g + h\vetor{n}\cdot\vetor{\sigma})\right]\\
+                            &= \frac12\Tr\left\{(\unity + \vetor{P}\cdot\vetor{\sigma})\left[\abs{g}^2 + \abs{h}^2 + 2\Re(g^*h) \vetor{n}\cdot \vetor{\sigma}\right]\right\}\\
+                            &= \abs{g}^2 + \abs{h}^2 + 2\Re(g^*h) \vetor{n}\cdot\vetor{P}.
+   \end{align*}
+   Da ortogonalidade dos harmônicos esféricos, temos
+   \begin{equation*}
+      \int \dli{\Omega} \abs{g}^2 = \frac{4\pi}{k^2}\sum_{\ell = 0}^\infty \frac{\abs{(\ell + 1)a_{\ell}^+ + \ell a_{\ell}^-}^2}{2\ell + 1}
+   \end{equation*}
+   e da ortogonalidade dos polinômios de Legendre associados,
+   \begin{equation*}
+      \int_{-1}^{1} \dli{x} P_\ell^1(x) P_{\ell'}^1(x) = \frac{2(\ell + 1)!}{(2\ell + 1)(\ell - 1)!}\delta_{\ell \ell'} = \frac{2\ell(\ell + 1)}{(2\ell + 1)}\delta_{\ell \ell'}
+   \end{equation*}
+   temos
+   \begin{align*}
+      \int \dli{\Omega} \abs{h}^2 &= \frac{4\pi}{k^2}\sum_{\ell = 0}^\infty \sum_{\ell' = 0}^\infty \frac{(a_\ell^+ - a_\ell^-)(a_{\ell'}^+ - a_{\ell'}^-)^*}{\sqrt{(2\ell + 1)(2\ell' + 1)}} \int \dli{\Omega} \sin^2\theta \diff{Y_{\ell 0}(\theta)}{(\cos\theta)} \diff{Y^*_{\ell' 0}(\theta)}{(\cos\theta)}\\
+                                  &= \frac{2\pi}{k^2}\sum_{\ell = 0}^\infty \sum_{\ell' = 0}^\infty (a_\ell^+ - a_\ell^-)(a_{\ell'}^+ - a_{\ell'}^-)^* \int_{-1}^{1} \dli{(\cos\theta)} \sin^2\theta \diff{P_\ell(\cos\theta)}{(\cos\theta)} \diff{P_{\ell'}(\cos\theta)}{(\cos\theta)}\\
+                                  &= \frac{2\pi}{k^2} \sum_{\ell = 0}^\infty \sum_{\ell' = 0}^\infty (a_\ell^+ - a_\ell^-)(a_{\ell'}^+ - a_{\ell'}^-)^*\int_{-1}^1 \dli{x} \underbrace{\sqrt{1 - x^2} \diff{P_\ell(x)}{x}}_{-P_{\ell}^1(x)} \underbrace{\sqrt{1 - x^2} \diff{P_{\ell'}(x)}{x}}_{-P_{\ell'}^1(x)}\\
+                                  &= \frac{4\pi}{k^2} \sum_{\ell = 0}^\infty \frac{\ell (\ell + 1)}{2\ell + 1} \abs{a_\ell^+ - a_\ell^-}^2.
+   \end{align*}
+   Notemos que
+   \begin{align*}
+      \abs{\alpha a_{\ell}^+ + \beta a_{\ell}^-}^2
+      &= \abs{\alpha}^2 \abs{a_{\ell}^+}^2 + \abs{\beta}^2 \abs{a_{\ell}^-}^2 + 2\Re\left[\alpha \beta^* a_{\ell}^+ {a_{\ell}^-}^*\right]\\
+      &= \abs{\alpha}^2 \sin^2\delta_{\ell}^+ + \abs{\beta}^2 \sin^2\delta_{\ell}^- + 2\Re\left[\alpha \beta^* e^{i(\delta_{\ell}^+ - \delta_{\ell}^-)} \sin\delta_{\ell}^+\sin\delta_{\ell}^-\right],
+   \end{align*}
+   então
+   \begin{equation*}
+       \abs{(\ell + 1)a_{\ell}^+ + \ell a_{\ell}^-}^2 = (\ell + 1)^2 \sin^2\delta_{\ell}^+ + \ell^2 \sin^2\delta_{\ell}^- + 2 \ell (\ell + 1) \cos(\delta_{\ell}^+ - \delta_{\ell}^-) \sin\delta_{\ell}^+ \sin \delta_{\ell}^-
+   \end{equation*}
+   e
+   \begin{equation*}
+      \ell(\ell + 1)\abs{a_{\ell}^+ - a_{\ell}^-} = \ell(\ell + 1) \sin^2\delta_{\ell}^+ + \ell(\ell + 1) \sin^2 \delta_{\ell}^- - 2\ell (\ell + 1) \cos(\delta_{\ell}^+ - \delta_{\ell}^-) \sin\delta_{\ell}^+ \sin \delta_{\ell}^-.
+   \end{equation*}
+   Com isso, obtemos
+   \begin{align*}
+      \sigma &= \frac{4\pi}{k^2} \sum_{\ell = 0}^\infty \frac{\left[(\ell + 1)^2 + \ell(\ell + 1)\right]\sin^2\delta_{\ell}^+ + \left[\ell^2 + \ell(\ell + 1)\right]\sin^2\delta_{\ell}^-}{2\ell + 1}\\
+             &= \frac{4\pi}{k^2} \sum_{\ell = 0}^\infty \left[(\ell + 1) \sin^2\delta_{\ell}^+ + \ell \sin^2\delta_{\ell}^-\right]
+   \end{align*}
+   como a expressão da seção de choque total no caso não polarizado.
 \end{proof}
