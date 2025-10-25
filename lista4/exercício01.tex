@@ -2,9 +2,9 @@
 \begin{exercício}{Espalhamento férmion-férmion}{ex1}
    A forma mais geral de uma matriz densidade para o sistema nêutron-próton é
    \begin{equation*}
-      \rho = \frac14 \left(\unity + \vetor{\sigma}_1 \cdot \vetor{P}_1 + \vetor{\sigma}_2 \cdot \vetor{P}_2 + \sum_{ij}C_{ij}{\sigma_{1,i}\sigma_{2,j}}\right)
+      \rho = \frac14 \left(\unity + \vetor{\sigma}_n \cdot \vetor{P}_n + \vetor{\sigma}_p \cdot \vetor{P}_p + \sum_{ij}C_{ij}{\sigma_{n,i}\sigma_{p,j}}\right)
    \end{equation*}
-   onde \(\vetor{P}_1,\vetor{P}_2\) são, respectivamente, as polarizações de spin do próton e do nêutron.
+   onde \(\vetor{P}_n,\vetor{P}_p\) são, respectivamente, as polarizações de spin do próton e do nêutron.
    \begin{enumerate}[label=(\alph*)]
       \item Mostre que mesmo que o estado inicial seja aleatório, \(\rho_i = \frac14\), há correlação entre os estados de spin após o espalhamento. Determine os coeficientes de correlação \(C_{ij}\) em termos da matriz de espalhamento \(\mathcal{M}(\vetor{k}_f,\vetor{k}_i)\) nesse caso.
       \item Novamente nesse caso, calcule a seção de choque diferencial elástica considerando a interação spin-spin,
@@ -21,5 +21,59 @@
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   A matriz de espalhamento \(M = \mathcal{M}(\vetor{k}_f,\vetor{k}_i)\) pode ser escrita como
+   \begin{equation*}
+      M = f_s(k,\theta) \Pi_s + f_t(k,\theta) \Pi_t,
+   \end{equation*}
+   onde \(\Pi_s\) e \(\Pi_t\) são os projetores ortogonais complementares, \(\Pi_s + \Pi_t = \unity\), dados por
+   \begin{equation*}
+      \Pi_s = \frac14 \left(\unity - \vetor{\sigma}_n \cdot \vetor{\sigma}_p\right)
+      \quad\text{e}\quad
+      \Pi_t = \frac14 \left(3\unity + \vetor{\sigma}_n \cdot \vetor{\sigma}_p\right).
+   \end{equation*}
+   O estado final é dado pela matriz densidade \(\rho_f\) definida por
+   \begin{equation*}
+      \diff{\sigma}{\Omega}\rho_f = M\rho_i \herm{M} = \left[f_s^* \Pi_s + f_t^* \Pi_t\right]\rho_i\left[f_s^* \Pi_s + f_t^* \Pi_t\right],
+   \end{equation*}
+   portanto se o estado inicial é não polarizado, \(\rho_i = \frac14,\) temos
+   \begin{align*}
+      4\diff{\sigma}{\Omega} \rho_f &= \abs{f_s}^2 \Pi_s + \abs{f_t}^2\Pi_t\\
+                                    &= \frac{\abs{f_s}^2 + 3\abs{f_t}^2}4 \unity + \frac{\abs{f_t}^2 - \abs{f_s}^2}{4} \vetor{\sigma}_n \cdot \vetor{\sigma}_p.
+   \end{align*}
+   Assim, a seção de choque diferencial é
+   \begin{equation*}
+      \diff{\sigma}{\Omega} = \frac14\abs{f_s}^2 + \frac34\abs{f_t}^2
+   \end{equation*}
+   e há correlação entre os spins do próton e do nêutron dada por
+   \begin{equation*}
+      C_{ij} = \frac{\abs{f_t}^2 - \abs{f_s}^2}{4 \diff{\sigma}{\Omega}}\delta_{ij} = \frac{\abs{f_t}^2 - \abs{f_s}^2}{3\abs{f_t}^2 + \abs{f_s}^2}\delta_{ij}.
+   \end{equation*}
+
+   Para o espalhamento próton-próton, temos
+   \begin{equation*}
+      M = \left[f_s(\theta) + f_s(\pi - \theta)\right] \Pi_s + \left[f_t(\theta) - f_t(\pi - \theta)\right]\Pi_t
+   \end{equation*}
+   por conta da simetria de troca, e então obtemos a correlação \(C_{ij} = C \delta_{ij}\)
+   \begin{equation*}
+      C = \frac{\abs{f_t(\theta) - f_t(\pi - \theta)}^2 - \abs{f_s(\theta) + f_s(\pi - \theta)}^2}{3\abs{f_t(\theta) - f_t(\pi - \theta)}^2 + \abs{f_s(\theta) + f_s(\pi - \theta)}^2}
+   \end{equation*}
+   analogamente, com a substituição \(f_s \to f_s(\theta) + f_s(\pi - \theta)\) e \(f_t \to f_t(\theta) - f_t(\pi - \theta)\). Notemos que
+   \begin{equation*}
+       C = -1 + \frac{2\abs{f_t(\theta) - f_t(\pi - \theta)}^2}{3\abs{f_t(\theta) - f_t(\pi - \theta)}^2 + \abs{f_s(\theta) + f_s(\pi - \theta)}^2} \geq -1
+   \end{equation*}
+   e que
+   \begin{equation*}
+       C = \frac13 - \frac43\frac{\abs{f_s(\theta) + f_s(\pi - \theta)}^2}{3\abs{f_t(\theta) - f_t(\pi - \theta)}^2 + \abs{f_s(\theta) + f_s(\pi - \theta)}^2} \leq \frac13,
+   \end{equation*}
+   isto é, 
+   \begin{equation*}
+      \frac13 \geq C \geq -1
+   \end{equation*}
+   com as implicações 
+   \begin{equation*}
+      C = -1 \implies \abs{f_t(\theta) - f_t(\pi-\theta)} = 0
+      \quad\text{e}\quad
+      C = \frac13 \implies \abs{f_s(\theta) + f_s(\pi-\theta)} = 0.
+   \end{equation*}
+   Assim, \(C = -1\) e \(C = \frac13\) correspondem ao casos em que há espalhamento apenas nos estados de singleto e tripleto, respectivamente. \todo[Exemplo.]
 \end{proof}
