@@ -37,7 +37,7 @@
           onde \(a_{\ell}^\pm = e^{i \delta_{\ell}^\pm} \sin\delta_{\ell}^{\pm}.\)
        \item Mostre que a seção de choque total é
           \begin{equation*}
-             \sigma = \frac{4\pi}{k^2} \sum_{\ell} \left[(\ell + 1)\sin\delta^+_\ell + \ell \sin^2 \delta_\ell^-\right].
+             \sigma = \frac{4\pi}{k^2} \sum_{\ell} \left[(\ell + 1)\sin^2\delta^+_\ell + \ell \sin^2 \delta_\ell^-\right].
           \end{equation*}
    \end{enumerate}
 \end{exercício}
@@ -66,7 +66,7 @@
    \begin{equation*}
       \braket{\vetor{r}}{\psi_{\vetor{k}}} = \sum_{\ell = 0}^\infty (2\ell + 1)i^\ell c_\ell R_\ell(r) P_\ell\left(\frac{\vetor{r}}{r}\cdot \frac{\vetor{k}}{k}\right) \ket{\nu_i} = \sum_{\ell = 0}^\infty \sqrt{4\pi (2\ell + 1)} i^\ell c_\ell R_{\ell}(r) Y_{\ell 0}(\theta) \ket{\nu_i},
    \end{equation*}
-   onde \(\theta\) é o ângulo entre \(\vetor{r}\) e \(\vetor{k}\). Decompondo \(\ket{\nu_i} = (\Lambda_\ell^{+} + \Lambda_\ell^{-})\ket{\nu_i},\) temos
+   onde \(\theta\) é o ângulo entre \(\vetor{r}\) e \(\vetor{k}\). Decompondo \(\unity = \Lambda_\ell^{+} + \Lambda_\ell^{-},\) temos
    \begin{equation*}
       \braket{\vetor{r}}{\psi_{\vetor{k}}} = \sum_{\ell = 0}^\infty \sqrt{4\pi (2\ell + 1)} i^{\ell} \left[c_\ell^+R_\ell^{+}(r) \Lambda_{\ell}^+ + c_\ell^{-} R_{\ell}^{-}(r) \Lambda_{\ell}^-\right]Y_{\ell 0}(\theta) \ket{\nu_i}.
    \end{equation*}
@@ -102,7 +102,7 @@
       &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)} \left[\sum_{s \in \set{-,+}} e^{i \delta_{\ell}^s}\sin(\delta_{\ell}^s) \Lambda_{\ell}^{s}\right] Y_{\ell 0}(\theta)\ket{\nu_i}\\
       &= e^{i \vetor{k}\cdot\vetor{r}} \ket{\nu_i} + \frac{e^{ikr}}{kr}\sum_{\ell = 0}^\infty \sqrt{4\pi(2\ell + 1)}  \left(a_{\ell}^+ \Lambda_\ell^+ + a_{\ell}^- \Lambda_\ell^-\right)Y_{\ell 0}(\theta)\ket{\nu_i},
    \end{align*}
-   onde definimos \(a_{\ell}^s = e^{i \delta_{\ell}^s} \sin(\delta_{\ell}^{s}).\) Notemos que
+   onde definimos \(a_{\ell}^s = e^{i \delta_{\ell}^s} \sin\delta_{\ell}^{s}.\) Notemos que
    \begin{equation*}
       a_\ell^+ \Lambda_{\ell}^+ + a_{\ell}^- \Lambda_{\ell}^- = \frac{(\ell + 1)a_{\ell}^+ + \ell a_{\ell}^{-}}{2\ell + 1} + \frac{a_{\ell}^+ - a_{\ell}^{-}}{2\ell + 1} \vetor{\sigma}\cdot\vetor{L},
    \end{equation*}
