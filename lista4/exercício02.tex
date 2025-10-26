@@ -2,9 +2,100 @@
 \begin{exercício}{Modelo solúvel}{ex2}
    Mostre que unitariedade e a invariância por reversão temporal levam a \(\abs{S_{aa}} = \abs{S_{bb}}\) para o modelo solúvel dado em aula. A princípio, isso parece errado, já que as seções de choque elástica \(a \to a\) e \(b \to b\) certamente são diferentes por envolverem interações distintas. Resolva o problema de espalhamento com \(b\) incidente e calcule \(S_{bb}(E),\) mostrando que \(S_{aa}\) e \(S_{bb}\) têm de fato o mesmo valor absoluto na mesma energia \(E,\) mas que \(\abs{S_{aa} - 1} \neq \abs{S_{bb} - 1}.\) Finalmente, mostre que a seção de choque total do espalhamento elástico \(b \to b\) é
    \begin{equation*}
-      \sigma_{\mathrm{el},bb}(E) = \frac{\pi}{p_b^2} \frac{\left[\Gamma_b(E)\right]^2}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \left[\Gamma_{\mathrm{tot}}(E)\right]^2}.
+      \sigma_{\mathrm{el}}^{(b)}(E) = \frac{\pi}{p_b^2} \frac{\left[\Gamma_b(E)\right]^2}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \left[\Gamma_{\mathrm{tot}}(E)\right]^2}.
    \end{equation*}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   A hamiltoniana do modelo é \(H = H_0 + V\) onde
+   \begin{equation*}
+      H_0 = E_0 \herm{\xi}\xi + \int_{\mathbb{R}^3} \dln3{k} \left\{E_a(\vetor{k}) N_{\vetor{k}}^a + \left[E_b(\vetor{k}) + \mu\right]N_{\vetor{k}}^{b}\right\}
+   \end{equation*}
+   e
+   \begin{equation*}
+      V = \int_{\mathbb{R}^3} \dln3{k} \left\{\left[f(\vetor{k}) A_{\vetor{k}} + g(\vetor{k}) B_{\vetor{k}}\right]\herm{\xi}+\left[f^*(\vetor{k}) \herm{A}_{\vetor{k}} + g^*(\vetor{k}) \herm{B}_{\vetor{k}}\right]\xi\right\},
+   \end{equation*}
+   com \(\xi = \ketbra{0}{1},\) \(E_{a,b}(\vetor{k}) = \frac{k^2}{2 m_{a,b}}\) e \(\mu = m_b - m_a\). Para o estado
+   \begin{equation*}
+      \ket{\psi} = C\ket{1} + \int_{\mathbb{R}^3} \dln3{k} \left[\alpha(\vetor{k}) \herm{A}_{\vetor{k}} + \beta(\vetor{k}) \herm{B}_{\vetor{k}}\right] \ket{0}
+   \end{equation*}
+   temos
+   \begin{equation*}
+      H_0 \ket{\psi} = E_0 C\ket{1} + \int_{\mathbb{R}^3} \dln3{k} \left\{E_a(\vetor{k}) \alpha(\vetor{k}) \herm{A}_{\vetor{k}} + \left[E_{b}(\vetor{k}) + \mu \right]\beta(\vetor{k})\herm{B}_{\vetor{k}}\right\}\ket{0}
+   \end{equation*}
+   e
+   \begin{equation*}
+      V\ket{\psi} = \int_{\mathbb{R}^3} \dln{3}{k} \left\{ C\left[f^*(\vetor{k}) \herm{A}_{\vetor{k}} + g^*(\vetor{k}) \herm{B}_{\vetor{k}}\right]\ket{0} + \left[\alpha(\vetor{k})f(\vetor{k}) + \beta(\vetor{k})g(\vetor{k})\right]\ket{1}\right\},
+   \end{equation*}
+   então exigindo que \(H\ket{\psi} = E\ket{\psi}\) obtemos
+   \begin{equation*}
+      (E_0 - E)C + \int_{\mathbb{R}^3}\dln3{k} \left[\alpha(\vetor{k}) f(\vetor{k}) + \beta(\vetor{k}) g(\vetor{k})\right] = 0
+   \end{equation*}
+   assim como as equações de distribuições
+   \begin{equation*}
+      Cf^*(\vetor{k}) + \left[E_a(\vetor{k}) - E\right]\alpha(\vetor{k}) = 0
+      \quad\text{e}\quad
+      Cg^*(\vetor{k}) + \left[E_b(\vetor{k}) + \mu - E\right]\beta(\vetor{k}) = 0.
+   \end{equation*}
+   Para a partícula \(b\) incidente com momento \(\vetor{p}_b\) com energia \(E = E_b(\vetor{p}_b) + \mu\) temos
+   \begin{equation*}
+      \alpha(\vetor{k}) = \frac{C f^*(\vetor{k})}{E - E_a(\vetor{k}) + i \epsilon}
+      \quad\text{e}\quad
+      \beta(\vetor{k}) = \delta(\vetor{k} - \vetor{p}_b) + \frac{C g^*(\vetor{k})}{E - E_b(\vetor{k}) - \mu + i \epsilon}
+   \end{equation*}
+   e então
+   \begin{equation*}
+      C = \frac{g(\vetor{p}_b)}{E - E_0 - \Sigma(E)},
+      \quad\text{com}\quad
+      \Sigma(E) = \int_{\mathbb{R}^3}\dln{3}{k} \left[\frac{\abs{f(\vetor{k})}^2}{E - E_a(\vetor{k}) + i \epsilon} + \frac{\abs{g(\vetor{k})}^2}{E - E_b(\vetor{k}) - \mu + i \epsilon}\right].
+   \end{equation*}
+   Da fórmula de Plemelj-Sokhotsky-Weierstrass,
+   \begin{equation*}
+      \frac{1}{x - x_0 \pm i \epsilon} = \mathrm{VP}\left(\frac{1}{x - x_0}\right) \mp i\pi \delta(x - x_0),
+   \end{equation*}
+   segue que
+   \begin{equation*}
+      \Re{\Sigma(E)} = \mathrm{VP}\int_{\mathbb{R}^3}\dln{3}{k} \left[\frac{\abs{f(\vetor{k})}^2}{E - E_a(\vetor{k})} + \frac{\abs{g(\vetor{k})}^2}{E - E_b(\vetor{k}) - \mu}\right] = \Sigma_R
+   \end{equation*}
+   e
+   \begin{align*}
+      \Im{\Sigma(E)} &= -\pi \int_{\mathbb{R}^3} \dln3{k} \left\{\delta\left[E - E_a(\vetor{k})\right]\abs{f(\vetor{k})}^2 + \delta\left[E - E_b(\vetor{k}) - \mu\right]\abs{g(\vetor{k})}^2\right\}\\
+                     &= - 4\pi^2 \int_{0}^\infty \dli{k} k^2 \left[2m_a\abs{f(k)}^2\delta\left(2m_a E - k^2\right) + 2m_b \abs{g(k)}^2\delta\left(2m_b E - 2m_b \mu - k^2\right)\right]\\
+                     &= - 4\pi^2 \int_0^\infty \dli{k} k^2\left[2m_a \abs{f(k)}^2\frac{\delta(k - \sqrt{2m_aE})}{2k} + 2m_b \abs{g(k)}^2\frac{\delta(k - \sqrt{2m_b E - 2m_b \mu}) \theta(E - \mu)}{2k}\right]\\
+                     &= -4\pi^2 m_a p_a \abs{f(p_a)}^2 - 4\pi^2 m_b p_b \abs{g(p_b)}^2\\
+                     &= - \frac12 \Gamma_a(E) - \frac12 \Gamma_b(E)\\
+                     &= - \frac12 \Gamma_{\mathrm{tot}}(E)
+   \end{align*}
+   onde definimos \(p_a(E) = \sqrt{2m_aE}\) e a largura total \(\Gamma_{\mathrm{tot}}(E) = \Gamma_a(E) + \Gamma_b(E),\) com
+   \begin{equation*}
+      \Gamma_a(E) = 8\pi^2 m_ap_a\abs{f(p_a)}^2
+      \quad\text{e}\quad
+      \Gamma_b(E) = 8\pi^2 m_bp_b\abs{g(p_b)}^2.
+   \end{equation*}
+   Vale notar que, diferente do caso em que \(a\) é a partícula incidente, não há um limiar inelástico, já que \(m_b > m_a.\) 
+
+   O elemento diagonal da matriz \(S\) de interesse é \(S_{bb} = e^{2i \delta_{b}}\) com
+   \begin{equation*}
+      \frac{e^{2i \delta_{b}}-1}{2ip_b} = -4\pi^2 m_b T_{bb} = -4\pi^2 m_b \braket{0}B_{\vetor{p}_b} V\ket{\psi_{\vetor{p}_b}} = -4\pi^2 m_b C g^*(p_b),
+   \end{equation*}
+   isto é,
+   \begin{equation*}
+      S_{bb}(E) = 1 - \frac{i\Gamma_b(E)}{E - E_0 - \Sigma_R(E) + \frac{i}2 \Gamma_\mathrm{tot}(E)} = \frac{E - E_0 - \Sigma_R(E) + \frac{i}{2}\left[\Gamma_a(E) - \Gamma_b(E)\right]}{E - E_0 - \Sigma_R(R) + \frac{i}{2} \Gamma_{\mathrm{tot}}(E)}.
+   \end{equation*}
+   Dessa forma, temos
+   \begin{equation*}
+      \abs{S_{bb}}^2 = \frac{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \left[\Gamma_a(E) - \Gamma_b(E)\right]^2}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \left[\Gamma_a(E) + \Gamma_b(E)\right]^2} = 1 - \frac{\Gamma_a(E) \Gamma_b(E)}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \Gamma_\mathrm{tot}(E)^2} = \abs{S_{aa}}^2
+   \end{equation*}
+   mas
+   \begin{equation*}
+      \abs{S_{bb} - 1} = \frac{\Gamma_b(E)}{\abs{E - E_0 - \Sigma_R(E) + \frac{i}{2}\Gamma_\mathrm{tot}(E)}} \neq \frac{\Gamma_a(E)}{\abs{E - E_0 - \Sigma_R(E) + \frac{i}{2}\Gamma_\mathrm{tot}(E)}} = \abs{S_{aa} - 1}.
+   \end{equation*}
+   Ainda, temos a seção de choque diferencial elástica
+   \begin{equation*}
+      \diff{\sigma_\mathrm{el}^{(b)}}{\Omega} = \abs{4\pi^2 m_b C g^*(p_b)}^2 = \frac{16\pi^4 m_b^2 \abs{g(p_b)}^4}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \Gamma_\mathrm{tot}(E)^2} = \frac{1}{4 p_b^2}\frac{\Gamma_b(E)^2}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \Gamma_\mathrm{tot}(E)^2},
+   \end{equation*}
+   portanto
+   \begin{equation*}
+      \sigma_\mathrm{el}^{(b)} = \frac{\pi}{p_b^2} \frac{\Gamma_b(E)^2}{\left[E - E_0 - \Sigma_R(E)\right]^2 + \frac14 \Gamma_\mathrm{tot}(E)^2}
+   \end{equation*}
+   é a seção de choque elástica total do espalhamento \(b \to b\).
 \end{proof}
