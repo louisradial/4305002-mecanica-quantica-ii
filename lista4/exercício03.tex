@@ -7,5 +7,134 @@
    onde \(\lambda\) é a helicidade de \(a,\) e com uma expressão análoga para \(H_b\). Mostre que a equação de evolução temporal para \(a\) incidente envolve uma amplitude não conhecida para os \((2\ell + 1)\) estados intermediários, e que, portanto, é solúvel. Por outro lado, mostre que mesmo que apenas o espalhamento elástico é possível, a matriz \(S\) é não trivial por envolver acoplamentos entre os diversos estados de helicidade. Considere também a imposição e consequências da invariância de paridade para o espalhamento elástico.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+   Denotamos os estados excitados do alvo por \(\ket{1,jm}\) onde \(J_z\ket{1,jm} = m\ket{1,jm}\) e definimos os operadores de transição
+   \begin{equation*}
+      \xi_m = \ketbra{0}{1,jm}\quad\text{e}\quad \herm{\xi}_m = \ketbra{1,jm}{0}.
+   \end{equation*}
+   Sob rotação temos
+   \begin{equation*}
+      \herm{D}(R) \xi_m D(R) = \herm{D}(R) \ketbra{0}{1,jm} D(R) = \sum_{m' = -j}^{j}\ketbra{0}{1,jm'} D^{j}_{mm'}(R) = \sum_{m' = -j}^{j} \xi_{m'} D^{j}_{mm'}(R)
+   \end{equation*}
+   e, analogamente,
+   \begin{equation*}
+      \herm{D}(R) \herm{\xi}_m D(R) = \sum_{m' = -j}^j \herm{\xi}_{m'} D^j_{m m'}(R)^*,
+   \end{equation*}
+   portanto
+   \begin{equation*}
+      \sum_{m = -j}^{j} \herm{D}(R) \herm{\xi}_m\xi_m D(R) = \sum_{m' = - j}^{j} \herm{\xi}_{m'} \xi_{m'}.
+   \end{equation*}
+   Definimos o operador de aniquilação \(A_{\vetor{k},\lambda}\) de partículas \(a\) a partir de \(A_{\vetor{k}, \lambda} \ket{\Omega} = 0\) e da relação de comutação
+   \begin{equation*}
+      \commutator{A_{\vetor{k},\lambda}}{\herm{A}_{\vetor{k'}, \lambda'}} = \delta(\vetor{k} - \vetor{k'}) \delta_{\lambda\lambda'},
+   \end{equation*}
+   onde o operador de criação \(\herm{A}_{\vetor{k}, \lambda}\) é tal que \(\herm{A}_{\vetor{k}, \lambda}\ket{\Omega}\) é um estado de uma partícula \(a\) com momento \(\vetor{k}\) e helicidade \(\lambda,\) com \(\ket{\Omega}\) sendo o vácuo do espaço de Fock. O vácuo deve ser invariante sob rotações e então
+   \begin{equation*}
+      \herm{D}(R) A_{\vetor{k},\lambda} D(R) = A_{R^{-1}\vetor{k}, \lambda}
+   \end{equation*}
+   já que a helicidade é invariante, portanto
+   \begin{equation*}
+      \herm{D}(R)N^{(a)}_{\vetor{k}, \lambda}D(R) = \herm{D}(R)\herm{A}_{\vetor{k}, \lambda}D(R) \herm{D}(R) A_{\vetor{k},\lambda} D(R) = \herm{A}_{R^{-1}\vetor{k}, \lambda} A_{R^{-1} \vetor{k},\lambda} = N^{(a)}_{R^{-1}\vetor{k}, \lambda}
+   \end{equation*}
+   Definindo \(B_{\vetor{k},\lambda}\) analogamente, segue que a hamiltoniana livre
+   \begin{equation*}
+      H_0 = \sum_{m = -j}^{j} E_0\herm{\xi}_m\xi_m + \int_{\mathbb{R}^3} \dln3{k} \left\{\sum_{\lambda = -s_a}^{s_a} E_a(\vetor{k}) N^{(a)}_{\vetor{k}, \lambda} + \sum_{\lambda = -s_b}^{s_b} \left[E_{b}(\vetor{k}) + \mu\right] N_{\vetor{k}, \lambda}^{(b)}\right\}
+   \end{equation*}
+   é invariante por rotação, uma vez que
+   \begin{equation*}
+      \herm{D}(R) \int_{\mathbb{R}^3} \dln3k N_{\vetor{k}, \lambda} D(R) = \int_{\mathbb{R}^3} \dln3k N_{R^{-1}\vetor{k}, \lambda} = \int_{\mathbb{R}^3} \dln3{k'} N_{\vetor{k'}, \lambda}.
+   \end{equation*}
+   Ainda, a hamiltoniana livre satisfaz \(H_0 \ket{0}\ket{\Omega} = 0,\) \(H_0 \ket{1,jm}\ket{\Omega} = E_0 \ket{1,jm},\)
+   \begin{align*}
+      H_0 \herm{A}_{\vetor{k'}, \lambda'}\ket{0}\ket{\Omega} 
+      &= \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a} E_a(\vetor{k}) N^{(a)}_{\vetor{k}, \lambda}\herm{A}_{\vetor{k'}, \lambda'}\ket{0}\ket{\Omega}\\
+      &= \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a} E_a(\vetor{k}) \delta(\vetor{k} - \vetor{k'})\delta_{\lambda\lambda'}\herm{A}_{\vetor{k}, \lambda}\ket{0}\ket{\Omega}\\
+      &= E_a(\vetor{k'})\herm{A}_{\vetor{k'},\lambda'}\ket{0}\ket{\Omega}
+   \end{align*}
+   e \(H_0 \herm{B}_{\vetor{k'}, \lambda'}\ket{0}\ket{\Omega} = \left[E_b(\vetor{k'}) + \mu\right]\herm{B}_{\vetor{k'}, \lambda'}\ket{0}\ket{\Omega}\) analogamente. 
+
+   As transições de partícula \(a\) são descritas por 
+   \begin{align*}
+      \mathscr{A}^* \to a + \mathscr{A}\quad&:\quad\herm{A}_{\vetor{k},\lambda}\xi_{m'}\ket{1,jm}\ket{\Omega} = \delta_{m'm}\herm{A}_{\vetor{k}, \lambda}\ket{0}\ket{\Omega}\\
+      a + \mathscr{A} \to \mathscr{A}^* \quad&:\quad{A}_{\vetor{k},\lambda}\herm{\xi}_{m'}(\herm{A}_{\vetor{k'}, \lambda'}\ket{0}\ket{\Omega}) = \delta(\vetor{k} - \vetor{k'})\ket{1,jm}\ket{\Omega}
+   \end{align*}
+   com as transições de partícula \(b\) análogas, portanto o potencial de interação pode ser escrito como
+   \begin{equation*}
+      V = \int_{\mathbb{R}^3} \dln3k{\sum_{m = -j}^{j}{\left[\sum_{\lambda = -s_a}^{s_a}\left(f_{m\lambda}(\vetor{k}) A_{\vetor{k},\lambda} \herm{\xi}_m +f^*_{m\lambda}(\vetor{k}) \herm{A}_{\vetor{k},\lambda} \xi_m\right) + \sum_{\lambda = -s_b}^{s_b}\left(g_{m\lambda}(\vetor{k}) B_{\vetor{k},\lambda} \herm{\xi}_m + g^*_{m\lambda}(\vetor{k}) \herm{B}_{\vetor{k},\lambda} \xi_m \right)\right]}}
+   \end{equation*}
+   onde \(f_{m \lambda}(\vetor{k})\) e \(g_{m \lambda}(\vetor{k})\) dependem do modelo. Sendo \(H_a\) a parte da interação referente às transições de partícula \(a\) temos sob uma rotação
+   \begin{align*}
+      \herm{D}(R) H_a D(R) &= \sum_{m = -j}^{j} \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a} \left[f_{m\lambda}(\vetor{k}) \herm{D}(R)A_{\vetor{k}, \lambda}D(R) \herm{D}(R) \herm{\xi}_m D(R) + \mathrm{h.c.}\right]\\
+                           &= \sum_{m = -j}^{j} \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a} \sum_{m' = -j}^{j} \left[ f_{m\lambda}(\vetor{k})D^j_{mm'}(R)^* A_{R^{-1}\vetor{k}, \lambda}\herm{\xi}_{m'} + \mathrm{h.c.}\right]\\
+                           &= \sum_{m = -j}^{j} \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a} \sum_{m' = -j}^{j} \left[ f_{m\lambda}(R\vetor{k})D^j_{mm'}(R)^* A_{\vetor{k}, \lambda}\herm{\xi}_{m'} + \mathrm{h.c.}\right]\\
+                           &= \sum_{m' = -j}^{j} \int_{\mathbb{R}^3} \dln3k \sum_{\lambda = -s_a}^{s_a}  \left[ \left(\sum_{m = -j}^{j}f_{m\lambda}(R\vetor{k})D^j_{mm'}(R)^*\right) A_{\vetor{k}, \lambda}\herm{\xi}_{m'} + \mathrm{h.c.}\right]
+   \end{align*}
+   portanto para que a interação seja invariante sob rotações devemos ter
+   \begin{equation*}
+      f_{m'\lambda}(\vetor{k}) = \sum_{m = -j}^{j} f_{m\lambda}(R\vetor{k}) D^j_{mm'}(R)^* = \sum_{m = -j}^{j} f_{m \lambda}(R\vetor{k}) D^{j}_{m' m}(R^{-1})
+   \end{equation*}
+   para toda rotação \(R\) e para todo \(\vetor{k} \in \mathbb{R}^3\). Separando  \(f_{m' \lambda}(\vetor{k}) = f_{\lambda}(k) y_{m'\lambda}(\vetor{n}),\) escrevendo \(\vetor{k} = k\vetor{n}\) com \(\vetor{n} \in S^2\), e fazendo \(R \to R^{-1}\) temos
+   \begin{equation*}
+      y_{m' \lambda}(R\vetor{n}) = \sum_{m = -j}^{j}  D^{j}_{m'm}(R)y_{m \lambda}(\vetor{n})
+   \end{equation*}
+   para todo \(\vetor{n} \in S^2\) e para toda rotação \(R\). Pelo lema de Schur, podemos, se necessário, redefinir \(f_{\lambda}(k)\) por uma constante multiplicativa e obtemos
+   \begin{equation*}
+      f_{m' \lambda}(k\vetor{n}) = f_{\lambda}(k) D^{j}_{m' \lambda}(\vetor{n}),
+   \end{equation*}
+   logo,
+   \begin{equation*}
+      H_a = \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_a}^{s_a} \left[f_\lambda(k) D^{j}_{m \lambda}(\vetor{k}) A_{\vetor{k},\lambda} \herm{\xi}_m + f^*_\lambda(k) D^{j}_{m \lambda}(\vetor{k})^* \herm{A}_{\vetor{k}, \lambda} \xi_m\right],
+   \end{equation*}
+   onde denotamos \(D^{j}_{mm'}\left(\frac{\vetor{k}}{k}\right)\) por \(D^{j}_{mm'}(\vetor{k})\) por brevidade. Repetindo o argumento para \(H_b\) obtemos
+   \begin{equation*}
+      V = \int_{\mathbb{R}^3} \dln3k{\sum_{m = -j}^{j}{\left[\sum_{\lambda = -s_a}^{s_a}\left(f_{\lambda}(k) D^{j}_{m \lambda}(\vetor{k}) A_{\vetor{k},\lambda} \herm{\xi}_m +\mathrm{h.c.}\right) + \sum_{\lambda = -s_b}^{s_b}\left(g_{\lambda}(k)D^{j}_{m \lambda}(\vetor{k}) B_{\vetor{k},\lambda} \herm{\xi}_m + \mathrm{h.c.}\right)\right]}}
+   \end{equation*}
+   como a expressão para o potencial de interação.
+
+   Um estado no subespaço que descreve as reações \(a + \mathscr{A} \to \mathscr{A}^* \to (a,b) + \mathscr{A}\) pode ser escrito como
+   \begin{equation*}
+      \ket{\psi} = \sum_{m = -j}^{j} C_m \ket{1, jm} + \int_{\mathbb{R}^3} \dln3k \left[\sum_{\lambda = -s_a}^{s_a} \alpha_{\lambda}(\vetor{k}) \herm{A}_{\vetor{k},\lambda} + \sum_{\lambda = - s_b}^{s_b} \beta_{\lambda}(\vetor{k}) \herm{B}_{\vetor{k},\lambda}\right]\ket{0},
+   \end{equation*}
+   onde omitimos o vácuo \(\ket{\Omega}\) por brevidade. Assim,
+   \begin{equation*}
+      H_0 \ket{\psi} = E_0\sum_{m = -j}^{j} C_m\ket{1, jm} + \int_{\mathbb{R}^3} \dln3k\left\{E_a(\vetor{k})\sum_{\lambda = -s_a}^{s_a} \alpha_{\lambda}(\vetor{k}) \herm{A}_{\vetor{k},\lambda} + \left[E_b(\vetor{k}) + \mu\right]\sum_{\lambda = - s_b}^{s_b} \beta_{\lambda}(\vetor{k}) \herm{B}_{\vetor{k},\lambda}\right\}\ket{0},
+   \end{equation*}
+   \begin{equation*}
+      H_a\ket{\psi} = \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = - s_a}^{s_a}C_mf^*_{\lambda}(k) D^j_{m\lambda}(\vetor{k})^* \herm{A}_{\vetor{k}, \lambda}\ket{0} + \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_a}^{s_a} f_\lambda(k) \alpha_\lambda(\vetor{k}) D^{j}_{m\lambda}(\vetor{k}) \ket{1,jm},
+   \end{equation*}
+   e
+   \begin{equation*}
+      H_b\ket{\psi} = \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = - s_b}^{s_b}C_mg^*_{\lambda}(k) D^j_{m\lambda}(\vetor{k})^* \herm{B}_{\vetor{k}, \lambda}\ket{0} + \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_b}^{s_b} g_\lambda(k) \beta_\lambda(\vetor{k}) D^{j}_{m\lambda}(\vetor{k}) \ket{1,jm},
+   \end{equation*}
+   portanto para que \(H\ket{\psi} = E\ket{\psi}\) devemos ter
+   \begin{equation*}
+      (E_0 - E) C_m + \int_{\mathbb{R}^3} \dln3k \left[\sum_{\lambda = -s_a}^{s_a} f_\lambda(k) \alpha_{\lambda}(\vetor{k}) D^{j}_{m\lambda}(\vetor{k}) + \sum_{\lambda = -s_b}^{s_b} g_{\lambda}(k) \beta_\lambda(\vetor{k}) D^{j}_{m\lambda}(\vetor{k})\right] = 0
+   \end{equation*}
+   para \(-j \leq m \leq j\), assim como as equações de distribuições
+   \begin{equation*}
+      \left[E_a(\vetor{k}) - E\right]\alpha_{\lambda}(\vetor{k}) + \sum_{m = -j}^j C_m f^*_\lambda(k) D^j_{m\lambda}(\vetor{k})^* = 0
+      \quad\text{e}\quad
+      \left[E_b(\vetor{k}) + \mu - E\right]\beta_{\lambda}(\vetor{k}) + \sum_{m = -j}^j C_m g^*_\lambda(k) D^j_{m\lambda}(\vetor{k})^* = 0,
+   \end{equation*}
+   onde \(\abs{\lambda} \leq s_a, s_b\) nas devidas equações. Para uma partícula \(a\) incidente com momento \(\vetor{p}_a\) e helicidade \(\Lambda\), temos
+   \begin{equation*}
+      \alpha_{\lambda}(\vetor{k}) = \delta_{\lambda \Lambda} \delta(\vetor{k} - \vetor{p}_a) + \sum_{m = - j}^{j} \frac{C_m f_\lambda^*(k) D_{m\lambda}^j(\vetor{k})^*}{E - E_a(\vetor{k}) + i\epsilon}
+      \quad\text{e}\quad
+      \beta_{\lambda}(\vetor{k}) = \sum_{m = - j}^{j} \frac{C_m g_\lambda^*(k) D_{m\lambda}^j(\vetor{k})^*}{E - E_b(\vetor{k}) - \mu + i\epsilon}
+   \end{equation*}
+   e então
+   \begin{align*}
+      (E - E_0)C_{m} &= \int_{\mathbb{R}^3} \dln3{k} \left[\sum_{\lambda = -s_a}^{s_a} f_\lambda(k) \alpha_{\lambda}(\vetor{k}) D^{j}_{m\lambda}(\vetor{k}) + \sum_{\lambda = -s_b}^{s_b} g_{\lambda}(k) \beta_\lambda(\vetor{k}) D^j_{m \lambda}(\vetor{k})\right]\\
+                     &= f_{\Lambda}(p_a) D^j_{m \Lambda}(\vetor{p}_a) + \int_{\mathbb{R}^3} \dln3k \sum_{m' = -j}^{j}C_{m'}\left[\sum_{\lambda = -s_a}^{s_a} \frac{\abs{f_\lambda(k)}^2 D^j_{m' \lambda}(\vetor{k}) D^{j}_{m \lambda}(\vetor{k})^*}{E - E_a(\vetor{k}) + i \epsilon}  +{} \right.\\
+                     &{}\phantom{f_{\Lambda}(p_a) D^j_{m \Lambda}(\vetor{p}_a) + \int_{\mathbb{R}^3} \dln3k \sum_{m' = -j}^{j}C_{m'} + {}}\left.+ \sum_{\lambda = -s_b}^{s_b}\frac{\abs{g_\lambda(\vetor{k})}^2D^j_{m' \lambda}(\vetor{k}) D^{j}_{m \lambda}(\vetor{k})^*}{E - E_b(\vetor{k}) - \mu + i\epsilon}\right].
+   \end{align*}
+   A equação acima representa um sistema de \(2j + 1\) equações lineares para os \(2j + 1\) valores não determinados \(C_{m},\) 
+   \begin{equation*}
+      \sum_{m' = -j}^{j} K_{mm'} C_{m'} = f_\Lambda(p_a) D^j_{m \Lambda}(\vetor{p}_a)
+   \end{equation*}
+   com 
+   \begin{equation*}
+      K_{mm'} = (E - E_0) \delta_{mm'} - \int_{\mathbb{R}^3}\dln3k \left[\sum_{\lambda = -s_a}^{s_a} \frac{\abs{f_\lambda(k)}^2 D^{j}_{m'\lambda}(\vetor{k}) D^j_{m \lambda}(\vetor{k})^*}{E - E_a(\vetor{k}) + i \epsilon} + \sum_{\lambda = -s_b}^{s_b} \frac{\abs{g_\lambda(k)}^2 D^{j}_{m'\lambda}(\vetor{k}) D^j_{m \lambda}(\vetor{k})^*}{E - E_b(\vetor{k}) - \mu + i \epsilon}\right],
+   \end{equation*}
+   logo o modelo é solúvel se e somente se a matriz \(K\) for não singular.
+
 \end{proof}
