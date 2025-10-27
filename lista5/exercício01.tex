@@ -3,5 +3,64 @@
     Podemos escrever a solução de partícula livre \(u(\vetor{p})\) independente da representação das matrizes \(\gamma^\mu\) como \((\slashed{p} + mc) X_i,\) onde \(X_i\) é um elemento da base canônica. Mostre que \((\slashed{p} + mc) X_i\) é solução de \((\slashed{p} - mc)u(\vetor{p}) = 0\) com \(p^2 = m^2c^4\). Pode parecer que há oito soluções, quatro com \(E > 0\) e outras quatro com \(E < 0.\) Usando uma representação para as matrizes \(\gamma^\mu\), mostre que há apenas quatro soluções independentes e relacione com as soluções determinadas em aula.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Notemos que
+    \begin{equation*}
+        (\slashed{p} - m)(\slashed{p} + m) = \slashed{p}^2 - m^2 = p_\mu p_\nu \gamma^\mu \gamma^\nu - m^2 = p_{\mu} p_\nu\left(\frac12\anticommutator{\gamma^\mu}{\gamma^\nu} - g^{\mu\nu}\right)  = 0,
+    \end{equation*}
+    portanto \((\slashed{p} - m)(\slashed{p} + m)X_i = 0.\) Assim, \((\slashed{p} + m)X_i\) é solução de \((\slashed{p} - m) u(\vetor{p}) = 0\) com \(p_\mu p^\mu = m^2.\) 
+
+    Vamos definir \(\xi_+ = (\begin{smallmatrix} 1\\0 \end{smallmatrix})\) e \(\xi_- = (\begin{smallmatrix}0\\1 \end{smallmatrix})\) de forma que
+    \begin{equation*}
+        X_1 = \begin{pmatrix}
+            \xi_+\\0
+        \end{pmatrix},\quad
+        X_2 = \begin{pmatrix}
+            \xi_-\\0
+        \end{pmatrix},\quad
+        X_3 = \begin{pmatrix}
+            0\\\xi_+
+        \end{pmatrix},\quad\text{e}\quad
+        X_4 = \begin{pmatrix}
+            0\\\xi_-
+        \end{pmatrix}
+    \end{equation*}
+    e então podemos escrever
+    \begin{equation*}
+        u = u^i X_i = \begin{pmatrix}
+            u^1 \xi_+ + u^2 \xi_-\\
+            u^3 \xi_+ + u^4 \xi_-.
+        \end{pmatrix}
+    \end{equation*}
+    Com a representação de Dirac, \(\gamma^0 = (\begin{smallmatrix} \unity &&\\ &&-\unity \end{smallmatrix})\) e \(\gamma^i = (\begin{smallmatrix} && \sigma^i\\ -\sigma^i && \end{smallmatrix})\), temos de \((\slashed{p} - m)u = 0\) que
+    \begin{equation*}
+        \begin{cases}
+            (p_0 - m) (u^1 \xi_+ + u^2 \xi_-) + p_i \sigma^i (u^3 \xi_+ + u^4 \xi_-) = 0\\
+            (p_0 + m) (u^3 \xi_+ + u^4 \xi_-) + p_i \sigma^i (u^1 \xi_+ + u^2 \xi_-) = 0.
+        \end{cases}
+    \end{equation*}
+    No referencial de repouso, se existir, obtemos as quatro soluções independentes \(u = X_i,\) duas com \(p_0 = m\) e duas com \(p_0 = -m.\) Em um referencial em que \(\vetor{p} \neq \vetor{0},\) temos \(p_0 \neq \pm m\)  e, portanto, vemos pela primeira equação
+    \begin{align*}
+        u^1 \xi_+ + u^2 \xi_- &= -\frac{p_i\sigma^i}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
+                              &= -\frac{1}{p_0 - m} \left\{\left[p_3 u^3 + (p_1 + i p_2)u^4\right]\xi_+ + \left[(p_1 - i p_2) u^3 - p_3 u^4\right]\xi_-\right\}
+    \end{align*}
+    que \(u^1\) e \(u^2\) não são independentes de \(u^3\) e de \(u^4,\) com
+    \begin{equation*}
+        u^1 = \frac{p_3 u^3 + (p_1 + i p_2) u^4}{m - p_0}
+        \quad\text{e}\quad
+        u^2 = \frac{(p_1 - ip_2) u^3 - p_3 u^4}{m - p_0},
+    \end{equation*}
+    e vemos que a segunda equação é supérflua, já que
+    \begin{align*}
+        p_i \sigma^i (u^1 \xi_+ + u^2 \xi_-) &= - \frac{p_i p_j \sigma^i \sigma^j}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
+                                             &= -\frac{\vetor{p}^2}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
+                                             &= - \frac{p_0^2 - m^2}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
+                                             &= - (p_0 + m) (u^3 \xi_+ + u^4 \xi_-).
+    \end{align*}
+    Dessa forma, como temos dois parâmetros livres \(u_3\) e \(u_4\) e como podemos ter soluções de energia negativa e positiva, obtemos apenas quatro soluções independentes. Reescrevemos
+    \begin{equation*}
+        u = \begin{pmatrix}
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} (u^3\xi_+ + u^4 \xi_-)\\
+            u^3\xi_+ + u^4 \xi_-
+        \end{pmatrix}
+    \end{equation*}
 \end{proof}
