@@ -10,5 +10,38 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Por motivos psicológicos, tomamos os índices no conjunto \(\mu \in \set{0,1, \dots, n-1}\) e os índices das matrizes \(\gamma\) com índices em cima, \(\gamma^\mu\), e com os índices dos vetores embaixo, \(V_\mu.\) Ainda, quando os índices percorrem apenas o conjunto \(\set{1,\dots, n-1}\) utilizaremos letras do alfabeto romano.
+
+    Para que \(V^2 = (V_\mu V_\nu g^{\mu\nu})\unity\) devemos ter \(\anticommutator{\gamma^\mu}{\gamma^\nu} = 2 g^{\mu \nu} \unity,\) já que
+    \begin{equation*}
+        0 = V^2 - V^2 = V_\mu \gamma^\mu V_\nu \gamma^\nu - V_\mu V_\nu g^{\mu\nu}\unity = V_\mu V_\nu (\gamma^\mu \gamma^\nu - g^{\mu\nu} \unity) = 2V_\mu V_\nu (\anticommutator{\gamma^\mu}{\gamma^\nu} - 2 g^{\mu\nu} \unity),
+    \end{equation*}
+    onde usamos que \(V_\mu V_\nu\) é simétrico em relação aos índices. Sob uma rotação \(\tilde{V} = \herm{\Omega} V \Omega\), temos
+    \begin{equation*}
+        \tilde{V}^2 = \herm{\Omega} V \Omega \herm{\Omega} V \Omega = \herm{\Omega} V^2 \Omega = (V_\mu V_\nu g^{\mu\nu}) \herm{\Omega} \unity \Omega = V_\mu V_\nu g^{\mu\nu} \unity = V^2,
+    \end{equation*}
+    portanto a álgebra de Clifford mantém a norma invariante sob essas transformações.
+
+    No caso de \(\mathrm{SO}(4)\) identificamos os geradores \(J^{\mu\nu} = \frac{i}{4} \commutator{\gamma^\mu}{\gamma^\nu}\) e definimos
+    \begin{equation*}
+        J^k = -\frac12\epsilon\indices{^k_{ij}} J^{i j} = -\frac{i}{8} \epsilon\indices{^k_{ij}} \commutator{\gamma^i}{\gamma^j} = -\frac{i}{4} \epsilon\indices{^k_{ij}} \gamma^i \gamma^j
+        \quad\text{e}\quad
+        K^k = -J^{0k} = -\frac{i}{4} \commutator{\gamma^0}{\gamma^k} = -\frac{i}{2} \gamma^0 \gamma^k.
+    \end{equation*}
+    Assim, \(\commutator{\gamma^i}{\gamma^j} = 4i \epsilon\indices{^{ij}_k} J^k\) e então temos \todo[Refazer]
+    \begin{equation*}
+        \commutator{K^i}{K^j} = -\frac{1}{2} \commutator{\gamma^0 \gamma^i}{\gamma^0\gamma^j}
+                              = -\frac{1}{4} \left(\gamma^0 \gamma^i \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^0 \gamma^i\right)
+                              = \frac{1}{4} \gamma^0 \gamma^0 \commutator{\gamma^i}{\gamma^j}
+                              = i \epsilon\indices{^{ij}_k} J^k
+    \end{equation*}
+    \begin{align*}
+        \commutator{J^i}{K^j} &= \frac{1}{8} \epsilon\indices{^i_{ab}} \commutator{\gamma^a \gamma^b}{\gamma^0\gamma^j}\\
+                              &= \frac18 \epsilon\indices{^i_{ab}} \left(\gamma^a \gamma^b \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^a \gamma^b\right)\\
+                              &= \frac18 \epsilon\indices{^i_{ab}} \gamma^0\commutator{\gamma^a \gamma^b}{\gamma^j}\\
+                              &= \frac18 \epsilon\indices{^i_{ab}} \gamma^0\left(\gamma^a\anticommutator{\gamma^j}{\gamma^b} - \anticommutator{\gamma^j}{\gamma^a} \gamma^b\right)\\
+                              &= -\frac12 \epsilon\indices{^{ij}_a} \gamma^0 \gamma^a\\
+                              &= i \epsilon\indices{^{ij}_k}K^k
+    \end{align*}
     
 \end{proof}
