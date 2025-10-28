@@ -38,9 +38,9 @@
             (p_0 + m) (u^3 \xi_+ + u^4 \xi_-) + p_i \sigma^i (u^1 \xi_+ + u^2 \xi_-) = 0.
         \end{cases}
     \end{equation*}
-    No referencial de repouso, se existir, obtemos as quatro soluções independentes \(u = X_i,\) duas com \(p_0 = m\) e duas com \(p_0 = -m.\) Para um referencial arbitrário, mas que não é um referencial de repouso de partícula massiva, temos ou \(p_0 + m > 0\) no caso de energia positiva ou \(p_0 - m < 0\) no caso de energia negativa, contemplando o caso de massa nula. No primeiro caso, temos
+    No referencial de repouso, se existir, obtemos as quatro soluções independentes \(u = X_i,\) duas com \(p_0 = m\) e duas com \(p_0 = -m.\) Para um referencial arbitrário, mas que não é um referencial de repouso de partícula massiva, temos ou \(p_0 + m > 0\) no caso de energia positiva ou \(p_0 - m < 0\) no caso de energia negativa, contemplando o caso de massa nula. 
 
-    Em um referencial em que \(\vetor{p} \neq \vetor{0},\) temos \(p_0 \neq \pm m\)  e, portanto, vemos pela primeira equação
+    Para o caso de energia negativa, temos \(p_0 \neq \pm m\)  e, portanto, vemos pela primeira equação
     \begin{align*}
         u^1 \xi_+ + u^2 \xi_- &= -\frac{p_i\sigma^i}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
                               &= -\frac{1}{p_0 - m} \left\{\left[p_3 u^3 + (p_1 + i p_2)u^4\right]\xi_+ + \left[(p_1 - i p_2) u^3 - p_3 u^4\right]\xi_-\right\}
@@ -58,17 +58,40 @@
                                              &= - \frac{p_0^2 - m^2}{p_0 - m} (u^3 \xi_+ + u^4 \xi_-)\\
                                              &= - (p_0 + m) (u^3 \xi_+ + u^4 \xi_-).
     \end{align*}
-    Dessa forma, como temos dois parâmetros livres \(u_3\) e \(u_4\) e como podemos ter soluções de energia negativa e positiva, obtemos apenas quatro soluções independentes. Reescrevemos
+    Dessa forma, como temos dois parâmetros livres \(u_3\) e \(u_4\) obtemos apenas duas soluções independentes de energia negativa, dadas por
     \begin{equation*}
         u = \begin{pmatrix}
             \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} (u^3\xi_+ + u^4 \xi_-)\\
             u^3\xi_+ + u^4 \xi_-
-        \end{pmatrix}
+        \end{pmatrix}.
     \end{equation*}
-    e temos
+    Impondo a condição de normalização \(\herm{u} u = 2 \abs{p_0}\) segue que
     \begin{equation*}
-        H u = \gamma^0 (\vetor{\gamma} \cdot \vetor{p} + m) u = \gamma^0\begin{pmatrix}
-            (
+        \abs{u^3}^2 + \abs{u^4}^2 = m - p_0,
+    \end{equation*}
+    portanto temos as soluções independentes
+    \begin{equation*}
+        u_{(3)} = \sqrt{m - p_0}\begin{pmatrix}
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_+\\
+            \xi_+
+        \end{pmatrix}
+        \quad\text{e}\quad
+        u_{(4)} = \sqrt{m - p_0}\begin{pmatrix}
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_-\\
+            \xi_-
+        \end{pmatrix}.
+    \end{equation*}
+    O caso de energia positiva é obtido analogamente, obtendo as soluções independentes
+    \begin{equation*}
+        u_{(1)} = \sqrt{m + p_0} \begin{pmatrix}
+            \xi_+\\
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_+
+        \end{pmatrix}
+        \quad\text{e}\quad
+        u_{(2)} = \sqrt{m + p_0} \begin{pmatrix}
+            \xi_-\\
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_-
         \end{pmatrix}
     \end{equation*}
+    satisfazendo a mesma condição de normalização.
 \end{proof}
