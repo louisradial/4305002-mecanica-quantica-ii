@@ -3,13 +3,31 @@
     Uma representação de Majorana é uma representação em que todas as matrizes \(\gamma^\mu\) são imaginárias e as matrizes \(\vetor{\alpha}\) são simétricas. Encontre uma forma explícita das matrizes de Dirac nessa representação. Mostre que nessa representação a equação de Dirac é real. Encontre, nesse caso, soluções para a equação de Dirac que satisfaçam a condição de Majorana \(\Psi = \Psi^*\).
 \end{exercício}
 \begin{proof}[Resolução]
-    Primeiro, notemos que
+    Consideramos a matriz
     \begin{equation*}
-        (\sigma^i)^* = -\sigma^2 \sigma^i \sigma^2,
+        U = \gamma^0\frac{\unity + \gamma^2}{\sqrt{2}}
     \end{equation*}
-    que pode ser verificado por inspeção. 
-
-    Queremos uma representação de matrizes \(\gamma\) em que todas são imaginárias, portanto partindo da representação de Dirac,
+    que é hermitiana,
+    \begin{equation*}
+        \herm{U} = \left(\frac{\unity + \gamma^2}{\sqrt{2}}\right)^\dagger \gamma^0 = \gamma^0\frac{\unity + \gamma^2}{\sqrt{2}}\gamma^0 \gamma^0 = \gamma^0 \frac{\unity + \gamma^2}{\sqrt{2}} = U
+    \end{equation*}
+    e é unitária,
+    \begin{equation*}
+        \herm{U}U = \frac12 (\gamma^0 + \gamma^0 \gamma^2)^2 = \frac12 (\unity + \gamma^2 + \gamma^0 \gamma^2 \gamma^0 + \gamma^0 \gamma^2 \gamma^0 \gamma^2) = \unity.
+    \end{equation*}
+    Definindo \(\tilde{\gamma}^\mu = U \gamma^\mu \herm{U}\), temos
+    \begin{align*}
+        \tilde{\gamma}^\mu &= \frac12 \gamma^0 (\unity + \gamma^2) \gamma^\mu (\unity - \gamma^2) \gamma^0\\
+                           &= \frac12 \gamma^0 (\gamma^\mu + \gamma^2 \gamma^\mu - \gamma^\mu \gamma^2 - \gamma^2 \gamma^\mu \gamma^2) \gamma^0\\
+                           &= \frac12 \gamma^0 (\gamma^\mu + \commutator{\gamma^2}{\gamma^\mu} + \gamma^2 \gamma^2 \gamma^\mu - \gamma^2 \anticommutator{\gamma^2}{\gamma^\mu})\gamma^0\\
+                           &= \gamma^0 (\gamma^2 \gamma^\mu - g^{\mu 2} \unity - g^{\mu 2}\gamma^2)\gamma^0\\
+                           &= \gamma^0 \gamma^2 \gamma^\mu \gamma^0 - g^{\mu2} (\unity - \gamma^2)\\
+                           &= \begin{cases}
+                               -\gamma^\mu,&\mu = 2\\
+                               \gamma^0 \gamma^2 \gamma^\mu\gamma^0,&\mu \neq 2
+                           \end{cases}
+    \end{align*}
+    e \(\anticommutator{\tilde{\gamma}^\mu}{\tilde{\gamma}^\nu} = 2g^{\mu\nu}\) já que \(U\) é não singular. Assim, partindo da representação de Dirac,
     \begin{equation*}
         \gamma^0 = \begin{pmatrix}
             \unity &&\\
@@ -21,13 +39,80 @@
             -\sigma^i &&
         \end{pmatrix}
     \end{equation*}
-    desejamos encontrar uma matriz \(U_M\) unitária tal que \(\gamma_M^\mu = U_M \gamma^\mu \herm{U}_M\) seja puramente imaginária. Notemos que
+    obtemos
     \begin{equation*}
-        U_M = \gamma^0\frac{\unity + \gamma^2}{\sqrt{2}}
+        \tilde{\gamma}^0 
+        % = \gamma^0 \gamma^2 
+        = \begin{pmatrix}
+            && \sigma^2\\
+            \sigma^2 &&
+        \end{pmatrix},\quad
+        \tilde{\gamma}^1 
+        % = \gamma^2 \gamma^1 
+        = \begin{pmatrix}
+            i \sigma^3 && \\
+            && i \sigma^3
+        \end{pmatrix},\quad
+        \tilde{\gamma}^2
+        % = -\gamma^2
+        = \begin{pmatrix}
+            && -\sigma^2\\
+            \sigma^2 &&
+        \end{pmatrix},\quad\text{e}\quad
+        \tilde{\gamma}^3 
+        % = \gamma^2 \gamma^3 
+        = \begin{pmatrix}
+            -i \sigma^1 && \\
+            && -i \sigma^1
+        \end{pmatrix}
     \end{equation*}
-    é unitária,
-    \begin{equation*}
-        \herm{U}_M U_M = \frac{\unity + \gamma^0 \gamma^2 \gamma^0}{\sqrt{2}} \gamma^0 \gamma^0 \frac{\unity + \gamma^2}{\sqrt{2}} = \frac12 (\unity - \gamma^2
-    \end{equation*}
+    como a representação de Majorana.
 
+    Nessa representação, a equação de Dirac é dada por
+    \begin{equation*}
+        (i \slashed{\partial} - m) \Psi = 0 \implies \begin{pmatrix}
+            \sigma^3 \partial_1 - \sigma^1 \partial_3 - m && i\sigma^2 \partial_0 - i\sigma^2 \partial_2\\
+            i \sigma^2 \partial_0 + i \sigma^2 \partial_2 && \sigma^3 \partial_1 - \sigma^1 \partial_3 - m
+        \end{pmatrix}
+        \Psi(x) = 0,
+    \end{equation*}
+    portanto é uma equação real. Se \(\Psi\) é solução da equação de Dirac na representação de Dirac, então \(U\Psi\) é solução da equação de Dirac na representação de Majorana. Para um spinor \((\begin{smallmatrix} \varphi\\\chi \end{smallmatrix})\) na representação de Dirac, temos
+    \begin{equation*}
+        U \begin{pmatrix}
+            \varphi\\\chi
+        \end{pmatrix} = \gamma^0\frac{\unity + \gamma^2}{\sqrt{2}} \begin{pmatrix}
+            \varphi\\\chi
+        \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix}
+            \varphi + \sigma^2 \chi\\
+            \sigma^2\varphi - \chi
+        \end{pmatrix}
+    \end{equation*}
+    na representação de Majorana, portanto temos as soluções de energia positiva
+    \begin{equation*}
+        \tilde{u}_{(1)}(p) = \sqrt{\frac{m + p_0}2}  \begin{pmatrix}
+            \xi_+ + \sigma^2\frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m}\xi_- \\
+            \sigma^2\xi_+ - \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_+
+        \end{pmatrix}
+        \quad\text{e}\quad
+        \tilde{u}_{(2)} = \sqrt{\frac{m + p_0}2} \begin{pmatrix}
+            \xi_- + \sigma^2 \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_-\\
+            \sigma^2\xi_- - \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_-
+        \end{pmatrix}
+    \end{equation*}
+    \begin{equation*}
+        \tilde{u}_{(1)} = 
+    \end{equation*}
+    \begin{equation*}
+        u_{(3)} = \sqrt{m - p_0}\begin{pmatrix}
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_+\\
+            \xi_+
+        \end{pmatrix}
+        \quad\text{e}\quad
+        u_{(4)} = \sqrt{m - p_0}\begin{pmatrix}
+            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_-\\
+            \xi_-
+        \end{pmatrix}.
+    \end{equation*}
+    O caso de energia positiva é obtido analogamente, obtendo as soluções independentes
+    satisfazendo a mesma condição de normalização.
 \end{proof}
