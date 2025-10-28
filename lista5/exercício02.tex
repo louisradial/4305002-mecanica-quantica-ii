@@ -11,9 +11,83 @@
     mostre que \(U\) remove todos os acoplamentos entre as partes de energia positiva e negativa da equação de Dirac. Esse é um exemplo de transformação de Foldy-Wouthuysen.
 \end{exercício}
 \begin{proof}[Resolução]
-    Vamos escrever
+    Sendo \(\vetor{n} \in S^2\), consideramos a família de operadores
     \begin{equation*}
-        \cos\theta = \sqrt{m + \abs{E}}{2 \abs{E}}\quad\text{e}\quad
-        \sin\theta = \frac{p}{\sqrt{2\abs{E}(m + \abs{E})}}
+        U(\phi) = \cos\phi - \sin\phi n_k \gamma^k
     \end{equation*}
+    com \(U(-\phi) = \herm{U}(\phi).\) Notemos que \(U(0) = \unity\) e 
+    \begin{align*}
+        U(\phi_1)U(\phi_2) &= (\cos\phi_1 - \sin{\phi_1} n_k \gamma^k)(\cos\phi_2 - \sin{\phi_2} n_j\gamma^j)\\
+                           &= \cos\phi_1 \cos\phi_2 + \sin\phi_1 \sin\phi_2 n_k n_j \gamma^k \gamma^j - (\cos\phi_1 \sin\phi_2 + \sin\phi_1 \cos\phi_2) n_k \gamma^k\\
+                           &= \cos(\phi_1 + \phi_2) - \sin(\phi_1 + \phi_2) n_k \gamma^k\\
+                           &= U(\phi_1 + \phi_2)
+    \end{align*}
+    portanto \(U\) é um subgrupo uniparamétrico de operadores unitários. Pelo teorema de Stone, vemos que
+    \begin{equation*}
+        U(\phi) = \exp(-\phi n_k \gamma^k) = \exp(\phi \vetor{n}\cdot\vetor{\gamma})
+    \end{equation*}
+    ao tomar a transformação por um ângulo infinitesimal.
+
+    Como
+    \begin{equation*}
+        \anticommutator{\gamma^k}{H} = \anticommutator{\gamma^k}{\gamma^0(-i \gamma^j\partial_j + m)} = -i\anticommutator{\gamma^k}{\gamma^0\gamma^j}\partial_j = -i (\gamma^k \gamma^0 \gamma^j + \gamma^0 \gamma^j \gamma^k) \partial_j = -i \gamma^0\commutator{\gamma^j}{\gamma^k} \partial_j
+    \end{equation*}
+    segue que
+    \begin{align*}
+        U(\phi)H &= \cos\phi H - \sin\phi n_k \gamma^k H\\
+                   &= \cos\phi H - \sin\phi n_k (\anticommutator{\gamma^k}{H}-H \gamma^k)\\
+                   &= H(\cos\phi + \sin\phi n_k \gamma^k) + i \sin\phi \gamma^0 \commutator{\gamma^j}{\gamma^k}n_k\partial_j\\
+                   &= H \herm{U}(\phi) + i\sin\phi \gamma^0 \commutator{\gamma^j}{\gamma^k} n_k \partial_j.
+    \end{align*}
+    No subespaço de momento bem definido, temos \(i \partial_j \to p_j\), portanto com 
+    \begin{equation*}
+        \vetor{n} = \frac{\vetor{p}}{\norm{\vetor{p}}},
+    \end{equation*}
+    temos
+    \begin{equation*}
+        U(\phi)H = H \herm{U}(\phi) + \sin\phi \gamma^0 \commutator{\gamma^j}{\gamma^k} n_k n_j \norm{\vetor{p}} = H \herm{U}(\phi),
+    \end{equation*}
+    e então
+    \begin{align*}
+        H_\phi &= U(\phi)H \herm{U}(\phi) = H \left[\herm{U}(\phi)\right]^2 = H  \herm{U}(2\phi) = H\left(\cos{2\phi} + \sin{2\phi} n_k \gamma^k\right)\\
+               &= \gamma^0 (m - \norm{\vetor{p}}n_j \gamma^j) (\cos{2\phi} + \sin{2\phi} n_k \gamma^k)\\
+               &= \gamma^0 \left[-\left(\norm{\vetor{p}} \cos{2\phi}-m \sin{2\phi}\right)n_j \gamma^j + \left(m \cos{2\phi} + \norm{\vetor{p}}\sin{2\phi}\right)\right].
+    \end{align*}
+    A transformação de Foldy-Wouthuysen então realiza as substituições
+    \begin{equation*}
+        \norm{\vetor{p}} \to \norm{\vetor{p}}_\phi = \norm{\vetor{p}} \cos{2\phi} - m \sin{2\phi}
+        \quad\text{e}\quad
+        m \to m_\phi = m\cos{2\phi} + \norm{\vetor{p}} \sin{2\phi}
+    \end{equation*}
+    no Hamiltoniano de Dirac,
+    \begin{equation*}
+        H_\phi = \gamma^0(m_\phi - \norm{\vetor{p}}_\phi n_k \gamma^k).
+    \end{equation*}
+
+    Vamos tomar o caso particular em que
+    \begin{equation*}
+        \cos\theta = \sqrt{\frac{m + \abs{E}}{2 \abs{E}}},
+        \quad\text{e}\quad
+        \sin\theta = \frac{\norm{\vetor{p}}}{\sqrt{2\abs{E}(m + \abs{E})}}
+        \implies
+        \cos{2\theta} = \frac{m}{\abs{E}}
+        \quad\text{e}\quad
+        \sin{2\theta} = \frac{\norm{\vetor{p}}}{\abs{E}}
+    \end{equation*}
+    então
+    \begin{equation*}
+        \norm{\vetor{p}}_\theta = 0\quad\text{e}\quad m_\theta = \frac{m^2 + \norm{\vetor{p}}^2}{\abs{E}} = \abs{E},
+    \end{equation*}
+    isto é,
+    \begin{equation*}
+        \tilde{H} = U(\theta) H \herm{U}(\theta) = H_\theta = \gamma^0 \abs{E}.
+    \end{equation*}
+    Na representação de Dirac para as matrizes \(\gamma\) temos \(\tilde{H}\) diagonal com
+    \begin{equation*}
+        \tilde{H} \doteq \begin{pmatrix}
+            \abs{E} &&\\
+                    && -\abs{E}
+        \end{pmatrix},
+    \end{equation*}
+    portanto esta transformação de Foldy-Wouthuysen desacopla as partes de energia positiva e negativa da equação de Dirac.
 \end{proof}
