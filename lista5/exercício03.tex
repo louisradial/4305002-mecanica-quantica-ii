@@ -3,5 +3,31 @@
     Uma representação de Majorana é uma representação em que todas as matrizes \(\gamma^\mu\) são imaginárias e as matrizes \(\vetor{\alpha}\) são simétricas. Encontre uma forma explícita das matrizes de Dirac nessa representação. Mostre que nessa representação a equação de Dirac é real. Encontre, nesse caso, soluções para a equação de Dirac que satisfaçam a condição de Majorana \(\Psi = \Psi^*\).
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Primeiro, notemos que
+    \begin{equation*}
+        (\sigma^i)^* = -\sigma^2 \sigma^i \sigma^2,
+    \end{equation*}
+    que pode ser verificado por inspeção. 
+
+    Queremos uma representação de matrizes \(\gamma\) em que todas são imaginárias, portanto partindo da representação de Dirac,
+    \begin{equation*}
+        \gamma^0 = \begin{pmatrix}
+            \unity &&\\
+                   && -\unity
+        \end{pmatrix}
+        \quad\text{e}\quad
+        \gamma^i = \begin{pmatrix}
+            && \sigma^i\\
+            -\sigma^i &&
+        \end{pmatrix}
+    \end{equation*}
+    desejamos encontrar uma matriz \(U_M\) unitária tal que \(\gamma_M^\mu = U_M \gamma^\mu \herm{U}_M\) seja puramente imaginária. Notemos que
+    \begin{equation*}
+        U_M = \gamma^0\frac{\unity + \gamma^2}{\sqrt{2}}
+    \end{equation*}
+    é unitária,
+    \begin{equation*}
+        \herm{U}_M U_M = \frac{\unity + \gamma^0 \gamma^2 \gamma^0}{\sqrt{2}} \gamma^0 \gamma^0 \frac{\unity + \gamma^2}{\sqrt{2}} = \frac12 (\unity - \gamma^2
+    \end{equation*}
+
 \end{proof}
