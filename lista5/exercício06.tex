@@ -24,24 +24,45 @@
 
     No caso de \(\mathrm{SO}(4)\) identificamos os geradores \(J^{\mu\nu} = \frac{i}{4} \commutator{\gamma^\mu}{\gamma^\nu}\) e definimos
     \begin{equation*}
-        J^k = -\frac12\epsilon\indices{^k_{ij}} J^{i j} = -\frac{i}{8} \epsilon\indices{^k_{ij}} \commutator{\gamma^i}{\gamma^j} = -\frac{i}{4} \epsilon\indices{^k_{ij}} \gamma^i \gamma^j
+        J^k = \frac12\epsilon\indices{^k_{ij}} J^{i j} = \frac{i}{8} \epsilon\indices{^k_{ij}} \commutator{\gamma^i}{\gamma^j} = \frac{i}{4} \epsilon\indices{^k_{ij}} \gamma^i \gamma^j
         \quad\text{e}\quad
-        K^k = -J^{0k} = -\frac{i}{4} \commutator{\gamma^0}{\gamma^k} = -\frac{i}{2} \gamma^0 \gamma^k.
+        K^k = J^{0k} = \frac{i}{4} \commutator{\gamma^0}{\gamma^k} = \frac{i}{2} \gamma^0 \gamma^k.
     \end{equation*}
-    Assim, \(\commutator{\gamma^i}{\gamma^j} = 4i \epsilon\indices{^{ij}_k} J^k\) e então temos \todo[Refazer]
-    \begin{equation*}
-        \commutator{K^i}{K^j} = -\frac{1}{2} \commutator{\gamma^0 \gamma^i}{\gamma^0\gamma^j}
-                              = -\frac{1}{4} \left(\gamma^0 \gamma^i \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^0 \gamma^i\right)
-                              = \frac{1}{4} \gamma^0 \gamma^0 \commutator{\gamma^i}{\gamma^j}
-                              = i \epsilon\indices{^{ij}_k} J^k
-    \end{equation*}
+    Assim, \(\commutator{\gamma^i}{\gamma^j} = \frac{4}{i} \epsilon\indices{^{ij}_k} J^k,\) \(\gamma^0 \gamma^k = \frac{2}{i} K^k,\) e então temos
     \begin{align*}
-        \commutator{J^i}{K^j} &= \frac{1}{8} \epsilon\indices{^i_{ab}} \commutator{\gamma^a \gamma^b}{\gamma^0\gamma^j}\\
-                              &= \frac18 \epsilon\indices{^i_{ab}} \left(\gamma^a \gamma^b \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^a \gamma^b\right)\\
-                              &= \frac18 \epsilon\indices{^i_{ab}} \gamma^0\commutator{\gamma^a \gamma^b}{\gamma^j}\\
-                              &= \frac18 \epsilon\indices{^i_{ab}} \gamma^0\left(\gamma^a\anticommutator{\gamma^j}{\gamma^b} - \anticommutator{\gamma^j}{\gamma^a} \gamma^b\right)\\
-                              &= -\frac12 \epsilon\indices{^{ij}_a} \gamma^0 \gamma^a\\
-                              &= i \epsilon\indices{^{ij}_k}K^k
+        \commutator{J^i}{J^j} &= -\frac{1}{16} \epsilon\indices{^i_{ab}} \epsilon\indices{^j_{mn}} \commutator{\gamma^a \gamma^b}{\gamma^m \gamma^n}\\
+                              &= - \frac{1}{16} \epsilon\indices{^i_{ab}} \epsilon\indices{^j_{mn}} \left(\gamma^a \commutator{\gamma^b}{\gamma^m\gamma^n} + \commutator{\gamma^a}{\gamma^m\gamma^n}\gamma^b\right)\\
+                              &= - \frac{1}{16} \epsilon\indices{^i_{ab}} \epsilon\indices{^j_{mn}} \left(\gamma^a \gamma^m\anticommutator{\gamma^b}{\gamma^n} - \gamma^a \anticommutator{\gamma^b}{\gamma^m} \gamma^n + \gamma^m \anticommutator{\gamma^a}{\gamma^n} \gamma^b - \anticommutator{\gamma^a}{\gamma^m} \gamma^n \gamma^b\right)\\
+                              &= - \frac{1}{8} \epsilon\indices{^i_{ab}} \epsilon\indices{^j_{mn}}\left(g^{bn} \gamma^a \gamma^m - g^{bm} \gamma^a \gamma^n + g^{an} \gamma^m \gamma^b - g^{am} \gamma^n \gamma^b\right)\\
+                              &= - \frac14 \left(\epsilon\indices{^i_{ab}} \epsilon\indices{^{bj}_m} \gamma^a \gamma^m - \epsilon\indices{^i_{ba}} \epsilon\indices{^{aj}_m} \gamma^m \gamma^b\right)\\
+                              &= -\frac14 \left(\delta^{ij} \delta_{am}\gamma^a\gamma^m - \delta\indices{^i_m}\delta\indices{^j_a}\gamma^a \gamma^m - \delta^{ij} \delta_{bm} \gamma^m \gamma^b + \delta\indices{^i_m}\delta\indices{^j_b} \gamma^m \gamma^b\right)\\
+                              &= -\frac14\left(\gamma^i \gamma^j - \gamma^j \gamma^i\right)\\
+                              &= -\frac14 \commutator{\gamma^i}{\gamma^j}\\
+                              &= i \epsilon\indices{^{ij}_k}J^k,
     \end{align*}
-    
+    \begin{align*}
+        \commutator{J^i}{K^j} &= -\frac{1}{8} \epsilon\indices{^i_{ab}} \commutator{\gamma^a \gamma^b}{\gamma^0\gamma^j}\\
+                              &= -\frac{1}{8} \epsilon\indices{^i_{ab}} \left(\gamma^a \gamma^b \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^a \gamma^b\right)\\
+                              &= -\frac{1}{8} \epsilon\indices{^i_{ab}} \gamma^0\commutator{\gamma^a \gamma^b}{\gamma^j}\\
+                              &= -\frac{1}{8}\epsilon\indices{^i_{ab}} \gamma^0\left(\gamma^a\anticommutator{\gamma^j}{\gamma^b} - \anticommutator{\gamma^j}{\gamma^a} \gamma^b\right)\\
+                              &= -\frac{1}{4}\epsilon\indices{^i_{ab}} \gamma^0\left(g^{jb}\gamma^a- g^{ja} \gamma^b\right)\\
+                              &= -\frac12 \epsilon\indices{^{ij}_a} \gamma^0 \gamma^a\\
+                              &= i\epsilon\indices{^{ij}_k}K^k,
+    \end{align*}
+    e
+    \begin{equation*}
+        \commutator{K^i}{K^j} = -\frac{1}{4}\commutator{\gamma^0 \gamma^i}{\gamma^0\gamma^j}
+        = -\frac{1}{4}\left(\gamma^0 \gamma^i \gamma^0 \gamma^j - \gamma^0 \gamma^j \gamma^0 \gamma^i\right)
+        = \frac{1}{4}\gamma^0 \gamma^0 \commutator{\gamma^i}{\gamma^j}
+        = -i\epsilon\indices{^{ij}_k} J^k.
+    \end{equation*}
+    Resumindo, temos seis geradores \(\vetor{J}\) e \(\vetor{K}\) que satisfazem a álgebra
+    \begin{equation*}
+        \commutator{J^i}{J^j} = i \epsilon\indices{^{ij}_k} J^k,\quad
+        \commutator{J^i}{K^j} = i \epsilon\indices{^{ij}_k} K^k,\quad\text{e}\quad
+        \commutator{K^i}{K^j} = -i \epsilon\indices{^{ij}_k} J^k,
+    \end{equation*}
+    que é justamente a álgebra de Lie \(\mathfrak{so}(4).\)
+
+    Para \(\mathrm{SO}(3)\) 
 \end{proof}
