@@ -87,32 +87,46 @@
             \sigma^2\varphi - \chi
         \end{pmatrix}
     \end{equation*}
-    na representação de Majorana, portanto temos as soluções de energia positiva
+    na representação de Majorana, portanto temos as soluções de energia positiva \(u(p) e^{-ipx}\)
     \begin{equation*}
-        \tilde{u}_{(1)}(p) = \sqrt{\frac{m + p_0}2}  \begin{pmatrix}
-            \xi_+ + \sigma^2\frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m}\xi_- \\
-            \sigma^2\xi_+ - \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_+
-        \end{pmatrix}
-        \quad\text{e}\quad
-        \tilde{u}_{(2)} = \sqrt{\frac{m + p_0}2} \begin{pmatrix}
-            \xi_- + \sigma^2 \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_-\\
-            \sigma^2\xi_- - \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 + m} \xi_-
+        \tilde{u}_{\pm}(p) = \sqrt{\frac{m + E}2}  \begin{pmatrix}
+            (\unity + \sigma^2\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m})\xi_\pm \\
+            (\sigma^2 - \frac{\vetor{\sigma}\cdot\vetor{p}}{E + m}) \xi_\pm
         \end{pmatrix}
     \end{equation*}
+    e as soluções de energia negativa \(v(p) e^{ipx}\)
     \begin{equation*}
-        \tilde{u}_{(1)} = 
-    \end{equation*}
-    \begin{equation*}
-        u_{(3)} = \sqrt{m - p_0}\begin{pmatrix}
-            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_+\\
-            \xi_+
+        \tilde{v}_{\pm}(p) = \sqrt{\frac{m + E}2}\begin{pmatrix}
+            (\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m} + \sigma^2) \xi_\mp\\
+            (\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m} - \unity) \xi_\mp
         \end{pmatrix}
-        \quad\text{e}\quad
-        u_{(4)} = \sqrt{m - p_0}\begin{pmatrix}
-            \frac{\vetor{\sigma}\cdot\vetor{p}}{p_0 - m} \xi_-\\
-            \xi_-
-        \end{pmatrix}.
     \end{equation*}
-    O caso de energia positiva é obtido analogamente, obtendo as soluções independentes
-    satisfazendo a mesma condição de normalização.
+    onde usamos \(E > 0\) em ambos os casos. Uma solução arbitrária de momento bem definido é dada por
+    \begin{equation*}
+        \Psi(x) = \sum_{\lambda \in \set{-,+}}^{} \left(a_{\lambda} \tilde{u}_{\lambda} e^{-ipx} + b_{\lambda} \tilde{v}_{\lambda} e^{ipx}\right)
+    \end{equation*}
+    portanto o conjugado da solução é
+    \begin{equation*}
+        \Psi^*(x) = \sum_{\lambda \in \set{-,+}}^{} \left(a_{\lambda}^* \tilde{u}^*_{\lambda} e^{ipx} + b^*_{\lambda} \tilde{v}^*_{\lambda} e^{-ipx}\right).
+    \end{equation*}
+    Assim, para que a condição de Majorana seja satisfeita, devemos ter
+    \begin{equation*}
+        a^*_+ \tilde{u}^*_+ + a^*_- \tilde{u}^*_- = b_+ \tilde{v}_+ + b_- \tilde{v}_-,
+    \end{equation*}
+    e o conjugado desta equação. Como \(\herm{u}_r u_s = 2E \delta_{rs},\) temos
+    \begin{align*}
+        a_\pm^* = \tilde{u}^\top_\pm(b_+ \tilde{v}_+ + b_- \tilde{v}_-),
+    \end{align*}
+    portanto precisamos computar \(\tilde{u}^\top_{\lambda} \tilde{v}_{\lambda'}\) com \(\lambda, \lambda' \in \set{-1,+1}.\) Como \((\sigma^i)^\top = (\sigma^i)^* = -\sigma^2 \sigma^i \sigma^2,\) temos
+    \begin{equation*}
+        \tilde{u}^\top_{\pm} = \sqrt{\frac{E + m}{2}} \begin{pmatrix}
+            \xi_{\pm}^\top \left(\unity + \sigma^2\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m}\right) &&
+            \xi_{\pm}^\top \left(\sigma^2 \frac{\vetor{\sigma}\cdot\vetor{p}}{E + m}\sigma^2-\sigma^2\right)
+        \end{pmatrix}
+    \end{equation*}
+    e então
+    \begin{align*}
+        \tilde{u}^\top_{\lambda} \tilde{v}_{\pm} &= \frac{E + m}{2}\xi^\top_{\lambda}\left[\left(\unity + \sigma^2\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m}\right)\left(\sigma^2 + \frac{\vetor{\sigma}\cdot\vetor{p}}{E + m}\right) + \left(\sigma^2 \frac{\vetor{\sigma}\cdot\vetor{p}}{E + m} \sigma^2 - \sigma^2\right)\left(\frac{\vetor{\sigma}\cdot\vetor{p}}{E + m} - \unity\right)\right]\xi_{\mp}\\
+                                                 &= \frac{E + m}{2} \xi^\top_{\lambda} \left[\sigma^2 + X + \sigma^2 X\sigma^2 + \frac{E - m}{E + m}\sigma^2 + \sigma^2 X \sigma^2 X - \sigma^2 X - \sigma^2 X \sigma^2 + \sigma^2\right]\xi_{\mp}
+    \end{align*}
 \end{proof}
