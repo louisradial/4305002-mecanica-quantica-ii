@@ -3,5 +3,41 @@
     Considere a equação de Dirac na presença de um potencial \(A^\mu.\) Mostre que uma transformação de gauge induz uma mudança de fase no espinor de Dirac.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Com a substituição mínima \(\partial_\mu \to \partial_\mu - i e A_\mu\) temos
+    \begin{equation*}
+        (i \slashed{\partial} + e \slashed{A} - m)\Psi(x) = 0
+    \end{equation*}
+    como a equação de Dirac para uma partícula em um campo eletromagnético. Com a transformação de gauge \(A_\mu \to A_\mu + \partial_\mu \Lambda\) e \(\Psi \to \Psi^\Lambda\), temos
+    \begin{equation*}
+        (i \slashed{\partial} + e \slashed{A} + e \slashed{\partial}\Lambda - m) \Psi^{\Lambda}(x) = 0.
+    \end{equation*}
+    Como o gauge escolhido não tem significado físico, temos \(\Psi^\Lambda = U(\Lambda) \Psi\) para algum operador unitário \(U(\Lambda)\), então
+    \begin{align*}
+        \left[i \slashed{\partial}U(\Lambda) +  i \gamma^\mu U(\Lambda) \partial_\mu + e \slashed{A} U(\Lambda) + e (\slashed{\partial} \Lambda) U(\Lambda) - m U(\Lambda)\right] \Psi(x) = 0.
+    \end{align*}
+    Se \(\Psi(x)\) é uma solução da equação de Dirac com \(\Lambda = 0\), temos apenas
+    \begin{equation*}
+        \left\{i \slashed{\partial} U(\Lambda) + (e \slashed{\partial} \Lambda) U(\Lambda) + \commutator{\gamma^\mu}{U(\Lambda)} \left(i\partial_\mu + e A_\mu\right)\right\}\Psi(x) = 0,
+    \end{equation*}
+    isto é, para que a equação de Dirac seja invariante por transformações de gauge, o operador \(U(\Lambda)\) deve satisfazer
+    \begin{equation*}
+        i \slashed{\partial} U(\Lambda) + (e \slashed{\partial} \Lambda) U(\Lambda) + \commutator{\gamma^\mu}{U(\Lambda)} \left(i\partial_\mu + e A_\mu\right) = 0
+    \end{equation*}
+    para qualquer escolha de \(A_\mu\) e \(\Lambda.\) Para que a equação acima seja satisfeita para toda escolha de \(A_\mu,\) devemos ter
+    \begin{equation*}
+        \commutator{\gamma^\mu}{U(\Lambda)} = 0
+    \end{equation*}
+    para todo \(\Lambda,\) logo \(U(\Lambda)\) é proporcional à matriz identidade. Assim a condição é reduzida às equações
+    \begin{equation*}
+        i \partial_\mu U(\Lambda) + e (\partial_\mu \Lambda) U(\Lambda) = 0,
+    \end{equation*}
+    cuja solução é
+    \begin{equation*}
+        U(\Lambda) = \exp(i e \Lambda),
+    \end{equation*}
+    obtendo, portanto, que
+    \begin{equation*}
+        \Psi^\Lambda(x) = e^{ie \Lambda(x)} \Psi(x)
+    \end{equation*}
+    é a transformação para o spinor de Dirac.
 \end{proof}
