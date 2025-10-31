@@ -10,5 +10,49 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Sob uma transformação de Lorentz \(x^\mu \to {x'}^\mu = \Lambda\indices{^\mu_\nu} x^\nu\)temos \(\Psi \to \Psi'(x') = M\Psi(x)\) com \(M\) não singular. Com tal transformação, o bilinear \(B_{\Gamma} = \bar{\Psi}(x) \Gamma \Psi(x)\) se transforma segundo
+    \begin{align*}
+        B_\Gamma'(x') &= \bar{\Psi}'(x') \Gamma\Psi'(x')\\
+                      &= (\Psi'(x'))^\dag \gamma^0 \Gamma \Psi'(x')\\
+                      &= \herm{\Psi}(x) \herm{M} \gamma^0 \Gamma M \Psi(x)\\
+                      &= \bar{\Psi}(x) \gamma^0 \herm{M} \gamma^0 \Gamma M \Psi(x)\\
+                      &= \bar{\Psi}(x) \Gamma' \Psi(x)
+    \end{align*}
+    onde \(\Gamma\) é uma matriz gerada pela álgebra de Clifford e \(\Gamma' = \gamma^0 \herm{M} \gamma^0 \Gamma M\) é a matriz buscada. Em geral temos \(\herm{M} \gamma^0 M = b \gamma^0,\) com \(b = +1\) para transformações ortócronas e \(b = -1\) caso contrário, então
+    \begin{equation*}
+        \Gamma' = \gamma^0 \herm{M} \gamma^0 M M^{-1} \Gamma M = b \gamma^0 \gamma^0 M^{-1} \Gamma M = b M^{-1} \Gamma M.
+    \end{equation*}
+    Ainda, temos \(M^{-1} \gamma^\mu M = \Lambda\indices{^\mu_\nu} \gamma^\nu,\) portanto
+    \begin{align*}
+        M^{-1} \gamma_5 M &= -\frac{i}{4!} \epsilon_{\mu\nu\sigma\rho}M^{-1} \gamma^\mu \gamma^\nu \gamma^\sigma \gamma^\rho M\\
+                          &= -\frac{i}{4!} \epsilon_{\mu\nu\sigma\rho}M^{-1} \gamma^\mu M M^{-1} \gamma^\nu M M^{-1} \gamma^\sigma M M^{-1} \gamma^\rho M\\
+                          &= -\frac{i}{4!} \epsilon_{\mu\nu\sigma\rho} \Lambda\indices{^\mu_{\mu'}}\Lambda\indices{^\nu_{\nu'}}\Lambda\indices{^\sigma_{\sigma'}} \Lambda\indices{^\rho_{\rho'}} \gamma^{\mu'} \gamma^{\nu'} \gamma^{\sigma'} \gamma^{\rho'}\\
+                          &= -\frac{i}{4!} (\det \Lambda) \epsilon_{\mu'\nu'\sigma'\rho'} \gamma^{\mu'} \gamma^{\nu'} \gamma^{\sigma'} \gamma^{\rho'}\\
+                          &= (\det \Lambda) \gamma_5.
+    \end{align*}
+    Assim, concluímos que
+    \begin{align*}
+        S(x) = \bar{\Psi}(x)\Psi(x) &\to S'(x') = bS(x)\\
+        P(x) = \bar{\Psi}(x)\gamma_5 \Psi(x) &\to P'(x') = b(\det\Lambda)P(x)\\
+        V^\mu(x) = \bar{\Psi}(x)\gamma^\mu \Psi(x) &\to {V'}^\mu(x') = b\Lambda\indices{^\mu_\nu} V^\nu(x)\\
+        A^\mu(x) = \bar{\Psi}(x) \gamma^\mu \gamma_5 \Psi(x) &\to {A'}^\mu(x') = b (\det \Lambda) \Lambda\indices{^\mu_\nu}A^\nu(x)\\
+        T^{\mu\nu}(x) = \bar{\Psi}(x) \sigma^{\mu\nu} \Psi(x) &\to {T'}^{\mu\nu}(x') = b \Lambda\indices{^\mu_\sigma}\Lambda\indices{^\nu_\rho}T^{\sigma \rho}(x)
+    \end{align*}
+    são as transformações para os bilineares considerados. Sob paridade, temos \(b = +1\) e \(\det \Lambda = -1,\) então
+    \begin{equation*}
+        S'(x') = S(x),\quad
+        P'(x') = -P(x),\quad
+        {V'}^\mu(x') = V_\mu(x),\quad
+        {A'}^\mu(x') = -A_\mu(x),\quad\text{e}\quad
+        {T'}^{\mu\nu}(x') = T_{\mu\nu}(x).
+    \end{equation*} 
+    Para uma transformação de Lorentz própria e ortócrona, temos 
+    \begin{equation*}
+        S'(x') = S(x),\,
+        P'(x') = P(x),\,
+        {V'}^\mu(x') = \Lambda\indices{^\mu_\nu}V_\nu(x),\,
+        {A'}^\mu(x') = \Lambda\indices{^\mu_\nu}A^\mu(x),\,\text{e}\;
+        {T'}^{\mu\nu}(x') = \Lambda\indices{^\mu_\sigma}\Lambda\indices{^\nu_\rho}T^{\sigma\rho}(x),
+    \end{equation*}
+    que é o caso de boosts e rotações.
 \end{proof}
