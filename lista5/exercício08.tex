@@ -7,5 +7,53 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
+    Precisamos computar \(\exp(\xi\vetor{n}\cdot\vetor{\sigma})\) com \(\xi \in \mathbb{C}\) e \(\vetor{n} \in S^2\). Notemos que
+    \begin{equation*}
+        (\xi\vetor{n}\cdot\vetor{\sigma})^2 = \xi^2n_i n_j \delta^{ij} = \xi^2,
+    \end{equation*}
+    então
+    \begin{equation*}
+        (\xi\vetor{n} \cdot \vetor{\sigma})^{2k + 1} = \xi^{2k + 1} \vetor{n} \cdot \vetor{\sigma}
+        \quad\text{e}\quad
+        (\xi\vetor{n} \cdot \vetor{\sigma})^{2k} = \xi^k
+    \end{equation*}
+    para todo \(k \in \mathbb{N}_0.\) Assim,
+    \begin{align*}
+        \exp(\vetor{n}\cdot\vetor{\sigma}) &= \sum_{k = 0}^{\infty} \frac{(\xi\vetor{n}\cdot\vetor{\sigma})^k}{k!}\\
+                                             &= \sum_{k = 0}^{\infty} \frac{(\xi\vetor{n}\cdot\vetor{\sigma})^{2k}}{(2k)!} + \sum_{k = 0}^{\infty} \frac{(\xi\vetor{n}\cdot\vetor{\sigma})^{2k + 1}}{(2k + 1)!}\\
+                                             &= \sum_{k = 0}^\infty \frac{\xi^{2k}}{(2k)!} + \sum_{k = 0}^\infty \frac{\xi^{2k+1}}{(2k+1)!}(\vetor{n}\cdot\vetor{\sigma})\\
+                                             &= \cosh(\xi) + \sinh(\xi) (\vetor{n}\cdot\vetor{\sigma}).
+    \end{align*}
+    Em particular para \(\xi = \frac{\beta}{2}\) e para \(\xi = -i\frac{\theta}{2}\) temos
+    \begin{equation*}
+        \exp\left(\frac{\beta}{2}\right) = \cosh\left(\frac{\beta}{2}\right) + \sinh\left(\frac{\beta}{2}\right) (\vetor{n}\cdot\vetor{\sigma})
+        \quad\text{e}\quad
+        \exp\left(-i\frac{\theta}{2}\right) = \cos\left(\frac{\theta}{2}\right) - i\sin\left(\frac{\theta}{2}\right) (\vetor{n}\cdot\vetor{\sigma}).
+    \end{equation*}
     
+    Na representação de Weyl, temos a rotação 
+    \begin{align*}
+        S_R(\theta\vetor{n}) 
+        &= \begin{bmatrix}
+            \exp\left(-i\frac{\theta}{2}\vetor{n}\cdot\vetor{\sigma}\right) && \\
+                                                                            &&\exp\left(-i\frac{\theta}{2}\vetor{n}\cdot\vetor{\sigma}\right)
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            \cos\left(\frac\theta2\right) - i \sin\left(\frac\theta2\right) (\vetor{n}\cdot\vetor{\sigma})&&\\
+                                                                                                                      &&\cos\left(\frac\theta2\right) - i \sin\left(\frac\theta2\right) (\vetor{n}\cdot\vetor{\sigma})
+        \end{bmatrix}
+    \end{align*}
+    e o boost
+    \begin{align*}
+        S_R(\theta\vetor{n})
+        &= \begin{bmatrix}
+            \exp\left(\frac{\beta}{2}\vetor{n}\cdot\vetor{\sigma}\right) && \\
+                                                                            &&\exp\left(-\frac{\beta}{2}\vetor{n}\cdot\vetor{\sigma}\right)
+        \end{bmatrix}\\
+        &= \begin{bmatrix}
+            \cosh\left(\frac\beta2\right) +\sinh\left(\frac\beta2\right) (\vetor{n}\cdot\vetor{\sigma})&&\\
+                                                                                                                      &&\cosh\left(\frac\beta2\right) - i \sinh\left(\frac\beta2\right) (\vetor{n}\cdot\vetor{\sigma})
+        \end{bmatrix}
+    \end{align*}
+    para um spinor de Dirac.
 \end{proof}
