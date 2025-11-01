@@ -1,5 +1,5 @@
 % vim: spl=pt
-\begin{exercício}{Álgebra de Clifford e \(\mathrm{SO}(n)\)}{ex6}
+\begin{exercício}{Representação spinorial de \(\mathrm{SO}(n)\) e álgebra de Clifford}{ex6}
     Dado um vetor \(V_i,\) com \(i \in \set{1,2,\dots, n},\) definimos \(n\) matrizes \(\gamma\) por \(V = V_i \gamma_i\) e \(V^2 = (V_i V_i) \unity,\) o que determina uma álgebra de Clifford.
     \begin{enumerate}[label=(\alph*)]
         \item Quais são as condições para as matrizes \(\gamma\) desta álgebra de Clifford.
@@ -64,5 +64,36 @@
     \end{equation*}
     que é justamente a álgebra de Lie \(\mathfrak{so}(4).\)
 
-    Para \(\mathrm{SO}(3)\) 
+    Para \(\mathrm{SO}(3)\), eliminamos a componente zero e obtemos os três geradores
+    \begin{equation*}
+        J^k = \frac12 \epsilon\indices{^k_{ij}} J^{ij} = \frac{i}{8} \epsilon\indices{^k_{ij}} \commutator{\gamma^i}{\gamma^j}
+    \end{equation*}
+    que satisfazem as relações de comutação
+    \begin{equation*}
+        \commutator{J^i}{J^j} = \epsilon\indices{^{ij}_k} J^k.
+    \end{equation*}
+    Do isomorfismo \(\mathfrak{so}(3) \cong \mathfrak{su}(2),\) identificamos
+    \begin{equation*}
+        J^i = \frac{\sigma^i}{2},
+    \end{equation*}
+    com a ação de rotação no espaço vetorial intermediada pela bijeção \(V_i \to V_i \sigma^i\). O isomorfismo \(\mathrm{so}(4) \cong \mathrm{so}(3) \otimes \mathrm{so}(3)\) motiva considerar
+    \begin{equation*}
+        \tilde{\gamma}^i = \sigma^1 \otimes \sigma^i\quad\text{e}\quad \tilde{\gamma}^0 = \sigma^3 \otimes \unity
+    \end{equation*}
+    como representação para as matrizes \(\gamma\) no caso de \(\mathrm{SO}(4)\). Temos
+    \begin{align*}
+        \anticommutator{\tilde{\gamma}^0}{\tilde{\gamma}^0}
+        &= \anticommutator{\sigma^3 \otimes \unity}{\sigma^3 \otimes \unity}&
+        \anticommutator{\tilde{\gamma}^0}{\tilde{\gamma}^j}
+        &= \anticommutator{\sigma^3 \otimes \unity}{\sigma^1 \otimes \sigma^j}&
+        \anticommutator{\tilde{\gamma}^i}{\tilde{\gamma}^j}
+        &= \anticommutator{\sigma^1 \otimes \sigma^i}{\sigma^1 \otimes \sigma^j}\\
+        &= 2 (\sigma^3 \otimes \unity)^2&
+        &= \anticommutator{\sigma^3}{\sigma^1} \otimes \sigma^j&
+        &= \unity \otimes \anticommutator{\sigma^i}{\sigma^j}\\
+        &= 2 g^{00}\unity&
+        &= 2 g^{0j}\unity&
+        &= 2 g^{ij}\unity
+    \end{align*}
+    então esta representação é válida.
 \end{proof}
