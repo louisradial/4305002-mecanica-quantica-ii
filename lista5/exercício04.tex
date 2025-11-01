@@ -23,5 +23,22 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Para uma solução \(\Psi\) da equação de Dirac, temos
+    \begin{align*}
+        (i \slashed{\partial} - m) \Psi = 0 &\implies -i \partial_\mu \herm{\Psi} \gamma^0\gamma^\mu\gamma^0 - m \herm{\Psi} = 0\\
+                                            &\implies i \partial_\mu \bar{\Psi} \gamma^\mu + m \bar{\Psi} = 0\\
+                                            &\implies \bar{\Psi}\overleftarrow{(i \slashed{\partial} + m)} = 0,
+    \end{align*}
+    então \(\slashed{\partial} \Psi = -im \Psi\) e \(\bar{\Psi} \overleftarrow{\slashed{\partial}} = i m \bar{\Psi}.\) Com isso, definindo a corrente axial \(j_5^\mu = \bar{\Psi} \gamma^\mu \gamma_5 \Psi,\) temos
+    \begin{align*}
+        \partial_\mu j_5^\mu &= (\partial_\mu \bar{\Psi}) \gamma^\mu \gamma_5 \Psi + \bar{\Psi} \gamma^\mu \gamma_5 \partial_\mu \Psi\\
+                             &= \bar{\Psi} \overleftarrow{\slashed{\partial}} \gamma_5 \Psi - \bar{\Psi} \gamma_5 \slashed{\partial} \Psi\\
+                             &= i m \bar{\Psi} \gamma_5 \Psi + i m \bar{\Psi} \gamma_5 \Psi\\
+                             &= 2im \bar{\Psi} \gamma_5 \Psi\\
+                             &= 2im \left(\herm{\Psi}\gamma^0 P_L\Psi_L - \herm{\Psi} \gamma^0 P_R \Psi_R\right)\\
+                             &= 2im \left(\herm{\Psi} P_R \gamma^0 \Psi_L - \herm{\Psi} P_L \gamma^0 \Psi_R\right)\\
+                             &= 2im \left(\herm{\Psi}_R \gamma^0 \Psi_L - \herm{\Psi}_L \gamma^0 \Psi_R\right)\\
+                             &= -2im \herm{\psi}_L \psi_R
+    \end{align*}
+    então se \(m = 0\) temos \(j_5^\mu\) conservada.
 \end{proof}
