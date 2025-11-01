@@ -137,4 +137,12 @@
    \end{equation*}
    logo o modelo é solúvel se e somente se a matriz \(K\) for não singular.
 
+   Consideremos o caso abaixo do limiar inelástico, isto é, \(E < \mu\). O elemento de matriz relevante é
+   \begin{align*}
+      M_{fi} &= -4\pi^2 m_a \bra{0} A_{\vetor{k}_f,\lambda_f} V \ket{\psi_{\vetor{k}_i, \lambda_i}}\\
+             &= -4\pi^2 m_a \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_a}^{s_A} C_m(\vetor{k}_i,\lambda_i) f_\lambda^*(k) D^j_{m\lambda}(\vetor{k})^* \bra{0} A_{\vetor{k}_f,\lambda_f} \herm{A}_{\vetor{k}, \lambda} \ket{0}\\
+             &= -4\pi^2 m_a \sum_{m = -j}^{j} C_m(\vetor{k}_i, \lambda_i) f_{\lambda_f}^*(k_f) D^{j}_{m \lambda_f}(\vetor{k}_f)^*\\
+             &= -4\pi^2 m_a \sum_{m = -j}^{j} \sum_{m' = -j}^{j} (K^{-1})_{mm'} f_{\lambda_i}(k_i) f_{\lambda_f}^*(k_f) D^{j}_{m' \lambda_i}(\vetor{k}_i)D^{j}_{m \lambda_f}(\vetor{k}_f)^*,
+   \end{align*}
+   portanto há acoplamento entre os diferentes estados de helicidade \(\lambda_f\) e \(\lambda_i.\) \todo[Paridade]
 \end{proof}
