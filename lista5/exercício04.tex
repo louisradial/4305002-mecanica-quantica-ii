@@ -118,9 +118,9 @@
 
     Recordemos que uma representação do grupo de Lorentz \(\mathrm{SO}_{\uparrow}^+(1,3)\) é dada por
     \begin{equation*}
-        \Lambda = \exp\left(- i \vetor{\theta}\cdot \vetor{J} + i \vetor{\beta}\cdot\vetor{K}\right),
+        S(\Lambda) = \exp\left(- \frac{i}{2}\omega_{\mu\nu} J^{\mu\nu}\right) = \exp\left(- i \vetor{\theta}\cdot \vetor{J} + i \vetor{\beta}\cdot\vetor{K}\right),
     \end{equation*}
-    onde 
+    onde
     \begin{equation*}
         \vetor{J}_\pm = \frac{\vetor{J} \pm i \vetor{K}}{2}
     \end{equation*}
@@ -130,47 +130,86 @@
         \quad\text{e}\quad
         \commutator{J_\pm^i}{J_\mp^j} = 0,
     \end{equation*}
-    portanto as representações da álgebra de Lorentz \(\mathfrak{so}(1,3)\) podem ser indexadas por semi-inteiros \((j_-, j_+)\) e utilizamos as representações irredutíveis de \(\mathrm{SU}(2)\) para construir as representações de \(\mathrm{SO}_\uparrow^+(1,3).\) Definimos o spinor \(\chi\) como um espinor de mão esquerda, então é uma representação irredutível 
-    \((j_-=\frac12,j_+= 0)\) do grupo de Lorentz \(\mathrm{SO}_{\uparrow}^+(1,3).\)
-    Assim, de 
-    \(\vetor{J}^{\pm} = \frac{\vetor{J} \pm i \vetor{K}}{2}\)
-    e de \(j_+ = 0\), segue que \(\vetor{K} = i \vetor{J}.\) Ainda, como 
-    \(\commutator{J^i}{J^j} = i\epsilon\indices{^{ij}_k} J^k\),
-    temos
+    portanto as representações da álgebra de Lorentz \(\mathfrak{so}(1,3)\) podem ser indexadas por semi-inteiros \((j_-, j_+)\) e utilizamos as representações irredutíveis de \(\mathrm{SU}(2)\) para construir as representações do grupo de Lorentz. Consideramos a representação irredutível \((j_-=\frac12,j_+= 0).\) Com isso, de \(j_+ = 0\), segue que \(\vetor{K} = i \vetor{J},\) portanto
     \begin{equation*}
+        \commutator{J^i}{J^j} = i\epsilon\indices{^{ij}_k} J^k \implies
         J^i = \frac12 \sigma^i\quad\text{e}\quad
         K^i = \frac12 i \sigma^i,
     \end{equation*}
     logo a matriz que realiza a transformação de Lorentz para este spinor é
     \begin{equation*}
-        \Lambda_L = \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right],
+        S_L(\Lambda) = \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right],
     \end{equation*}
-    que é justamente a maneira como \(\psi_L\) se transforma. Para verificar a covariância da equação encontrada, precisamos verificar que \(i \sigma^2 \chi^*\) se transforma segundo a representação \((j_- = 0, j_+ = \frac12),\)
+    que é justamente a maneira como \(\psi_L\) se transforma. Repetindo o argumento para \((j_-=0,j_+=\frac12),\) obtemos
     \begin{equation*}
-        \Lambda_R = \exp\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right].
+        S_R(\Lambda) = \exp\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right],
     \end{equation*}
-    Notemos que
+    que é a maneira como \(\psi_R\) se transforma e satisfaz \(S_R(\Lambda)^{-1} = S_L(\Lambda)^\dag\). Notemos que
     \begin{align*}
-        \sigma^2 \Lambda_L^* \sigma^2 &= \sigma^2 \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]^* \sigma^2\\
+        \sigma^2 S_L(\Lambda)^* \sigma^2 &= \sigma^2 \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]^* \sigma^2\\
                                       &= \sigma^2 \left\{\sum_{n = 0}^\infty \frac{\left[(-i\vetor{\theta} - \vetor{\beta})\cdot\frac{\vetor{\sigma}}{2}\right]^n}{n!}\right\}^* \sigma^2\\
                                       &= \sum_{n = 0}^\infty \frac{\left[(i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\sigma^2\vetor{\sigma}^*\sigma^2}{2}\right]^n}{n!}\\
                                       &= \sum_{n = 0}^\infty \frac{\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]^n}{n!}\\
                                       &= \exp\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]\\
-                                      &= \Lambda_R,
+                                      &= S_R(\Lambda),
     \end{align*}
-    portanto sob uma transformação de Lorentz \(\chi \to \Lambda_L \chi,\) temos
+    portanto sob uma transformação de Lorentz \(\chi \to S_L(\Lambda) \chi,\) temos
     \begin{equation*}
-        i \sigma^2 \chi^* \to i \sigma^2 (\Lambda_L \chi)^* = i \sigma^2 \Lambda_L^* \chi^* = \Lambda_R(i \sigma^2 \chi^*).
+        i \sigma^2 \chi^* \to i \sigma^2 (S_L(\Lambda) \chi)^* = i \sigma^2 S_L(\Lambda)^* \chi^* = S_R(\Lambda)(i \sigma^2 \chi^*),
     \end{equation*}
+    e então \(i \sigma^2 \chi^* \in (j_-=0, j_+ = \frac12)\).
     Resumindo, sob a transformação de Lorentz própria e ortócrona \(x^\mu \to \tilde{x}^\mu = \Lambda\indices{^\mu_\nu} x^\nu\) temos
     \begin{equation*}
-        \chi(x) \to \tilde{\chi}(\tilde{x}) = \Lambda_L \chi(x)
+        \chi(x) \to \tilde{\chi}(\tilde{x}) = S_L(\Lambda) \chi(x)
         \quad\text{e}\quad
-        i \sigma^2 \chi^*(x) \to i\sigma^2 \tilde{\chi}^*(\tilde{x}) = \Lambda_R [i \sigma^2 \chi(x)],
+        i \sigma^2 \chi^*(x) \to i\sigma^2 \tilde{\chi}^*(\tilde{x}) = S_R(\Lambda) [i \sigma^2 \chi(x)].
     \end{equation*}
-    e então como \(\bar{\sigma}^\mu \partial_\mu \to \bar{\sigma}^\mu \Lambda\indices{^\nu_\mu} \partial_\nu = (\Lambda_L^{-1})^\dag \bar{\sigma}^\mu \Lambda_L^{-1} \partial_\mu,\) obtemos
+
+    Para quaisquer spinores de Weyl de mão esquerda \(\xi, \varphi \in (j_-=\frac12,j_+= 0),\) segue que a quantidade \(v^\mu(x) = \herm{\xi}(x)\bar{\sigma}^\mu \herm{\varphi}(x)\) é um quadrivetor. Consideramos uma transformação infinitesimal \(x^\mu \to \tilde{x}^\mu = x^\mu + \omega\indices{^\mu_\nu}x^\nu\) e computaremos a variação \(\delta v^\mu(x) = \tilde{v}^\mu(\tilde{x}) - v^\mu(x)\) e escrever sob a forma
+    \begin{align*}
+        \delta v^\mu = \omega\indices{^\mu_\nu} v^\nu \iff 
+        \begin{cases}
+            \delta v^0 = \vetor{\beta} \cdot \vetor{v}\\
+            \delta v^j = \beta^j v^0 - \theta^i \epsilon\indices{^{ij}_k} v^k
+        \end{cases}
+    \end{align*}
+    concluindo que \(v^\mu\) é um quadrivetor. Assim, de
+    \begin{align*}
+        \tilde{v}^\mu(\tilde{x}) &= \herm{\tilde{\xi}}(\tilde{x}) \bar{\sigma}^\mu \herm{\tilde{\varphi}}(\tilde{x})\\
+                                 &= \herm{\xi}(x) S_L(\omega)^\dag \bar{\sigma}^\mu S_L(\omega) \varphi(x)\\
+                                 &= \herm{\xi}(x) \left[\unity + (i \vetor{\theta} - \vetor{\sigma})\cdot\frac{\vetor{\sigma}}{2}\right]\bar{\sigma}^\mu  \left[\unity + (-i \vetor{\theta} - \vetor{\sigma})\cdot\frac{\vetor{\sigma}}{2}\right] \varphi(x)\\
+                                 &= v^\mu(x) + \frac12\herm{\xi}(x) \left[(i\vetor{\theta} - \vetor{\beta})\cdot\vetor{\sigma} \bar{\sigma}^\mu - \bar{\sigma}^\mu(i\vetor{\theta} + \vetor{\beta})\cdot\vetor{\sigma}\right]\varphi(x)\\
+                                 &= v^\mu(x) + \frac12 \delta_{ab}\herm{\xi}(x) \left(i \theta^a\commutator{\sigma^b}{\bar{\sigma}^\mu} - \beta^a \anticommutator{\sigma^b}{\bar{\sigma}^\mu}\right) \varphi(x),
+    \end{align*}
+    temos
     \begin{equation*}
-        \bar{\sigma}^\mu \partial_\mu \chi \to \Lambda_R \bar{\sigma}^\mu \partial_\mu \chi,
+        \delta v^\mu = \frac12 \delta_{ab} \herm{\xi}\left(i \theta^a \commutator{\sigma^b}{\bar{\sigma}^\mu} - \beta^a \anticommutator{\sigma^b}{\bar{\sigma}^\mu}\right)\varphi.
     \end{equation*}
-    portanto ambos os lados da equação se transformam da mesma forma, garantindo covariância.
+    Como \(\commutator{\sigma^b}{\bar{\sigma}^0} = 0\) e \(\anticommutator{\sigma^b}{\bar{\sigma}^0} = 2\sigma^b,\) temos
+    \begin{equation*}
+        \delta v^0 = -\delta_{ab} \beta^a \herm{\xi} \sigma^b \varphi = \vetor{\beta} \cdot \herm{\xi}\vetor{\sigma} \varphi = \vetor{\beta} \cdot \vetor{v}
+    \end{equation*}
+    e como \(\commutator{\sigma^b}{\bar{\sigma}^c} = 2i \epsilon\indices{^{bc}_d} \bar{\sigma}^d\) e \(\anticommutator{\sigma^b}{\bar{\sigma}^c} = -2\delta^{bc}\bar{\sigma}^0,\) temos
+    \begin{equation*}
+        \delta v^c = \delta_{ab} \herm{\xi} \left(- \theta^a \epsilon\indices{^{bc}_d} \bar{\sigma}^d + \beta^a \delta^{bc}\bar{\sigma}^0\right) \varphi = \beta^c v^0 - \theta^b \epsilon\indices{^{bc}_d} v^d
+    \end{equation*}
+    como desejado.
+
+    Com isso, para a transformação de Lorentz \(x^\mu \to \tilde{x}^\mu = \Lambda\indices{^\mu_\nu}x^\nu,\) temos
+    \begin{equation*}
+        \herm{\xi} S_L(\Lambda)^\dag \bar{\sigma}^\mu S_L(\Lambda) \varphi = \Lambda\indices{^\mu_\nu}\herm{\xi} \bar{\sigma}^\mu \varphi
+    \end{equation*}
+    para spinores de mão esquerda \(\xi,\) \(\varphi.\) Como esses spinores são arbitrários, segue que
+    \begin{equation*}
+        \Lambda\indices{^\nu_\mu} \bar{\sigma}^\mu = S_L(\Lambda)^\dag \bar{\sigma}^\nu S_L(\Lambda).
+    \end{equation*}
+    Assim, temos
+    \begin{align*}
+        i \bar{\sigma}^\mu \partial_\mu \chi(x) = i m \sigma^2 \chi^*(x) 
+        &\iff i \bar{\sigma}^\mu \Lambda\indices{^\nu_\mu}\tilde{\partial}_\nu S_L(\Lambda)^{-1} \tilde{\chi}(\tilde{x}) = i S_R(\Lambda)^{-1}m \sigma^2 \tilde{\chi}^*(\tilde{x})\\
+        &\iff i  \Lambda\indices{^\nu_\mu}S_R(\Lambda)\bar{\sigma}^\mu S_L(\Lambda)^{-1} \tilde{\partial}_\nu \tilde{\chi} = i m\sigma^2 \tilde{\chi}^*\\
+        &\iff i \Lambda\indices{^\nu_\mu}(S_L(\Lambda)^\dag)^{-1} \bar{\sigma}^\mu S_L(\Lambda)^{-1} \tilde{\partial}_\nu \tilde{\chi} = im \sigma^2 \tilde{\chi}^*\\
+        &\iff i \bar{\sigma}^\mu \tilde{\partial}_\mu \tilde{\chi} = im \sigma^2 \tilde{\chi}^*,
+    \end{align*}
+    portanto a equação para o spinor massivo de mão esquerda é covariante.
 \end{proof}
