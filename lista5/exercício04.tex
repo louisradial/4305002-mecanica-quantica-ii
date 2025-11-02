@@ -34,11 +34,143 @@
         \partial_\mu j_5^\mu &= (\partial_\mu \bar{\Psi}) \gamma^\mu \gamma_5 \Psi + \bar{\Psi} \gamma^\mu \gamma_5 \partial_\mu \Psi\\
                              &= \bar{\Psi} \overleftarrow{\slashed{\partial}} \gamma_5 \Psi - \bar{\Psi} \gamma_5 \slashed{\partial} \Psi\\
                              &= i m \bar{\Psi} \gamma_5 \Psi + i m \bar{\Psi} \gamma_5 \Psi\\
-                             &= 2im \bar{\Psi} \gamma_5 \Psi\\
-                             &= 2im \left(\herm{\Psi}\gamma^0 P_L\Psi_L - \herm{\Psi} \gamma^0 P_R \Psi_R\right)\\
-                             &= 2im \left(\herm{\Psi} P_R \gamma^0 \Psi_L - \herm{\Psi} P_L \gamma^0 \Psi_R\right)\\
-                             &= 2im \left(\herm{\Psi}_R \gamma^0 \Psi_L - \herm{\Psi}_L \gamma^0 \Psi_R\right)\\
-                             &= -2im \herm{\psi}_L \psi_R
+                             &= 2im \bar{\Psi} \gamma_5 \Psi
     \end{align*}
-    então se \(m = 0\) temos \(j_5^\mu\) conservada.
+    então se \(m = 0\) temos \(j_5^\mu\) conservada. Notando que \(\gamma_5 = P_R - P_L,\) temos
+    \begin{align*}
+        \bar{\Psi} \gamma_5 \Psi &= \bar{\Psi} P_R\Psi_R - \bar{\Psi} P_L \Psi_L\\
+                                 &= \herm{\Psi} \gamma^0 \Psi_R - \herm{\Psi}\gamma^0 P_L \Psi_L\\
+                                 &= \herm{\Psi} P_L \gamma^0 - \herm{\Psi} P_R \gamma^0 \Psi_L\\
+                                 &= \herm{\Psi}_L \gamma^0 \Psi_R - \herm{\Psi}_R \gamma^0 \Psi_L\\
+                                 &= \bar{\Psi}_L \Psi_R - \bar{\Psi}_R \Psi_L,
+    \end{align*}
+    então
+    \begin{equation*}
+        \partial_\mu j_5^\mu = 2im \left(\bar{\Psi}_L \Psi_R - \bar{\Psi}_R \Psi_L\right)
+    \end{equation*}
+    e então concluímos que se \(\Psi\) é um spinor de Weyl, no sentido em que ou \(\Psi_L = 0\) ou \(\Psi_R = 0\), então a corrente axial é conservada. Na verdade, se \(\Psi\) é um spinor de Weyl, no sentido acima, então devemos ter \(m = 0,\) como verificamos a seguir.
+
+    Para um espinor de Dirac \(\Psi,\) temos na representação de Weyl \(\Psi = \left(\begin{smallmatrix}\psi_L\\\psi_R
+    \end{smallmatrix}\right)\) e a equação de Dirac se traduz nas equações
+    \begin{equation*}
+        \begin{cases}
+            i \bar{\sigma}^\mu \partial_\mu \psi_L = m\psi_R\\
+            i \sigma^\mu\partial_\mu\psi_R= m \psi_L,
+        \end{cases}
+    \end{equation*}
+    e vemos que se \(\Psi\) é autovetor de quiralidade, então \(m = 0.\) Vamos supor que \(\Psi = P_L \Psi\) com \(\psi_L = \chi,\) então \(m = 0\) e temos
+    \begin{equation*}
+        i \bar{\sigma}^\mu \partial_\mu \chi = 0 
+        % \implies i(\partial_0 - \sigma^i \partial_i)\chi = 0 
+        \implies i(\partial_0 - \vetor{\sigma}\cdot\vetor{\nabla})\chi = 0,
+    \end{equation*}
+    onde escrevemos \(\sigma^i \partial_i = \vetor{\sigma} \cdot \vetor{\nabla}.\) 
+
+    Vamos identificar agora uma solução da equação de Dirac em que os spinores \(\psi_L\) e \(\psi_R\) não são independentes. Notando que \((\sigma^j)^* = - \sigma^2 \sigma^j \sigma^2\), temos da equação para \(\psi_L\) que
+    \begin{align*}
+        i \bar{\sigma}^\mu \partial_\mu \psi_L = m \psi_R
+        &\iff i\sigma^2 (i \partial_0 \psi_L - i \sigma^j\partial_j \psi_L)^* = im \sigma^2 \psi_R^*\\
+        &\iff \sigma^2(\partial_0 \psi_L^* + \sigma^2 \sigma^j \sigma^2 \partial_j \psi_L^*) = im \sigma^2 \psi_R^*\\
+        &\iff \partial_0 (\sigma^2 \psi_L^*) + \sigma^j \partial_j (\sigma^2 \psi_L^*) = im (\sigma^2 \psi_R^*)\\
+        &\iff \sigma^\mu\partial_\mu (\sigma^2 \psi_L^*) = im (\sigma^2\psi_R^*)\\
+        &\iff i \sigma^\mu \partial_\mu (i\sigma^2 \psi_L^*) = m(-i \sigma^2\psi_R^*).
+    \end{align*}
+    Assim, como
+    \begin{equation*}
+        \psi_R = i\sigma^2 \psi_L^*
+        \iff \psi_L^* = -i\sigma^2 \psi_R
+        \iff \psi_L = -i \sigma^2 \psi_R^*,
+    \end{equation*}
+    vemos que se \(\psi_R = i \sigma^2 \psi_L^*,\) temos
+    \begin{equation*}
+        i \bar{\sigma}^\mu \partial_\mu \psi_L = m \psi_R \mathop{\iff}^{\psi_R = i \sigma^2 \psi_L^*} i \sigma^\mu \partial_\mu \psi_R = m \psi_L,
+    \end{equation*}
+    e então a equação de Dirac é descrita apenas por uma das equações para os espinores de Weyl, com essa condição, a saber
+    \begin{equation*}
+        i \bar{\sigma}^\mu \partial_\mu \chi = i m \sigma^2 \chi^*,
+    \end{equation*}
+    onde \(\chi\) é a componente de mão esquerda do spinor de Dirac.
+
+    Consideramos agora um spinor \(\chi\) que satisfaz a equação acima, então
+    \begin{align*}
+        i \bar{\sigma}^\mu \partial_\mu \chi = i m \sigma^2 \chi^* 
+        &\implies i \sigma^\nu \partial_\nu (\bar{\sigma}^\mu \partial_\mu \chi) = m \sigma^\nu \partial_\nu (i \sigma^2 \chi^*)\\
+        &\implies i \frac{\sigma^\mu \bar{\sigma}^\nu + \sigma^\nu \bar{\sigma}^\mu}{2} \partial_\mu \partial_\nu \chi = -im^2\chi\\
+        &\implies \left(\frac12I^{\mu\nu}\partial_\mu \partial_\nu + m^2\right)\chi = 0,
+    \end{align*}
+    onde definimos \(I^{\mu\nu} = \sigma^\mu \bar{\sigma}^\nu + \sigma^\nu \bar{\sigma}^\mu.\) Temos
+    \begin{align*}
+        I^{0\nu} &= \sigma^0 \bar{\sigma}^\nu + \sigma^\nu \bar{\sigma}^0&
+        I^{i0}   &= \sigma^i \bar{\sigma}^0 + \sigma^0 \bar{\sigma}^i&
+        I^{ij}   &= \sigma^i \bar{\sigma}^j + \sigma^j \bar{\sigma}^i\\
+                 &= \bar{\sigma}^\nu + \sigma^\nu&
+                 &= \sigma^i - \sigma^i&
+                 &= -\anticommutator{\sigma^i}{\sigma^j}\\
+                 &= 2 g^{0\nu} \unity&
+                 &= 2 g^{i0} \unity&
+                 &= 2 g^{ij} \unity,
+    \end{align*}
+    portanto \(I^{\mu\nu} = 2g^{\mu\nu}\) e obtemos
+    \begin{equation*}
+        i \bar{\sigma}^\mu \partial_\mu \chi = im \sigma^2 \chi^* \implies (\partial_\mu \partial^\mu + m^2)\chi = 0,
+    \end{equation*}
+    isto é, as componentes de \(\chi\) satisfazem a equação de Klein-Gordon.
+
+    Recordemos que uma representação do grupo de Lorentz \(\mathrm{SO}_{\uparrow}^+(1,3)\) é dada por
+    \begin{equation*}
+        \Lambda = \exp\left(- i \vetor{\theta}\cdot \vetor{J} + i \vetor{\beta}\cdot\vetor{K}\right),
+    \end{equation*}
+    onde 
+    \begin{equation*}
+        \vetor{J}_\pm = \frac{\vetor{J} \pm i \vetor{K}}{2}
+    \end{equation*}
+    satisfaz
+    \begin{equation*}
+        \commutator{J_\pm^i}{J_\pm^j} = \epsilon\indices{^{ij}_k} J_\pm^k
+        \quad\text{e}\quad
+        \commutator{J_\pm^i}{J_\mp^j} = 0,
+    \end{equation*}
+    portanto as representações da álgebra de Lorentz \(\mathfrak{so}(1,3)\) podem ser indexadas por semi-inteiros \((j_-, j_+)\) e utilizamos as representações irredutíveis de \(\mathrm{SU}(2)\) para construir as representações de \(\mathrm{SO}_\uparrow^+(1,3).\) Definimos o spinor \(\chi\) como um espinor de mão esquerda, então é uma representação irredutível 
+    \((j_-=\frac12,j_+= 0)\) do grupo de Lorentz \(\mathrm{SO}_{\uparrow}^+(1,3).\)
+    Assim, de 
+    \(\vetor{J}^{\pm} = \frac{\vetor{J} \pm i \vetor{K}}{2}\)
+    e de \(j_+ = 0\), segue que \(\vetor{K} = i \vetor{J}.\) Ainda, como 
+    \(\commutator{J^i}{J^j} = i\epsilon\indices{^{ij}_k} J^k\),
+    temos
+    \begin{equation*}
+        J^i = \frac12 \sigma^i\quad\text{e}\quad
+        K^i = \frac12 i \sigma^i,
+    \end{equation*}
+    logo a matriz que realiza a transformação de Lorentz para este spinor é
+    \begin{equation*}
+        \Lambda_L = \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right],
+    \end{equation*}
+    que é justamente a maneira como \(\psi_L\) se transforma. Para verificar a covariância da equação encontrada, precisamos verificar que \(i \sigma^2 \chi^*\) se transforma segundo a representação \((j_- = 0, j_+ = \frac12),\)
+    \begin{equation*}
+        \Lambda_R = \exp\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right].
+    \end{equation*}
+    Notemos que
+    \begin{align*}
+        \sigma^2 \Lambda_L^* \sigma^2 &= \sigma^2 \exp\left[(-i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]^* \sigma^2\\
+                                      &= \sigma^2 \left\{\sum_{n = 0}^\infty \frac{\left[(-i\vetor{\theta} - \vetor{\beta})\cdot\frac{\vetor{\sigma}}{2}\right]^n}{n!}\right\}^* \sigma^2\\
+                                      &= \sum_{n = 0}^\infty \frac{\left[(i \vetor{\theta} - \vetor{\beta}) \cdot \frac{\sigma^2\vetor{\sigma}^*\sigma^2}{2}\right]^n}{n!}\\
+                                      &= \sum_{n = 0}^\infty \frac{\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]^n}{n!}\\
+                                      &= \exp\left[(-i \vetor{\theta} + \vetor{\beta}) \cdot \frac{\vetor{\sigma}}{2}\right]\\
+                                      &= \Lambda_R,
+    \end{align*}
+    portanto sob uma transformação de Lorentz \(\chi \to \Lambda_L \chi,\) temos
+    \begin{equation*}
+        i \sigma^2 \chi^* \to i \sigma^2 (\Lambda_L \chi)^* = i \sigma^2 \Lambda_L^* \chi^* = \Lambda_R(i \sigma^2 \chi^*).
+    \end{equation*}
+    Resumindo, sob a transformação de Lorentz própria e ortócrona \(x^\mu \to \tilde{x}^\mu = \Lambda\indices{^\mu_\nu} x^\nu\) temos
+    \begin{equation*}
+        \chi(x) \to \tilde{\chi}(\tilde{x}) = \Lambda_L \chi(x)
+        \quad\text{e}\quad
+        i \sigma^2 \chi^*(x) \to i\sigma^2 \tilde{\chi}^*(\tilde{x}) = \Lambda_R [i \sigma^2 \chi(x)],
+    \end{equation*}
+    e então como \(\bar{\sigma}^\mu \partial_\mu \to \bar{\sigma}^\mu \Lambda\indices{^\nu_\mu} \partial_\nu = (\Lambda_L^{-1})^\dag \bar{\sigma}^\mu \Lambda_L^{-1} \partial_\mu,\) obtemos
+    \begin{equation*}
+        \bar{\sigma}^\mu \partial_\mu \chi \to \Lambda_R \bar{\sigma}^\mu \partial_\mu \chi,
+    \end{equation*}
+    portanto ambos os lados da equação se transformam da mesma forma, garantindo covariância.
 \end{proof}
