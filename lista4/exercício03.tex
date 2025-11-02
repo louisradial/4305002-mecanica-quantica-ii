@@ -135,14 +135,28 @@
    \begin{equation*}
       K_{mm'} = (E - E_0) \delta_{mm'} - \int_{\mathbb{R}^3}\dln3k \left[\sum_{\lambda = -s_a}^{s_a} \frac{\abs{f_\lambda(k)}^2 D^{j}_{m'\lambda}(\vetor{k}) D^j_{m \lambda}(\vetor{k})^*}{E - E_a(\vetor{k}) + i \epsilon} + \sum_{\lambda = -s_b}^{s_b} \frac{\abs{g_\lambda(k)}^2 D^{j}_{m'\lambda}(\vetor{k}) D^j_{m \lambda}(\vetor{k})^*}{E - E_b(\vetor{k}) - \mu + i \epsilon}\right],
    \end{equation*}
-   logo o modelo é solúvel se e somente se a matriz \(K\) for não singular.
-
-   Consideremos o caso abaixo do limiar inelástico, isto é, \(E < \mu\). O elemento de matriz relevante é
+   logo o modelo é solúvel se e somente se a matriz \(K\) for não singular. Consideremos o caso abaixo do limiar inelástico, isto é, \(E < \mu\). O elemento de matriz relevante é
    \begin{align*}
       M_{fi} &= -4\pi^2 m_a \bra{0} A_{\vetor{k}_f,\lambda_f} V \ket{\psi_{\vetor{k}_i, \lambda_i}}\\
              &= -4\pi^2 m_a \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_a}^{s_A} C_m(\vetor{k}_i,\lambda_i) f_\lambda^*(k) D^j_{m\lambda}(\vetor{k})^* \bra{0} A_{\vetor{k}_f,\lambda_f} \herm{A}_{\vetor{k}, \lambda} \ket{0}\\
              &= -4\pi^2 m_a \sum_{m = -j}^{j} C_m(\vetor{k}_i, \lambda_i) f_{\lambda_f}^*(k_f) D^{j}_{m \lambda_f}(\vetor{k}_f)^*\\
              &= -4\pi^2 m_a \sum_{m = -j}^{j} \sum_{m' = -j}^{j} (K^{-1})_{mm'} f_{\lambda_i}(k_i) f_{\lambda_f}^*(k_f) D^{j}_{m' \lambda_i}(\vetor{k}_i)D^{j}_{m \lambda_f}(\vetor{k}_f)^*,
    \end{align*}
-   portanto há acoplamento entre os diferentes estados de helicidade \(\lambda_f\) e \(\lambda_i.\) \todo[Paridade]
+   portanto há acoplamento entre os diferentes estados de helicidade \(\lambda_f\) e \(\lambda_i.\)
+
+   Como o vácuo é invariante por paridade, temos
+   \begin{equation*}
+      \Pi A_{\vetor{k}, \lambda} \Pi = A_{-\vetor{k}, -\lambda},
+   \end{equation*}
+   e então
+   \begin{align*}
+      \Pi H_a \Pi &= \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^{j} \sum_{\lambda = -s_a}^{s_a} \left[f_{\lambda}(k) D^j_{m\lambda}(\vetor{k}) A_{-\vetor{k},-\lambda}\herm{\xi}_m + \mathrm{h.c.}\right]\\
+                  &= \int_{\mathbb{R}^3} \dln3k \sum_{m = -j}^j \sum_{\lambda = -s_a}^{s_a} \left[f_{-\lambda}(k) D^j_{m {-\lambda}}(-\vetor{k}) A_{\vetor{k},\lambda} \herm{\xi}_m + \mathrm{h.c.}\right].
+   \end{align*}
+   Dessa forma, se a interação é invariante por paridade, devemos ter
+   \begin{equation*}
+      f_{-\lambda}(k) D^j_{m {-\lambda}}(-\vetor{k}) = f_{\lambda}(k) D^j_{m \lambda}(\vetor{k})
+      \quad\text{e}\quad
+      g_{-\lambda}(k) D^j_{m {-\lambda}}(-\vetor{k}) = g_{\lambda}(k) D^j_{m \lambda}(\vetor{k}).
+   \end{equation*}
 \end{proof}
