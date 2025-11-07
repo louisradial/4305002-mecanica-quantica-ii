@@ -6,6 +6,25 @@
    \end{equation*}
 \end{exercício}
 \begin{proof}[Resolução]
+   Da invariância por reversão temporal, temos
+   \begin{equation*}
+      S_{ab} = \braket{a;\vetor{p}_a^{(-)}}{b;\vetor{p}_b^{(+)}} = \braket{b; -\vetor{p}_b^{(-)}}{a; -\vetor{p}_a^{(+)}} = S_{ba},
+   \end{equation*}
+   onde usamos na última igualdade que o espectro depende apenas do módulo do momento. Dessa forma, da unitariedade,
+   \begin{equation*}
+      S \herm{S} = \unity \implies 
+      \begin{cases}
+         \abs{S_{aa}}^2 + \abs{S_{ba}}^2 = 1\\
+         \abs{S_{bb}}^2 + \abs{S_{ab}}^2 = 1\\
+         S_{aa}S_{ab}^* + S_{ba} S_{bb}^* = 0,
+      \end{cases}
+   \end{equation*}
+   obtemos que
+   \begin{equation*}
+      1 - \abs{S_{bb}}^2 = \abs{S_{ab}}^2 = \abs{S_{ba}}^2 = 1 - \abs{S_{aa}}^2,
+   \end{equation*}
+   logo \(\abs{S_{aa}} = \abs{S_{bb}}.\)
+
    A hamiltoniana do modelo é \(H = H_0 + V\) onde
    \begin{equation*}
       H_0 = E_0 \herm{\xi}\xi + \int_{\mathbb{R}^3} \dln3{k} \left\{E_a(\vetor{k}) N_{\vetor{k}}^a + \left[E_b(\vetor{k}) + \mu\right]N_{\vetor{k}}^{b}\right\}
