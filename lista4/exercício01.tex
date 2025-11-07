@@ -21,7 +21,18 @@
    \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-   A matriz de espalhamento \(M = \mathcal{M}(\vetor{k}_f,\vetor{k}_i)\) pode ser escrita como
+   Para uma interação arbitrária e um estado inicial não polarizado, temos o estado final dado por
+   \begin{equation*}
+      \diff{\sigma}{\Omega}\rho_f = \frac14 M \herm{M}.
+   \end{equation*}
+   Da ortogonalidade das matrizes de Pauli, segue que 
+   \begin{equation*}
+      \vetor{P}_{n,p}^{(f)} = \frac{\Tr(\vetor{\sigma}_{n,p} M \herm{M})}{\Tr(M \herm{M})}\quad\text{e}\quad
+      C^{(f)}_{ij} = \frac{\Tr(\sigma_{n,i}\sigma_{p,j} M \herm{M})}{\Tr(M \herm{M})}
+   \end{equation*}
+   são as expressões para as polarizações finais e os coeficientes de correlação.
+
+   Para um potencial de interação spin-spin, a matriz de espalhamento \(M = \mathcal{M}(\vetor{k}_f,\vetor{k}_i)\) pode ser escrita como
    \begin{equation*}
       M = f_s(k,\theta) \Pi_s + f_t(k,\theta) \Pi_t,
    \end{equation*}
