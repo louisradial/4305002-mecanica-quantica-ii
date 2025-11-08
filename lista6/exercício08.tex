@@ -1,0 +1,42 @@
+% vim: spl=pt
+\begin{exercício}{Estado de \(Z\) elétrons}{ex8}
+    Seja \(\bra{x_1 \dots x_Z}\rho \ket{x'_1 \dots x'_Z}\) uma matriz densidade de um estado de \(Z\) elétrons. As matrizes densidade reduzidas de duas partículas e de uma partícula são definidas por
+    \begin{equation*}
+        \bra{x_1 x_2}\rho_2\ket{x'_1 x'_2} = \int \dli{x_3}\dots\int \dli{x_Z} \bra{x_1 x_2 x_3 \dots x_Z} \rho \ket{x'_1 x'_2 x_3 \dots x_Z}
+    \end{equation*}
+    e por
+    \begin{equation*}
+        \bra{x_1}\rho_1\ket{x'_1} = \int \dli{x_2} \bra{x_1 x_2}\rho_2 \ket{x'_1 x_2}.
+    \end{equation*}
+    As matrizes \(\rho_n\) são normalizadas a com \(\Tr{\rho_n} = 1\) e são proporcionais às matrizes de distribuição \(W_n\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Considere o caso em que o estado é adequadamente descrito por um único determinante de Slater. Mostre que
+            \begin{equation*}
+                \bra{x}\rho_1 \ket{x'} = \frac{1}{Z} \sum_{i = 1}^Z \phi_i(x) \phi^*_i(x'),
+            \end{equation*}
+            onde \(\phi_i\) são os orbitais de spin, e que
+            \begin{equation*}
+                \bra{x_1 x_2}\rho_2\ket{x'_1 x'_2} = \frac{Z}{Z - 1} \det \begin{pmatrix}
+                    \bra{x_1}\rho_1 \ket{x'_1} && \bra{x_1}\rho\ket{x'_2}\\
+                    \bra{x_2}\rho_1 \ket{x'_1} && \bra{x_2}\rho\ket{x'_2}
+                \end{pmatrix}.
+            \end{equation*}
+        \item Construa \(\rho_2\) na representação \(\ket{\vetor{r}_1 \vetor{r}_2 S M}\) onde \((S, M)\) são os números quÂnticos de spin total. Assuma que para cada orbital \(u_\lambda(\vetor{r}),\) ambos estados de spin estão ocupados. Mostre que
+            \begin{equation*}
+                \bra{\vetor{r}_1 \vetor{r}_2 S M} \rho_2\ket{\vetor{r}'_1 \vetor{r}'_2 S' M'} =  \frac{Z\delta_{SS'} \delta_{M M'}}{4 (Z - 1)} \left[\bra{\vetor{r}_1}D\ket{\vetor{r}'_1}\bra{\vetor{r}_2}D\ket{\vetor{r}'_2} + (-1)^S \bra{\vetor{r}_1}D\ket{\vetor{r}'_2}\bra{\vetor{r}_2}D\ket{\vetor{r}'_1}\right],
+            \end{equation*}
+            onde
+            \begin{equation*}
+                \bra{\vetor{r}}D\ket{\vetor{r}'} = \frac{2}{Z} \sum_{\lambda = 1}^{\frac{Z}{2}} u_\lambda(\vetor{r}) u^*_\lambda(\vetor{r}').
+            \end{equation*}
+            Qual é a significância do fator \((-1)^S\)?
+        \item Considere um determinante de Slater consistindo de uma camada completamente fechada, isto é, com \(j = \ell \pm \frac12\) e todos os \(m\) ocupados. Mostre que
+            \begin{equation*}
+                \braket{\vetor{r} m}\rho_1 \ket{\vetor{r} m'} = \delta_{mm'} \frac{4\pi}{Z} \sum_{n \ell} (2\ell + 1) R_{n\ell}(r) R_{n\ell}(r') P_\ell\left(\frac{\vetor{r}}{\norm{\vetor{r}}}\cdot\frac{\vetor{r}'}{\norm{\vetor{r}'}}\right),
+            \end{equation*}
+            onde \(R_{n\ell}\) são as funções de onda radiais.
+    \end{enumerate}
+\end{exercício}
+\begin{proof}[Resolução]
+    
+\end{proof}
