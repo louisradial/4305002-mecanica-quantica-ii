@@ -14,5 +14,50 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Comparando com a base esférica, escrevemos \(S_{+1} = -2^{-\frac12}S_+,\) \(S_{-1} = 2^{-\frac12}S_-,\) e \(S_0 = S_z\)  e para verificar a consistência com as relações de comutação de momento angular, basta determinarmos que \(\commutator{S_0}{S_{+1}} = + S_{+1},\) já que
+    \begin{equation*}
+        \commutator{S_0}{S_{-1}} = - \commutator{S_0}{\herm{S}_{+1}} = - \commutator{S_{+1}}{S_0}^\dag = \herm{S}_{+1} = - S_{-1}
+    \end{equation*}
+    segue como resultado. Temos
+    \begin{align*}
+        \commutator{S_0}{S_{+1}} &= -2^{-\frac12}\commutator{S_0}{\herm{a} b}\\
+                                 &= \frac12 2^{-\frac12}\left(\herm{a}\commutator{b}{S_0}-  \commutator{S_0}{\herm{a}}b\right)\\
+                                 &= \frac12 2^{-\frac12}\left(\herm{a}\diffp{S_0}{\herm{b}} - \diffp{S_0}{a} b\right)\\
+                                 &= -2^{-\frac12} \herm{a}b\\
+                                 &= S_{+1}
+    \end{align*}
+    confirmando a consistência. Em termos dos operadores bosônicos, temos
+    \begin{align*}
+        \vetor{S}^2 &= S_0^2 - S_{-1} S_{+1} - S_{+1} S_{-1}\\
+                    &= \frac14 (\herm{a}a)^2  + \frac14 (\herm{b}b)^2 - \frac12\herm{a}a \herm{b} b + \frac12\herm{a}b \herm{b} a + \frac12\herm{b} a \herm{a} b\\
+                    &= \frac14 (\herm{a} a)^2 + \frac14 (\herm{b} b)^2 + \frac12\herm{a}a\herm{b}b + \frac12 \herm{a} a + \frac12 \herm{b} b\\
+                    &= \frac{\herm{a} a + \herm{b} b}{2} \left(\frac{\herm{a} a + \herm{b} b}{2} + \unity\right)
+    \end{align*}
+    portanto o subespaço \(\setc{\ket{n_an_b}}{n_a + n_b = 2s}\) é o subespaço associado ao autovalor \(s(s + 1)\) de \(\vetor{S}^2.\)
+
+    Consideramos agora os estados da forma
+    \begin{equation*}
+        \ket{sm} = \frac{(\herm{a})^{s+m}}{\sqrt{(s+m)!}} \frac{(\herm{b})^{s-m}}{\sqrt{(s - m)!}} \ket{\Omega}
+    \end{equation*}
+    e desejamos mostrar que
+    \begin{equation*}
+        \vetor{S}^2 \ket{sm} = s(s+1) \ket{sm}\quad\text{e}\quad S_z \ket{sm} = m \ket{sm},
+    \end{equation*}
+    onde \(s\) define o subespaço \(\setc{\ket{n_an_b}}{n_a + n_b = 2s}.\) Notemos que
+    \begin{align*}
+        \herm{a}a \ket{sm} &= \herm{a} a \frac{(\herm{a})^{s+m}}{\sqrt{(s+m)!}} \frac{(\herm{b})^{s-m}}{\sqrt{(s - m)!}} \ket{\Omega}\\
+                           &= \herm{a} \diffp*{\left[\frac{(\herm{a})^{s+m}}{\sqrt{(s+m)!}}\frac{(\herm{b})^{s-m}}{\sqrt{(s - m)!}}\right]}{\herm{a}} \ket{\Omega} + \herm{a}\frac{(\herm{a})^{s+m}}{\sqrt{(s + m)!}}\frac{(\herm{b})^{s-m}}{\sqrt{(s - m)!}}a\ket{\Omega}\\
+                           &= (s + m) \frac{(\herm{a})^{s+m}}{\sqrt{(s+m)!}} \frac{(\herm{b})^{s-m}}{\sqrt{(s - m)!}} \ket{\Omega}\\
+                           &= (s + m)\ket{sm},
+    \end{align*}
+    e, analogamente, \(\herm{b}b \ket{sm} = (s-m) \ket{sm},\) portanto
+    \begin{align*}
+        S_z \ket{sm} &= \frac{\herm{a}a - \herm{b} b}{2}\ket{sm}&
+        \vetor{S}^2\ket{sm} &= \frac{\herm{a}a + \herm{b}b}{2}\left(\frac{\herm{a}a + \herm{b}b}{2} + \unity\right)\ket{sm}\\
+                            &= \frac{(s + m) - (s - m)}{2} \ket{sm}&
+                            &= \frac{(s + m) + (s - m)}{2}\left(\frac{(s + m) + (s - m)}{2} + 1\right)\ket{sm}\\
+                            &= m \ket{sm}&
+                            &= s(s + 1)\ket{sm}.
+    \end{align*}
+    Desse modo, concluímos que os estados considerados são autoestados simultâneos de \(\vetor{S}^2\) e \(S_z.\)
 \end{proof}
