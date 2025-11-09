@@ -33,32 +33,231 @@
     \begin{equation*}
         a \to b = a \cosh \eta + \herm{a} \sinh \eta,
     \end{equation*}
-    satisfaz \(\commutator{b}{\herm{b}} = \commutator{a}{\herm{a}}.\)
-
-    Notemos que
+    satisfaz \(\commutator{b}{\herm{b}} = \commutator{a}{\herm{a}}.\) Para \((\alpha,\beta) \in H,\) temos
     \begin{align*}
-        \herm{b}b &= \left(\herm{a} \cosh \eta + a \sinh\eta\right)\left(a \cosh \eta + \herm{a} \sinh \eta\right)\\
-                  &= \herm{a} a \cosh^2\eta + (\herm{a}\herm{a} + aa)\cosh\eta \sinh\eta + a \herm{a} \sinh^2\eta\\
-                  &= \herm{a} a (\cosh^2 \eta + \sinh^2 \eta) + \sinh^2 \eta + \cosh\eta \sinh\eta (aa + \herm{a} \herm{a})\\
-                  &= \herm{a}a \cosh2\eta + \frac12 \sinh2\eta (aa + \herm{a}\herm{a}) + \sinh^2\eta
+        \begin{cases}
+            b = \alpha a + \beta \herm{a}\\
+            \herm{b} = \beta a + \alpha \herm{a}
+        \end{cases}
+        &\iff
+        \begin{pmatrix}
+            b\\
+            \herm{b}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \alpha && \beta\\
+            \beta && \alpha
+        \end{pmatrix}
+        \begin{pmatrix}
+            a\\
+            \herm{a}
+        \end{pmatrix}\\
+        &\iff
+        \begin{pmatrix}
+            a\\
+            \herm{a}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \alpha && -\beta\\
+            -\beta && \alpha
+        \end{pmatrix}
+        \begin{pmatrix}
+            b\\
+            \herm{b}
+        \end{pmatrix}\\
+        &\iff
+        \begin{cases}
+            a = \alpha b - \beta \herm{b}\\
+            \herm{a} = -\beta b + \alpha \herm{b}
+        \end{cases}
     \end{align*}
-    Considerando o Hamiltoniano \(H = \hbar \omega \herm{a} a + \frac12 V (aa + \herm{a} \herm{a}),\) definimos \(\eta\) a partir de
-    \begin{equation*}
-        \cosh^2\eta + \sinh^2 \eta = \frac{\hbar\omega}{V}\quad\text{e}\quad 2\sinh\eta \cosh\eta = 1 \iff
-        \sinh^2 \eta = \frac{\hbar \omega - V}{2V}\quad\text{e}\quad \sinh 2\eta = 1
-    \end{equation*}
-    e obtemos
+    então a transformação de Bogoliubov com parâmetro \(\eta\) tem transformação inversa dada pelo parâmetro \(- \eta.\) Com isso, temos
     \begin{align*}
-        H &= \hbar \omega \herm{a} a + \frac12 V (aa + \herm{a} \herm{a})\\
-          &= V \left[\frac{\hbar\omega}{V} \herm{a} a + \frac12 (aa + \herm{a} \herm{a})\right]\\
-          &= V \left[(\cosh^2\eta + \sinh^2 \eta) \herm{a} a + \sinh \eta \cosh \eta (aa + \herm{a} \herm{a})\right]\\
-          &= V \left[ \herm{b} b - \sinh^2 \eta\right]\\
-          &= V \left(\herm{b} b  + \frac12\right) - \frac12 \hbar \omega,
+        \herm{a}a &= (\alpha \herm{b} - \beta b)(\alpha b - \beta \herm{b})\\
+                  &= \alpha^2 \herm{b} b - \alpha \beta (\herm{b} \herm{b} + bb) + \beta^2 b \herm{b}\\
+                  &= (\alpha^2 + \beta^2) \herm{b} b + \beta^2 \commutator{b}{\herm{b}} - \alpha \beta (bb + \herm{b} \herm{b})\\
+                  &= \herm{b} b \cosh 2\eta + \commutator{b}{\herm{b}}\sinh^2\eta  - \frac12 (bb + \herm{b} \herm{b})\sinh 2\eta.
     \end{align*}
-    portanto o espectro de \(H\) é \(\sigma(H) = \setc{(n + \frac12) V - \frac12 \hbar \omega}{n \in \mathbb{N}_0}.\) Nas definições, utilizamos que \(\frac{\hbar \omega}{V} - 1 \geq 0\) para definir \(\sinh^2\eta,\) logo a transformação utilizada só é válida para \(V \leq \hbar \omega.\)
-
-    Seja o operador unitário
+    Também temos
     \begin{equation*}
-        U(\eta) = \exp\left[\frac{\eta}{2}\right]
+        aa = (\alpha b - \beta \herm{b})^2 = \alpha^2 bb + \beta^2 \herm{b}\herm{b} - \alpha \beta \anticommutator{b}{\herm{b}} = \alpha^2 bb + \beta^2 \herm{b} \herm{b} - \alpha \beta (2 \herm{b} b + \commutator{b}{\herm{b}})
     \end{equation*}
+    e
+    \begin{equation*}
+        \herm{a}\herm{a} = \beta^2 bb + \alpha^2 \herm{b} \herm{b} - \alpha \beta(2 \herm{b}b + \commutator{b}{\herm{b}}),
+    \end{equation*}
+    logo
+    \begin{equation*}
+        aa + \herm{a}\herm{a} = (\alpha^2 + \beta^2)(bb + \herm{b} \herm{b}) - 4 \alpha \beta \herm{b} b = (bb + \herm{b} \herm{b})\cosh 2\eta - (2 \herm{b} b + \commutator{b}{\herm{b}})\sinh 2\eta.
+    \end{equation*}
+
+    Vamos considerar o caso em que \(\commutator{a}{\herm{a}} = \unity,\) então \(\commutator{b}{\herm{b}} = \unity\) sempre que \(b\) é dado por uma transformação de Bogoliubov de \(a.\) Vamos mostrar que o operador unitário \(U(\eta) = \exp(\eta M)\) realiza a transformação de Bogoliubov, onde \(M = \frac12 (aa - \herm{a} \herm{a})\) é anti-hermitiano. Definimos
+    \begin{equation*}
+        x(\eta) = U(\eta) a \herm{U}(\eta)\quad\text{e}\quad y(\eta) = U(\eta) \herm{a} \herm{U}(\eta)
+    \end{equation*}
+    e então
+    \begin{equation*}
+        \diff{x(\eta)}{\eta} = M U(\eta) a \herm{U}(\eta) - U(\eta) a \herm{U}(\eta) M = U(\eta) \commutator{M}{a} \herm{U}(\eta) = - U(\eta) \diffp{M}{\herm{a}} \herm{U}(\eta) = y(\eta)
+    \end{equation*}
+    e, analogamente,
+    \begin{equation*}
+        \diff{y(\eta)}{\eta} = U(\eta)\commutator{M}{\herm{a}}\herm{U}(\eta) = U(\eta) \diffp{M}{a}\herm{U}(\eta) = x(\eta).
+    \end{equation*}
+    Com isso, obtemos
+    \begin{equation*}
+        \diff*{\begin{pmatrix}
+                x(\eta)\\ y(\eta)
+            \end{pmatrix}}{\eta} = \begin{pmatrix}
+            0 && 1\\
+            1 && 0
+            \end{pmatrix}\begin{pmatrix}
+            x(\eta)\\ y(\eta)
+        \end{pmatrix}
+    \end{equation*}
+    portanto de
+    \begin{equation*}
+        \diff*{[x(\eta) + y(\eta)]}{\eta} = x(\eta) + y(\eta)\quad\text{e}\quad
+        \diff*{[x(\eta) - y(\eta)]}{\eta} = -[x(\eta) + y(\eta)]
+    \end{equation*}
+    concluímos que
+    \begin{equation*}
+        x(\eta) \pm y(\eta) = e^{\pm\eta} [x(0) \pm y(0)] = e^{\pm \eta} (a \pm \herm{a}).
+    \end{equation*}
+    Assim,
+    \begin{equation*}
+        x(\eta) = a\cosh\eta + \herm{a} \sinh\eta\quad\text{e}\quad y(\eta) = a \sinh\eta + \herm{a} \cosh\eta,
+    \end{equation*}
+    e vemos que \(x(\eta) = b\) e \(y(\eta) = \herm{b},\) como desejado.
+
+    A transformação de Bogoliubov \(H_\eta = U(\eta) H \herm{U}(\eta)\) do hamiltoniano \(H = \hbar \omega \herm{a} a + \frac12 V (aa + \herm{a} \herm{a})\) é dada por
+    \begin{align*}
+        H_\eta &= \hbar \omega \left[\herm{b} b (\alpha^2 + \beta^2) + \beta^2\unity - \alpha \beta(bb + \herm{b} \herm{b})\right] + \frac{V}{2} \left[(b b + \herm{b} \herm{b}) (\alpha^2 + \beta^2) - 2 \alpha \beta(2 \herm{b} b + \unity) \right]\\
+               &= \herm{b} b \left[\hbar \omega (\alpha^2 + \beta^2) - 2\alpha \beta V\right] + (\beta^2 \hbar \omega - \alpha \beta V) \unity + (b b + \herm{b} \herm{b})\left[\frac{V}{2} (\alpha^2 + \beta^2) - \alpha \beta \hbar \omega\right]\\
+               &= (\hbar \omega \cosh2\eta - V\sinh 2\eta)\herm{b}b  +  \left(\hbar \omega \cosh^2 \eta - \frac{V}2\sinh 2\eta\right)\unity + \frac{V \cosh 2\eta - \hbar \omega \sinh2\eta}{2}(b b + \herm{b} \herm{b}).
+    \end{align*}
+    Considerando o caso em que \(\abs{V} < \hbar \omega,\) temos para 
+    \begin{equation*}
+        2\tilde{\eta} = \artanh\frac{V}{h\omega} = \frac12 \ln\left(\frac{\hbar \omega + V}{\hbar \omega - V}\right)
+    \end{equation*}
+    que
+    \begin{equation*}
+        \cosh 2 \tilde{\eta} = \frac{\hbar \omega}{\sqrt{(\hbar \omega)^2 - V^2}},\quad
+        \sinh 2 \tilde{\eta} = \frac{V}{\sqrt{(\hbar \omega)^2 - V^2}},\quad\text{e}\quad
+    \cosh^2 \tilde{\eta} 
+    % = \frac{1 + \cosh 2 \tilde{\eta}}{2} 
+    = \frac{\sqrt{(\hbar \omega)^2 - V^2} + \hbar\omega}{2\sqrt{(\hbar\omega)^2 - V^2}},
+    \end{equation*}
+    então
+    \begin{equation*}
+        H_{\tilde{\eta}} = \sqrt{(\hbar \omega)^2 - V^2} \herm{b} b + \left(\frac{\hbar\omega \sqrt{(\hbar \omega)^2 - V^2} + (\hbar \omega)^2 - V^2}{2 \sqrt{(\hbar \omega)^2 - V^2}}\right)\unity = \hbar\Omega \herm{b} b + E_0\unity
+    \end{equation*}
+    e podemos concluir que o espectro do hamiltoniano é
+    \begin{equation*}
+        \sigma(H) = \sigma(H_{\tilde{\eta}}) = \setc{\hbar \Omega n + E_0}{n \in \mathbb{N}_0}.
+    \end{equation*}
+
+    O estado fundamental \(\ket{E_0}\) é dado por \(b \ket{E_0} = 0\) então \(\ket{E_0} = U(\tilde{\eta}) \ket{0},\) já que
+    \begin{equation*}
+        b \ket{E_0} = 0 \iff U(\tilde{\eta}) a \herm{U}(\tilde{\eta}) \ket{E_0} = 0 \iff \herm{U}(\tilde{\eta}) \ket{E_0} = \ket{0} \iff \ket{E_0} = U(\tilde{\eta})\ket{0}
+    \end{equation*}
+    onde utilizamos que \(U\) é injetor por ser unitário e utilizamos que o núcleo de \(\herm{a}a\) é não degenerado. Notemos que
+    \begin{equation*}
+        \frac14\commutator{aa}{\herm{a}\herm{a}} = \frac12 \anticommutator{a}{\herm{a}} = \herm{a} a + \frac12,
+    \end{equation*}
+    então definindo
+    \begin{equation*}
+        K_- = \frac{aa}{2},\quad
+        K_0 = \frac12 \left(\herm{a}a + \frac12\right),\quad\text{e}\quad
+        K_+ = \frac{\herm{a} \herm{a}}{2},
+    \end{equation*}
+    obtemos
+    \begin{equation*}
+        \commutator{K_-}{K_+} = 2 K_0
+        \quad\text{e}\quad
+        \commutator{K_0}{K_\pm} = \pm K_{\pm},
+    \end{equation*}
+    que são as relações de comutação da álgebra \(\mathfrak{su}(1,1)\). Consideramos o operador
+    \begin{equation*}
+        \tilde{U}(\eta) = e^{\xi_+ K_+} e^{\xi_0 K_0} e^{\xi_- K_-}
+    \end{equation*}
+    e vamos determinar as funções \(\xi(\eta)\) de tal forma que
+    \begin{equation*}
+        \tilde{U}(0) = \unity\quad\text{e}\quad \diff{\tilde{U}}{\eta} = M \tilde{U}(\eta) = (K_- - K_+) \tilde{U}(\eta),
+    \end{equation*}
+    para então concluir que \(\tilde{U}(\eta) = U(\eta).\)
+
+    Recordando o lema de Campbel,
+    \begin{equation*}
+        e^{s X}Y e^{-sX} = \sum_{j = 0}^\infty \frac{s^j\commutator{X}{Y}^{[j]}}{j!},
+    \end{equation*}
+    temos
+    \begin{equation*}
+        e^{s K_\pm} K_0 e^{-s K_\pm} = K_0 + s\commutator{K_\pm}{K_0} + \frac{s^2}{2} \commutator{K_\pm}{\commutator{K_\pm}{K_0}} + \dots = K_0 \mp sK_\pm,
+    \end{equation*}
+    e
+    \begin{equation*}
+        e^{s K_+} K_- e^{-s K_+} = K_- + s \commutator{K_+}{K_-} + \frac{s^2}{2} \commutator{K_+}{\commutator{K_+}{K_-}} + \dots = K_- - 2s K_0 + s^2 K_+.
+    \end{equation*}
+    Ainda, como \(\commutator{K_0}{K_-} = -K_-,\) temos
+    \begin{equation*}
+        \commutator{K_0}{K_-}^{[j]} = (-1)^{j}K_-
+    \end{equation*}
+    sempre que \(j \in \mathbb{N}_0,\) como facilmente se mostra por indução. Com isso, temos
+    \begin{equation*}
+        e^{s K_0} K_- e^{-s K_0} = \sum_{j = 0}^{\infty} \frac{(-s)^j}{j!} K_- = e^{-s} K_-.
+    \end{equation*}
+    Utilizando as identidades acima, obtemos
+    \begin{align*}
+        \diff{\tilde{U}}{\eta} &= \diff{\xi_+}{\eta} K_+ \tilde{U}(\eta) + \diff{\xi_0}{\eta} e^{\xi_+ K_+} K_0 e^{\xi_0 K_0} e^{\xi_- K_-} + \diff{\xi_-}{\eta} e^{\xi_+ K_+} e^{\xi_0 K_0} K_-e^{\xi_- K_-}\\
+                               &= \left[\diff{\xi_+}{\eta} + \diff{\xi_0}{\eta} e^{\xi_+ K_+}K_0 e^{-\xi_+ K_+} + \diff{\xi_-}{\eta} e^{\xi_+ K_+} e^{\xi_0 K_0} K_- e^{-\xi_0 K_0} e^{-\xi_+ K_+}\right]\tilde{U}(\eta)\\
+                               &= \left[\diff{\xi_+}{\eta}K_+ + \diff{\xi_0}{\eta} (K_0 - \xi_+ K_+) + e^{-\xi_0}\diff{\xi_-}{\eta} (K_- - 2\xi_+ K_0 + \xi_+^2 K_+)\right] \tilde{U}(\eta)\\
+                               &= \left[\left(\diff{\xi_+}{\eta} - \diff{\xi_0}{\eta}\xi_+ + e^{-\xi_0} \xi_+^2 \diff{\xi_-}{\eta}\right)K_+ + \left(\diff{\xi_0}{\eta} - 2e^{-\xi_0} \xi_+\diff{\xi_-}{\eta}\right)K_0 + e^{-\xi_0} \diff{\xi_-}{\eta} K_-\right] \tilde{U}(\eta),
+    \end{align*}
+    portanto impondo que o prefator acima seja igual a \(M,\) obtemos o sistema de equações diferenciais
+    \begin{equation*}
+        \begin{cases}
+            \displaystyle e^{-\xi_0} \diff{\xi_-}{\eta} = 1\\
+            \displaystyle \diff{\xi_0}{\eta} - 2 e^{-\xi_0} \xi_+ \diff{\xi_-}{\eta} = 0\\
+            \displaystyle \diff{\xi_+}{\eta} - \diff{\xi_0}{\eta} \xi_+ + e^{-\xi_0} \xi_+^2 \diff{\xi_-}{\eta} = -1.
+        \end{cases}
+    \end{equation*}
+    Substituindo a primeira equação nas outras duas, obtemos
+    \begin{equation*}
+        \diff{\xi_0}{\eta} = 2\xi_+ \quad\text{e}\quad \diff{\xi_+}{\eta} - \diff{\xi_0}{\eta} \xi_+ + \xi_+^2 = -1 \implies \diff{\xi_+}{\eta} - \xi_+^2 = -1
+    \end{equation*}
+    e então o sistema se simplifica para
+    \begin{equation*}
+        \begin{cases}
+            \xi_+'(\eta) = \xi_+^2(\eta) - 1\\
+            \xi_0'(\eta) = 2\xi_+(\eta)\\
+            \xi_-'(\eta) = e^{\xi_0}
+        \end{cases}
+    \end{equation*}
+    com as condições iniciais \(\xi(0) = 0\). A primeira equação é integrável com
+    \begin{equation*}
+        \int_0^{\xi_+(\eta)} \frac{\dl{\xi}}{\xi^2 - 1} = \eta \implies \xi_+(\eta) = -\tanh\eta,
+    \end{equation*}
+    portanto
+    \begin{equation*}
+        \xi_0(\eta) = -2\int_0^{\eta} \dli{\zeta} \tanh{\zeta} = -2 \ln \cosh\eta
+    \end{equation*}
+    e
+    \begin{equation*}
+        \xi_-(\eta) = \int_0^{\eta} \dl{\zeta}\sech^2\zeta = \tanh\eta.
+    \end{equation*}
+    Assim, da unicidade de soluções de equações diferenciais, desacoplamos o operador \(U(\eta)\) com 
+    \begin{equation*}
+        U(\eta) = e^{- K_+\tanh\eta} e^{-2K_0\ln \cosh \eta} e^{K- \tanh\eta}.
+    \end{equation*}
+    Podemos enfim determinar o estado fundamental do Hamiltoniano
+    \begin{align*}
+        \ket{E_0} &= U(\tilde{\eta})\ket{0}\\
+                  &= e^{-K_+ \tanh \tilde{\eta}} e^{-2K_0 \ln \cosh \tilde{\eta}} \ket{0}\\
+                  &= e^{-\frac12 \ln \cosh \tilde{\eta}}e^{-K_+ \tanh \tilde{\eta}}\ket{0}\\
+                  &= \sqrt{\sech \tilde{\eta}} \sum_{j = 0}^\infty \frac{(-\frac12\tanh \tilde{\eta})^j}{j!} (\herm{a})^{2j}\ket{0}\\
+                  &= \sqrt{\sech \tilde{\eta}} \sum_{j = 0}^\infty \frac{(-\frac12 \tanh \tilde{\eta})^j\sqrt{(2j)!}}{j!} \ket{2j}
+    \end{align*}
+    em função dos autoestados do operador de número \(\herm{a}a.\)
 \end{proof}
