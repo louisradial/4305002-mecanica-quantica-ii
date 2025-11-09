@@ -3,5 +3,117 @@
     Construa explicitamente as matrizes \(4\times4\) que representam os operadores de aniquilação e criação fermiônicos \(a_0, \herm{a}_0, a_1, \herm{a}_1\) para um sistema de dois níveis e verifique as relações de anticomutação.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Consideramos a base \(\set{\ket{00}, \ket{01}, \ket{10}, \ket{11}},\) em que \(\ket{n_0 n_1}\) é autovetor de \(\herm{a}_0a_0\) associado ao autovalor \(n_0 \in \set{0,1}\) e autovetor de \(\herm{a}_1 a_1\) associado ao autovalor \(n_1 \in \set{0,1}.\) De
+    \begin{equation*}
+        a_0 \ket{00} = 0,\quad
+        a_0 \ket{01} = 0,\quad
+        a_0 \ket{10} = \ket{00},\quad\text{e}\quad
+        a_0 \ket{11} = -\ket{01}
+    \end{equation*}
+    temos a representação
+    \begin{equation*}
+        a_0 \doteq \begin{pmatrix}
+            && \sigma^3\\
+            &&
+        \end{pmatrix}.
+    \end{equation*}
+    De 
+    \begin{equation*}
+        \herm{a}_0 \ket{00} = \ket{10},\quad
+        \herm{a}_0 \ket{01} = -\ket{11},\quad
+        \herm{a}_0 \ket{10} = 0,\quad\text{e}\quad
+        \herm{a}_0 \ket{11} = 0
+    \end{equation*}
+    temos a representação
+    \begin{equation*}
+        \herm{a}_0 \doteq \begin{pmatrix}
+        && \\
+            \sigma^3 &&
+        \end{pmatrix}
+    \end{equation*}
+    e então
+    \begin{equation*}
+        \herm{a}_0a_0 \doteq \begin{pmatrix}
+            &&\\&&\unity
+        \end{pmatrix}
+        \quad\text{e}\quad
+        \anticommutator{a_0}{\herm{a}_0} \doteq \begin{pmatrix}
+            \unity && \\
+                   && \unity
+        \end{pmatrix}.
+    \end{equation*}
+    De
+    \begin{equation*}
+        a_1\ket{00} = 0,\quad
+        a_1\ket{01} = \ket{00},\quad
+        a_1\ket{10} = 0,\quad\text{e}\quad
+        a_1\ket{11} = \ket{10},
+    \end{equation*}
+    temos a representação
+    \begin{equation*}
+        a_1 \doteq \begin{pmatrix}
+            0 && 1 && 0 && 0\\
+            0 && 0 && 0 && 0\\
+            0 && 0 && 0 && 1\\
+            0 && 0 && 0 && 0
+            \end{pmatrix} = \begin{pmatrix}
+            \sigma^+ &&\\
+                            &&\sigma^+
+        \end{pmatrix},
+    \end{equation*}
+    onde \(\sigma^+ = \frac12 (\sigma^1 +i \sigma^2).\) De
+    \begin{equation*}
+        \herm{a}_1\ket{00} = \ket{01},\quad
+        \herm{a}_1\ket{01} = 0,\quad
+        \herm{a}_1\ket{10} = \ket{11},\quad\text{e}\quad
+        \herm{a}_1\ket{11} = 0,
+    \end{equation*}
+    temos a representação
+    \begin{equation*}
+        \herm{a}_1 \doteq \begin{pmatrix}
+            0 && 0 && 0 && 0\\
+            1 && 0 && 0 && 0\\
+            0 && 0 && 0 && 0\\
+            0 && 0 && 1 && 0
+            \end{pmatrix} = \begin{pmatrix}
+            \sigma^- &&\\
+                            &&\sigma^-
+        \end{pmatrix},
+    \end{equation*}
+    onde \(\sigma^- = \frac12 (\sigma^1 - i \sigma^2),\) e então
+    \begin{equation*}
+        \herm{a}_1a_1 \doteq \begin{pmatrix}
+            \sigma^-\sigma^+ &&\\&&\sigma^- \sigma^+
+        \end{pmatrix}
+        \quad\text{e}\quad
+        \anticommutator{a_1}{\herm{a}_1} \doteq \begin{pmatrix}
+            \unity && \\
+                   && \unity
+        \end{pmatrix},
+    \end{equation*}
+    onde \(\sigma^- \sigma^+ = \frac12 (\unity - \sigma^3) = (\begin{smallmatrix} 0&&0\\0&& 1 \end{smallmatrix})\).
+
+    Na base escolhida, determinamos as representações
+    \begin{equation*}
+        a_0 \doteq \sigma^+ \otimes \sigma^3,\quad
+        \herm{a}_0 \doteq \sigma^- \otimes \sigma^3,\quad
+        a_1 \doteq \unity \otimes \sigma^+,\quad\text{e}\quad
+        \herm{a}_1 \doteq \unity \otimes \sigma^-
+    \end{equation*}
+    e as relações de anticomutação
+    \begin{equation*}
+        \anticommutator{a_0}{\herm{a}_0} \doteq \unity \otimes \unity \doteq \anticommutator{a_1}{\herm{a}_1}.
+    \end{equation*}
+    Para as demais, temos
+    \begin{align*}
+        \anticommutator{a_0}{a_0} &= 2 \sigma^+ \sigma^+ \otimes \unity&
+        \anticommutator{a_0}{a_1} &= \sigma^+\anticommutator{\sigma^3}{\sigma^-}&
+        \anticommutator{a_0}{\herm{a}_1} &= \sigma^+ \otimes \anticommutator{\sigma^3}{\sigma^-}&
+        \anticommutator{a_1}{a_1} &= 2\unity \otimes \sigma^+ \sigma^+\\
+                                  &= 0&
+                                  &= 0&
+                                  &= 0&
+                                  &= 0
+    \end{align*}
+    e as outras podem ser obtidas a partir destas, utilizando \(\anticommutator{x}{y}^\dag = \anticommutator{x^\dag}{y^\dag}.\)
 \end{proof}
