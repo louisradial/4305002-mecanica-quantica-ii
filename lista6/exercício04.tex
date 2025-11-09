@@ -21,5 +21,44 @@
     \end{enumerate}
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Consideramos o conjunto \(S = \setc{(z, w) \in \mathbb{C}^2}{\abs{z}^2 - \abs{w}^2 = 1}\) que mantém a relação de comutação \(\commutator{a}{\herm{a}}\) invariante sob transformações da forma \(a \to \tilde{a} = \alpha a + \beta \herm{a}\) sempre que \((\alpha, \beta) \in S.\) De fato, temos
+    \begin{equation*}
+        \commutator{\tilde{a}}{\herm{\tilde{a}}} = \commutator{\alpha a + \beta \herm{a}}{\alpha^* \herm{a} + \beta^* a} = \left(\abs{\alpha}^2 - \abs{\beta}^2\right)\commutator{a}{\herm{a}}
+    \end{equation*}
+    e então se \((\alpha, \beta) \in S\) obtemos \(\commutator{\tilde{a}}{\herm{\tilde{a}}} = \commutator{a}{\herm{a}}.\) Um subconjunto de \(S\) é a hipérbole
+    \begin{equation*}
+        H= \setc{(\cosh\eta, \sinh\eta)}{\eta \in \mathbb{R}} \subset S
+    \end{equation*}
+    e então a transformação de Bogoliubov
+    \begin{equation*}
+        a \to b = a \cosh \eta + \herm{a} \sinh \eta,
+    \end{equation*}
+    satisfaz \(\commutator{b}{\herm{b}} = \commutator{a}{\herm{a}}.\)
+
+    Notemos que
+    \begin{align*}
+        \herm{b}b &= \left(\herm{a} \cosh \eta + a \sinh\eta\right)\left(a \cosh \eta + \herm{a} \sinh \eta\right)\\
+                  &= \herm{a} a \cosh^2\eta + (\herm{a}\herm{a} + aa)\cosh\eta \sinh\eta + a \herm{a} \sinh^2\eta\\
+                  &= \herm{a} a (\cosh^2 \eta + \sinh^2 \eta) + \sinh^2 \eta + \cosh\eta \sinh\eta (aa + \herm{a} \herm{a})\\
+                  &= \herm{a}a \cosh2\eta + \frac12 \sinh2\eta (aa + \herm{a}\herm{a}) + \sinh^2\eta
+    \end{align*}
+    Considerando o Hamiltoniano \(H = \hbar \omega \herm{a} a + \frac12 V (aa + \herm{a} \herm{a}),\) definimos \(\eta\) a partir de
+    \begin{equation*}
+        \cosh^2\eta + \sinh^2 \eta = \frac{\hbar\omega}{V}\quad\text{e}\quad 2\sinh\eta \cosh\eta = 1 \iff
+        \sinh^2 \eta = \frac{\hbar \omega - V}{2V}\quad\text{e}\quad \sinh 2\eta = 1
+    \end{equation*}
+    e obtemos
+    \begin{align*}
+        H &= \hbar \omega \herm{a} a + \frac12 V (aa + \herm{a} \herm{a})\\
+          &= V \left[\frac{\hbar\omega}{V} \herm{a} a + \frac12 (aa + \herm{a} \herm{a})\right]\\
+          &= V \left[(\cosh^2\eta + \sinh^2 \eta) \herm{a} a + \sinh \eta \cosh \eta (aa + \herm{a} \herm{a})\right]\\
+          &= V \left[ \herm{b} b - \sinh^2 \eta\right]\\
+          &= V \left(\herm{b} b  + \frac12\right) - \frac12 \hbar \omega,
+    \end{align*}
+    portanto o espectro de \(H\) é \(\sigma(H) = \setc{(n + \frac12) V - \frac12 \hbar \omega}{n \in \mathbb{N}_0}.\) Nas definições, utilizamos que \(\frac{\hbar \omega}{V} - 1 \geq 0\) para definir \(\sinh^2\eta,\) logo a transformação utilizada só é válida para \(V \leq \hbar \omega.\)
+
+    Seja o operador unitário
+    \begin{equation*}
+        U(\eta) = \exp\left[\frac{\eta}{2}\right]
+    \end{equation*}
 \end{proof}
