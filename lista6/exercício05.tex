@@ -2,14 +2,63 @@
 \begin{exercício}{Aproximação de ligação forte}{ex5}
     Considere o hamiltoniano no limite de ligação forte (\emph{tight-binding}), que é uma versão extrema de um potencial periódico em que as posições estão confinadas por sítios em uma rede segundo
     \begin{equation*}
-        H = \sum_{<i,j>} t(\herm{c}_jc_i + \herm{c}_i c_j)
+        H = \sum_{\mean{i,j}} t(\herm{c}_jc_i + \herm{c}_i c_j)
     \end{equation*}
-    com \(\commutator{c_i}{\herm{c}_j} = \delta_{ij}\) e \({<i,j>}\) representa os primeiros vizinhos na rede. Mostre que os estados de partícula única
+    com \(\commutator{c_i}{\herm{c}_j} = \delta_{ij}\) e \({\mean{i,j}}\) representa os primeiros vizinhos na rede. Mostre que os estados de partícula única
     \begin{equation*}
         \sum_{k} \herm{c}_k e^{ik \kappa} \ket{0}
     \end{equation*}
     são autoestados de \(H.\)
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Reescrevemos o hamiltoniano
+    \begin{equation*}
+        H = t\sum_{\mean{i,j}} (\herm{c}_j c_i + \herm{c}_i c_j)
+    \end{equation*}
+    como
+    \begin{equation*}
+        H = \frac{t}{2}\sum_{i} \sum_{\delta_i} (\herm{c}_{i + \delta_i} c_i + \herm{c}_i c_{i + \delta_i}),
+    \end{equation*}
+    onde somamos sobre todos os sítios \(i\) e suas vizinhanças \(i + \delta_i.\) 
+
+    Vamos primeiro tratar o caso unidimensional, isto é, em que o sítios estão situados em um anel, e então o hamiltoniano é dado por
+    \begin{equation*}
+        H = \frac{t}{2} \sum_i (\herm{c}_{i - 1} c_i + \herm{c}_i c_{i -1} + \herm{c}_{i + 1} c_i + \herm{c}_i c_{i+1}) = \frac{t}{2} \sum_i \left[(\herm{c}_{i - 1} + \herm{c}_{i+1}) c_i + \herm{c}_i (c_{i - 1} + c_{i + 1})\right].
+    \end{equation*}
+    Denotemos
+    \begin{equation*}
+        \ket{\theta} = \sum_{n} e^{in\theta} \herm{c}_n \ket{0}
+    \end{equation*}
+    portanto temos
+    \begin{equation*}
+        c_m \ket{\theta} = \sum_{n} e^{in\theta} c_m\herm{c}_n\ket{0} = e^{im\theta} \ket{0}.
+    \end{equation*}
+    Com isso,
+    \begin{align*}
+        H\ket{\theta} &= \frac{t}{2} \sum_n \left[(\herm{c}_{n - 1} + \herm{c}_{n+1}) c_n + \herm{c}_n (c_{n - 1} + c_{n + 1})\right]\ket{\theta}\\
+                      &= \frac{t}{2} \sum_n e^{in\theta}\left[\herm{c}_{n - 1} + \herm{c}_{n+1} + (e^{-i\theta} + e^{i\theta})\herm{c}_n  \right]\ket{0}\\
+                      &= \frac{t}{2} \sum_{n} e^{i n \theta} \herm{c}_{n-1}\ket{0} + \frac{t}{2} \sum_{n} e^{i n \theta} \herm{c}_{n+1}\ket{0} + t \cos\theta \sum_n \herm{c}_n\ket{0}\\
+                      &= \frac{t}{2} e^{i\theta} \ket{\theta} + \frac{t}{2} e^{-i\theta} \ket{\theta} + t \cos\theta \ket{\theta}\\
+                      &= 2t \cos\theta \ket{\theta},
+    \end{align*}
+    isto é, \(\ket{\theta}\) é autovetor do hamiltoniano com autovalor \(2t \cos\theta.\)
+
+    Podemos generalizar para uma estrutura periódica com sítios nas posições \(\vetor{r}_n = n^\alpha \vetor{a}_\alpha,\) onde \(\set{\vetor{a}_\alpha}\) é a base da estrutura e as componentes \(n^\alpha\) são números inteiros. Consideramos o estado
+    \begin{equation*}
+        \ket{\vetor{\theta}} = \sum_{n} e^{i \vetor{r}_n \cdot \vetor{\theta}} \herm{c}_{n}\ket{0},
+    \end{equation*}
+    onde \(\vetor{r}_n \cdot \vetor{\theta} = n^\alpha \vetor{\theta}^\beta \vetor{a}_{\alpha}\cdot \vetor{e}_\beta = g_{\alpha\beta} n^\alpha \theta^\beta = n \cdot \theta.\) Como antes, temos
+    \begin{equation*}
+        c_n \ket{\vetor{\theta}} = e^{i n \cdot \theta} \ket{0}
+    \end{equation*}
+    e então
+    \begin{align*}
+        H\ket{\vetor{\theta}} &= t \sum_{\mean{m,n}} \left(e^{i m \cdot \theta}\herm{c}_n\ket{0} + e^{i n \cdot \theta}\herm{c}_m\ket{0}\right)\\
+                      &= \frac{t}{2} \sum_{m} \sum_{\delta} \left(e^{i m \cdot \theta} \herm{c}_{m + \delta}\ket{0} + e^{i \delta \cdot \theta} e^{i m \cdot \theta} \herm{c}_m\ket{0}\right)\\
+                      &= t\sum_{\delta} \frac{e^{i \delta\cdot\theta} + e^{- i \delta \cdot \theta}}{2} \ket{\vetor{\theta}}\\
+                      &= t \sum_\delta \cos(\delta \cdot \theta) \ket{\vetor{\theta}}\\
+                      &= t \sum_{\delta} \cos(g_{\alpha\beta} \delta^\alpha \theta^\beta) \ket{\vetor{\theta}}\\
+                      &= 2t \sum_{\alpha} \cos(g_{\alpha\beta} \theta^\beta) \ket{\vetor{\theta}},
+    \end{align*}
+    portanto \(\ket{\vetor{\theta}}\) é autovetor do hamiltoniano.
 \end{proof}
