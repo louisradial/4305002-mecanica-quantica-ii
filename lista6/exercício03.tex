@@ -1,7 +1,68 @@
 % vim: spl=pt
 \begin{exercício}{Função de correlação de pares}{ex3}
-    Suponha que a função de onda de um sistema de \(N\) férmions é dada pelo determinante de Slater de funções ortonormais \(\phi_i.\) Usando o formalismo de segunda quantização, mostre que as funções de correlação de pares fatorizam como no caso de ondas planas. \todo[considere os operadores \(a_i = \int \dln3r \phi^*_i \psi.\)]
+    Suponha que a função de onda de um sistema de \(N\) férmions é dada pelo determinante de Slater de funções ortonormais \(\phi_i.\) Usando o formalismo de segunda quantização, mostre que as funções de correlação de pares fatorizam como no caso de ondas planas.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    % Para o índice dos estados vamos escrever \(x = (\vetor{x}, m),\) onde \(m\) é a projeção de momento angular, vamos denotar a medida de integração por
+    % \begin{equation*}
+    %     \int_{\Sigma} \dli{x} = \int_{\Sigma} \dln3x \sum_m,
+    % \end{equation*}
+    % onde \(\Sigma\) é a região de volume \(V,\) e vamos denotar a relação de ortogonalidade por
+    % \begin{equation*}
+    %     \braket{x}{x'} = \delta(\vetor{x} - \vetor{x'}) \delta_{mm'}.
+    % \end{equation*}
+    Consideramos os operadores de campo \(\Psi(x)\) com a relação de anticomutação fermiônica,
+    \begin{equation*}
+        % \anticommutator{\Psi(x)}{\herm{\Psi}(x')} = \braket{x}{x'} \iff 
+        \anticommutator{\Psi_m(\vetor{x})}{\herm{\Psi}_m(\vetor{x}')} = \braket{\vetor{x} m}{\vetor{x'} m'} = \delta(\vetor{x} - \vetor{x'})\delta_{mm'}.
+    \end{equation*}
+    Definindo os operadores
+    \begin{equation*}
+        a_{im} = \int_\Sigma \dln3x \phi^*_i(\vetor{x}) \Psi_m(\vetor{x})
+    \end{equation*}
+    temos
+    \begin{equation*}
+        \Psi_m(\vetor{x}) = \sum_i \phi_i(\vetor{x}) a_{im}
+    \end{equation*}
+    já que
+    \begin{equation*}
+        \sum_i \phi_i(\vetor{x}) a_{im} = \int_\Sigma \dln3{x'} \sum_i \phi_i(\vetor{x}) \phi_i^*(\vetor{x'}) \Psi_m(\vetor{x'}) = \int_{\Sigma} \dln3{x'} \delta(\vetor{x} - \vetor{x'}) \Psi_m(\vetor{x'}) = \Psi_m(\vetor{x}).
+    \end{equation*}
+    Ainda, temos
+    \begin{align*}
+        \anticommutator{a_{im}}{\herm{a}_{i'm'}} &= \int_{\Sigma} \dln3{x} \int_{\Sigma}\dln3{x'} \phi_i^*(\vetor{x}) \phi_{i'}(\vetor{x'}) \anticommutator{\Psi_{m}(\vetor{x})}{\Psi_{m'}(\vetor{x'})}\\
+                                                &= \delta_{mm'}\int_{\Sigma} \dln3x \int_{\Sigma} \dln3{x'} \phi_i^*(\vetor{x}) \phi_{i'}(\vetor{x'}) \delta(\vetor{x} - \vetor{x'})\\
+                                                &= \delta_{mm'} \int_{\Sigma} \dln3x \phi_i^*(\vetor{x}) \phi_{i'}(\vetor{x})\\
+                                                &= \delta_{mm'} \delta_{i{i'}}
+    \end{align*}
+    e as demais relações de anticomutação são triviais.
+
+    Seja \(\ket{\Omega}\) o estado fundamental com \(\herm{a}_{im}\ket{\Omega} = 0\) sempre que \(i < i_F\) e \(a_{im}\ket{\Omega} = 0\) sempre que \(i > i_F.\) A função de correlação de uma partícula é dada por
+    \begin{align*}
+        G^{(1)}_{m}(\vetor{x}, \vetor{x'}) &= \bra{\Omega} \herm{\Psi}_m(\vetor{x}) \Psi_{m}(\vetor{x'}) \ket{\Omega}\\
+                                           &= \sum_i \sum_j \phi^*_i(\vetor{x}) \phi_j(\vetor{x'})\bra{\Omega} \herm{a}_{im} a_{jm} \ket{\Omega}\\
+                                           &= \sum_{i < i_F} \sum_{j < i_F} \phi^*_i(\vetor{x}) \phi_j(\vetor{x'}) \bra{\Omega} \herm{a}_{im} a_{jm} \ket{\Omega}\\
+                                           &= \sum_{i < i_F} \sum_{j < i_F} \phi^*_i(\vetor{x}) \phi_j(\vetor{x'}) \left(\delta_{ij} - \bra{\Omega} a_{jm} \herm{a}_{im}\ket{\Omega}\right)\\
+                                           &= \sum_{i < i_F} \phi^*_i(\vetor{x}) \phi_i(\vetor{x'}).
+    \end{align*}
+    A função de correlação de duas partículas é dada por
+    \begin{align*}
+        G^{(2)}_{m m'}(\vetor{x}, \vetor{x'}) &= \bra{\Omega} \herm{\Psi}_m(\vetor{x})\herm{\Psi}_{m'}(\vetor{x'}) \Psi_{m'}(\vetor{x'}) \Psi_m(\vetor{x})\ket{\Omega}\\
+                                              &= \sum_i \sum_j \sum_{i'} \sum_{j'} \phi^*_i(\vetor{x}) \phi_j(\vetor{x}) \phi_{i'}^*(\vetor{x'}) \phi_{j'}(\vetor{x'}) \bra{\Omega} \herm{a}_{im} \herm{a}_{i'm'} a_{j'm'} a_{jm}\ket{\Omega}\\
+                                              &= \sum_{i<i_F} \sum_{j<i_F} \sum_{i'<i_F} \sum_{j'<i_F} \phi^*_i(\vetor{x}) \phi_j(\vetor{x}) \phi_{i'}^*(\vetor{x'}) \phi_{j'}(\vetor{x'}) \bra{\Omega} \herm{a}_{im} \herm{a}_{i'm'} a_{j'm'} a_{jm}\ket{\Omega},
+    \end{align*}
+    onde no último passo utilizamos a anticomutação trivial dos operadores de aniquilação e criação e a definição do estado fundamental para limitar as somas na esfera de Fermi. Notemos que
+    \begin{align*}
+        \herm{a}_{im} \herm{a}_{i'm'} a_{j'm'} a_{jm} &= \delta_{i' j'} \herm{a}_{im} a_{jm} - \herm{a}_{im}a_{j'm'} \herm{a}_{i'm'}a_{jm}\\
+                                                      &= \delta_{i'j'} \left(\delta_{ij} - a_{jm} \herm{a}_{im}\right) + \left(a_{j'm'} \herm{a}_{im} - \delta_{i j'}\delta_{mm'}\right) \herm{a}_{i'm'}a_{jm}\\
+                                                      &= \delta_{i'j'} \left(\delta_{ij} - a_{jm} \herm{a}_{im}\right) + \left(a_{j'm'} \herm{a}_{im} - \delta_{i j'}\delta_{mm'}\right) \left(\delta_{i' j} \delta_{mm'} - a_{jm} \herm{a}_{i'm'}\right),
+    \end{align*}
+    portanto temos
+    \begin{align*}
+        G^{(2)}_{mm'}(\vetor{x},\vetor{x'}) &= \sum_{i<i_F} \sum_{j<i_F} \sum_{i'<i_F} \sum_{j'<i_F} \phi^*_i(\vetor{x}) \phi_j(\vetor{x}) \phi_{i'}^*(\vetor{x'}) \phi_{j'}(\vetor{x'}) \left(\delta_{i'j'} \delta_{ij} - \delta_{mm'} \delta_{ij'} \delta_{i'j}\right)\\
+                                            &= \sum_{i < i_F} \phi^*_i(\vetor{x}) \phi_i(\vetor{x}) \sum_{i' < i_F} \phi^*_{i'}(\vetor{x'})\phi_{i'}(\vetor{x'}) - \delta_{mm'}\sum_{i<i_F} \phi^*_i(\vetor{x})\phi_i(\vetor{x'}) \sum_{j< i_F} \phi^*_j(\vetor{x}')\phi_j(\vetor{x})\\
+                                            &= G^{(1)}_m(\vetor{x},\vetor{x}) G^{(1)}_{m'}(\vetor{x'}, \vetor{x'}) - \delta_{mm'} G^{(1)}_{m}(\vetor{x}, \vetor{x'}) G^{(1)}_{m}(\vetor{x'}, \vetor{x})\\
+                                            &= G^{(1)}_m(\vetor{x},\vetor{x}) G^{(1)}_{m'}(\vetor{x'}, \vetor{x'}) - \delta_{mm'} \abs{G^{(1)}_{m}(\vetor{x}, \vetor{x'})}^2,
+    \end{align*}
+    que é a fatorização desejada. Se \(\phi_i(\vetor{x'}) \in U(1),\) o primeiro termo se torna apenas o quadrado da densidade de férmions, que foi o resultado obtido para ondas planas.
 \end{proof}
