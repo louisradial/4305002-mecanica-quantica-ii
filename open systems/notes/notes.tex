@@ -15,7 +15,7 @@
 
 \maketitle
 
-\section{Evolução temporada de sistemas fechados}
+\section{Evolução temporal de sistemas fechados}
 \nocite{breuer}
 O postulado de evolução unitária garante a existência de um operador unitário \(U(t,t')\) agindo no espaço de Hilbert \(\mathscr{H}\) que é associado ao sistema. A evolução temporal do estado \(\ket{\psi; t} \in \mathscr{H}\) é dada por
 \begin{equation*}
@@ -132,7 +132,7 @@ Notemos que no caso \(H_0(t) = 0,\) recuperamos a representação de Schrödinge
 \end{align*}
 resultado do teorema de Ehrenfest.
 
-\section{Sistemas abertos}
+\section{Evolução temporal de sistemas abertos}
 \nocite{susana}
 Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho,\) já que medidas de tais quantidades são dadas por
 \begin{equation*}
@@ -178,29 +178,10 @@ e então a evolução do sistema reduzida é dada por
                      &= \sum_{\alpha,\beta} K_{\alpha \beta}(t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0) + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
                      &= \mathcal{V}(t,t_0) \rho_\reduced(t_0).
 \end{align*}
-O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, do estado inicial \(\rho_\reduced(t_0).\)
-
-Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} (UDM) que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
-\begin{equation*}
-    \begin{tikzcd}[column sep = large, row sep = large]
-        \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_B(t_0) \arrow{rr}{\text{evolução unitária}} \arrow{d}{\Tr_\bath} && \rho(t) = U(t,t_0) \rho(t_0) \herm{U}(t,t_0)\arrow{d}{\Tr_\bath}\\
-        \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
-    \end{tikzcd}
-\end{equation*}
-\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) Como feito acima,
-\begin{equation*}
-    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0) = \sum_{\alpha, \beta} K_{\alpha \beta} (t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0)
-\end{equation*}
-é a evolução temporal do estado reduzido. É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
-\begin{equation*}
-    U(t,t_0) = U(t,t') U(t', t_0)
-\end{equation*}
-para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
-
-\todo[Mantém traço = 1]
+O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, do estado inicial \(\rho_\reduced(t_0).\) 
 
 \begin{example}{Evolução temporal de um qubit com ambiente de um qubit\cite{piotr}}{qubit}
-    Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial \(\rho(0) = X \otimes X,\) onde \(X = \ketbra{\rightarrow}{\rightarrow}\) e \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t).\)
+    Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial \(\rho(0) = X \otimes X,\) onde \(X = \ketbra{\rightarrow}{\rightarrow}\) e \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t)\) assim como a entropia de von Neumann, \(S(t) = -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right].\)
 \end{example}
 \begin{proof}[Resolução]
     Como o estado \(\bath\) já está dado na sua decomposição espectral, devemos calcular apenas \(K_{\rightarrow \rightarrow}\) e \(K_{\leftarrow \rightarrow}\). Temos
@@ -234,7 +215,44 @@ para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\
                          \end{pmatrix}
     \end{align*}
     como o estado do sistema reduzido no instante \(t\).
+
+    Mostramos que
+    \begin{equation*}
+        \rho_\reduced(t) = \cos^2\left(\frac12 \omega t\right) \ketbra{\rightarrow}{\rightarrow} + \sin^2\left(\frac12 \omega t\right) \ketbra{\leftarrow}{\leftarrow},
+    \end{equation*}
+    portanto os autovalores de \(\rho_\reduced(t)\) são \(\set{\cos^2\left(\frac12 \omega t\right), \sin^2\left(\frac12 \omega t\right)}.\) Assim, a entropia de von Neumann é
+    \begin{align*}
+        S(t) &= -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right]\\
+             &= -\Tr_\reduced\left[\left(\cos^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \sin^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right] \left[\ln\cos^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \ln\sin^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right) \right]\\
+             &= - \cos^2\frac{\omega t}{2} \ln \cos^2\frac{\omega t}{2} - \sin^2 \frac{\omega t}{2} \ln \sin^2\frac{\omega t}{2}
+    \end{align*}
+    e vemos que 
+    \begin{equation*}
+        S\left(\frac{n\pi}{\omega}\right) = 0\quad\text{e}\quad
+        S\left(\frac{(n + \frac12)\pi}{\omega}\right) = \ln2,
+    \end{equation*}
+    isto é, o sistema reduzido oscila entre um estado puro e um estado misto.
 \end{proof}
+
+Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
+\begin{equation*}
+    \begin{tikzcd}[column sep = large, row sep = large]
+        \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_B(t_0) \arrow{rr}{\text{evolução unitária}} \arrow{d}{\Tr_\bath} && \rho(t) = U(t,t_0) \rho(t_0) \herm{U}(t,t_0)\arrow{d}{\Tr_\bath}\\
+        \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
+    \end{tikzcd}
+\end{equation*}
+\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) Como feito acima,
+\begin{equation*}
+    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0) = \sum_{\alpha, \beta} K_{\alpha \beta} (t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0)
+\end{equation*}
+é a evolução temporal do estado reduzido. É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
+\begin{equation*}
+    U(t,t_0) = U(t,t') U(t', t_0)
+\end{equation*}
+para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
+
+Vamos mostrar um mapa dinâmico universal preserva o traço e a positividade 
+
 
 \section{Equação de Lindblad}
 Partindo da equação de Liouville-von Neumann para o estado do sistema composto,
