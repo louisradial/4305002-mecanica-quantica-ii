@@ -1,0 +1,370 @@
+% vim: spl=pt
+\documentclass[portuguese,biblatex]{artigo}
+\usepackage{dirac}
+
+\DeclareMathOperator{\texpl}{\mathcal{T}_{\leftarrow}\exp}
+\DeclareMathOperator{\texpr}{\mathcal{T}_{\rightarrow}\exp}
+\newcommand\reduced{\mathcal{S}}
+\newcommand\bath{\mathcal{B}}
+
+\addbibresource{bibliografia.bibtex}
+\title{Sistemas quânticos abertos}
+\author{Louis Bergamo Radial}
+
+\begin{document}
+
+\maketitle
+
+\section{Evolução temporada de sistemas fechados}
+\nocite{breuer}
+O postulado de evolução unitária garante a existência de um operador unitário \(U(t,t')\) agindo no espaço de Hilbert \(\mathscr{H}\) que é associado ao sistema. A evolução temporal do estado \(\ket{\psi; t} \in \mathscr{H}\) é dada por
+\begin{equation*}
+    i\diffp*{\ket{\psi; t}}{t} = H(t) \ket{\psi; t},
+\end{equation*}
+portanto definindo \(U(t, t')\) por \(\ket{\psi;t} = U(t,t') \ket{\psi; t}\) obtemos
+\begin{equation*}
+    i \diffp{U(t, t')}{t} = H(t) U(t,t')
+\end{equation*}
+com \(U(t', t') = \unity\) para todo \(t'.\) Assim, podemos formalmente escrever o operador evolução com a série de Dyson\cite{barata}
+\begin{equation*}
+    U(t, t') = \texpl\left[-i \int_{t'}^{t} \dli{s} H(s)\right] = \unity + \sum_{m = 1}^\infty (-i)^m \int_{t'}^{t} \dli{s_1} \int_{t'}^{s_1} \dli{s_2} \dots \int_{t'}^{s_{m-1}} \dli{s_m} H(s_1) \dots H(s_m)
+\end{equation*}
+e o seu adjunto por
+\begin{equation*}
+    \herm{U}(t,t') = \texpr\left[i \int_{t'}^t \dli{s} H(s)\right] = \unity + \sum_{m = 1}^\infty i^m \int_{t'}^t \dli{s_1} \dots \int_{t'}^{s_{m-1}} \dli{s_m} H(s_m) \dots H(s_1),
+\end{equation*}
+onde \(\mathcal{T}_\leftarrow\) representa o ordenamento temporal crescente para a esquerda e analogamente para \(\mathcal{T}_\rightarrow\). No caso em que \(\commutator{H(s)}{H(t)} = 0\) para todos \(t\) e \(s\), a série de Dyson se simplifica para
+\begin{equation*}
+    U(t,t') = \exp\left[-i \int_{t'}^t \dli{s} H(s)\right],
+\end{equation*}
+e o caso particular de sistemas \emph{isolados}, em que \(H(t)\) é independente do tempo, para
+\begin{equation*}
+    U(t,t') = \exp\left[-i (t - t')H\right],
+\end{equation*}
+que é condizente com o teorema de Stone \cite{reedsimon1}.
+
+Para estados mistos descritos por uma matriz densidade \(\rho(t_0)\) no instante \(t_0\) dada por
+\begin{equation*}
+    \rho(t_0) = \sum_{\nu} p_\nu\ketbra{\nu}{\nu}
+\end{equation*}
+temos a evolução temporal
+\begin{equation*}
+    \rho(t) = \sum_\nu p_\nu U(t, t_0)\ketbra{\nu}{\nu}\herm{U}(t, t_0) = U(t,t_0) \rho(t_0) \herm{U}(t,t_0)
+\end{equation*}
+logo a matriz densidade satisfaz a equação de Liouville-von Neumann
+\begin{equation*}
+    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)} = \mathcal{L}(t)\left\{\rho(t)\right\}
+\end{equation*}
+onde \(\mathcal{L}(t)\) é o operador linear agindo no espaço de operadores dado por \(\mathcal{L}(t)\left\{A\right\} = \commutator{H(t)}{A}\). Podemos escrever a solução formal
+\begin{equation*}
+    \rho(t) = \texpl\left[-i \int_{t_0}^t\dli{s} \mathcal{L}(t)\right]\left\{\rho(t_0)\right\},
+\end{equation*}
+e temos pelo lema de Campbell
+\begin{equation*}
+    e^{sX} Y e^{-sX} = Y + \sum_{m = 1}^\infty \frac{s^m\commutator{X}{Y}^{[m]}}{m!},
+    \quad\text{com}\quad
+    \commutator{X}{Y}^{[k+1]} = \commutator{X}{\commutator{X}{Y}^{[k]}}
+    \quad\text{e}\quad
+    \commutator{X}{Y}^{[1]} = \commutator{X}{Y},
+\end{equation*}
+que no caso de sistemas isolados vale
+\begin{align*}
+    \rho(t) &= \exp\left[-i (t-t_0) \mathcal{L}\right]\left\{\rho(t_0)\right\}\\
+            &= \rho(t_0) + \sum_{m = 1}^\infty \frac{[-i(t - t_0)]^m}{m!} \commutator{H}{\rho(t_0)}^{[m]}\\
+            &= e^{-i (t-t_0) H} \rho(t_0) e^{i (t - t_0) H}
+            % &= U(t, t_0) \rho(t_0) \herm{U}(t, t_0)
+\end{align*}
+como esperado.
+
+Para a representação de interação, escrevemos o hamiltoniano como \(H(t) = H_0(t) + V(t)\) e definimos os operadores
+\begin{equation*}
+    U_0(t, t') = \texpl\left[-i \int_{t'}^t \dli{s} H_0(s)\right]\quad\text{e}\quad
+    U_I(t, t') = \herm{U}_0(t, t') U(t, t'),
+\end{equation*}
+onde \(U(t,t')\) é o operador de evolução temporal. O valor esperado de um operador \(A(t)\) é dado por
+\begin{align*}
+    \mean{A(t)} &= \Tr\left[A(t) \rho(t)\right]\\
+                &= \Tr\left[A(t) U(t, t_0) \rho(t_0) \herm{U}(t, t_0)\right]\\
+                &= \Tr\left[A(t) U_0(t, t_0) U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0) \herm{U}_0(t, t_0)\right]\\
+                &= \Tr\left[\herm{U}_0(t, t_0)A(t)U_0(t, t_0) U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0)\right]
+\end{align*}
+então definimos os operadores na representação de interação por
+\begin{equation*}
+    A_I(t) = \herm{U}_0(t, t_0) A(t) U_0(t, t_0)
+\end{equation*}
+e a matriz densidade por
+\begin{equation*}
+    \rho_I(t) = U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0),
+\end{equation*}
+de forma que
+\begin{equation*}
+    \Tr[A(t) \rho(t)] = \mean{A(t)} = \Tr[A_I(t) \rho_I(t)],
+\end{equation*}
+isto é, a representação não muda o conteúdo físico. Para obter a equação de evolução temporal para estados nessa representação, notemos que
+\begin{align*}
+    i\diffp{U_I(t, t')}{t} &= -\herm{U}_0(t, t') H_0(t) U(t, t') + \herm{U}_0(t, t') H(t) U(t, t')\\
+                           &= \herm{U}_0(t, t') V(t) U(t, t')\\
+                           &= \herm{U}_0(t, t') V(t) U_0(t,t') \herm{U}_0(t,t') U(t, t')\\
+                           &= V_I(t) U_I(t,t'),
+\end{align*}
+portanto
+\begin{equation*}
+    U_I(t,t') = \texpl\left[-i \int_{t'}^t\dli{s} V_I(s)\right]
+\end{equation*}
+e então
+\begin{equation*}
+    i\diffp*{\ket{\psi; t}_I}{t} = V_I(t) \ket{\psi; t}_I,
+\end{equation*}
+onde \(\ket{\psi; t_0} = \ket{\psi; t_0}_I\) e \(\ket{\psi; t}_I = U_I(t, t_0) \ket{\psi; t_0}_I.\)
+
+Na representação de interação, os operadores satisfazem
+\begin{align*}
+    i \diffp{A_I(t)}{t} &= - \herm{U}_0(t,t_0) H_0(t)A(t) U_0(t,t_0) + \herm{U}_0(t,t_0) A(t) H_0(t) U_0(t, t_0) + i\herm{U}_0(t,t_0) \diffp{A(t)}{t} U_0(t,t_0)\\
+                        &= \herm{U}_0(t,t_0) \commutator{A(t)}{H_0(t)} U_0(t,t_0) + i \herm{U}_0(t,t_0) \diffp{A(t)}{t} U_0(t,t_0)\\
+                        &= \commutator{A_I(t)}{H_0(t)} + i \left(\diffp{A(t)}{t}\right)_I.
+\end{align*}
+Notemos que no caso \(H_0(t) = 0,\) recuperamos a representação de Schrödinger, enquanto que para \(V(t) = 0\) recuperamos a representação de Heisenberg. Nesta última apenas os operadores evoluem temporalmente, e temos
+\begin{align*}
+    \diff{\mean{A(t)}}{t} &= \diff*{\Tr[\rho(t) A(t))]}{t}\\
+                          &= \Tr\left[\rho_H(t_0)\diff*{A_H(t)}{t}\right]\\
+                          &= \Tr\left\{\rho_H(t_0)\left[i \commutator{H_H(t)}{A_H(t)} + \left(\diffp{A(t)}{t}\right)_H\right]\right\}\\
+                          &= \mean*{i\commutator{H(t)}{A(t)}} + \mean*{\diffp{A(t)}{t}},
+\end{align*}
+resultado do teorema de Ehrenfest.
+
+\section{Sistemas abertos}
+\nocite{susana}
+Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho,\) já que medidas de tais quantidades são dadas por
+\begin{equation*}
+    \mean{A} = \Tr\left[\rho(A \otimes \unity_\bath) \right] = \Tr_\reduced(\rho_\reduced A).
+\end{equation*}
+Tomando o caso em que em algum instante \(t_0\) o estado do sistema total \(\rho(t_0)\) é não correlacionado e o estado do sistema reduzido é \(\rho_\reduced(t_0),\) então podemos escrever \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0).\) Da evolução temporal, temos \(\rho(t) = U(t, t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\) e então o estado do sistema reduzido é dado por
+\begin{equation*}
+    \rho_\reduced(t) = \Tr_\bath\left\{U(t,t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\right\}.
+\end{equation*}
+No caso particular em que o operador evolução se fatora \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) sabemos que
+\begin{equation*}
+    \rho_\reduced(t) = U_\reduced(t,t_0) \rho_\reduced(t_0) \herm{U}_\reduced(t, t_0) = \mathcal{V}(t,t_0)\rho_\reduced(t_0),
+\end{equation*}
+onde definimos o superoperador \(\mathcal{V}(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\)
+
+
+É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
+\begin{equation*}
+    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0),
+\end{equation*}
+isto é, uma aplicação que codifica toda a dinâmica com o subsistema \(\bath\). Entretanto, no caso geral o mapa dinâmico não depende apenas do operador de evolução \(U(t,t_0)\) e de \(\bath,\) mas também depende do estado inicial de \(\reduced.\) Para ver isso, consideramos que no instante \(t_0\) os estados de \(\reduced\) e de \(\bath\) são \(\rho_\reduced(t_0)\) e \(\rho_\bath(t_0)\) mas que possivelmente há correlação
+\begin{equation*}
+    \rho_c(t_0) = \rho(t_0) - \rho_\reduced(t_0) \otimes \rho_\bath(t_0),
+\end{equation*}
+de forma que
+\begin{equation*}
+    \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0) + \rho_c(t_0)
+    \quad\text{e}\quad
+    \Tr_\reduced(\rho_c) = 0 = \Tr_\bath(\rho_c).
+\end{equation*}
+Utilizamos a decomposição espectral de \(\rho_\bath(t_0),\)
+\begin{equation*}
+    \rho_\bath(t_0) = \sum_{\beta} \lambda_\beta \ketbra{\beta}{\beta},
+\end{equation*}
+e definimos os operadores
+\begin{equation*}
+    K_{\alpha \beta}(t,t_0) = \sqrt{\lambda_\beta} \bra{\alpha} U(t,t_0)\ket{\beta} \quad\text{e}\quad \herm{K}_{\alpha \beta}(t,t_0) = \sqrt{\lambda_\beta}\bra{\beta} \herm{U}(t,t_0)\ket{\alpha},
+\end{equation*}
+e então a evolução do sistema reduzida é dada por
+\begin{align*}
+    \rho_\reduced(t) &= \Tr_\bath\left\{ U(t,t_0) \left[\rho_\reduced(t_0) \otimes \rho_\bath(t_0) + \rho_c(t_0)\right] \herm{U}(t,t_0)\right\}\\
+                     &= \sum_{\alpha,\beta} \lambda_\beta \bra{\alpha} U(t, t_0) [\rho_\reduced(t_0) \otimes \ketbra{\beta}{\beta} + \rho_c(t_0)] \herm{U}(t, t_0) \ket{\alpha} + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
+                     &= \sum_{\alpha,\beta} K_{\alpha \beta}(t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0) + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
+                     &= \mathcal{V}(t,t_0) \rho_\reduced(t_0).
+\end{align*}
+O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, do estado inicial \(\rho_\reduced(t_0).\)
+
+Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} (UDM) que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
+\begin{equation*}
+    \begin{tikzcd}[column sep = large, row sep = large]
+        \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_B(t_0) \arrow{rr}{\text{evolução unitária}} \arrow{d}{\Tr_\bath} && \rho(t) = U(t,t_0) \rho(t_0) \herm{U}(t,t_0)\arrow{d}{\Tr_\bath}\\
+        \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
+    \end{tikzcd}
+\end{equation*}
+\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) Como feito acima,
+\begin{equation*}
+    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0) = \sum_{\alpha, \beta} K_{\alpha \beta} (t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0)
+\end{equation*}
+é a evolução temporal do estado reduzido. É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
+\begin{equation*}
+    U(t,t_0) = U(t,t') U(t', t_0)
+\end{equation*}
+para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
+
+\todo[Mantém traço = 1]
+
+\begin{example}{Evolução temporal de um qubit com ambiente de um qubit\cite{piotr}}{qubit}
+    Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial \(\rho(0) = X \otimes X,\) onde \(X = \ketbra{\rightarrow}{\rightarrow}\) e \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t).\)
+\end{example}
+\begin{proof}[Resolução]
+    Como o estado \(\bath\) já está dado na sua decomposição espectral, devemos calcular apenas \(K_{\rightarrow \rightarrow}\) e \(K_{\leftarrow \rightarrow}\). Temos
+    \begin{align*}
+        K_{\rightarrow \rightarrow} &= \bra{\rightarrow}_\bath e^{-i \frac12 \omega t \sigma_z \otimes \sigma_z}  \ket{\rightarrow}_\bath&
+        K_{\leftarrow \rightarrow} &= \bra{\leftarrow}_\bath e^{-i \frac12 \omega t \sigma_z \otimes \sigma_z}  \ket{\rightarrow}_\bath\\
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \bra{\rightarrow}\sigma_z ^m \ket{\rightarrow}&
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \bra{\leftarrow}\sigma_z ^m \ket{\rightarrow}\\
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \frac{\braket{\rightarrow}{\uparrow} + (-1)^m\braket{\rightarrow}{\downarrow}}{\sqrt{2}}&
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \frac{\braket{\leftarrow}{\uparrow} + (-1)^m\braket{\leftarrow}{\downarrow}}{\sqrt{2}}\\
+                                      &= \frac12 e^{-\frac12 i \omega t \sigma_z} + \frac12 e^{i \frac12 i \omega t \sigma_z}&
+                                      &= \frac12 e^{-\frac12 i \omega t \sigma_z} - \frac12 e^{i \frac12 i \omega t \sigma_z}\\
+                                      &= \cos\left(\frac12 \omega t \sigma_z\right)&
+                                      &= -i \sin\left(\frac12 \omega t \sigma_z\right)
+    \end{align*}
+    e então
+    \begin{equation*}
+        K_{\rightarrow\rightarrow} \ket{\rightarrow} = \cos\left(\frac12 \omega t\right)\ket{\rightarrow},
+        \quad\text{e}\quad
+        K_{\leftarrow\rightarrow} \ket{\rightarrow} = -i\sin\left(\frac12 \omega t\right) \ket{\leftarrow}.
+    \end{equation*}
+    Dessa forma, temos
+    \begin{align*}
+        \rho_\reduced(t) &= K_{\rightarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\rightarrow\rightarrow}(t) + K_{\leftarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\leftarrow\rightarrow}(t)\\
+                         &= \ketbra{\rightarrow}{\rightarrow} \cos^2\left(\frac12 \omega t\right) + \ketbra{\leftarrow}{\leftarrow} \sin^2\left(\frac12 \omega t\right)\\
+                         &= \sin^2\left(\frac12 \omega t\right) \unity + \cos(\omega t) \ketbra{\rightarrow}{\rightarrow}\\
+                         &= \frac{1 - \cos(\omega t)}{2} \unity + \cos(\omega t) \rho_\reduced(0)\\
+                         &= \frac12 \begin{pmatrix}
+                             1 && \cos(\omega t)\\
+                             \cos(\omega t) && 1
+                         \end{pmatrix}
+    \end{align*}
+    como o estado do sistema reduzido no instante \(t\).
+\end{proof}
+
+\section{Equação de Lindblad}
+Partindo da equação de Liouville-von Neumann para o estado do sistema composto,
+\begin{equation*}
+    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)}
+\end{equation*}
+podemos tomar o traço parcial e obter
+\begin{equation*}
+    i\diff{\rho_\reduced(t)}{t} = \Tr_\bath\commutator{H(t)}{\rho(t)}.
+\end{equation*}
+Gostaríamos de expressar a equação acima apenas em termos de operadores que agem no sistema \(\reduced,\) já que a equação acima pode ser tecnicamente difícil de se resolver e, mais importante, podemos não saber a dinâmica do sistema ambiente. Assim, desejamos encontrar uma equação na forma de Lindblad,
+\begin{equation*}
+    \diff{\rho_\reduced(t)}{t} = \mathcal{L}\rho_\reduced(t),
+\end{equation*}
+onde o superoperador \(\mathcal{L},\) chamado de Lindbladiano do sistema reduzido, atua apenas no espaço das matrizes densidades de \(\reduced.\) O Lindbladiano seria então, se existir, um gerador da evolução do sistema, 
+\begin{equation*}
+    \mathcal{V}(t,t_0) = \texpl\left[\int_{t_0}^{t} \dli{s} \mathcal{L}(s)\right].
+\end{equation*}
+
+A fim de evitar tecnicalidades, vamos tomar o caso de um espaço de Hilbert de dimensão finita para o sistema reduzido, \(\dim\mathscr{H}_\reduced = N \in \mathbb{N}.\) Seja então \(\set{F_i}{1 \leq N^2}\) uma base ortonormal de operadores agindo em \(\mathscr{H}_\reduced,\) com
+\begin{equation*}
+    \inner{F_i}{F_j} = \Tr_\reduced \herm{F}_iF_j = \delta_{ij}
+\end{equation*}
+e com a escolha de traço
+\begin{equation*}
+    F_{N^2} = \frac{1}{\sqrt{N}} \unity_\reduced\quad\text{e}\quad \Tr F_{i} = 0, \forall i < N^2.
+\end{equation*}
+Nesse caso os operadores da decomposição do mapa dinâmico são dados por
+\begin{equation*}
+    K_{\alpha\beta}(t) = \sum_{i = 1}^{N^2} \inner{F_i}{K_{\alpha \beta}(t)}F_i
+\end{equation*}
+e obtemos
+\begin{align*}
+    \mathcal{V}(t,t_0) \rho_\reduced(t_0) &= \sum_{\alpha\beta}{\sum_{i = 1}^{N^2} \sum_{j = 1}^{N^2} \inner{F_i}{K_{\alpha \beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^* F_i \rho_\reduced(t_0) \herm{F}_j}\\
+                                          &= \sum_{i = 1}^{N^2} \sum_{j= 1}^{N^2} c_{ij}(t) F_i \rho_\reduced(t_0) \herm{F}_j,
+\end{align*}
+onde definimos os coeficientes
+\begin{equation*}
+    c_{ij} = \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}.
+\end{equation*}
+É fácil ver que a matriz dos coeficientes \(c_{ij}\) é hermitiana,
+\begin{equation*}
+    c_{ji}^* = \sum_{\alpha\beta}{\inner{F_j}{K_{\alpha\beta}(t)}^* \inner{F_i}{K_{\alpha\beta}(t)}}= \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}= c_{ij}
+\end{equation*}
+e positiva,
+\begin{align*}
+    \sum_{i=1}^{N^2} \sum_{j=1}^{N^2} v_i^* c_{ij}  v_j &= \sum_{i=1}^{N^2} \sum_{j=1}^{N^2}{v_i^* v_j \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}}\\
+                                &= \sum_{\alpha\beta}{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)} \inner*{\sum_{j = 1}^{N^2} v_j F_j}{K_{\alpha\beta}(t)}^*}\\
+                                &= \sum_{\alpha\beta}{\abs*{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)}}^2}\\
+                                &\geq 0.
+\end{align*}
+
+Para que haja um gerador\cite{reedsimon1}, vamos supor que a família \(\family{\mathcal{V}(t,t_0)}{t \geq t_0}\) é contínua e então 
+\begin{equation*}
+    \mathcal{L} \rho_\reduced(t_0) = \lim_{\varepsilon \to 0} \frac{1}{\varepsilon} \left[\mathcal{V}(t_0 + \varepsilon, t_0) \rho_\reduced(t_0) - \rho_\reduced(t_0)\right]
+                                   = \lim_{\varepsilon \to 0} \frac{1}{\varepsilon} \left\{\sum_{i = 1}^{N^2} \sum_{j = 1}^{N^2} \left[c_{ij}(t_0 + \varepsilon) - c_{ij}(t_0)\right] F_i \rho_\reduced(t_0) \herm{F}_j\right\},
+\end{equation*}
+onde usamos que \(\mathcal{V}(t_0,t_0) = \unity.\) Além disso, devemos ter \(c_{ij}(t_0) = N \delta_{i N^2} \delta_{j N^2}.\) Vamos brevemente limpar a notação e escrever \(t_0 = 0,\) \(\rho_\reduced(t_0) = \rho_\reduced,\) então da afirmação anterior temos
+\begin{align*}
+    \mathcal{L}\rho_\reduced &= \lim_{\varepsilon \to 0} \left\{\frac{c_{N^2 N^2}(\varepsilon) - N}{N \varepsilon}\rho_\reduced + \sum_{i = 1}^{N^2-1}\left[\frac{c_{iN^2}(\varepsilon)}{\sqrt{N} \varepsilon} F_i \rho_\reduced+\frac{c_{N^2i}(\varepsilon)}{\sqrt{N} \varepsilon} \rho_\reduced \herm{F}_i\right] + \sum_{i = 1}^{N^2-1}\sum_{j = 1}^{N^2 - 1} \frac{c_{ij}(\varepsilon)}{\varepsilon}F_i \rho_\reduced \herm{F}_j\right\},
+\end{align*}
+portanto com as definições
+\begin{equation*}
+    a_{N^2 N^2} = \lim_{\varepsilon \to 0} \frac{c_{N^2 N^2}(t_0 + \varepsilon) - N}{\varepsilon},\quad
+    a_{i N^2} = \lim_{\varepsilon \to 0} \frac{c_{i N^2}(t_0 + \varepsilon)}{\varepsilon},\quad\text{e}\quad
+    a_{ij} = \lim_{\varepsilon \to 0}\frac{c_{ij}(t_0 + \varepsilon)}{\varepsilon},
+\end{equation*}
+onde \(i,j \in \set{1, \dots, N^2 - 1},\) temos
+\begin{equation*}
+    \mathcal{L}\rho_\reduced = \frac{a_{N^2N^2}}{N} \rho_\reduced + \frac{1}{\sqrt{N}}\sum_{i = 1}^{N^2 - 1} \left(a_{iN^2} F_i \rho_\reduced + a_{iN^2}^* \rho_\reduced \herm{F}_i\right) + \sum_{i=1}^{N^2 - 1} \sum_{j=1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j.
+\end{equation*}
+Para escrever o Lindbladiano em uma forma familiar ao operador de Liouville-von Neumann, definimos ainda
+\begin{equation*}
+    F = \frac{1}{\sqrt{N}} \sum_{i = 1}^{N^2 -1} a_{i N^2} F_i,\quad
+    G = \frac1{2N} a_{N^2 N^2}  + \frac12 (F + \herm{F}),\quad\text{e}\quad
+    H = \frac{1}{2i}(\herm{F} - F),
+\end{equation*}
+e temos
+\begin{align*}
+    \mathcal{L}(t_0)\rho_S(t_0) &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                      &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + \frac{F + \herm{F}}{2} \rho_\reduced + \frac{F - \herm{F}}{2}\rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                      &= G \rho_\reduced + \frac{a_{N^2 N^2}}{2N} - i H \rho_\reduced + \rho_\reduced \herm{F} + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                      &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                      &= \anticommutator{G(t_0)}{\rho_\reduced(t_0)} - i \commutator{H(t_0)}{\rho_\reduced(t_0)} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij}(t_0) F_i \rho_\reduced(t_0) \herm{F}_j.
+\end{align*}
+\todo[Como o mapa dinâmico preserva o traço, temos]
+\begin{equation*}
+    \Tr_\reduced \mathcal{L}\rho_\reduced(t) = \Tr_\reduced \diff{\rho_\reduced(t)}{t} = \diff*{\Tr_\reduced \rho_\reduced(t)}{t} = 0,
+\end{equation*}
+e então
+\begin{align*}
+    0 &= \Tr_\reduced \mathcal{L}\rho_\reduced(t)\\
+      &= \Tr_\reduced\left(\anticommutator{G}{\rho_\reduced} - i \commutator{H}{\rho_\reduced} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij} F_i \rho_\reduced \herm{F}_j\right)\\
+      &= \Tr_\reduced\left[\left(2G + \sum_{i = 1}^{N^2-1}\sum_{j =1}^{N^2-1} a_{ij} \herm{F}_j F_i\right)\rho_\reduced\right]
+\end{align*}
+e podemos concluir que
+\begin{equation*}
+    G = -\frac12 \sum_{i,j}^{N^2 - 1} a_{ij} \herm{F}_j F_i,
+\end{equation*}
+já que a equação acima é válida para qualquer \(\rho_\reduced.\) Uma outra simplificação que podemos fazer é usar a positividade de \(c_{ij}\) para diagonalizar \(a_{ij}\) com 
+\begin{equation*}
+    \sum_{i = 1}^{N^2-1} \sum_{j=1}^{N^2 -1}u_{ki} a_{ij} u^*_{\ell j} = \gamma_k \delta_{k \ell},\quad\text{com}\quad \gamma_k \geq 0,
+\end{equation*}
+e definir os operadores
+\begin{equation*}
+    A_j = \sum_{k = 1}^{N^2 - 1} u^*_{ji} F_i \iff F_i = \sum_{k = 1}^{N^2-1} u_{ki} A_k,
+\end{equation*}
+de forma que
+\begin{equation*}
+    \sum_{i = 1}^{N^2-1} \sum_{j=1}^{N^2 -1} a_{ij} F_i \rho_\reduced \herm{F}_j = \sum_{i = 1}^{N^2 - 1}\sum_{j = 1}^{N^2 - 1}\sum_{k = 1}^{N^2 - 1}\sum_{\ell = 1}^{N^2 - 1} u_{ki} a_{ij} u^*_{\ell j} A_k \rho_\reduced \herm{A}_\ell = \sum_{k = 1}^{N^2 - 1} \gamma_k A_k \rho_\reduced \herm{A}_k
+\end{equation*}
+e
+\begin{equation*}
+    \sum_{i = 1}^{N^2 - 1} \sum_{j = 1}^{N^2 - 1} a_{ij} \anticommutator{\herm{F}_j F_i}{\rho_\reduced(t_0)} = \sum_{k = 1}^{N^2 - 1} \gamma_k \anticommutator{\herm{A}_k A_k}{\rho_\reduced}
+\end{equation*}
+analogamente. Assim, o Lindbladiano é dado por
+\begin{align*}
+    \mathcal{L}(t_0) \rho_\reduced(t_0) &= - i \commutator*{H(t_0)}{\rho_\reduced(t_0)} + \sum_{i=1}^{N^2 - 1} \sum_{j = 1}^{N^2-1} a_{ij}(t_0) \left[F_i \rho_\reduced(t_0) \herm{F}_j - \frac12 \anticommutator*{\herm{F}_j F_i}{\rho_\reduced(t_0)}\right]\\
+                                        &= -i \commutator*{H(t_0)}{\rho_\reduced(t_0)} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right)
+                                        &
+\end{align*}
+e podemos escrever a equação de Lindblad
+\begin{equation*}
+    \diff{\rho_\reduced(t)}{t} = -i \commutator*{H(t_0)}{\rho_\reduced(t_0)} + \mathcal{D}(t_0) \rho_\reduced(t_0),
+\end{equation*}
+onde definimos o \emph{dissipador} por
+\begin{equation*}
+    \mathcal{D}(t_0)\rho_\reduced(t_0) = \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right).
+\end{equation*}
+
+
+\printbibliography
+\end{document}
