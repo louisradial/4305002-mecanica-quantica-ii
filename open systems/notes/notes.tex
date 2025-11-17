@@ -43,7 +43,8 @@ e o caso particular de sistemas \emph{isolados}, em que \(H(t)\) é independente
 \end{equation*}
 que é condizente com o teorema de Stone \cite{reedsimon1}.
 
-Para estados mistos descritos por uma matriz densidade \(\rho(t_0)\) no instante \(t_0\) dada por
+\subsection{Matriz densidade}
+Para estados descritos por uma matriz densidade \(\rho(t_0)\) no instante \(t_0\) dada por
 \begin{equation*}
     \rho(t_0) = \sum_{\nu} p_\nu\ketbra{\nu}{\nu}
 \end{equation*}
@@ -76,6 +77,17 @@ que no caso de sistemas isolados vale
 \end{align*}
 como esperado.
 
+Um estado \(\rho\) é puro se tem um único autovalor igual a 1, ou, equivalentemente, se \(\Tr \rho^2 = 1.\) Outra formulação equivalente é se a entropia de von Neumann, \(S(\rho) = - \Tr(\rho \ln \rho),\) se anula, onde temos \(s(x) = - x \ln x\) para \(x \in (0,1]\) e \(s(0) = 0\). De fato, utilizando a decomposição espectral
+\begin{equation*}
+    \rho = \sum_i p_i \ketbra{i}{i},
+\end{equation*}
+onde \(p_i \in [0,1]\) pela positividade de \(\rho,\) temos
+\begin{equation*}
+    S(\rho) = -\sum_i p_i \ln p_i,
+\end{equation*}
+portanto \(S(\rho) = 0\) se e somente se \(p_i \in \set{0,1}\) para todos os estados da base. De \(\Tr\rho = 1,\) concluímos que \(S(\rho) = 0\) se e somente se \(\rho\) é puro. Como a entropia de von Neumann depende apenas do espectro do estado, a evolução unitária leva estados puros em estados puros.
+
+\subsection{Representação de interação}
 Para a representação de interação, escrevemos o hamiltoniano como \(H(t) = H_0(t) + V(t)\) e definimos os operadores
 \begin{equation*}
     U_0(t, t') = \texpl\left[-i \int_{t'}^t \dli{s} H_0(s)\right]\quad\text{e}\quad
@@ -149,6 +161,7 @@ No caso particular em que o operador evolução se fatora \(U(t,t_0) = U_\reduce
 onde definimos o superoperador \(\mathcal{V}(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\)
 
 
+\subsection{Mapa dinâmico}
 É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
 \begin{equation*}
     \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0),
@@ -220,20 +233,22 @@ O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do oper
     \begin{equation*}
         \rho_\reduced(t) = \cos^2\left(\frac12 \omega t\right) \ketbra{\rightarrow}{\rightarrow} + \sin^2\left(\frac12 \omega t\right) \ketbra{\leftarrow}{\leftarrow},
     \end{equation*}
-    portanto os autovalores de \(\rho_\reduced(t)\) são \(\set{\cos^2\left(\frac12 \omega t\right), \sin^2\left(\frac12 \omega t\right)}.\) Assim, a entropia de von Neumann é
+    portanto os autovalores de \(\rho_\reduced(t)\) são \(\set{\cos^2\left(\frac12 \omega t\right), \sin^2\left(\frac12 \omega t\right)}.\) Assim, 
     \begin{align*}
         S(t) &= -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right]\\
              &= -\Tr_\reduced\left[\left(\cos^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \sin^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right] \left[\ln\cos^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \ln\sin^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right) \right]\\
              &= - \cos^2\frac{\omega t}{2} \ln \cos^2\frac{\omega t}{2} - \sin^2 \frac{\omega t}{2} \ln \sin^2\frac{\omega t}{2}
     \end{align*}
-    e vemos que 
-    \begin{equation*}
-        S\left(\frac{n\pi}{\omega}\right) = 0\quad\text{e}\quad
-        S\left(\frac{(n + \frac12)\pi}{\omega}\right) = \ln2,
-    \end{equation*}
-    isto é, o sistema reduzido oscila entre um estado puro e um estado misto.
+    é a entropia de von Neumann.
 \end{proof}
+O \cref{exam:qubit} mostra que a evolução temporal de um sistema aberto não é unitária em geral. De fato, para aquele sistema temos
+\begin{equation*}
+    S\left(\frac{n\pi}{\omega}\right) = 0\quad\text{e}\quad
+    S\left(\frac{(n + \frac12)\pi}{\omega}\right) = \ln2,
+\end{equation*}
+isto é, o sistema reduzido oscila entre um estado puro e um estado misto.
 
+\subsection{Mapas dinâmicos universais}
 Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
 \begin{equation*}
     \begin{tikzcd}[column sep = large, row sep = large]
@@ -241,17 +256,44 @@ Vamos doravante supor que existe um instante \(t_0\) em que não há correlaçã
         \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
     \end{tikzcd}
 \end{equation*}
-\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) Como feito acima,
+\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) 
+
+Como feito acima,
 \begin{equation*}
     \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0) = \sum_{\alpha, \beta} K_{\alpha \beta} (t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0)
 \end{equation*}
-é a evolução temporal do estado reduzido. É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
+é a evolução temporal do estado reduzido. Vamos mostrar um mapa dinâmico universal preserva o traço e a positividade do estado, apesar de não ser, em geral, uma transformação unitária. Para o traço, notemos que
+\begin{align*}
+    \sum_{\alpha\beta} \herm{K}_{\alpha\beta} K_{\alpha\beta} &= \sum_{\alpha\beta} \lambda_\beta \bra{\beta}  \herm{U}(t,t_0) \ket{\alpha} \bra{\alpha} U(t,t_0)\ket{\beta}\\
+                                                              &= \sum_{\beta} \lambda_\beta \bra{\beta} \herm{U}(t,t_0) U(t,t_0) \ket{\beta}\\
+                                                              &= \sum_\beta \lambda_\beta
+                                                              = \Tr_\bath \rho_\bath
+                                                              = 1,
+\end{align*}
+então
+\begin{align*}
+    \Tr_\reduced \rho_\reduced(t) &= \Tr_\reduced \left(\sum_{\alpha\beta} K_{\alpha\beta}(t) \rho_\reduced(t_0)\herm{K}_{\alpha\beta}(t)\right)\\
+                                  &= \Tr_\reduced \left(\rho_\reduced(t_0) \sum_{\alpha\beta} \herm{K}_{\alpha\beta}(t) K_{\alpha\beta}(t)\right)\\
+                                  &= \Tr_\reduced \rho_\reduced(t_0) = 1.
+\end{align*}
+Para a positividade, consideramos um vetor \(\ket{\psi} \in \mathscr{H}_\reduced\) e definimos 
+\begin{equation*}
+    \ket{\phi_{\alpha\beta};t} = \herm{K}_{\alpha\beta}(t)\ket{\psi},
+\end{equation*}
+então
+\begin{equation*}
+    \bra{\psi} \rho_\reduced(t)\ket{\psi} = \sum_{\alpha\beta} \bra{\psi} K_{\alpha\beta}(t) \rho_\reduced(t_0) \herm{K}_{\alpha\beta}(t)\ket{\psi}
+                                          = \sum_{\alpha\beta} \bra{\phi_{\alpha\beta}; t} \rho_\reduced(t_0) \ket{\phi_{\alpha\beta}; t}
+                                          \geq 0,
+\end{equation*}
+já que \(\rho_\reduced(t_0)\) é positiva.
+
+É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
 \begin{equation*}
     U(t,t_0) = U(t,t') U(t', t_0)
 \end{equation*}
 para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
 
-Vamos mostrar um mapa dinâmico universal preserva o traço e a positividade 
 
 
 \section{Equação de Lindblad}
