@@ -1,0 +1,77 @@
+% vim: spl=pt
+\section{Entropia em sistemas fechados}
+Definimos a partir da função contínua
+\begin{equation}
+    s(x) = \begin{cases}
+        -x \ln x, &\text{se } x \in (0,1]\\
+        0,&\text{se } x = 0
+    \end{cases}
+\end{equation}
+o funcional \(S(\rho) = -\Tr \rho \ln \rho\) no espaço de matrizes densidade, chamado de \emph{entropia de von Neumann}. Da positividade de uma matriz densidade e da condição de traço unitário, sabemos que
+\begin{equation}
+    \rho = \sum_i p_i \ketbra{i}{i},\;\text{com}\; p_i \in [0,1]\;\text{e}\; \sum_i p_i = 1,
+\end{equation}
+portanto
+\begin{equation}
+    S(\rho) = - \sum_i p_i \ln p_i,
+\end{equation}
+isto é, a entropia de von Neumann é equivalente à entropia de Shannon para um estado \(\rho.\) Dessa forma, \(S(\rho)\) expressa a falta de informação de um estado de mistura \(\rho\) sobre a realização de um estado puro \(\ket{i}\).
+
+Uma matriz densidade \(\rho\) representa um estado puro se tem um único autovalor igual a 1. Essa condição é equivalente a entropia de von Neumann se anular. De fato, da expressão
+\begin{equation}
+    S(\rho) = -\sum_i p_i \ln p_i,
+\end{equation}
+vemos que \(S(\rho) = 0\) se e somente se \(p_i \in \set{0,1}\) para todos os estados da base, já que cada termo \(- p_i \ln p_i\) é não negativo. De \(\Tr\rho = 1,\) concluímos que \(S(\rho) = 0\) se e somente se existe apenas um \(p_i = 1\) e os demais se anulam. Como os coeficientes \(p_i\) são elementos do espectro de \(\rho,\) concluímos que \(S(\rho) = 0\) se e somente se \(\rho\) é um estado puro. Podemos resumir esta equivalência na propriedade
+\begin{equation}
+    S(\rho) \geq 0,
+\end{equation}
+onde a igualdade só vale se e somente se \(\rho\) é um estado puro.
+
+Vamos supor que \(\rho\) tem \(n\) autovalores não nulos. Então, por uma transformação unitária, se necessário, podemos escrever
+\begin{equation}
+    \rho = \sum_{i = 1}^n p_i \ketbra{i}{i}
+\end{equation}
+mesmo que o espaço de Hilbert não tenha dimensão finita. Para determinar o valor máximo da entropia de von Neumann, variamos \(p_i\) com o vínculo \(\sum_{i = 1}^n p_i = 1,\) portanto com um multiplicador de Lagrange, temos
+\begin{equation}
+    \sum_{i = 1}^n (\ln p_i + \lambda + 1) \dli{p_i} + \left(\sum_{i=1}^n p_i - 1\right)\dli{\lambda} = 0 \implies \begin{cases}
+        p_i = e^{-(\lambda+1)}\\
+        \sum_{i = 1}^n p_i = 1
+    \end{cases} \implies p_i = \frac1n,
+\end{equation}
+logo as matrizes densidade que maximizam a entropia são da forma
+\begin{equation}
+    \rho_* = \sum_{i = 1}^n \frac1n \ketbra{i}{i},
+\end{equation}
+com
+\begin{equation}
+    S(\rho_*) = \ln n.
+\end{equation}
+Assim, em sistemas de dimensão finita sempre temos
+\begin{equation}
+    0 \leq S(\rho) \leq \ln d,
+\end{equation}
+onde \(d\) é a dimensão do espaço de Hilbert e a matriz densidade que maximiza a entropia é \(\frac1d \unity\).
+
+É importante notar que a entropia de von Neumann depende apenas do espectro de um estado e, portanto, invariante sob transformações unitárias. Dessa forma, temos 
+\begin{equation}
+    S(U \rho \herm{U}) = S(\rho)
+\end{equation}
+para qualquer operador unitário \(U\). Em particular, a entropia de von Neumann é constante no tempo para sistemas fechados, e, portanto, a evolução temporal leva estados puros em estados puros.
+
+\subsection{Entropia relativa}
+Relacionada com a entropia de von Neumann, definimos a \emph{entropia relativa} entre matrizes densidade \(\rho\) e \(\sigma\) por
+\begin{equation}
+    S(\rho|\sigma) = \Tr \rho \ln \rho - \Tr \rho \ln \sigma.
+\end{equation}
+Esse funcional satisfaz\cite{breuer}
+\begin{equation}
+    S(\rho|\sigma) \geq 0,
+\end{equation}
+\begin{equation}
+    S(U \rho \herm{U}| U\sigma \herm{U}) = S(\rho | \sigma),
+\end{equation}
+assim como a entropia de von Neumann. Ainda, para um sistema bipartite \(\mathscr{H} = \mathscr{H}_1 \otimes \mathscr{H}_2\) e escrevendo \(\rho^{(1)} = \Tr_2 \rho,\) temos
+\begin{equation}
+    S(\rho^{(1)}|\sigma^{(1)}) \leq S(\rho | \sigma).
+\end{equation}
+\todo[Mais coisas de entropia relativa?]
