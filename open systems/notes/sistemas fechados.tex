@@ -1,0 +1,122 @@
+% vim: spl=pt
+\section{Evolução temporal de sistemas fechados}
+\nocite{breuer}
+O postulado de evolução unitária garante a existência de um operador unitário \(U(t,t')\) agindo no espaço de Hilbert \(\mathscr{H}\) que é associado ao sistema. A evolução temporal do estado \(\ket{\psi; t} \in \mathscr{H}\) é dada por
+\begin{equation}
+    i\diffp*{\ket{\psi; t}}{t} = H(t) \ket{\psi; t},
+\end{equation}
+portanto definindo \(U(t, t')\) por \(\ket{\psi;t} = U(t,t') \ket{\psi; t}\) obtemos
+\begin{equation}
+    i \diffp{U(t, t')}{t} = H(t) U(t,t')
+\end{equation}
+com \(U(t', t') = \unity\) para todo \(t'.\) Assim, podemos formalmente escrever o operador evolução com a série de Dyson\cite{barata}
+\begin{align}
+    U(t, t') &= \texpl\left[-i \int_{t'}^{t} \dli{s} H(s)\right]\\
+             &= \unity + \sum_{m = 1}^\infty (-i)^m \int_{t'}^{t} \dli{s_1} \int_{t'}^{s_1} \dli{s_2} \dots \int_{t'}^{s_{m-1}} \dli{s_m} H(s_1) \dots H(s_m)
+\end{align}
+e o seu adjunto por
+\begin{align}
+    \herm{U}(t,t') &= \texpr\left[i \int_{t'}^t \dli{s} H(s)\right]\\
+                   &= \unity + \sum_{m = 1}^\infty i^m \int_{t'}^t \dli{s_1} \dots \int_{t'}^{s_{m-1}} \dli{s_m} H(s_m) \dots H(s_1),
+\end{align}
+onde \(\mathcal{T}_\leftarrow\) representa o ordenamento temporal crescente para a esquerda e analogamente para \(\mathcal{T}_\rightarrow\). No caso em que \(\commutator{H(s)}{H(t)} = 0\) para todos \(t\) e \(s\), a série de Dyson se simplifica para
+\begin{equation}
+    U(t,t') = \exp\left[-i \int_{t'}^t \dli{s} H(s)\right],
+\end{equation}
+e o caso particular de sistemas \emph{isolados}, em que \(H(t)\) é independente do tempo, para
+\begin{equation}
+    U(t,t') = \exp\left[-i (t - t')H\right],
+\end{equation}
+que é condizente com o teorema de Stone \cite{reedsimon1}.
+
+\subsection{Matriz densidade}
+Para estados descritos por uma matriz densidade \(\rho(t_0)\) no instante \(t_0\) dada por
+\begin{equation}
+    \rho(t_0) = \sum_{\nu} p_\nu\ketbra{\nu}{\nu}
+\end{equation}
+temos a evolução temporal
+\begin{equation}
+    \rho(t) = \sum_\nu p_\nu U(t, t_0)\ketbra{\nu}{\nu}\herm{U}(t, t_0) = U(t,t_0) \rho(t_0) \herm{U}(t,t_0)
+\end{equation}
+logo a matriz densidade satisfaz a equação de Liouville-von Neumann
+\begin{equation}
+    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)} = \mathcal{L}(t)\left\{\rho(t)\right\}
+\end{equation}
+onde \(\mathcal{L}(t)\) é o operador linear agindo no espaço de operadores dado por \(\mathcal{L}(t)\left\{A\right\} = \commutator{H(t)}{A}\). Podemos escrever a solução formal
+\begin{equation}
+    \rho(t) = \texpl\left[-i \int_{t_0}^t\dli{s} \mathcal{L}(t)\right]\left\{\rho(t_0)\right\},
+\end{equation}
+e temos pelo lema de Campbell
+\begin{equation}
+    e^{sX} Y e^{-sX} = Y + \sum_{m = 1}^\infty \frac{s^m\commutator{X}{Y}^{[m]}}{m!},
+    \;\text{com}\;
+    \commutator{X}{Y}^{[k+1]} = \commutator{X}{\commutator{X}{Y}^{[k]}}
+    \;\text{e}\;
+    \commutator{X}{Y}^{[1]} = \commutator{X}{Y},
+\end{equation}
+que no caso de sistemas isolados vale
+\begin{align}
+    \rho(t) &= \exp\left[-i (t-t_0) \mathcal{L}\right]\left\{\rho(t_0)\right\}\\
+            &= \rho(t_0) + \sum_{m = 1}^\infty \frac{[-i(t - t_0)]^m}{m!} \commutator{H}{\rho(t_0)}^{[m]}\\
+            &= e^{-i (t-t_0) H} \rho(t_0) e^{i (t - t_0) H}
+            % &= U(t, t_0) \rho(t_0) \herm{U}(t, t_0)
+\end{align}
+como esperado.
+
+\subsection{Representação de interação}
+Para a representação de interação, escrevemos o hamiltoniano como \(H(t) = H_0(t) + V(t)\) e definimos os operadores
+\begin{equation}
+    U_0(t, t') = \texpl\left[-i \int_{t'}^t \dli{s} H_0(s)\right]\quad\text{e}\quad
+    U_I(t, t') = \herm{U}_0(t, t') U(t, t'),
+\end{equation}
+onde \(U(t,t')\) é o operador de evolução temporal. O valor esperado de um operador \(A(t)\) é dado por
+\begin{align}
+    \mean{A(t)} &= \Tr\left[A(t) \rho(t)\right]\\
+                &= \Tr\left[A(t) U(t, t_0) \rho(t_0) \herm{U}(t, t_0)\right]\\
+&= \Tr\left[A(t) U_0(t, t_0) U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0) \herm{U}_0(t, t_0)\right]\\
+                &= \Tr\left[\herm{U}_0(t, t_0)A(t)U_0(t, t_0) U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0)\right]
+\end{align}
+então definimos os operadores na representação de interação por
+\begin{equation}
+    A_I(t) = \herm{U}_0(t, t_0) A(t) U_0(t, t_0)
+\end{equation}
+e a matriz densidade por
+\begin{equation}
+    \rho_I(t) = U_I(t, t_0) \rho(t_0) \herm{U}_I(t, t_0),
+\end{equation}
+de forma que
+\begin{equation}
+    \Tr[A(t) \rho(t)] = \mean{A(t)} = \Tr[A_I(t) \rho_I(t)],
+\end{equation}
+isto é, a representação não muda o conteúdo físico. Para obter a equação de evolução temporal para estados nessa representação, notemos que
+\begin{align}
+    i\diffp{U_I(t, t')}{t} &= -\herm{U}_0(t, t') H_0(t) U(t, t') + \herm{U}_0(t, t') H(t) U(t, t')\\
+                           &= \herm{U}_0(t, t') V(t) U(t, t')\\
+                           &= \herm{U}_0(t, t') V(t) U_0(t,t') \herm{U}_0(t,t') U(t, t')\\
+                           &= V_I(t) U_I(t,t'),
+\end{align}
+portanto
+\begin{equation}
+    U_I(t,t') = \texpl\left[-i \int_{t'}^t\dli{s} V_I(s)\right]
+\end{equation}
+e então
+\begin{equation}
+    i\diffp*{\ket{\psi; t}_I}{t} = V_I(t) \ket{\psi; t}_I,
+\end{equation}
+onde \(\ket{\psi; t_0} = \ket{\psi; t_0}_I\) e \(\ket{\psi; t}_I = U_I(t, t_0) \ket{\psi; t_0}_I.\)
+
+Na representação de interação, os operadores satisfazem
+\begin{align}
+    i \diffp{A_I(t)}{t} 
+    % &= - \herm{U}_0(t,t_0) H_0(t)A(t) U_0(t,t_0) + \herm{U}_0(t,t_0) A(t) H_0(t) U_0(t, t_0) + i\herm{U}_0(t,t_0) \diffp{A(t)}{t} U_0(t,t_0)\\
+                        &= \herm{U}_0(t,t_0) \commutator{A(t)}{H_0(t)} U_0(t,t_0) + i \herm{U}_0(t,t_0) \diffp{A(t)}{t} U_0(t,t_0)\\
+                        &= \commutator{A_I(t)}{H_0(t)} + i \left(\diffp{A(t)}{t}\right)_I.
+\end{align}
+Notemos que no caso \(H_0(t) = 0,\) recuperamos a representação de Schrödinger, enquanto que para \(V(t) = 0\) recuperamos a representação de Heisenberg. Nesta última apenas os operadores evoluem temporalmente, e temos
+\begin{align}
+    \diff{\mean{A(t)}}{t} &= \diff*{\Tr[\rho(t) A(t))]}{t}\\
+                          &= \Tr\left[\rho_H(t_0)\diff*{A_H(t)}{t}\right]\\
+                          &= \Tr\left\{\rho_H(t_0)\left[i \commutator{H_H(t)}{A_H(t)} + \left(\diffp{A(t)}{t}\right)_H\right]\right\}\\
+                          &= \mean*{i\commutator{H(t)}{A(t)}} + \mean*{\diffp{A(t)}{t}},
+\end{align}
+resultado do teorema de Ehrenfest.
