@@ -1,0 +1,150 @@
+% vim: spl=pt
+\section{Evolução temporal de sistemas abertos}
+\nocite{susana}
+Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho,\) já que medidas de tais quantidades são dadas por
+\begin{equation}
+    \mean{A} = \Tr\left[\rho(A \otimes \unity_\bath) \right] = \Tr_\reduced(\rho_\reduced A).
+\end{equation}
+Tomando o caso em que em algum instante \(t_0\) o estado do sistema total \(\rho(t_0)\) é não correlacionado e o estado do sistema reduzido é \(\rho_\reduced(t_0),\) então podemos escrever \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0).\) Da evolução temporal, temos \(\rho(t) = U(t, t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\) e então o estado do sistema reduzido é dado por
+\begin{equation}
+    \rho_\reduced(t) = \Tr_\bath\left\{U(t,t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\right\}.
+\end{equation}
+No caso particular em que o operador evolução se fatora \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) sabemos que
+\begin{equation}
+    \rho_\reduced(t) = U_\reduced(t,t_0) \rho_\reduced(t_0) \herm{U}_\reduced(t, t_0) = \mathcal{V}(t,t_0)\rho_\reduced(t_0),
+\end{equation}
+onde definimos o superoperador \(\mathcal{V}(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\)
+
+
+\subsection{Mapa dinâmico}
+É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
+\begin{equation}
+    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0),
+\end{equation}
+isto é, uma aplicação que codifica toda a dinâmica com o subsistema \(\bath\). Entretanto, no caso geral o mapa dinâmico não depende apenas do operador de evolução \(U(t,t_0)\) e de \(\bath,\) mas também depende do estado inicial de \(\reduced.\) Para ver isso, consideramos que no instante \(t_0\) os estados de \(\reduced\) e de \(\bath\) são \(\rho_\reduced(t_0)\) e \(\rho_\bath(t_0)\) mas que possivelmente há correlação
+\begin{equation}
+    \rho_c(t_0) = \rho(t_0) - \rho_\reduced(t_0) \otimes \rho_\bath(t_0),
+\end{equation}
+de forma que
+\begin{equation}
+    \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0) + \rho_c(t_0)
+    \quad\text{e}\quad
+    \Tr_\reduced(\rho_c) = 0 = \Tr_\bath(\rho_c).
+\end{equation}
+Utilizamos a decomposição espectral de \(\rho_\bath(t_0),\)
+\begin{equation}
+    \rho_\bath(t_0) = \sum_{\beta} \lambda_\beta \ketbra{\beta}{\beta},
+\end{equation}
+e definimos os operadores
+\begin{equation}
+    K_{\alpha \beta}(t,t_0) = \sqrt{\lambda_\beta} \bra{\alpha} U(t,t_0)\ket{\beta} \quad\text{e}\quad \herm{K}_{\alpha \beta}(t,t_0) = \sqrt{\lambda_\beta}\bra{\beta} \herm{U}(t,t_0)\ket{\alpha},
+\end{equation}
+e então a evolução do sistema reduzida é dada por
+\begin{align}
+    \rho_\reduced(t) &= \Tr_\bath\left\{ U(t,t_0) \left[\rho_\reduced(t_0) \otimes \rho_\bath(t_0) + \rho_c(t_0)\right] \herm{U}(t,t_0)\right\}\\
+                     &= \sum_{\alpha,\beta} \lambda_\beta \bra{\alpha} U(t, t_0) [\rho_\reduced(t_0) \otimes \ketbra{\beta}{\beta} + \rho_c(t_0)] \herm{U}(t, t_0) \ket{\alpha} + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
+                     &= \sum_{\alpha,\beta} K_{\alpha \beta}(t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0) + \Tr_\bath\left[\mathcal{U}(t,t_0) \rho_c(t_0)\right]\\
+                     &= \mathcal{V}(t,t_0) \rho_\reduced(t_0),
+\end{align}
+onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \rho = U(t,t_0) \rho \herm{U}(t,t_0).\) O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, do estado inicial \(\rho_\reduced(t_0).\) 
+
+\begin{example}{Evolução temporal de um qubit com ambiente de um qubit\cite{piotr}}{qubit}
+    Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial dado pelo estado produto \(\rho(0) = \ketbra{\rightarrow}{\rightarrow} \otimes \ketbra{\rightarrow}{\rightarrow},\) onde \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t)\) assim como a entropia de von Neumann, \(S(t) = -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right].\)
+\end{example}
+\begin{proof}[Resolução]
+    Como o estado \(\bath\) já está dado na sua decomposição espectral, devemos calcular apenas \(K_{\rightarrow \rightarrow}\) e \(K_{\leftarrow \rightarrow}\). Temos
+    \begin{align*}
+        K_{\rightarrow \rightarrow} &= \bra{\rightarrow}_\bath e^{-i \frac12 \omega t \sigma_z \otimes \sigma_z}  \ket{\rightarrow}_\bath&
+        K_{\leftarrow \rightarrow} &= \bra{\leftarrow}_\bath e^{-i \frac12 \omega t \sigma_z \otimes \sigma_z}  \ket{\rightarrow}_\bath\\
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \bra{\rightarrow}\sigma_z ^m \ket{\rightarrow}&
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \bra{\leftarrow}\sigma_z ^m \ket{\rightarrow}\\
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \frac{\braket{\rightarrow}{\uparrow} + (-1)^m\braket{\rightarrow}{\downarrow}}{\sqrt{2}}&
+                                      &= \sum_{m=0}^\infty \frac{\left(-\frac12i \omega t\right)^m}{m!} \sigma_z^m \frac{\braket{\leftarrow}{\uparrow} + (-1)^m\braket{\leftarrow}{\downarrow}}{\sqrt{2}}\\
+                                      &= \frac12 e^{-\frac12 i \omega t \sigma_z} + \frac12 e^{i \frac12 i \omega t \sigma_z}&
+                                      &= \frac12 e^{-\frac12 i \omega t \sigma_z} - \frac12 e^{i \frac12 i \omega t \sigma_z}\\
+                                      &= \cos\left(\frac12 \omega t \sigma_z\right)&
+                                      &= -i \sin\left(\frac12 \omega t \sigma_z\right)
+    \end{align*}
+    e então
+    \begin{equation}
+        K_{\rightarrow\rightarrow} \ket{\rightarrow} = \cos\left(\frac12 \omega t\right)\ket{\rightarrow},
+        \quad\text{e}\quad
+        K_{\leftarrow\rightarrow} \ket{\rightarrow} = -i\sin\left(\frac12 \omega t\right) \ket{\leftarrow}.
+    \end{equation}
+    Dessa forma, temos
+    \begin{align*}
+        \rho_\reduced(t) &= K_{\rightarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\rightarrow\rightarrow}(t) + K_{\leftarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\leftarrow\rightarrow}(t)\\
+                         &= \ketbra{\rightarrow}{\rightarrow} \cos^2\left(\frac12 \omega t\right) + \ketbra{\leftarrow}{\leftarrow} \sin^2\left(\frac12 \omega t\right)\\
+                         &= \sin^2\left(\frac12 \omega t\right) \unity + \cos(\omega t) \ketbra{\rightarrow}{\rightarrow}\\
+                         &= \frac{1 - \cos(\omega t)}{2} \unity + \cos(\omega t) \rho_\reduced(0)\\
+                         &\doteq \frac12 \begin{pmatrix}
+                             1 && \cos(\omega t)\\
+                             \cos(\omega t) && 1
+                         \end{pmatrix}
+    \end{align*}
+    como o estado do sistema reduzido no instante \(t\).
+
+    Mostramos que
+    \begin{equation}
+        \rho_\reduced(t) = \cos^2\left(\frac12 \omega t\right) \ketbra{\rightarrow}{\rightarrow} + \sin^2\left(\frac12 \omega t\right) \ketbra{\leftarrow}{\leftarrow},
+    \end{equation}
+    portanto os autovalores de \(\rho_\reduced(t)\) são \(\set{\cos^2\left(\frac12 \omega t\right), \sin^2\left(\frac12 \omega t\right)}.\) Assim, 
+    \begin{align}
+        S(t) &= -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right]\\
+             % &= \Tr_\reduced\left[\left(\cos^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \sin^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right] \left[\ln\sec^2\frac{\omega t}{2} \ketbra{\rightarrow}{\rightarrow} + \ln\csc^2\frac{\omega t}{2} \ketbra{\leftarrow}{\leftarrow}\right) \right]\\
+             &= - \cos^2\frac{\omega t}{2} \ln \cos^2\frac{\omega t}{2} - \sin^2 \frac{\omega t}{2} \ln \sin^2\frac{\omega t}{2}
+    \end{align}
+    é a entropia de von Neumann.
+\end{proof}
+O \cref{exam:qubit} exibe uma clara diferença entre sistemas abertos e sistemas fechados. Consideramos a entropia de von Neumann daquele sistema nos instantes \(t = \frac{n\pi}{\omega}\) e \(t = \frac{(n + \frac12) \pi}{\omega}\) com \(n \in \mathbb{Z},\)
+\begin{equation}
+    S\left(\frac{n\pi}{\omega}\right) = 0\quad\text{e}\quad
+    S\left(\frac{(n + \frac12)\pi}{\omega}\right) = \ln2,
+\end{equation}
+portanto o sistema reduzido alterna periodicamente entre o estado de máxima entropia \(\rho(\frac{\pi}{2\omega})= \frac12 \unity\) e os estados puros \(\rho(0) = \ketbra{\rightarrow}{\rightarrow}\) e \(\rho(\frac{\pi}{\omega}) = \ketbra{\leftarrow}{\leftarrow}\). Dessa forma, a evolução temporal de um sistema aberto não é, em geral, unitária.
+
+\subsection{Mapas dinâmicos universais}
+Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
+\begin{equation}
+    \begin{tikzcd}[column sep = large, row sep = large]
+        \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_B(t_0) \arrow{rr}{\text{evolução unitária}} \arrow{d}{\Tr_\bath} && \rho(t) = \mathcal{U}(t,t_0) \rho(t_0)\arrow{d}{\Tr_\bath}\\
+        \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
+    \end{tikzcd}
+\end{equation}
+\cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) 
+
+Como feito acima,
+\begin{equation}
+    \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0) = \sum_{\alpha, \beta} K_{\alpha \beta} (t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0)
+\end{equation}
+é a evolução temporal do estado reduzido. Vamos mostrar um mapa dinâmico universal preserva o traço e a positividade do estado, apesar de não ser, em geral, uma transformação unitária. Para o traço, notemos que
+\begin{align}
+    \sum_{\alpha\beta} \herm{K}_{\alpha\beta} K_{\alpha\beta} &= \sum_{\alpha\beta} \lambda_\beta \bra{\beta}  \herm{U}(t,t_0) \ket{\alpha} \bra{\alpha} U(t,t_0)\ket{\beta}\\
+                                                              &= \sum_{\beta} \lambda_\beta \bra{\beta} \herm{U}(t,t_0) U(t,t_0) \ket{\beta}\\
+                                                              &= \sum_\beta \lambda_\beta
+                                                              = \Tr_\bath \rho_\bath
+                                                              = 1,
+\end{align}
+então
+\begin{align}
+    \Tr_\reduced \rho_\reduced(t) &= \Tr_\reduced \left(\sum_{\alpha\beta} K_{\alpha\beta}(t) \rho_\reduced(t_0)\herm{K}_{\alpha\beta}(t)\right)\\
+                                  &= \Tr_\reduced \left(\rho_\reduced(t_0) \sum_{\alpha\beta} \herm{K}_{\alpha\beta}(t) K_{\alpha\beta}(t)\right)\\
+                                  &= \Tr_\reduced \rho_\reduced(t_0) = 1.
+\end{align}
+Para a positividade, consideramos um vetor \(\ket{\psi} \in \mathscr{H}_\reduced\) e definimos 
+\begin{equation}
+    \ket{\phi_{\alpha\beta};t} = \herm{K}_{\alpha\beta}(t)\ket{\psi},
+\end{equation}
+então
+\begin{equation}
+    \bra{\psi} \rho_\reduced(t)\ket{\psi} = \sum_{\alpha\beta} \bra{\psi} K_{\alpha\beta}(t) \rho_\reduced(t_0) \herm{K}_{\alpha\beta}(t)\ket{\psi}
+                                          = \sum_{\alpha\beta} \bra{\phi_{\alpha\beta}; t} \rho_\reduced(t_0) \ket{\phi_{\alpha\beta}; t}
+                                          \geq 0,
+\end{equation}
+já que \(\rho_\reduced(t_0)\) é positiva.
+
+É importante notar que, ao contrário da evolução unitária, não temos, em geral, uma lei de composição como
+\begin{equation}
+    U(t,t_0) = U(t,t') U(t', t_0)
+\end{equation}
+para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
