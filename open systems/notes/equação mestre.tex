@@ -1,0 +1,249 @@
+% vim: spl=pt
+\section{Equação mestre Markoviana}
+Partindo da equação de Liouville-von Neumann para o estado do sistema composto,
+\begin{equation}
+    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)}
+\end{equation}
+podemos tomar o traço parcial e obter
+\begin{equation}
+    i\diff{\rho_\reduced(t)}{t} = \Tr_\bath\commutator{H(t)}{\rho(t)}.
+\end{equation}
+Gostaríamos de expressar a equação acima apenas em termos de operadores que agem no sistema \(\reduced,\) já que a equação acima pode ser tecnicamente difícil de se resolver e, mais importante, podemos não saber a dinâmica do sistema ambiente. 
+
+\subsection{Equação de Lindblad}
+Vamos considerar o caso em que as correlações a partir do instante \(t_0\) não são significativas para a dinâmica de \(\reduced.\) Podemos ter essa condição se a correlação do ambiente decai muito mais rapidamente do que o tempo característico do processo considerado para o sistema. Assim, efeitos de memória não são significativos e conseguimos desenvolver uma teoria Markoviana.\cite{breuer} 
+
+No caso considerado, a família de mapas dinâmicos universais satisfaz a propriedade 
+\begin{equation}
+    V(t, t') V(t', t_0) = V(t,t_0)
+\end{equation}
+e podemos, portanto, escrever
+\begin{equation}
+    \mathcal{V}(t,t_0) = \texpl\left[\int_{t_0}^{t} \dli{s} \mathcal{L}(s)\right],
+\end{equation}
+onde \(\mathscr{L}(t)\) é o chamado \emph{gerador de Lindblad}. Agora, a equação diferencial para o estado do sistema reduzido é
+\begin{equation}
+    i\diff{\rho_\reduced(t)}{t} = \mathcal{L}(t) \rho_\reduced(t),
+\end{equation}
+que é dita na forma de Lindblad. Essa equação é uma generalização da equação de Liouville-von Neumann para sistemas fechados.
+
+A fim de evitar tecnicalidades, vamos tomar o caso de um espaço de Hilbert de dimensão finita para o sistema reduzido, \(\dim\mathscr{H}_\reduced = N \in \mathbb{N}\) e o caso de que o sistema reduzido não está em contato com um campo externo dependente do tempo, em que podemos tomar \(\mathcal{L}(t) = \mathcal{L}.\) Seja então \(\family{F_i}{1 \leq N^2}\) uma base ortonormal de operadores agindo em \(\mathscr{H}_\reduced,\) com
+\begin{equation}
+    \inner{F_i}{F_j} = \Tr_\reduced \herm{F}_iF_j = \delta_{ij}
+\end{equation}
+e com a escolha de traço
+\begin{equation}
+    F_{N^2} = \frac{1}{\sqrt{N}} \unity_\reduced\quad\text{e}\quad \Tr F_{i} = 0, \forall i < N^2.
+\end{equation}
+Nesse caso os operadores da decomposição do mapa dinâmico são dados por
+\begin{equation}
+    K_{\alpha\beta}(t) = \sum_{i = 1}^{N^2} \inner{F_i}{K_{\alpha \beta}(t)}F_i
+\end{equation}
+e obtemos
+\begin{align}
+    \mathcal{V}(t,t_0) \rho_\reduced(t_0) &= \sum_{\alpha\beta}{\sum_{i = 1}^{N^2} \sum_{j = 1}^{N^2} \inner{F_i}{K_{\alpha \beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^* F_i \rho_\reduced(t_0) \herm{F}_j}\\
+                                          &= \sum_{i = 1}^{N^2} \sum_{j= 1}^{N^2} c_{ij}(t) F_i \rho_\reduced(t_0) \herm{F}_j,
+\end{align}
+onde definimos os coeficientes
+\begin{equation}
+    c_{ij} = \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}.
+\end{equation}
+É fácil ver que a matriz dos coeficientes \(c_{ij}\) é hermitiana,
+\begin{equation}
+    c_{ji}^* = \sum_{\alpha\beta}{\inner{F_j}{K_{\alpha\beta}(t)}^* \inner{F_i}{K_{\alpha\beta}(t)}}= \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}= c_{ij}
+\end{equation}
+e positiva,
+\begin{align}
+    \sum_{i=1}^{N^2} \sum_{j=1}^{N^2} v_i^* c_{ij}  v_j &= \sum_{i=1}^{N^2} \sum_{j=1}^{N^2}{v_i^* v_j \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}}\\
+                                &= \sum_{\alpha\beta}{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)} \inner*{\sum_{j = 1}^{N^2} v_j F_j}{K_{\alpha\beta}(t)}^*}\\
+                                &= \sum_{\alpha\beta}{\abs*{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)}}^2} \geq 0.
+\end{align}
+
+Para que haja um gerador\cite{reedsimon1}, vamos supor que a família \(\family{\mathcal{V}(t,t_0)}{t \geq t_0}\) é contínua e então 
+\begin{align}
+    \mathcal{L} \rho_\reduced(t_0) &= \lim_{\varepsilon \to 0} \frac{1}{\varepsilon} \left[\mathcal{V}(t_0 + \varepsilon, t_0) \rho_\reduced(t_0) - \rho_\reduced(t_0)\right]\\
+                                   &= \lim_{\varepsilon \to 0} \frac{1}{\varepsilon} \left\{\sum_{i = 1}^{N^2} \sum_{j = 1}^{N^2} \left[c_{ij}(t_0 + \varepsilon) - c_{ij}(t_0)\right] F_i \rho_\reduced(t_0) \herm{F}_j\right\},
+\end{align}
+onde usamos que \(\mathcal{V}(t_0,t_0) = \unity.\) Além disso, devemos ter \(c_{ij}(t_0) = N \delta_{i N^2} \delta_{j N^2}.\) Vamos brevemente limpar a notação e escrever \(t_0 = 0,\) \(\rho_\reduced(t_0) = \rho_\reduced,\) então da afirmação anterior temos
+\begin{align}
+    \mathcal{L}\rho_\reduced &= \lim_{\varepsilon \to 0} \left\{\frac{c_{N^2 N^2}(\varepsilon) - N}{N \varepsilon}\rho_\reduced + \sum_{i = 1}^{N^2-1}\left[\frac{c_{iN^2}(\varepsilon)}{\sqrt{N} \varepsilon} F_i \rho_\reduced+\frac{c_{N^2i}(\varepsilon)}{\sqrt{N} \varepsilon} \rho_\reduced \herm{F}_i\right] + \sum_{i,j = 1}^{N^2-1} \frac{c_{ij}(\varepsilon)}{\varepsilon}F_i \rho_\reduced \herm{F}_j\right\},
+\end{align}
+portanto com as definições
+\begin{equation}
+    a_{N^2 N^2} = \lim_{\varepsilon \to 0} \frac{c_{N^2 N^2}(t_0 + \varepsilon) - N}{\varepsilon},\quad
+    a_{i N^2} = \lim_{\varepsilon \to 0} \frac{c_{i N^2}(t_0 + \varepsilon)}{\varepsilon},\quad\text{e}\quad
+    a_{ij} = \lim_{\varepsilon \to 0}\frac{c_{ij}(t_0 + \varepsilon)}{\varepsilon},
+\end{equation}
+onde \(i,j \in \set{1, \dots, N^2 - 1},\) temos
+\begin{equation}
+    \mathcal{L}\rho_\reduced = \frac{a_{N^2N^2}}{N} \rho_\reduced + \frac{1}{\sqrt{N}}\sum_{i = 1}^{N^2 - 1} \left(a_{iN^2} F_i \rho_\reduced + a_{iN^2}^* \rho_\reduced \herm{F}_i\right) + \sum_{i=1}^{N^2 - 1} \sum_{j=1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j.
+\end{equation}
+Para escrever o Lindbladiano em uma forma familiar ao operador de Liouville-von Neumann, definimos ainda
+\begin{equation}
+    F = \frac{1}{\sqrt{N}} \sum_{i = 1}^{N^2 -1} a_{i N^2} F_i,\quad
+    G = \frac1{2N} a_{N^2 N^2}  + \frac12 (F + \herm{F}),\quad\text{e}\quad
+    H = \frac{1}{2i}(\herm{F} - F),
+\end{equation}
+e temos
+\begin{align}
+    \mathcal{L}\rho_S(t_0) &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                           &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + \frac{F + \herm{F}}{2} \rho_\reduced + \frac{F - \herm{F}}{2}\rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                           &= G \rho_\reduced + \frac{a_{N^2 N^2}}{2N} - i H \rho_\reduced + \rho_\reduced \herm{F} + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                           &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                           &= \anticommutator{G(t_0)}{\rho_\reduced(t_0)} - i \commutator{H(t_0)}{\rho_\reduced(t_0)} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij}(t_0) F_i \rho_\reduced(t_0) \herm{F}_j.
+\end{align}
+Como o mapa dinâmico preserva o traço, temos
+\begin{equation}
+    \Tr_\reduced \mathcal{L}\rho_\reduced(t) = \Tr_\reduced \diff{\rho_\reduced(t)}{t} = \diff*{\Tr_\reduced \rho_\reduced(t)}{t} = 0,
+\end{equation}
+e então
+\begin{align}
+    0 &= \Tr_\reduced \mathcal{L}\rho_\reduced(t)\\
+      &= \Tr_\reduced\left(\anticommutator{G}{\rho_\reduced} - i \commutator{H}{\rho_\reduced} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij} F_i \rho_\reduced \herm{F}_j\right)\\
+      &= \Tr_\reduced\left[\left(2G + \sum_{i = 1}^{N^2-1}\sum_{j =1}^{N^2-1} a_{ij} \herm{F}_j F_i\right)\rho_\reduced\right]
+\end{align}
+e podemos concluir que
+\begin{equation}
+    G = -\frac12 \sum_{i,j}^{N^2 - 1} a_{ij} \herm{F}_j F_i,
+\end{equation}
+já que a equação acima é válida para qualquer \(\rho_\reduced.\) Uma outra simplificação que podemos fazer é usar a positividade de \(c_{ij}\) para diagonalizar \(a_{ij}\) com 
+\begin{equation}
+    \sum_{i = 1}^{N^2-1} \sum_{j=1}^{N^2 -1}u_{ki} a_{ij} u^*_{\ell j} = \gamma_k \delta_{k \ell},\quad\text{com}\quad \gamma_k \geq 0,
+\end{equation}
+e definir os operadores
+\begin{equation}
+    A_j = \sum_{k = 1}^{N^2 - 1} u^*_{ji} F_i \iff F_i = \sum_{k = 1}^{N^2-1} u_{ki} A_k,
+\end{equation}
+de forma que
+\begin{equation}
+    \sum_{i = 1}^{N^2-1} \sum_{j=1}^{N^2 -1} a_{ij} F_i \rho_\reduced \herm{F}_j = \sum_{i = 1}^{N^2 - 1}\sum_{j = 1}^{N^2 - 1}\sum_{k = 1}^{N^2 - 1}\sum_{\ell = 1}^{N^2 - 1} u_{ki} a_{ij} u^*_{\ell j} A_k \rho_\reduced \herm{A}_\ell = \sum_{k = 1}^{N^2 - 1} \gamma_k A_k \rho_\reduced \herm{A}_k
+\end{equation}
+e
+\begin{equation}
+    \sum_{i = 1}^{N^2 - 1} \sum_{j = 1}^{N^2 - 1} a_{ij} \anticommutator{\herm{F}_j F_i}{\rho_\reduced(t_0)} = \sum_{k = 1}^{N^2 - 1} \gamma_k \anticommutator{\herm{A}_k A_k}{\rho_\reduced}
+\end{equation}
+analogamente. Assim, o Lindbladiano é dado por
+\begin{align}
+    \mathcal{L}\rho_\reduced(t_0) &= - i \commutator*{H}{\rho_\reduced(t_0)} + \sum_{i=1}^{N^2 - 1} \sum_{j = 1}^{N^2-1} a_{ij} \left[F_i \rho_\reduced(t_0) \herm{F}_j - \frac12 \anticommutator*{\herm{F}_j F_i}{\rho_\reduced(t_0)}\right]\\
+                                  &= -i \commutator*{H}{\rho_\reduced(t_0)} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right)
+                                  &
+\end{align}
+e podemos escrever a equação de Lindblad
+\begin{equation}
+    \diff{\rho_\reduced(t)}{t} = -i \commutator*{H}{\rho_\reduced(t_0)} + \mathcal{D}\rho_\reduced(t_0),
+\end{equation}
+onde definimos o \emph{dissipador} por
+\begin{equation}
+    \mathcal{D}\rho_\reduced(t_0) = \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right).
+\end{equation}
+É importante ter claro que \(H\) não é, em geral, o Hamiltoniano do sistema livre, já que pode conter termos extras devido ao acoplamento com o ambiente.
+
+\subsection{Equação adjunta}
+Seja \(B\) um operador agindo em \(\mathscr{H}_\reduced,\) então definimos o gerador adjunto \(\herm{\mathcal{L}}(t)\) por
+\begin{equation}
+    \Tr\left[B\mathcal{L}(t) \rho_\reduced(t)\right] = \Tr\left\{\left[\herm{\mathcal{L}}(t) B\right] \rho_\reduced(t)\right\}.
+\end{equation}
+Como feito para o operador de evolução unitária, temos
+\begin{equation}
+    \mathcal{\herm{\mathcal{V}}}(t,t_0) = \texpr\left[\int_{t_0}^t \dli{s} \herm{\mathcal{L}}(s)\right],
+\end{equation}
+e, portanto,
+\begin{equation}
+    \diffp*{\herm{\mathcal{V}}(t,t_0)}{t} = \herm{\mathcal{V}}(t,t_0) \herm{\mathcal{L}}(t).
+\end{equation}
+
+Pela prescrição da representação de Heisenberg, definimos \(B_H(t)\) por
+\begin{equation}
+    \Tr_\reduced \left[B \mathcal{V}(t,t_0) \rho_\reduced(t_0)\right] = \Tr_\reduced\left[B_H(t) \rho_\reduced(t_0)\right],
+\end{equation}
+isto é,
+\begin{equation}
+    B_H(t) = \herm{\mathcal{V}}(t,t_0) B.
+\end{equation}
+Dessa forma, os operadores na representação de Heisenberg satisfazem
+\begin{equation}
+    \diff{B_H(t)}{t} = \herm{\mathcal{V}}(t,t_0) \herm{\mathcal{L}}(t) B,
+\end{equation}
+que é a chamada equação adjunta. 
+
+Notamos que a equação adjunta não é escrita, em geral, em termos de \(B_H(t),\) então devemos conhecer o gerador \(\herm{\mathcal{L}}(t).\) No contexto da equação de Lindblad, o gerador \(\herm{\mathcal{L}}\) não depende do tempo e, portanto, comuta com \(\herm{\mathcal{V}}(t,t_0)\) e temos
+\begin{align}
+    \diff{B_H(t)}{t} &= \herm{\mathcal{L}} \herm{\mathcal{V}}(t,t_0) B\\
+                     &= \herm{\mathcal{L}} B_H(t)\\
+                     &= i \commutator{H}{B_H(t)} + \herm{\mathcal{D}} B_H(t)\\
+                     &= i \commutator{H}{B_H(t)} + \sum_k \gamma_k \left(\herm{A}_k A_H(t) A_k - \frac12 \anticommutator*{\herm{A}_k A_k}{B_H(t)}\right),
+\end{align}
+que é uma equação descrita apenas por \(B_H(t).\)
+
+\subsection{Teorema de regressão}
+É de interesse escrever a dinâmica de funções de correlação como um sistema de equações diferenciais. Consideramos um conjunto de operadores \(\set{B_i}\) agindo no sistema reduzido de tal sorte que
+\begin{equation}
+    \diff*{\mean{B_i(t)}}{t} = \sum_j G_{ij} \mean{B_j(t)}.
+\end{equation}
+Como no teorema de Ehrenfest, é útil considerar a representação de Heisenberg, em que temos
+\begin{align}
+    \diff*{\mean{B_i(t)}}{t} &= \Tr\left\{\mathcal{\herm{V}}(t,t_0)[\herm{\mathcal{L}}B_i(t)]\rho(t_0)\right\}\\
+                             &= \Tr\left\{[\herm{\mathcal{L}}B_i(t)]\rho(t)\right\}\\
+                             &= \mean{\herm{\mathcal{L}}B_i(t)},
+\end{align}
+portanto
+\begin{equation}
+    \herm{\mathcal{L}}B_i(t) = \sum_j G_{ij} B_j(t).
+\end{equation}
+Se esse é o caso, então o teorema de regressão garante que as funções de correlação de dois pontos satisfazem o mesmo sistema de equações,
+\begin{equation}
+    \diff{}{}
+\end{equation}
+\subsection{Produção de entropia}
+Consideramos dois estados \(\rho(t)\) e \(\rho_0(t)\) do sistema reduzido induzidos a partir de \(\mathcal{V}(t,t_0)\). A entropia relativa entre esses estados satisfaz
+\begin{align}
+    \entropy{\rho(t)}{\rho_0(t)} &= \entropy{\mathcal{V}(t,t_0)\rho(t_0)}{\mathcal{V}(t,t_0) \rho_0(t)}\\
+                               &= \entropy{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0) \right]}{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0) \right]}\\
+                               &\leq \entropy{\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0)}{\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0)}\\
+                               &= \entropy{\rho(t_0) \otimes \rho_\bath(t_0)}{\rho_0(t_0) \otimes \rho_\bath(t_0)}\\
+                               &= \entropy{\rho(t_0)}{\rho_0(t_0)},
+\end{align}
+onde usamos a propriedade \todo[entropia relativa]. Vamos supor agora que \(\rho_0(t_0) = \rho_0\) é um estado estacionário de \(\reduced,\) com \(\mathcal{V}(t,t_0) \rho_0 = \rho_0\) para todo \(t > t_0,\) então
+\begin{equation}
+    \entropy{\rho(t)}{\rho_0} \leq \entropy{\rho(t_0)}{\rho_0} \implies \sigma(\rho(t)) = -\diff*{\entropy{\rho(t)}{\rho_0}}{t} \geq 0,
+\end{equation}
+onde \(\sigma(\rho)\) é a \emph{taxa de produção de entropia}, que vamos motivar no que segue. 
+
+Consideramos o contexto da equação de Lindblad novamente e vamos supor que o estado térmico
+\begin{equation}
+    \rho_T = \frac1Z e^{-\beta H}
+\end{equation}
+é um estado estacionário da equação mestre, isto é,
+\begin{equation}
+    \mathcal{L}\rho_T = \mathcal{D} \rho_T = 0.
+\end{equation}
+Queremos identificar \(\sigma(\rho)\) com o balanço de entropia
+\begin{equation}
+    \sigma = \diff{S}{t} + J
+\end{equation}
+da termodinâmica, onde \(S\) é a entropia de von Neumann e \(J\) é o fluxo de entropia, a quantidade de entropia trocada do sistema aberto para o ambiente por unidade de tempo.
+
+Notemos que a entropia de von Neumann para um estado \(\rho(t)\) satisfaz
+\begin{equation}
+    \diff{S(\rho)}{t} = - \Tr\left[ (\mathcal{L}\rho) \ln \rho + \mathcal{L} \rho\right] = - \Tr \left[(\mathcal{L}\rho) \ln \rho\right],
+\end{equation}
+já que \(\Tr(\mathcal{L}\rho) = 0.\) O fluxo de entropia é dado pelas variação da energia interna \(E = \Tr(H \rho)\) resultante de efeitos dissipativos,
+\begin{equation}
+    J = -\frac1T \diff{E}{t}[\mathrm{dissipativo}] = - \frac1T \Tr(H \mathcal{D}\rho) = - \frac1T \Tr(H \mathcal{L}\rho).
+\end{equation}
+Usando o estado térmico, temos
+\begin{equation}
+    - \beta H = \ln \rho_T + \ln Z,
+\end{equation}
+portanto
+\begin{equation}
+    J = \Tr\left[(\ln \rho_T + \ln Z) \mathcal{L}\rho\right] = \Tr\left[(\mathcal{L}\rho) \ln \rho_T\right]
+\end{equation}
+é o fluxo de entropia. Dessa forma, temos
+\begin{align}
+    \diff{S}{t} + J &= \Tr\left[(\mathcal{L} \rho) \ln \rho_T\right] - \Tr\left[(\mathcal{L}\rho) \ln \rho\right]\\
+                    &= -\diff*{\entropy{\rho}{\rho_T}}{t}\\
+                    &= \sigma,
+\end{align}
+como desejado.
+
