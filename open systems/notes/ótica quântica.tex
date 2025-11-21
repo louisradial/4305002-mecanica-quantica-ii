@@ -1,0 +1,65 @@
+% vim: spl=pt
+\section{Ótica quântica}
+Vamos restringir a discussão a um sistema de ótica quântica, em que o sistema de interesse \(\reduced\) é um sistema ligado que interage com o campo de radiação, que configura o ambiente \(\bath\). O Hamiltoniano livre do campo é dado por
+\begin{equation}
+    H_\bath = \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \omega_k \mode{\herm{b}}{k}{\lambda} \mode{b}{k}{\lambda},
+\end{equation}
+decompondo o campo nos modos naturais em um volume \(L\) com condições de contorno periódicas, relembrando que os modos são dados pelo momento \(\vetor{k}\) e polarização \(\lambda\) satisfazendo
+\begin{equation}
+    \vetor{k} \cdot \mode{\vetor{e}}{k}{\lambda} = 0,\quad
+    \mode{\vetor{e}}{k}{\lambda} \cdot \mode{\vetor{e}}{k}{\lambda'} = \delta_{\lambda \lambda'}\quad\text{e}\quad
+    \sum_{\lambda = 1}^2 \mode{e^i}{k}{\lambda} \mode{e^j}{k}{\lambda} = \delta_{ij} - \frac{k^ik^j}{\norm{\vetor{k}}^2} = \delta_{ij}^\mathrm{tr}(\vetor{k})
+\end{equation}
+e a relação de dispersão é dada por \(\omega_k = \norm{\vetor{k}}\) nas unidades naturais. O termo de interação considerado é dado pela aproximação de dipolo,
+\begin{equation}
+    V = - \vetor{D} \cdot \vetor{E},
+\end{equation}
+onde \(\vetor{D}\) é o operador de dipolo de \(\reduced\) e o campo elétrico \(\vetor{E}\) é dado por
+\begin{equation}
+    \vetor{E} = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{L}} \mode{\vetor{e}}{k}{\lambda} \left(\mode{b}{k}{\lambda} - \mode{\herm{b}}{k}{\lambda}\right)
+\end{equation}
+na representação de Schrödinger e por
+\begin{equation}
+    \vetor{E}(t) = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{L}} \mode{\vetor{e}}{k}{\lambda} \left(e^{-i \omega_k t} \mode{b}{k}{\lambda} - e^{i \omega_k t} \mode{\herm{b}}{k}{\lambda}\right)
+\end{equation}
+na representação de interação.
+
+Como antes, definimos os operadores
+\begin{equation}
+    \vetor{A}(\omega) = \sum_{\epsilon' - \epsilon = \omega} \Pi(\epsilon) \vetor{D} \Pi(\epsilon')
+\end{equation}
+que decompõem o operador de dipolo na representação de interação,
+\begin{equation}
+    \vetor{D}(t) = \sum_{\omega} e^{-i\omega t} \vetor{A}(\omega) = \sum_{\omega} e^{i \omega t} \herm{\vetor{A}}(\omega),
+\end{equation}
+e podemos escrever o Hamiltoniano de interação
+\begin{equation}
+    V_I(t) = - \sum_{\omega} e^{-i \omega t} \vetor{A}(\omega) \cdot \vetor{E}(t).
+\end{equation}
+Assumindo que \(\mean{\vetor{E}(t)} = \vetor{0}\) na média do ambiente, segue da aproximação de Born-Markov que
+\begin{equation}
+    \diff*{\rho}{t} = \sum_{\omega, \omega'} \sum_{i,j = 1}^3 e^{i(\omega - \omega')t} \Gamma_{ij}(t, \omega')\commutator{A_i(\omega') \rho(t)}{\herm{A}_j(\omega)} + \mathrm{h.c.}
+\end{equation}
+é a equação mestre para o estado reduzido na representação de interação, onde a matriz \(\Gamma_{ij}(t, \eta)\) é definida por
+\begin{equation}
+    \Gamma_{ij}(t, \eta) = \int_0^\infty \dli{s} e^{i \eta s} \mean{E_i(t) E_j(t - s)}
+\end{equation}
+e recebe o nome de tensor de correlação espectral.
+
+Podemos escrever o tensor de correlação espectral como função dos valores esperados de produtos de operadores de criação e de aniquilação. Para limpar a notação, escrevemos
+\begin{equation}
+    \int_0^\infty \dli{s} \sum_{\vetor{k}, \lambda}\sum_{\vetor{k}', \lambda'} \frac{2\pi \sqrt{\omega_k \omega_{k'}}}{L} \mode{e^i}{k}{\lambda} \mode{e^j}{k'}{\lambda'} \to \sumint \dli{s} c_{ij}
+\end{equation}
+e então
+\begin{align}
+    \Gamma_{ij}(t, \eta) &= -\sumint \dli{s} c_{ij} e^{i \eta s} \mean*{\left(e^{-i \omega_k t} \mode{b}{k}{\lambda} - e^{i \omega_k t} \mode{\herm{b}}{k}{\lambda}\right)\left(e^{-i \omega_{k'} (t - s)} \mode{b}{k'}{\lambda'} - e^{i \omega_{k'} (t - s)} \mode{\herm{b}}{k'}{\lambda'}\right)}\\
+                         &= \sumint \dli{s} c_{ij} \left(
+                             \mean{\mode{b}{k}{\lambda} \mode{\herm{b}}{k'}{\lambda'}} e^{-i (\omega_k - \omega_{k'}) t - i (\omega_{k'} - \eta) s}
+                             -\mean{\mode{b}{k}{\lambda} \mode{b}{k'}{\lambda'}} e^{-i (\omega_k + \omega_{k'}) t + i (\omega_{k'} + \eta) s}\right. + \nonumber\\
+                         &{}\phantom{=\sumint \dli{s} c_{ij} }  \left. {}+ 
+                             \mean{\mode{\herm{b}}{k}{\lambda}\mode{b}{k'}{\lambda'}} e^{-i(\omega_{k'} - \omega_k)t + i(\omega_{k'} + \eta)s} -
+                             \mean{\mode{\herm{b}}{k}{\lambda}\mode{\herm{b}}{k'}{\lambda'}} e^{i(\omega_{k'} + \omega_k)t - i(\omega_{k'} - \eta)s}
+                             \right).
+\end{align}
+\subsection{Banho térmico de radiação}
+
