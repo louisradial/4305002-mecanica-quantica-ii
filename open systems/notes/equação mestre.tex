@@ -86,10 +86,10 @@ Para escrever o Lindbladiano em uma forma familiar ao operador de Liouville-von 
 \end{equation}
 e temos
 \begin{align}
-    \mathcal{L}\rho_S(t_0) &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+    \mathcal{L}\rho_\reduced(t_0) &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
                            &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + \frac{F + \herm{F}}{2} \rho_\reduced + \frac{F - \herm{F}}{2}\rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
                            &= G \rho_\reduced + \frac{a_{N^2 N^2}}{2N} - i H \rho_\reduced + \rho_\reduced \herm{F} + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
-                           &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                           &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
                            &= \anticommutator{G(t_0)}{\rho_\reduced(t_0)} - i \commutator{H(t_0)}{\rho_\reduced(t_0)} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij}(t_0) F_i \rho_\reduced(t_0) \herm{F}_j.
 \end{align}
 Como o mapa dinâmico preserva o traço, temos
@@ -180,20 +180,24 @@ que é uma equação descrita apenas por \(B_H(t).\)
 \begin{equation}
     \diff*{\mean{B_i(t)}}{t} = \sum_j G_{ij} \mean{B_j(t)}.
 \end{equation}
-Como no teorema de Ehrenfest, é útil considerar a representação de Heisenberg, em que temos
+Analogamente ao teorema de Ehrenfest, temos
 \begin{align}
     \diff*{\mean{B_i(t)}}{t} &= \Tr\left\{\mathcal{\herm{V}}(t,t_0)[\herm{\mathcal{L}}B_i(t)]\rho(t_0)\right\}\\
-                             &= \Tr\left\{[\herm{\mathcal{L}}B_i(t)]\rho(t)\right\}\\
+                             &= \Tr\left\{[\herm{\mathcal{L}}B_i]\rho(t)\right\}\\
                              &= \mean{\herm{\mathcal{L}}B_i(t)},
 \end{align}
 portanto
 \begin{equation}
-    \herm{\mathcal{L}}B_i(t) = \sum_j G_{ij} B_j(t).
+    \herm{\mathcal{L}}B_i = \sum_j G_{ij} B_j.
 \end{equation}
-Se esse é o caso, então o teorema de regressão garante que as funções de correlação de dois pontos satisfazem o mesmo sistema de equações,
-\begin{equation}
-    \diff{}{}
-\end{equation}
+Assim, as funções de correlação de dois pontos satisfazem o mesmo sistema de equações já que
+\begin{align}
+    \diff*{\mean{B_i(t + s)B_\ell(t)}}{s} &= \Tr\left\{\herm{\mathcal{V}}(t+s, t)[\herm{\mathcal{L}} B_i] B_\ell(t) \rho\right\}\\
+                                          &= \sum_{j} G_{ij} \Tr\left\{\herm{\mathcal{V}}(t+s,t) B_j B_\ell(t) \rho\right\}\\
+                                          &= \sum_j G_{ij} \mean{B_j(t + s) B_\ell(t)},
+\end{align}
+e este resultado é conhecido como o teorema de regressão.
+
 \subsection{Produção de entropia}
 Consideramos dois estados \(\rho(t)\) e \(\rho_0(t)\) do sistema reduzido induzidos a partir de \(\mathcal{V}(t,t_0)\). A entropia relativa entre esses estados satisfaz
 \begin{align}
@@ -247,3 +251,197 @@ portanto
 \end{align}
 como desejado.
 
+\subsection{Limite de campo fraco}
+Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o hamiltoniano livre \(H_\reduced\) do hamiltoniano do sistema total
+\begin{equation}
+    H_{\reduced\bath} = H_\reduced \otimes \unity_\bath + \unity_\reduced \otimes H_\bath + V.
+\end{equation}
+Vamos assumir que o sistema \(\reduced\) é fracamente acoplado com o ambiente \(\bath\) para determinar condições que induzem as condições da equação de Lindblad, assim como expressar \(H\) em termos de \(H_\reduced.\)
+
+Na representação de interação, temos a equação de Liouville-von Neumann
+\begin{equation}
+    \diff*{\rho^I_{\reduced\bath}(t)}{t} = -i \commutator{V_I(t)}{\rho^I_{\reduced\bath}(t)},
+\end{equation}
+ou, equivalentemente,
+\begin{equation}
+    \rho^I_{\reduced\bath}(t) = \rho^I_{\reduced\bath}(t_0) - i \int_{t_0}^t \dli{s} \commutator{V_I(s)}{\rho^I_{\reduced\bath}(s)}.
+\end{equation}
+Substituindo a equação integral na equação diferencial obtemos
+\begin{equation}
+    \diff*{\rho^I_{\reduced\bath}(t)}{t} = -i \commutator{V_I(t)}{\rho^I_{\reduced\bath}(t_0)} - \int_{t_0}^t \dli{s} \commutator*{V_I(t)}{\commutator{V_I(s)}{\rho_{\reduced\bath}(s)}},
+\end{equation}
+portanto ao tomar o traço parcial, obtemos 
+\begin{equation}
+    \Tr_\bath\diff*{\rho^I_{\reduced\bath}(t)}{t} = -\int_{t_0}^t \dli{s} \Tr_\bath \commutator*{V_I(t)}{\commutator{V_I(s)}{\rho^I_{\reduced\bath}(s)}}
+\end{equation}
+assumindo que
+\begin{equation}
+    \Tr_\bath \commutator{V_I(t)}{\rho^I_{\reduced\bath}(t_0)} = 0,
+\end{equation}
+que mostraremos que se resume a dizer que as médias no ambiente da interação são nulas.
+Consideramos a aproximação de Born, assumindo que a influência do sistema no ambiente seja pequena graças ao fraco acoplamento, e tomar \(\rho_{\reduced\bath}(t) \approx \rho(t) \otimes \rho_\bath(t_0).\) Nesse caso, temos
+\begin{equation}
+    \rho^I_{\reduced\bath}(t) = e^{i H_\reduced t}\rho(t)e^{-i H_\reduced t} \otimes e^{i H_\bath t}\rho_\bath e^{-i H_\bath t}
+\end{equation}
+e então
+\begin{equation}
+    \rho_I(t) = \Tr_\bath \rho^I_{\reduced\bath}(t) = e^{i H_\reduced t} \rho(t) e^{-i H_\reduced t},
+\end{equation}
+logo
+\begin{equation}
+    \diff*{\rho_I(t)}{t} = -\int_{t_0}^t \dli{s} \Tr_\bath \commutator*{V_I(t)}{\commutator{V_I(s)}{\rho^I_{\reduced\bath}(s)}},
+\end{equation}
+com 
+\begin{equation}
+    \diff*{\rho_I(t)}{t} = e^{i H_\reduced t} \diff{\rho(t)}{t}e^{-i H_\reduced t} + i \commutator{H_\reduced}{\rho_I(t)}.
+\end{equation}
+Por ora vamos limpar a notação e escrever \(\rho(t)\) para a matriz densidade reduzida na representação de interação, e no fim vamos recuperar o resultado na representação de Schrödinger subtraindo \(i \commutator{H_\reduced}{\rho_I(t)}\) da equação diferencial obtida e conjugando por \(\exp(i H_\reduced t)\).
+
+Ainda, tomamos a aproximação de Markov em que substituímos \(\rho(s) \to \rho(t)\) na integral, obtendo
+\begin{align}
+    \diff*{\rho(t)}{t} &= - \int_{t_0}^t \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(s)}{\rho(t) \otimes \rho_\bath}}\\
+                         &= - \int_{0}^{t - t_0} \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(t - s)}{\rho(t) \otimes \rho_\bath}}
+\end{align}
+chamada de equação de Redfield. Para obter uma equação Markoviana, precisamos eliminar a dependência com o instante \(t_0\) em que o estado foi preparado no estado produto. Seja \(\tau_\bath\) a escala de tempo de decaimento das funções de correlação do ambiente, então se para \(s \gg \tau_\bath\) o integrando da equação de Redfield cai rapidamente e se a escala de tempo da dinâmica do sistema de interesse é muito maior que \(\tau_\bath,\) aproximamos a equação de Redfield para
+\begin{equation}
+    \diff*{\rho(t)}{t} = - \int_{0}^{\infty} \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(t - s)}{\rho(t) \otimes \rho_\bath}}
+\end{equation}
+que é uma equação mestre Markoviana.
+
+Vamos escrever o potencial de interação como
+\begin{equation}
+    V = \sum_{\alpha} A_\alpha \otimes B_\alpha,
+\end{equation}
+com os operadores autoadjuntos \(A_\alpha\) e \(B_\beta\) agindo nos sistemas \(\reduced\) e \(\bath,\) respectivamente. Consideramos os operadores definidos por
+\begin{equation}
+    A_\alpha(\omega) = \sum_{\epsilon' - \epsilon = \omega} \Pi(\epsilon) A_\alpha \Pi(\epsilon')
+    \quad\text{e}\quad
+    \herm{A}_\alpha(\omega) = A_\alpha(-\omega),
+\end{equation}
+onde \(\family{\Pi(\epsilon)}{\epsilon \in \sigma(H_\reduced)}\) é o conjunto de projetores espectrais do Hamiltoniano livre \(H_\reduced\). Esses operadores são \emph{auto-operadores} deste Hamiltoniano associados às frequências \(\omega\), satisfazendo
+\begin{equation}
+    \commutator{H_\reduced}{A_\alpha(\omega)} = H_\reduced \Pi(\epsilon) A_\alpha \Pi(\epsilon') - \Pi(\epsilon) A_\alpha \Pi(\epsilon')  H_\reduced = \epsilon A_\alpha(\omega) - A_\alpha(\omega) \epsilon' = - \omega A_\alpha(\omega)
+\end{equation}
+e
+\begin{equation}
+    \commutator{H_\reduced}{\herm{A}_\alpha(\omega)} = \omega \herm{A}_\alpha(\omega).
+\end{equation}
+Assim, pela identidade de Campbell, temos
+\begin{align}
+    e^{i H_\reduced t} A_\alpha(\omega) e^{- i H_\reduced t} &= A_\alpha(\omega) + \sum_{m = 1}^\infty \frac{(it)^m}{m!} \commutator{H_\reduced}{A_\alpha(\omega)}^{[m]}\\
+                                                             &= A_\alpha(\omega) + \sum_{m = 1}^\infty \frac{(-i \omega t)^m}{m!} A_\alpha(\omega)\\
+                                                             &= e^{-i \omega t} A_\alpha(\omega)
+\end{align}
+e, analogamente,
+\begin{equation}
+    e^{i H_\reduced t} A_\alpha(\omega) e^{- i H_\reduced t} = e^{i \omega t} A_\alpha(\omega),
+\end{equation}
+portanto a evolução temporal destes operadores na representação de interação corresponde à fase \(e^{\pm i \omega t}.\) 
+Pela relação de completeza \(\sum_\epsilon \Pi(\epsilon) = \unity_\reduced,\)
+\begin{align}
+    \sum_\omega A_\alpha(\omega) &= \sum_{\omega} \sum_{\epsilon' - \epsilon = \omega} \Pi(\epsilon) A_\alpha \Pi(\epsilon')\\
+                                 &= \sum_{\epsilon'} \sum_{\epsilon} \Pi(\epsilon) A_\alpha \Pi(\epsilon')\\
+                                 &= \unity_\reduced A_\alpha \unity_\reduced\\
+                                 &= A_\alpha,
+\end{align}
+então o Hamiltoniano da representação de interação é
+\begin{align}
+    V_I(t) &= e^{i(H_\reduced\otimes\unity_\bath + \unity_\reduced \otimes H_\bath)t} Ve^{-i(H_\reduced\otimes\unity_\bath + \unity_\reduced \otimes H_\bath)t}\\
+           &= e^{iH_\reduced\otimes\unity_\bath t} \otimes e^{i\unity_\reduced \otimes H_\bath t} \left(\sum_\alpha A_\alpha \otimes B_\alpha\right) e^{-iH_\reduced\otimes\unity_\bath t} \otimes e^{-i \unity_\reduced \otimes H_\bath t}\\
+           &= \sum_\alpha e^{i H_\reduced t} A_\alpha e^{-i H_\reduced t} \otimes e^{i H_\bath t} B_\alpha e^{-i H_\bath t}\\
+           &= \sum_{\alpha, \omega} e^{-i \omega t} A_\alpha(\omega) \otimes B_\alpha(t)\\
+           &= \sum_{\alpha, \omega} e^{i \omega t} \herm{A}_\alpha(\omega) \otimes \herm{B}_\alpha(t)
+\end{align}
+onde \(B_\alpha(t) = e^{i H_\bath t} B_\alpha e^{-i H_\bath t}.\) 
+Agora vemos que a condição assumida implica que as médias do ambiente \(\mean{B_\alpha(t)} = \Tr_\bath\left[B_\alpha(t) \rho_\bath\right]\) se anulam, já que
+\begin{align}
+    \Tr_\bath\commutator{V_I(t)}{\rho(0) \otimes \rho_\bath} = 0 &\implies \Tr_\bath\commutator*{\sum_{\alpha, \omega} e^{-i \omega t} A_\alpha(\omega) \otimes B_\alpha(t)}{\rho(t_0) \otimes \rho_\bath} = 0\\
+                                                                 &\implies \sum_{\alpha,\omega} e^{-i \omega t} \commutator{A_\alpha(\omega)}{\rho(t_0)} \Tr_\bath\left[B_\alpha(t)\rho_\bath\right] = 0\\
+                                                                 &\implies \sum_{\alpha,\omega} e^{-i \omega t} \commutator{A_\alpha(\omega)}{\rho(t_0)} \mean{B_\alpha(t)} = 0\\
+                                                                 &\implies \mean{B_\alpha(t)} = 0,
+\end{align}
+onde usamos a independência linear da família de funções exponenciais \(e^{-i \omega t}\) assim como invocamos a liberdade de escolha do estado reduzido \(\rho(t_0).\)
+
+Podemos agora substituir a expressão deste hamiltoniano na equação mestre. Temos
+\begin{align}
+    \diff*{\rho(t)}{t} &= - \int_0^\infty \dli{s}  \sum_{\alpha, \omega} \sum_{\beta, \omega'} \Tr_\bath\commutator*{e^{i \omega t} \herm{A}_\alpha(\omega) \otimes \herm{B}_\alpha(t)}{\commutator{e^{i \omega' (s - t)}A_{\beta}(\omega') \otimes B_{\beta}(t - s)}{\rho(t) \otimes \rho_\bath}}\\
+                       &= \int_0^\infty \dli{s}\sum_{\alpha, \beta} \sum_{\omega, \omega'} e^{i \omega' s} e^{i (\omega - \omega') t} \Tr_\bath\left[\herm{A}_\alpha(\omega) \otimes \herm{B}_\alpha(t),\rho(t) A_\beta(\omega')  \otimes \rho_\bath B_\beta(t - s) -\right.\nonumber\\
+                       &{}\phantom{=\int_0^\infty \dli{s}\sum_{\alpha, \beta} \sum_{\omega, \omega'} e^{i \omega' s} e^{i (\omega - \omega') t} \Tr_\bath\commutator*{\herm{A}_\alpha(\omega) \otimes \herm{B}_\alpha(t)}{}} - \left.A_\beta(\omega') \rho(t) \otimes B_\beta(t - s) \rho_\bath\right]\\
+                       &= \int_0^\infty \dli{s} \sum_{\alpha,\beta} \sum_{\omega, \omega'} e^{i \omega' s} e^{i(\omega - \omega')t} \left(\commutator{\herm{A}_\alpha(\omega)}{\rho(t) A_\beta(\omega')} \mean{B_\beta(t - s) \herm{B}_\alpha(t)} - \right.\nonumber\\
+                       &{}\phantom{=\int_0^\infty \dli{s} \sum_{\alpha,\beta} \sum_{\omega, \omega'} e^{i \omega' s} e^{i(\omega - \omega')t} \left(\right)} - \left. \commutator{\herm{A}_\alpha(\omega)}{A_\beta(\omega') \rho(t)}\mean{\herm{B}_\alpha(t) B_\beta(t - s)}\right),
+\end{align}
+portanto definindo a transformada das funções de correlação
+\begin{equation}
+    \Gamma_{\alpha\beta}(t, \eta) = \int_0^\infty\dli{s} e^{i \eta s} \mean{\herm{B}_\alpha(t) B_\beta(t - s)}
+    \quad\text{e}\quad
+    \Gamma_{\alpha\beta}^*(t, \eta)= \int_0^\infty\dli{s} e^{-i \eta s} \mean{B_\beta(t - s)\herm{B}_\alpha(t)},
+\end{equation}
+obtemos com as trocas \(\omega \to - \omega\) e \(\omega' \to - \omega'\) no primeiro termo que
+\begin{align}
+    \diff*{\rho(t)}{t} &= \sum_{\alpha, \beta} \sum_{\omega, \omega'} \left[e^{i( \omega' - \omega)t} \commutator{A_\alpha(\omega)}{\rho(t) \herm{A}_\beta(\omega')} \Gamma_{\alpha \beta}^*(t, \omega') - e^{i (\omega - \omega')t}\commutator{\herm{A}_\alpha(\omega)}{A_\beta(\omega') \rho(t)} \Gamma_{\alpha \beta}(t, \omega')\right]\\
+                       &= \sum_{\alpha, \beta} \sum_{\omega, \omega'} e^{i(\omega - \omega') t} \Gamma_{\alpha \beta}(t,\omega') \commutator{A_\beta(\omega') \rho(t)}{\herm{A}_\alpha(\omega)} + \mathrm{h.c.},
+\end{align}
+já que \(\commutator{X}{Y}^\dag = \commutator{\herm{Y}}{\herm{X}}.\)
+
+Neste momento retornamos às condições da aproximação de Born-Markov. Primeiro, vamos supor que \(\rho_\bath\) é um estado estacionário do ambiente, \(\commutator{H_\bath}{\rho_\bath} = 0\), então as funções de correlação do ambiente satisfazem 
+\begin{align}
+    \mean{\herm{B}_\alpha(t) B_\beta(t - s)} &= \Tr_\bath\left[e^{i H_\bath t} \herm{B}_\alpha e^{-i H_\bath t} e^{i H_\bath (t - s)} B_\beta e^{-i H_\bath(t - s)} \rho_\bath\right]\\
+                                             &= \Tr_\bath\left[\herm{B}_\alpha e^{-i H_\bath s} B_\beta \rho_\bath e^{i H_\bath s}\right]\\
+                                             &= \Tr_\bath\left[\herm{B}_\alpha(s) B_\beta(0) \rho_\bath\right]\\
+                                             &= \mean{\herm{B}_\alpha(s) B_\beta(0)},
+\end{align}
+e então as quantidades \(\Gamma_{\alpha\beta}(t, \omega)\) não dependem de \(t\) e escrevemos apenas \(\Gamma_{\alpha\beta}(\omega).\) Além disso, consideramos a escala de tempo típica da evolução do sistema reduzido, \(\tau_\reduced \sim \abs{\omega' - \omega}^{-1},\) e impomos que \(\tau_\reduced\) é muito maior que o tempo de relaxamento \(\tau_R,\) então podemos desprezar os termos com \(\omega \neq \omega',\) por oscilarem muito durante o período \(\tau_R\) em que o estado \(\rho_\reduced\) varia de forma significativa. Essa aproximação é conhecida como a aproximação de onda rotante\cite{fleming}, e obtemos
+\begin{equation}
+    \diff*{\rho(t)}{t} = \sum_{\omega} \sum_{\alpha, \beta} \left(\Gamma_{\alpha\beta}(\omega) \commutator{A_\beta(\omega) \rho(t)}{\herm{A}_\alpha(\omega)} + \Gamma_{\alpha\beta}^*(\omega) \commutator{A_\alpha(\omega)}{\rho(t)\herm{A}_\beta(\omega)}\right).
+\end{equation}
+
+Para obter uma equação na forma de Lindblad, definimos as matrizes hermitianas
+\begin{equation}
+    S_{\alpha\beta}(\omega) = \frac1{2i} \left[\Gamma_{\alpha\beta}(\omega) - \Gamma^*_{\beta\alpha}(\omega)\right]\quad\text{e}\quad
+    \gamma_{\alpha\beta}(\omega) = \Gamma_{\alpha\beta}(\omega) + \Gamma^*_{\beta\alpha}(\omega),
+\end{equation}
+então, suprimindo a dependência de \(t\) e de \(\omega,\) temos
+\begin{align}
+    \diff*{\rho(t)}{t} &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \left(\gamma_{\alpha\beta}\commutator{A_\beta \rho}{\herm{A}_\alpha} + \gamma^*_{\alpha\beta}\commutator{A_\alpha}{\rho \herm{A}_\beta}\right) + i \left(S_{\alpha\beta}\commutator{A_\beta \rho}{\herm{A}_\alpha} - S_{\alpha \beta}^*\commutator{A_\alpha}{\rho \herm{A}_\beta}\right)\right]\\
+    &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(\commutator{A_\beta \rho}{\herm{A}_\alpha} + \commutator{A_\beta}{\rho \herm{A}_\alpha}\right) + i S_{\alpha\beta} \left(\commutator{A_\beta \rho}{\herm{A}_\alpha} - \commutator{A_\beta}{\rho \herm{A}_\alpha}\right)\right]\\
+    &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(2 A_\beta\rho \herm{A}_\alpha - \anticommutator{\herm{A}_\alpha A_\beta}{\rho}\right) - iS_{\alpha\beta} \commutator{\herm{A}_\alpha A_\beta}{\rho}\right].
+\end{align}
+Definindo o Hamiltoniano 
+\begin{equation}
+    H_{\mathrm{LS}} = \sum_{\alpha,\beta} \sum_{\omega} S_{\alpha\beta}(\omega) \herm{A}_\alpha(\omega) A_\beta(\omega)
+\end{equation}
+e o dissipador por
+\begin{equation}
+    \mathcal{D}\rho(t) = \sum_{\alpha, \beta} \sum_{\omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right),
+\end{equation}
+temos
+\begin{equation}
+    \diff*{\rho(t)}{t} = -i \commutator{H_\mathrm{LS}}{\rho(t)} + \mathcal{D} \rho(t),
+\end{equation}
+na representação de interação.
+
+Retornando à representação de Schrödinger, temos
+\begin{equation}
+    \diff*{\rho(t)}{t} = -i e^{-iH_\reduced t}\commutator{H_\reduced + H_\mathrm{LS}}{\rho_I(t)} e^{i H_\reduced t} + e^{-iH_\reduced t}[\mathcal{D}\rho_I(t)]e^{i H_\reduced t},
+\end{equation}
+onde recuperamos a notação \(\rho_I(t)\) para a representação de interação. Como os operadores \(A_\alpha(\omega)\) são auto-operadores da Hamiltoniana livre \(H_\reduced,\) temos
+\begin{equation}
+    \commutator{H_\reduced}{\herm{A}_\alpha(\omega) A_\beta(\omega)} = \commutator{H_\reduced}{\herm{A}_\alpha(\omega)} A_{\beta}(\omega) + \herm{A}_\alpha(\omega) \commutator{H_\reduced}{A_\beta(\omega)} = 0,
+\end{equation}
+logo
+\begin{align}
+    e^{-i H_\reduced t} [\mathcal{D}\rho_I(t)] e^{i H_\reduced t} 
+    &= \sum_{\alpha, \beta, \omega} \gamma_{\alpha\beta}(\omega) e^{-i H_\reduced t}\left( A_\beta(\omega) \rho_I(t) \herm{A}_\alpha(\omega)  - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho_I(t)} \right)e^{i H_\reduced t}\\
+    &=\sum_{\alpha, \beta, \omega}  \gamma_{\alpha\beta}(\omega) \left( e^{-i \omega t}A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) e^{i \omega t} - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)} \right)\\
+    &= \sum_{\alpha\beta \omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right)\\
+    &= \mathcal{D}\rho(t)
+\end{align}
+e
+\begin{equation}
+    e^{-iH_\reduced t}\commutator{H_\reduced + H_\mathrm{LS}}{\rho_I(t)} e^{i H_\reduced t} = \commutator{H_\reduced + H_\mathrm{LS}}{\rho(t)}.
+\end{equation}
+Assim, a equação mestre Markoviana é dada por
+\begin{equation}
+    \diff*{\rho(t)}{t} = -i \commutator{H_\mathrm{ef}}{\rho(t)} + \mathcal{D} \rho(t),
+\end{equation}
+na representação de Schrödinger, onde identificamos o Hamiltoniano efetivo \(H_\mathrm{ef} = H_\reduced + H_\mathrm{LS}.\)
