@@ -412,7 +412,7 @@ Definindo o Hamiltoniano
 \end{equation}
 e o dissipador por
 \begin{equation}
-    \mathcal{D}\rho(t) = \sum_{\alpha, \beta} \sum_{\omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right),
+    \mathcal{D}\rho(t) = \sum_{\alpha, \beta} \sum_{\omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \frac12\anticommutator*{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right),
 \end{equation}
 temos
 \begin{equation}
@@ -431,9 +431,9 @@ onde recuperamos a notação \(\rho_I(t)\) para a representação de interação
 logo
 \begin{align}
     e^{-i H_\reduced t} [\mathcal{D}\rho_I(t)] e^{i H_\reduced t} 
-    &= \sum_{\alpha, \beta, \omega} \gamma_{\alpha\beta}(\omega) e^{-i H_\reduced t}\left( A_\beta(\omega) \rho_I(t) \herm{A}_\alpha(\omega)  - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho_I(t)} \right)e^{i H_\reduced t}\\
-    &=\sum_{\alpha, \beta, \omega}  \gamma_{\alpha\beta}(\omega) \left( e^{-i \omega t}A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) e^{i \omega t} - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)} \right)\\
-    &= \sum_{\alpha\beta \omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \anticommutator{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right)\\
+    &= \sum_{\alpha, \beta, \omega} \gamma_{\alpha\beta}(\omega) e^{-i H_\reduced t}\left( A_\beta(\omega) \rho_I(t) \herm{A}_\alpha(\omega)  - \frac12\anticommutator*{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho_I(t)} \right)e^{i H_\reduced t}\\
+    &=\sum_{\alpha, \beta, \omega}  \gamma_{\alpha\beta}(\omega) \left( e^{-i \omega t}A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) e^{i \omega t} - \frac12\anticommutator*{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)} \right)\\
+    &= \sum_{\alpha\beta \omega} \gamma_{\alpha\beta}(\omega) \left(A_\beta(\omega) \rho(t) \herm{A}_\alpha(\omega) - \frac12\anticommutator*{\herm{A}_\alpha(\omega) A_\beta(\omega)}{\rho(t)}\right)\\
     &= \mathcal{D}\rho(t)
 \end{align}
 e
