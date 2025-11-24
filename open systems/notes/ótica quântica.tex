@@ -8,7 +8,7 @@ decompondo o campo nos modos naturais em um volume \(L\) com condições de cont
 \begin{equation}
     \vetor{k} \cdot \mode{\vetor{e}}{k}{\lambda} = 0,\quad
     \mode{\vetor{e}}{k}{\lambda} \cdot \mode{\vetor{e}}{k}{\lambda'} = \delta_{\lambda \lambda'}\quad\text{e}\quad
-    \sum_{\lambda = 1}^2 \mode{e^i}{k}{\lambda} \mode{e^j}{k}{\lambda} = \delta_{ij} - \frac{k^ik^j}{\norm{\vetor{k}}^2} = \delta_{ij}^\mathrm{tr}(\vetor{k})
+    \sum_{\lambda = 1}^2 \mode{e^i}{k}{\lambda} \mode{e^j}{k}{\lambda} = \delta_{ij} - \frac{k^ik^j}{\norm{\vetor{k}}^2} = \deltatr{k}{ij}
 \end{equation}
 e a relação de dispersão é dada por \(\omega_k = \norm{\vetor{k}}\) nas unidades naturais. O termo de interação considerado é dado pela aproximação de dipolo,
 \begin{equation}
@@ -38,7 +38,7 @@ e podemos escrever o Hamiltoniano de interação
 \end{equation}
 Assumindo que \(\mean{\vetor{E}(t)} = \vetor{0}\) na média do ambiente, segue da aproximação de Born-Markov que
 \begin{equation}
-    \diff*{\rho}{t} = \sum_{\omega, \omega'} \sum_{i,j = 1}^3 e^{i(\omega - \omega')t} \Gamma_{ij}(t, \omega')\commutator{A_i(\omega') \rho(t)}{\herm{A}_j(\omega)} + \mathrm{h.c.}
+    \diff*{\rho(t)}{t} = \sum_{\omega, \omega'} \sum_{i,j = 1}^3 e^{i(\omega - \omega')t} \Gamma_{ij}(t, \omega')\commutator{A_i(\omega') \rho(t)}{\herm{A}_j(\omega)} + \mathrm{h.c.}
 \end{equation}
 é a equação mestre para o estado reduzido na representação de interação, onde a matriz \(\Gamma_{ij}(t, \eta)\) é definida por
 \begin{equation}
@@ -63,4 +63,234 @@ e então
 \end{align}
 
 \subsection{Banho térmico de radiação}
- 
+Vamos tomar o caso em que o campo eletromagnético está em um estado de temperatura \(T,\)
+\begin{equation}
+    \rho_\bath = \frac{1}{Z} \exp(-\beta H_\bath),
+\end{equation}
+onde a função de partição é dada por
+\begin{equation}
+    \ln Z = - \sum_{\vetor{k}}\sum_{\lambda} \ln\left(1 - e^{-\beta \omega_k}\right).
+\end{equation}
+Neste caso, segue de
+\begin{equation}
+    e^{\beta H_\bath} \mode{b}{k}{\lambda} e^{- \beta H_\bath} = e^{- \beta \omega_k} \mode{b}{k}{\lambda}
+\end{equation}
+que 
+\begin{equation}
+    \mean{\mode{b}{k}{\lambda}} = \mean{\mode{\herm{b}}{k}{\lambda}} = \mean{\mode{b}{k}{\lambda}\mode{b}{k'}{\lambda'}} = \mean{\mode{\herm{b}}{k}{\lambda}\mode{\herm{b}}{k'}{\lambda'}} = 0,
+\end{equation}
+já que, por exemplo,
+\begin{equation}
+    \Tr(\mode{b}{k}{\lambda}\rho) = e^{- \beta \omega_k} \Tr(\mode{b}{k}{\lambda}\rho) \implies \Tr(\mode{b}{k}{\lambda}\rho) = 0.
+\end{equation}
+De forma semelhante, temos
+\begin{align}
+    \mean{\mode{\herm{b}}{k}{\lambda}\mode{b}{k'}{\lambda'}} &= \Tr(\mode{\herm{b}}{k}{\lambda}\mode{b}{k'}{\lambda'}\rho_\bath)\\
+                                                             &= e^{-\beta\omega_{k'}}\Tr(\mode{\herm{b}}{k}{\lambda}\rho_\bath \mode{b}{k'}{\lambda'})\\
+                                                             &= e^{-\beta \omega_{k'}} \mean{\mode{b}{k'}{\lambda'}\mode{\herm{b}}{k}{\lambda}}\\
+                                                             &= e^{-\beta \omega_{k'}} \left(\delta_{\vetor{k}\vetor{k'}} \delta_{\lambda\lambda'} + \mean{\mode{\herm{b}}{k}{\lambda}\mode{b}{k'}{\lambda'}}\right),
+\end{align}
+logo
+\begin{equation}
+    \mean{\mode{\herm{b}}{k}{\lambda}\mode{b}{k'}{\lambda'}} = \delta_{\vetor{k}\vetor{k'}}\delta_{\lambda\lambda'}\frac{1}{e^{\beta \omega_{k}}-1} = \delta_{\vetor{k}\vetor{k'}} \delta_{\lambda\lambda'} N(\omega_k),
+\end{equation}
+onde \(N(\omega)\) é a distribuição de Planck.
+
+Com estes valores esperados, podemos determinar o tensor de correlação espectral. Primeiro, como \(\mean{\mode{b}{k}{\lambda}} = \mean{\mode{\herm{b}}{k}{\lambda}} = 0,\) temos \(\mean{\vetor{E}(t)} = \vetor{0},\) logo \(\Gamma_{ij}(t, \eta) = \Gamma_{ij}(\eta).\) Segundo, temos
+\begin{equation}
+    \sumint \dli{s} c_{ij} \delta_{\vetor{k}\vetor{k'}} \delta_{\lambda\lambda'} = \int_0^\infty \dli{s} \sum_{\vetor{k}} \frac{2\pi \omega_k}{L} \deltatr{k}{ij}
+\end{equation}
+e no limite do contínuo, obtemos
+\begin{equation}
+    \sumint \dli{s} c_{ij} \delta_{\vetor{k}\vetor{k'}} \delta_{\lambda\lambda'} \to \frac{1}{(2\pi)^2}\int_0^\infty \dli{s} \int_0^\infty \dli{\omega} \omega^3 \int \dli{\Omega} \deltatr{n}{ij}.
+\end{equation}
+Para avaliar a integral angular, notemos que \(\deltatr{n}{ij}\) é um tensor de segunda ordem sob rotações, portanto o resultado da integral deve ser um tensor de segunda ordem que é invariante por rotações, logo podemos escrever
+\begin{equation}
+    \int\dli{\Omega} \deltatr{n}{ij} \propto \delta_{ij},
+\end{equation}
+e então de
+\begin{equation}
+    \sum_{i = 1}^3 \int \dli{\Omega} \deltatr{n}{ii} = 2 \int \dli{\Omega} = 8\pi,
+\end{equation}
+obtemos 
+\begin{equation}
+    \int\dli{\Omega} \deltatr{n}{ij} = \frac{8\pi}{3} \delta_{ij}.
+\end{equation}
+Desse modo, obtemos
+\begin{align}
+    \Gamma_{ij}(\eta) &= \frac{2\delta_{ij}}{3\pi} \int_0^\infty \dli{\omega} \omega^3 \int_0^\infty \dli{s} \left\{N(\omega) e^{i(\omega + \eta)s} + \left[N(\omega) + 1\right] e^{-i(\omega - \eta)s}\right\}\\
+                      &= \frac{2 \delta_{ij}}{3\pi} \int_0^\infty \dli{\omega} \omega^3 \left\{N(\omega) \int_0^\infty \dli{s} e^{i (\omega + \eta)s} - N(-\omega) \int_0^\infty \dli{s} e^{-i (\omega - \eta)s}\right\}\\
+                      &= \frac{2 \delta_{ij}}{3}  \int_0^\infty \dli{\omega} \omega^3 \left\{N(\omega) \left[\delta(\omega + \eta) + \frac{i}{\pi} \mathrm{pv}\frac{1}{\omega + \eta}\right] - N(-\omega)\left[\delta(\omega - \eta) - \frac{i}{\pi}\mathrm{pv}\frac{1}{\omega - \eta}\right]\right\}\\
+                      &= \frac{2 \delta_{ij}}{3} \left\{(-\eta)^3N(-\eta)\theta(-\eta) - \eta^3 N(-\eta)\theta(\eta) + \frac{i}{\pi} \mathrm{pv} \int_0^\infty \dli{\omega} \omega^3\left[\frac{N(\omega)}{\omega + \eta} + \frac{N(-\omega)}{\omega - \eta}\right]\right\}\\
+                      &= \frac{2\delta_{ij}}{3} \left\{\left[N(\eta) + 1\right]\eta^3 + \frac{i}{\pi} \mathrm{pv} \int_0^\infty \dli{\omega} \omega^3 \left[\frac{N(\omega)}{\omega + \eta} + \frac{N(\omega) + 1}{\eta - \omega}\right]\right\},
+\end{align}
+onde utilizamos que 
+\begin{equation}
+    - N(-\omega) = \frac{1}{1 - e^{-\beta \omega}} = \frac{e^{\beta \omega}}{e^{\beta\omega} - 1} = 1 + N(\omega).
+\end{equation}
+Definimos as quantidades
+\begin{equation}
+    \gamma(\eta) = \frac{4 \eta^3}{3} \left[N(\eta) + 1\right]\quad\text{e}\quad
+    S(\eta) = \frac2{3\pi} \mathrm{pv} \int_0^\infty \dli{\omega} \omega^3 \left[\frac{N(\omega)}{\eta + \omega} + \frac{N(\omega) + 1}{\eta - \omega}\right],
+\end{equation}
+de forma que
+\begin{equation}
+    \Gamma_{ij}(\eta) = \delta_{ij} \left[\frac12 \gamma(\eta) + i S(\eta)\right]
+\end{equation}
+é o tensor de correlação espectral.
+    
+Como o campo elétrico é linear nos operadores de criação e de aniquilação, temos \(\mean{\vetor{E}(t)} = \vetor{0},\) portanto podemos utilizar as aproximações de Born-Markov. Assim, temos
+\begin{align}
+    \diff*{\rho(t)}{t} &= \sum_{\omega, \omega'} \sum_{i,j = 1}^3 e^{i(\omega - \omega')t} \delta_{ij} \left[\frac12\gamma(\omega') + i S(\omega')\right] \commutator*{A_i(\omega') \rho(t)}{\herm{A}_j(\omega)} + \mathrm{h.c.}\\
+                       &= \sum_{\omega,\omega'} \sum_{j = 1}^3 e^{i(\omega - \omega')t} \left[\frac12 \gamma(\omega') + i S(\omega')\right] \commutator{A_j(\omega') \rho(t)}{\herm{A}_j(\omega)} + \mathrm{h.c.}
+\end{align}
+portanto com a aproximação de onda rotante, obtemos
+\begin{equation}
+    \diff*{\rho(t)}{t} = -i\commutator{H_\mathrm{LS}}{\rho(t)} + \mathcal{D} \rho(t),
+\end{equation}
+onde a correção para o Hamiltoniano é dada por
+\begin{equation}
+    H_\mathrm{LS} = \sum_{\omega}\sum_{j = 1}^3 S(\omega) \herm{A}_j(\omega) A_j(\omega)
+\end{equation}
+e o dissipador por
+\begin{equation}
+    \mathcal{D} \rho(t) = \sum_{\omega} \sum_{j=1}^3 \gamma(\omega) \left[A_j(\omega) \rho(t) \herm{A}_j(\omega) - \frac12\anticommutator*{\herm{A}_j(\omega) A_j(\omega)}{\rho(t)}\right].
+\end{equation}
+
+Recordando que \(A_j(-\omega) = \herm{A}_j(\omega)\) e notando que
+\begin{equation}
+    \gamma(-\omega) = \frac{4(-\omega)^3}{3} \left[N(-\omega) + 1\right] = \frac{4 \omega^3}{3} N(\omega),
+\end{equation}
+podemos reescrever o dissipador como
+\begin{align}
+    \mathcal{D} \rho(t) &= \sum_{\omega > 0} \sum_{j = 1}^3 \frac{4 \omega^3}{3} \left[N(\omega) + 1\right]\left[A_j(\omega) \rho(t) \herm{A}_j(\omega) - \frac12\anticommutator*{\herm{A}_j(\omega)A_j(\omega)}{\rho(t)}\right] + \nonumber\\
+                        &{}\phantom{=}{}+\sum_{\omega > 0} \sum_{j = 1}^3 \frac{4 \omega^3}{3} N(\omega)\left[\herm{A}_j(\omega) \rho(t) A_j(\omega) - \frac12\anticommutator*{A_j(\omega)\herm{A}_j(\omega)}{\rho(t)}\right],
+\end{align}
+e vemos que o primeiro tempo corresponde à emissões espontâneas e o segundo à absorções. Como os operadores \(A_j(\omega)\) e \(\herm{A}_j(\omega)\) são auto-operadores do Hamiltoniano livre, concluímos que \(A_j(\omega)\) diminui a energia do sistema reduzido por \(\omega\) e descreve emissões espontâneas e induzidas termicamente com taxa \(\frac{4\omega^3}{3}[N(\omega) + 1]\), enquanto que \(\herm{A}_j(\omega)\) aumenta a energia do sistema reduzido por \(\omega\) e descreve absorções induzidas termicamente com taxa \(\frac{4\omega^3}{3} N(\omega).\)
+
+\todo[Validade da aproximação]
+
+\subsection{Decaimento de um sistema de dois níveis}
+Consideremos o Hamiltoniano mais simples para o sistema de interesse,
+\begin{equation}
+    H_\reduced = \frac12 \omega_0 \sigma_3,
+\end{equation}
+onde 
+\begin{equation}
+    \sigma_3 = \ketbra{e}{e} - \ketbra{g}{g},
+\end{equation}
+com \(\ket{e}\) o estado excitado e \(\ket{g}\) o estado fundamental. Os operadores
+\begin{equation}
+    \sigma_+ = \ketbra{e}{g}\quad\text{e}\quad \sigma_- = \ketbra{g}{e}
+\end{equation}
+são auto-operadores do Hamiltoniano \(H_\reduced\) com
+\begin{equation}
+    \commutator{H_\reduced}{\sigma_\pm} = \pm \omega_0 \sigma_\pm.
+\end{equation}
+Vamos assumir que o operador de dipolo desse sistema admite elementos de matriz não triviais apenas fora da diagonal, como no efeito Stark para o átomo de hidrogênio em um multipleto \(n\). Assim, o operador de dipolo é dado por
+\begin{equation}
+    \vetor{D}(t) = \vetor{d} e^{-i \omega_0 t} \sigma_- + \vetor{d}^* e^{i \omega_0 t} \sigma_+,
+\end{equation}
+com \(\vetor{d} = \bra{g} \vetor{D}\ket{e}.\)
+
+Para o sistema de dois níveis, temos
+\begin{align}
+    H_\mathrm{LS} &= \abs{\vetor{d}}^2 \left[S(\omega_0) \sigma_+ \sigma_- + S(-\omega_0) \sigma_- \sigma_+\right]\\
+                  &= \abs{\vetor{d}}^2 \left[S(\omega_0) \ketbra{e}{e} + S(-\omega_0) \ketbra{g}{g}\right]\\
+                  &= \abs{\vetor{d}}^2 \left[\bar{S} \unity + \frac{\Delta S}{2} \sigma_3\right],
+\end{align}
+como a correção do Hamiltoniano, onde
+\begin{equation}
+    \bar{S} = \frac{S(\omega_0) + S(-\omega_0)}{2}\quad\text{e}\quad
+    \Delta S  = S(\omega_0) - S(-\omega_0),
+\end{equation}
+e
+\begin{equation}
+    \mathcal{D}\rho(t) = \gamma_0 (N+1) \left[\sigma_- \rho(t) \sigma_+ - \frac12\anticommutator*{\sigma_+\sigma_-}{\rho(t)}\right] + \gamma_0 N \left[\sigma_+\rho(t) \sigma_- - \frac12 \anticommutator*{\sigma_-\sigma_+}{\rho(t)}\right]
+\end{equation}
+como o dissipador, onde
+\begin{equation}
+    N = N(\omega_0)\quad\text{e}\quad \gamma_0 = \frac{4 \omega_0^3 \abs{\vetor{d}}^2}{3}.
+\end{equation}
+
+O estado do sistema pode ser sempre escrito como
+\begin{equation}
+    \rho(t) = \frac12 \left[\unity + \vetor{P}(t) \cdot \vetor{\sigma}\right],
+\end{equation}
+então a contribuição do Hamiltoniano para a equação de movimento é
+\begin{equation}
+    \commutator{H_\mathrm{LS}}{\rho(t)} = \frac{\abs{\vetor{d}}^2 \Delta S}{4} P_j(t) \commutator{\sigma_3}{\sigma_j} = i\frac{\abs{\vetor{d}}^2 \Delta S}{4} \epsilon_{3jk} P_j(t) \sigma_k = i\alpha \gamma_0 \vetor{e}_3 \cdot [\vetor{P}(t) \times \vetor{\sigma}],
+\end{equation}
+onde
+\begin{equation}
+    \alpha = \frac{\abs{\vetor{d}}^2 \Delta S}{4\gamma_0} = \frac{3 \Delta S}{16\omega_0^3}.
+\end{equation}
+Para o dissipador, temos os termos
+\begin{equation}
+    \sigma_- \rho(t) \sigma_+ = \ketbra{g}{e}\rho(t)\ketbra{e}{g} = \rho_e(t) \sigma_- \sigma_+ = \frac12 [1 + P_3(t)] \sigma_- \sigma_+
+\end{equation}
+e
+\begin{equation}
+    \anticommutator{\sigma_\pm \sigma_\mp}{\rho(t)} = \frac14\anticommutator{\unity \pm \sigma_3}{\unity + P_j(t)\sigma_j} = \rho(t) \pm \left(\frac12 \sigma_3 + \frac12 P_3(t) \unity\right),
+\end{equation}
+portanto \todo[Revisar]
+\begin{align}
+    \frac1{\gamma_0}\mathcal{D}\rho(t) &= \frac{N+1}{2} \left[\left(1 + P_3(t)\right) \sigma_- \sigma_+ - \frac12 \rho(t) - \frac14 \left(P_3(t)\unity + \sigma_3\right)\right]\nonumber\\
+                                       &{}\phantom{=}+\frac{N}{2} \left[\left(1 - P_3(t)\right) \sigma_+ \sigma_- - \frac12 \rho(t) + \frac14 \left(P_3(t)\unity + \sigma_3\right)\right].
+\end{align}
+Tomando o traço com \(\frac12\sigma_j\) e usando que \(\Tr(\sigma_i \sigma_j) = 2 \delta_{ij},\) obtemos as equações de movimento
+\begin{equation}
+    \begin{cases}
+        \dot{P}_1(t) = - \alpha \gamma_0 P_2(t) - \frac{\gamma}2 P_1(t)\\
+        \dot{P}_2(t) = \alpha \gamma_0 P_1(t) - \frac{\gamma}2 P_2(t)\\
+        \dot{P}_3(t) = - \gamma P_3(t) - \gamma_0,
+    \end{cases}
+\end{equation}
+onde definimos \(\gamma = (2N + 1) \gamma_0\). 
+
+Assim, a solução do sistema de equações diferenciais é dada por
+\begin{equation}
+    \begin{pmatrix}
+        P_1(t)\\
+        P_2(t)
+    \end{pmatrix}
+    = e^{-\gamma t}\begin{pmatrix}
+        \cos(\alpha \gamma_0 t) && \sin(\alpha \gamma_0 t)\\
+        -\sin(\alpha \gamma_0 t) && \cos(\alpha \gamma_0 t)
+    \end{pmatrix}
+    \begin{pmatrix}
+        P_1(0)\\
+        P_2(0)
+    \end{pmatrix}
+\end{equation}
+e
+\begin{equation}
+    P_3(t) = \left[\frac{1}{2N+1} + P_3(0)\right] e^{-\gamma t} - \frac{1}{2N+1}.
+\end{equation}
+A população do estado excitado é dada por
+\begin{equation}
+    \rho_e(t) = \frac12 + \frac12 P_3(t) = \frac12\left[\frac{1}{2N+1} + P_3(0)\right] e^{-\gamma t} + \frac{N}{2N+1}
+\end{equation}
+e do estado fundamental por
+\begin{equation}
+    \rho_g(t) = 1 - \rho_e(t) = \frac{N + 1}{2N + 1} - \frac12\left[\frac{1}{2N+1} + P_3(0)\right] e^{-\gamma t},
+\end{equation}
+com as coerências dadas por
+\begin{equation}
+    \rho_{ge}(t) = \frac{P_1(t) + i P_2(t)}{2} = e^{-\gamma t} \left[\frac{P_1(0) + i P_2(0)}{2}\cos(\alpha \gamma_0 t) - \frac{P_1(0) - i P_2(0)}{2}\sin(\alpha \gamma_0 t)\right]
+\end{equation}
+Para um estado inicial \(\rho(0) = \ketbra{g}{g}\) temos
+\begin{equation}
+    \rho_e(t) = \frac{N}{2N + 1} \left(1 - e^{- \gamma t}\right)
+    \quad\text{e}\quad
+    \rho_g(t) = \frac{N + 1}{2N + 1} + \frac{N}{2N + 1} e^{- \gamma t},
+\end{equation}
+isto é
+\begin{equation}
+    \rho(t) = \rho_T - \frac{N}{2N + 1}e^{-\gamma t} \sigma_3,
+\end{equation}
+onde 
+\begin{equation}
+    \rho_T = \frac{1}{1 + e^{\beta \omega_0}} \ketbra{e}{e} + \frac{e^{\beta \omega_0}}{1 + e^{\beta \omega_0}}\ketbra{g}{g} = \frac{\exp(-\beta H_\reduced)}{\Tr \exp(- \beta H_\reduced)}
+\end{equation}
+é o estado de equilíbrio térmico.
