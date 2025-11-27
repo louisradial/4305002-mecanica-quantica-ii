@@ -1,7 +1,8 @@
 % vim: spl=pt
-\documentclass[portuguese,biblatex]{artigo}
+\documentclass[portuguese,biblatex]{notas}
 \usepackage{dirac}
-\numberwithin{equation}{section}
+\usepackage{emptypage}
+% \numberwithin{equation}{chapter}
 
 \DeclarePairedDelimiterX\relS[2]{\lparen}{\rparen}{#1 \delimsize\Vert\mathopen{} #2}
 \newcommand\entropy[2]{S\relS*{#1}{#2}}
@@ -18,15 +19,18 @@
 \author{Louis Bergamo Radial}
 
 \begin{document}
-
 \maketitle
+\frontmatter
 \tableofcontents
 
+\mainmatter
+\pagestyle{main}
 \include{sistemas fechados}
 \include{entropia}
 \include{sistemas abertos}
 \include{equação mestre}
 \include{ótica quântica}
 
+\backmatter
 \printbibliography
 \end{document}

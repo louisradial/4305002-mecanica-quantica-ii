@@ -1,5 +1,5 @@
 % vim: spl=pt
-\section{Evolução temporal de sistemas abertos}
+\chapter{Evolução temporal de sistemas abertos}
 \nocite{susana}
 Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho,\) já que medidas de tais quantidades são dadas por
 \begin{equation}
@@ -16,7 +16,7 @@ No caso particular em que o operador evolução se fatora \(U(t,t_0) = U_\reduce
 onde definimos o superoperador \(\mathcal{V}(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\)
 
 
-\subsection{Mapa dinâmico}
+\section{Mapa dinâmico}
 É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
 \begin{equation}
     \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0),
@@ -103,7 +103,7 @@ O \cref{exam:qubit} exibe uma clara diferença entre sistemas abertos e sistemas
 \end{equation}
 portanto o sistema reduzido alterna periodicamente entre o estado de máxima entropia \(\rho(\frac{\pi}{2\omega})= \frac12 \unity\) e os estados puros \(\rho(0) = \ketbra{\rightarrow}{\rightarrow}\) e \(\rho(\frac{\pi}{\omega}) = \ketbra{\leftarrow}{\leftarrow}\). Dessa forma, a evolução temporal de um sistema aberto não é, em geral, unitária.
 
-\subsection{Mapas dinâmicos universais}
+\section{Mapas dinâmicos universais}
 Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
 \begin{equation}
     \begin{tikzcd}[column sep = large, row sep = large]

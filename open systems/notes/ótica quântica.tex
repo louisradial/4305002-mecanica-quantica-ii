@@ -1,5 +1,5 @@
 % vim: spl=pt
-\section{Ótica quântica}
+\chapter{Ótica quântica}
 Vamos restringir a discussão a um sistema de ótica quântica, em que o sistema de interesse \(\reduced\) é um sistema ligado que interage com o campo de radiação, que configura o ambiente \(\bath\). O Hamiltoniano livre do campo é dado por
 \begin{equation}
     H_\bath = \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \omega_k \mode{\herm{b}}{k}{\lambda} \mode{b}{k}{\lambda},
@@ -62,7 +62,7 @@ e então
                              \right).
 \end{align}
 
-\subsection{Banho térmico de radiação}
+\section{Banho térmico de radiação}
 Vamos tomar o caso em que o campo eletromagnético está em um estado de temperatura \(T,\)
 \begin{equation}
     \rho_\bath = \frac{1}{Z} \exp(-\beta H_\bath),
@@ -170,7 +170,7 @@ e vemos que o primeiro tempo corresponde à emissões espontâneas e o segundo �
 
 \todo[Validade da aproximação]
 
-\subsection{Decaimento de um sistema de dois níveis}
+\section{Decaimento de um sistema de dois níveis}
 Consideremos o Hamiltoniano mais simples para o sistema de interesse,
 \begin{equation}
     H_\reduced = \frac12 \omega_0 \sigma_3,
@@ -187,7 +187,7 @@ são auto-operadores do Hamiltoniano \(H_\reduced\) com
 \begin{equation}
     \commutator{H_\reduced}{\sigma_\pm} = \pm \omega_0 \sigma_\pm.
 \end{equation}
-Vamos assumir que o operador de dipolo desse sistema admite elementos de matriz não triviais apenas fora da diagonal, como no efeito Stark para o átomo de hidrogênio em um multipleto \(n\). Assim, o operador de dipolo é dado por
+Vamos assumir que o operador de dipolo desse sistema admite elementos de matriz não triviais apenas fora da diagonal, por exemplo no caso em que os estados \(\ket{e}\) e \(\ket{g}\) têm paridades distintas. Assim, o operador de dipolo é dado por
 \begin{equation}
     \vetor{D}(t) = \vetor{d} e^{-i \omega_0 t} \sigma_- + \vetor{d}^* e^{i \omega_0 t} \sigma_+,
 \end{equation}

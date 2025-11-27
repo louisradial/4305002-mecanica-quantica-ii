@@ -1,5 +1,5 @@
 % vim: spl=pt
-\section{Equação mestre Markoviana}
+\chapter{Equação mestre Markoviana}
 Partindo da equação de Liouville-von Neumann para o estado do sistema composto,
 \begin{equation}
     i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)}
@@ -10,7 +10,7 @@ podemos tomar o traço parcial e obter
 \end{equation}
 Gostaríamos de expressar a equação acima apenas em termos de operadores que agem no sistema \(\reduced,\) já que a equação acima pode ser tecnicamente difícil de se resolver e, mais importante, podemos não saber a dinâmica do sistema ambiente. 
 
-\subsection{Equação de Lindblad}
+\section{Equação de Lindblad}
 Vamos considerar o caso em que as correlações a partir do instante \(t_0\) não são significativas para a dinâmica de \(\reduced.\) Podemos ter essa condição se a correlação do ambiente decai muito mais rapidamente do que o tempo característico do processo considerado para o sistema. Assim, efeitos de memória não são significativos e conseguimos desenvolver uma teoria Markoviana.\cite{breuer} 
 
 No caso considerado, a família de mapas dinâmicos universais satisfaz a propriedade 
@@ -138,7 +138,7 @@ onde definimos o \emph{dissipador} por
 \end{equation}
 É importante ter claro que \(H\) não é, em geral, o Hamiltoniano do sistema livre, já que pode conter termos extras devido ao acoplamento com o ambiente.
 
-\subsection{Equação adjunta}
+\section{Equação adjunta}
 Seja \(B\) um operador agindo em \(\mathscr{H}_\reduced,\) então definimos o gerador adjunto \(\herm{\mathcal{L}}(t)\) por
 \begin{equation}
     \Tr\left[B\mathcal{L}(t) \rho_\reduced(t)\right] = \Tr\left\{\left[\herm{\mathcal{L}}(t) B\right] \rho_\reduced(t)\right\}.
@@ -175,7 +175,7 @@ Notamos que a equação adjunta não é escrita, em geral, em termos de \(B_H(t)
 \end{align}
 que é uma equação descrita apenas por \(B_H(t).\)
 
-\subsection{Teorema de regressão}
+\section{Teorema de regressão}
 É de interesse escrever a dinâmica de funções de correlação como um sistema de equações diferenciais. Consideramos um conjunto de operadores \(\set{B_i}\) agindo no sistema reduzido de tal sorte que
 \begin{equation}
     \diff*{\mean{B_i(t)}}{t} = \sum_j G_{ij} \mean{B_j(t)}.
@@ -198,7 +198,7 @@ Assim, as funções de correlação de dois pontos satisfazem o mesmo sistema de
 \end{align}
 e este resultado é conhecido como o teorema de regressão.
 
-\subsection{Produção de entropia}
+\section{Produção de entropia}
 Consideramos dois estados \(\rho(t)\) e \(\rho_0(t)\) do sistema reduzido induzidos a partir de \(\mathcal{V}(t,t_0)\). A entropia relativa entre esses estados satisfaz
 \begin{align}
     \entropy{\rho(t)}{\rho_0(t)} &= \entropy{\mathcal{V}(t,t_0)\rho(t_0)}{\mathcal{V}(t,t_0) \rho_0(t)}\\
@@ -251,7 +251,7 @@ portanto
 \end{align}
 como desejado.
 
-\subsection{Limite de campo fraco}
+\section{Limite de acoplamento fraco}
 Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o hamiltoniano livre \(H_\reduced\) do hamiltoniano do sistema total
 \begin{equation}
     H_{\reduced\bath} = H_\reduced \otimes \unity_\bath + \unity_\reduced \otimes H_\bath + V.
