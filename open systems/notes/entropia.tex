@@ -98,10 +98,10 @@ assim como a entropia de von Neumann.
 Considerando um sistema bipartite novamente, temos
 \begin{align}
     \entropy{\rho}{\rho^{(1)}\otimes \rho^{(2)}} &= - \Tr( \rho \ln \rho^{(1)} \otimes \rho^{(2)}) - S(\rho)\\
-                                                 &= -\Tr(\rho \ln \rho^{(1)}) - \Tr(\rho \ln \rho^{(2)}) - S(\rho)\\
+                                                 &= -\Tr\left[\rho \ln \left(\rho^{(1)}\otimes \unity_2\right)\right] -\Tr\left[\rho \ln \left(\unity_1\otimes \rho^{(2)}\right)\right] - S(\rho)\\
                                                  &= S(\rho^{(1)}) + S(\rho^{(2)}) - S(\rho),
 \end{align}
-onde usamos que podemos escrever \(\rho = \rho^{(1)} \otimes \rho^{(2)} + C\) com \(\Tr(C) = \Tr_1(C) = \Tr_2(C) = 0.\) Neste caso, a entropia relativa mede a diferença de entropia ao se tomar o traço parcial do estado composto. Ainda, para estados \(\rho\) e \(\sigma\) do sistema composto, vale
+onde usamos que podemos escrever \(\rho = \rho^{(1)} \otimes \rho^{(2)} + C\) com \(\Tr(C) = \Tr_1(C) = \Tr_2(C) = 0.\) Neste caso, a entropia relativa mede a diferença de entropia devido à correlação \(C.\) Ainda, para estados \(\rho\) e \(\sigma\) do sistema composto, vale
 \begin{equation}
     \entropy{\rho^{(1)}}{\sigma^{(1)}} \leq \entropy{\rho}{\sigma},
 \end{equation}
