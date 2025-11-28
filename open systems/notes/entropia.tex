@@ -1,13 +1,20 @@
 % vim: spl=pt
-\chapter{Entropia em sistemas fechados}
-Definimos a partir da função contínua
+\chapter{Entropia em sistemas quânticos} 
+Consideramos a função contínua \(s : [0,1] \to [0, \frac1e]\) dada por
 \begin{equation}
     s(x) = \begin{cases}
         -x \ln x, &\text{se } x \in (0,1]\\
-        0,&\text{se } x = 0
+        0,&\text{se } x = 0.
     \end{cases}
 \end{equation}
-o funcional \(S(\rho) = -\Tr \rho \ln \rho\) no espaço de matrizes densidade, chamado de \emph{entropia de von Neumann}. Da positividade de uma matriz densidade e da condição de traço unitário, sabemos que
+Essa função é côncava\cite{barata} e, portanto, vale
+\begin{equation}
+    s\left(\sum_{j = 1}^{N} \lambda_j x_j\right) \geq \sum_{j = 1}^{N} \lambda_j s(x_j)
+\end{equation}
+sempre que \(x_j \in [0,1]\) e \(\lambda_j \in [0,1]\) com \(\sum_{j = 1}^N \lambda_j = 1.\)
+
+\section{Entropia de von Neumann}
+O funcional definido no espaço de matrizes densidade por \(S(\rho) = \Tr(s(\rho))\) é denominado de \emph{entropia de von Neumann}. Doravante (e na literatura) escreveremos apenas \(S(\rho) = -\Tr(\rho \ln \rho),\) entendendo que \(-\rho \ln \rho = s(\rho).\) Da positividade de uma matriz densidade e da condição de traço unitário, sabemos que
 \begin{equation}
     \rho = \sum_i p_i \ketbra{i}{i},\;\text{com}\; p_i \in [0,1]\;\text{e}\; \sum_i p_i = 1,
 \end{equation}
@@ -15,7 +22,23 @@ portanto
 \begin{equation}
     S(\rho) = - \sum_i p_i \ln p_i,
 \end{equation}
-isto é, a entropia de von Neumann é equivalente à entropia de Shannon para um estado \(\rho.\) Dessa forma, \(S(\rho)\) expressa a falta de informação de um estado de mistura \(\rho\) sobre a realização de um estado puro \(\ket{i}\).
+isto é, a entropia de von Neumann é equivalente à entropia de Shannon para um estado \(\rho.\) Dessa forma, \(S(\rho)\) expressa a falta de informação de um estado de mistura \(\rho\) sobre a realização de um estado puro \(\ket{i}\). Essa interpretação ainda pode ser posta ao expressar a propriedade de concavidade,
+\begin{equation}
+    S\left(\sum_{j = 1}^{N} \lambda_j \rho_j\right) \geq \sum_{j = 1}^{N} \lambda_j S(\rho_j),
+\end{equation}
+onde vemos que a falta de informação é maior para um estado \(\rho = \sum_{j = 1}^N \lambda_j \rho_j\) do que a média da falta de informação dos estados constituintes \(\rho_j.\)
+
+Para um sistema bipartite \(\mathscr{H} = \mathscr{H}_1 \otimes \mathscr{H}_2\), temos em geral a propriedade de subaditividade
+\begin{equation}
+    S(\rho) \leq S(\rho^{(1)}) + S(\rho^{(2)}),
+\end{equation}
+onde \(\rho^{(1)} = \Tr_2 \rho\) e \(\rho^{(2)} = \Tr_1 \rho\) são os estados reduzidos dos subsistemas. A igualdade se dá no caso em que o estado \(\rho\) não apresenta correlação, \(\rho = \rho^{(1)} \otimes \rho^{(2)},\) já que
+\begin{align}
+    S(\rho^{(1)} \otimes \rho^{(2)}) &= -\sum_i \sum_j p^{(1)}_i p_j^{(2)} \ln(p^{(1)}_i p^{(2)}_j)\\
+                                     &= - \sum_i p^{(1)}_i \ln p^{(1)}_i \sum_j p^{(2)}_j - \sum_i p^{(1)}_i  \sum_j p^{(2)}_j\ln p^{(2)}_j\\
+                                     &= S(\rho^{(1)}) + S(\rho^{(2)}).
+\end{align}
+A subaditividade da entropia de von Neumann estabelece que ao tomar o traço parcial de cada componente do sistema perdemos informação.
 
 Uma matriz densidade \(\rho\) representa um estado puro se tem um único autovalor igual a 1. Essa condição é equivalente a entropia de von Neumann se anular. De fato, da expressão
 \begin{equation}
@@ -70,8 +93,16 @@ Esse funcional satisfaz\cite{breuer}
 \begin{equation}
     S(U \rho \herm{U}| U\sigma \herm{U}) = S(\rho | \sigma),
 \end{equation}
-assim como a entropia de von Neumann. Ainda, para um sistema bipartite \(\mathscr{H} = \mathscr{H}_1 \otimes \mathscr{H}_2\) e escrevendo \(\rho^{(1)} = \Tr_2 \rho,\) temos
+assim como a entropia de von Neumann. 
+
+Considerando um sistema bipartite novamente, temos
+\begin{align}
+    \entropy{\rho}{\rho^{(1)}\otimes \rho^{(2)}} &= - \Tr( \rho \ln \rho^{(1)} \otimes \rho^{(2)}) - S(\rho)\\
+                                                 &= -\Tr(\rho \ln \rho^{(1)}) - \Tr(\rho \ln \rho^{(2)}) - S(\rho)\\
+                                                 &= S(\rho^{(1)}) + S(\rho^{(2)}) - S(\rho),
+\end{align}
+onde usamos que podemos escrever \(\rho = \rho^{(1)} \otimes \rho^{(2)} + C\) com \(\Tr(C) = \Tr_1(C) = \Tr_2(C) = 0.\) Neste caso, a entropia relativa mede a diferença de entropia ao se tomar o traço parcial do estado composto. Ainda, para estados \(\rho\) e \(\sigma\) do sistema composto, vale
 \begin{equation}
-    S(\rho^{(1)}|\sigma^{(1)}) \leq S(\rho | \sigma).
+    \entropy{\rho^{(1)}}{\sigma^{(1)}} \leq \entropy{\rho}{\sigma},
 \end{equation}
-\todo[Mais coisas de entropia relativa?]
+onde \(\rho^{(1)} = \Tr_2\rho\) e \(\sigma^{(1)} = \Tr_2\sigma\) são os estados reduzidos.
