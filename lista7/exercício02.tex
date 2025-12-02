@@ -1,7 +1,56 @@
 % vim: spl=pt
-\begin{exercício}{}{ex2}
-    
+\begin{exercício}{Helicidade de um fóton}{ex2}
+    Mostre que o momento angular total satisfaz
+    \begin{equation*}
+        \vetor{J} \cdot \frac{\vetor{p}}{\norm{p}} \ket{\vetor{p} \lambda} = \hbar \lambda \ket{\vetor{p} \lambda},
+    \end{equation*}
+    onde \(\ket{\vetor{p}\lambda}\) é um estado de um fóton. Explique o motivo disso confirmar que \(\vetor{L}\) é de fato o momento angular orbital do campo eletromagnético.
 \end{exercício}
 \begin{proof}[Resolução]
-    
+    Temos as expressões
+    \begin{equation*}
+        \vetor{A}(x) = \sum_{\vetor{k}} \sqrt{\frac{\hbar c^2}{2V \omega_k}} \left[e^{i kx} \vetor{a}_{\vetor{k}} + \mathrm{h.c.}\right]
+        \quad\text{e}\quad
+        \vetor{E}(x) = i\sum_{\vetor{k}} \sqrt{\frac{\hbar \omega_k}{2V}} \left[e^{i kx} \vetor{a}_{\vetor{k}} - \mathrm{h.c.}\right]
+    \end{equation*}
+    para os campos, onde \(kx = k^\mu x_\mu = \omega_k t - \vetor{k} \cdot \vetor{x}\) e \(\vetor{a}_{\vetor{k}} = \sum_{\lambda = \pm1} a_{\vetor{k}\lambda} \vetor{e}_{\vetor{k}\lambda}\). Assim, temos
+    \begin{align*}
+        \vetor{S} &= -\frac{i}{2c} \int_{V} \dln3x \sum_{\vetor{k}, \vetor{k'}} \frac{\hbar c}{2 V}\sqrt{\frac{\omega_k}{\omega_{k'}}} \left\{\left[e^{ik'x} \vetor{a}_{\vetor{k'}} + e^{-ik'x} \herm{\vetor{a}}_{\vetor{k'}}\right] \times \left[e^{ikx} \vetor{a}_{\vetor{k}} - e^{-ikx} \herm{\vetor{a}}_{\vetor{k}}\right] - \mathrm{h.c.}\right\}\\
+                  &= -\frac{i\hbar}{4V} \sum_{\vetor{k},\vetor{k'}} \sqrt{\frac{\omega_k}{\omega_{k'}}} \int_{V} \dln3{x} \left[e^{i(k' + k)x} \vetor{a}_{\vetor{k'}} \times \vetor{a}_{\vetor{k}} - e^{i (k' - k) x} \vetor{a}_{\vetor{k'}} \times \herm{\vetor{a}}_{\vetor{k}} + e^{i (k - k') x} \herm{\vetor{a}}_{\vetor{k'}}\times \vetor{a}_{\vetor{k}} + \right.\\
+                  &{}\phantom{=-\frac{i\hbar}{4V} \sum_{\vetor{k},\vetor{k'}} \sqrt{\frac{\omega_k}{\omega_{k'}}} \int_{V} \dln3{x}[}\left. - e^{-i(k' + k)x} \herm{\vetor{a}}_{\vetor{k'}} \times \herm{\vetor{a}}_{\vetor{k}} - \mathrm{h.c.}\right]\\
+                  &= -\frac{i \hbar}{4} \sum_{\vetor{k}} \left[e^{2i \omega_k t} \vetor{a}_{-\vetor{k}}\times \vetor{a}_{\vetor{k}} - \vetor{a}_{\vetor{k}} \times \herm{\vetor{a}}_{\vetor{k}} + \herm{\vetor{a}}_{\vetor{k}} \times \vetor{a}_{\vetor{k}} - e^{-2i \omega_k t} \herm{\vetor{a}}_{-\vetor{k}} \times \herm{\vetor{a}}_{\vetor{k}} - \mathrm{h.c.}\right]\\
+                  &= -\frac{i \hbar}{2} \sum_{\vetor{k}} \left[\herm{\vetor{a}}_{\vetor{k}} \times \vetor{a}_{\vetor{k}} - \vetor{a}_{\vetor{k}} \times \herm{\vetor{a}}_{\vetor{k}}\right]\\
+                  &= -\frac{i \hbar}{2} \sum_{\vetor{k}} \sum_{\lambda, \lambda'} \left[\herm{a}_{\vetor{k}\lambda} a_{\vetor{k} \lambda'} \conj{\vetor{e}}_{\vetor{k}\lambda} \times \vetor{e}_{\vetor{k} \lambda'} - a_{\vetor{k}\lambda'} \herm{a}_{\vetor{k} \lambda} \vetor{e}_{\vetor{k}\lambda'}\times \conj{\vetor{e}}_{\vetor{k} \lambda}\right]\\
+                  &= -\frac{i\hbar}{2} \sum_{\vetor{k}} \sum_{\lambda} i \lambda \frac{\vetor{k}}{\norm{\vetor{k}}}\left[\herm{a}_{\vetor{k} \lambda} a_{\vetor{k} \lambda} + a_{\vetor{k} \lambda} \herm{a}_{\vetor{k} \lambda}\right]\\
+                  &= \hbar\sum_{\vetor{k}} \frac{\vetor{k}}{\norm{\vetor{k}}} \sum_{\lambda} \lambda \herm{a}_{\vetor{k}\lambda} a_{\vetor{k}\lambda}
+    \end{align*}
+    e, portanto,
+    \begin{align*}
+        \vetor{S} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \ket{\vetor{p}\lambda} 
+        &= \hbar \sum_{\vetor{k}} \frac{\vetor{k}}{\norm{\vetor{p}}} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \sum_{\lambda'} \lambda' \herm{a}_{\vetor{k}\lambda'} a_{\vetor{k}\lambda'} \ket{\vetor{p}\lambda}\\
+        &= \hbar \sum_{\vetor{k}} \frac{\vetor{k}}{\norm{\vetor{p}}} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \sum_{\lambda'} \lambda' \herm{a}_{\vetor{k}\lambda'} a_{\vetor{k}\lambda'} \herm{a}_{\vetor{p}\lambda}\ket{0}\\
+        &= \hbar \sum_{\vetor{k}} \frac{\vetor{k}}{\norm{\vetor{p}}} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \sum_{\lambda'} \lambda' \delta_{\vetor{k} \vetor{p}}\delta_{\lambda \lambda'}\herm{a}_{\vetor{k}\lambda'} \ket{0}\\
+        &= \hbar \lambda \ket{\vetor{p}\lambda}.
+    \end{align*}
+
+    Para verificar que \(\vetor{L}\) é de fato o operador de momento angular orbital, vamos mostrar que \(\vetor{L}\) é ortogonal à direção de propagação. Notemos que
+    \begin{align*}
+        \vetor{x} \times \nabla A^j
+        = 
+        i\sum_{\vetor{k}} \sqrt{\frac{\hbar c^2}{2V \omega_k}} (\vetor{x} \times \vetor{k})\left[ e^{i kx} \vetor{a}^j_{\vetor{k}} - \mathrm{h.c.}\right],
+    \end{align*}
+    então
+    \begin{equation*}
+        \vetor{L} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \ket{\vetor{p} \lambda} = 0,
+    \end{equation*}
+    já que \((\vetor{x} \times \vetor{k}) \cdot \vetor{k} = 0.\) Dessa forma, 
+    \begin{equation*}
+        \vetor{J} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \ket{\vetor{p} \lambda} =
+        \vetor{S} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} \ket{\vetor{p} \lambda} = \hbar \lambda \ket{\vetor{p}\lambda},
+    \end{equation*}
+    portanto para estados de um fóton o operador de helicidade é
+    \begin{equation*}
+        \mathcal{H} = \vetor{J} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}} = \vetor{S} \cdot \frac{\vetor{p}}{\norm{\vetor{p}}},
+    \end{equation*}
+    logo \(\vetor{L}\) é o operador de momento angular orbital.
 \end{proof}
