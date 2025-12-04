@@ -121,9 +121,9 @@ Como feito acima,
 \begin{align}
     \sum_{\alpha\beta} \herm{K}_{\alpha\beta} K_{\alpha\beta} &= \sum_{\alpha\beta} \lambda_\beta \bra{\beta}  \herm{U}(t,t_0) \ket{\alpha} \bra{\alpha} U(t,t_0)\ket{\beta}\\
                                                               &= \sum_{\beta} \lambda_\beta \bra{\beta} \herm{U}(t,t_0) U(t,t_0) \ket{\beta}\\
-                                                              &= \sum_\beta \lambda_\beta
-                                                              = \Tr_\bath \rho_\bath
-                                                              = 1,
+                                                              &= \sum_\beta \lambda_\beta \unity_\reduced\\
+                                                              &= \unity_\reduced \Tr_\bath \rho_\bath\\
+                                                              &= \unity_\reduced
 \end{align}
 então
 \begin{align}
