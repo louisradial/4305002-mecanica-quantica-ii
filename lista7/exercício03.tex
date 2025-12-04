@@ -1,6 +1,18 @@
 % vim: spl=pt
-\begin{exercício}{}{ex3}
-    
+\begin{exercício}{Estados de fótons com momento angular bem definido}{ex3}
+    Mostre que os operadores do campo eletromagnético podem ser expressados diretamente em termos de operadores de aniquilação e criação de fótons com momento angular bem definido, com
+    \begin{equation*}
+        \vetor{A}(x) = \frac{\sqrt{\hbar c}}{8 \pi^2} \sum_{j m \lambda} \sqrt{2j + 1} \int_0^\infty \dli{k} k^{\frac32} \left[e^{i \omega t} \vetor{f}_{j m \lambda}(k, \vetor{x}) \herm{a}_{jm \lambda}(k) + \mathrm{h.c.}\right],
+    \end{equation*}
+    onde
+    \begin{equation*}
+        \vetor{f}_{jm\lambda}(k,\vetor{x}) = \int \dli{\vetor{n}} \conj{\vetor{e}}_{\vetor{k}\lambda} e^{-i\vetor{k}\cdot\vetor{x}} D^{(j)}_{m \lambda}(\vetor{n}),
+    \end{equation*}
+    e 
+    \begin{equation*}
+        \commutator{a_{jm\lambda}(k)}{\herm{a}_{j'm'\lambda'}(k')} = \frac{\delta(k - k')}{kk'} \delta_{jj'} \delta_{mm'} \delta_{\lambda\lambda'}.
+    \end{equation*}
+    Essa expansão de \(\vetor{A}\) leva às amplitudes de absorção e de emissão de multipolos de qualquer ordem.
 \end{exercício}
 \begin{proof}[Resolução]
     
