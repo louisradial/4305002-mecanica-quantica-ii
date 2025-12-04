@@ -38,7 +38,7 @@ onde \(\rho^{(1)} = \Tr_2 \rho\) e \(\rho^{(2)} = \Tr_1 \rho\) são os estados r
                                      &= - \sum_i p^{(1)}_i \ln p^{(1)}_i \sum_j p^{(2)}_j - \sum_i p^{(1)}_i  \sum_j p^{(2)}_j\ln p^{(2)}_j\\
                                      &= S(\rho^{(1)}) + S(\rho^{(2)}).
 \end{align}
-A subaditividade da entropia de von Neumann estabelece que ao tomar o traço parcial de cada componente do sistema perdemos informação.
+A subaditividade da entropia de von Neumann estabelece que ao tomar o traço parcial de cada componente do sistema perdemos informação, com a aditividade de sistemas sem correlação sendo familiar à extensividade da entropia na Termodinâmica.
 
 Uma matriz densidade \(\rho\) representa um estado puro se tem um único autovalor igual a 1. Essa condição é equivalente a entropia de von Neumann se anular. De fato, da expressão
 \begin{equation}
@@ -103,6 +103,6 @@ Considerando um sistema bipartite novamente, temos
 \end{align}
 onde usamos que podemos escrever \(\rho = \rho^{(1)} \otimes \rho^{(2)} + C\) com \(\Tr(C) = \Tr_1(C) = \Tr_2(C) = 0.\) Neste caso, a entropia relativa mede a diferença de entropia devido à correlação \(C.\) Ainda, para estados \(\rho\) e \(\sigma\) do sistema composto, vale
 \begin{equation}
-    \entropy{\rho^{(1)}}{\sigma^{(1)}} \leq \entropy{\rho}{\sigma},
+    \entropy{\rho^{(1)}}{\sigma^{(1)}} \leq \entropy{\rho}{\sigma},\label{eq:relS}
 \end{equation}
 onde \(\rho^{(1)} = \Tr_2\rho\) e \(\sigma^{(1)} = \Tr_2\sigma\) são os estados reduzidos.
