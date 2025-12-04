@@ -4,7 +4,7 @@ Vamos restringir a discussão a um sistema de ótica quântica, em que o sistema
 \begin{equation}
     H_\bath = \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \omega_k \mode{\herm{b}}{k}{\lambda} \mode{b}{k}{\lambda},
 \end{equation}
-decompondo o campo nos modos naturais em um volume \(L\) com condições de contorno periódicas, relembrando que os modos são dados pelo momento \(\vetor{k}\) e polarização \(\lambda\) satisfazendo
+decompondo o campo nos modos naturais em um volume \(\Omega\) com condições de contorno periódicas, relembrando que os modos são dados pelo momento \(\vetor{k}\) e polarização \(\lambda\) satisfazendo
 \begin{equation}
     \vetor{k} \cdot \mode{\vetor{e}}{k}{\lambda} = 0,\quad
     \mode{\vetor{e}}{k}{\lambda} \cdot \mode{\vetor{e}}{k}{\lambda'} = \delta_{\lambda \lambda'}\quad\text{e}\quad
@@ -16,7 +16,7 @@ e a relação de dispersão é dada por \(\omega_k = \norm{\vetor{k}}\) nas unid
 \end{equation}
 onde \(\vetor{D}\) é o operador de dipolo de \(\reduced\) e o campo elétrico \(\vetor{E}\) é dado por
 \begin{equation}
-    \vetor{E} = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{L}} \mode{\vetor{e}}{k}{\lambda} \left(\mode{b}{k}{\lambda} - \mode{\herm{b}}{k}{\lambda}\right)
+    \vetor{E} = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{\Omega}} \mode{\vetor{e}}{k}{\lambda} \left(\mode{b}{k}{\lambda} - \mode{\herm{b}}{k}{\lambda}\right)
 \end{equation}
 na representação de Schrödinger e por
 \begin{equation}
@@ -218,12 +218,14 @@ O estado do sistema pode ser sempre escrito como
     \rho(t) = \frac12 \left[\unity + \vetor{P}(t) \cdot \vetor{\sigma}\right],
 \end{equation}
 então a contribuição do Hamiltoniano para a equação de movimento é
-\begin{equation}
-    \commutator{H_\mathrm{LS}}{\rho(t)} = \frac{\abs{\vetor{d}}^2 \Delta S}{4} P_j(t) \commutator{\sigma_3}{\sigma_j} = i\frac{\abs{\vetor{d}}^2 \Delta S}{4} \epsilon_{3jk} P_j(t) \sigma_k = i\alpha \gamma_0 \vetor{e}_3 \cdot [\vetor{P}(t) \times \vetor{\sigma}],
-\end{equation}
+\begin{align}
+    \commutator{H_\reduced + H_\mathrm{LS}}{\rho(t)} &= \left(\frac12 \omega_0 + \frac{\abs{\vetor{d}}^2 \Delta S}{4}\right) P_j(t) \commutator{\sigma_3}{\sigma_j}\\
+                                                     &= i\left(\frac12 \omega_0 + \frac{\abs{\vetor{d}}^2 \Delta S}{4}\right) \epsilon_{3jk} P_j(t) \sigma_k\\
+                                                     &= i\frac{\alpha}{2}\omega_0 \vetor{e}_3 \cdot [\vetor{P}(t) \times \vetor{\sigma}],
+\end{align}
 onde
 \begin{equation}
-    \alpha = \frac{\abs{\vetor{d}}^2 \Delta S}{4\gamma_0} = \frac{3 \Delta S}{16\omega_0^3}.
+    \alpha = 1 + \frac{\abs{\vetor{d}}^2 \Delta S}{2 \omega_0} = 1 + \frac{3 \gamma_0 \Delta S}{8\omega_0^4}.
 \end{equation}
 Para o dissipador, temos os termos
 \begin{equation}
@@ -241,8 +243,8 @@ portanto \todo[Revisar]
 Tomando o traço com \(\frac12\sigma_j\) e usando que \(\Tr(\sigma_i \sigma_j) = 2 \delta_{ij},\) obtemos as equações de movimento
 \begin{equation}
     \begin{cases}
-        \dot{P}_1(t) = - \alpha \gamma_0 P_2(t) - \frac{\gamma}2 P_1(t)\\
-        \dot{P}_2(t) = \alpha \gamma_0 P_1(t) - \frac{\gamma}2 P_2(t)\\
+        \dot{P}_1(t) = - \frac{\alpha}{2} \omega_0 P_2(t) - \frac{\gamma}2 P_1(t)\\
+        \dot{P}_2(t) = \frac{\alpha}{2} \omega_0 P_1(t) - \frac{\gamma}2 P_2(t)\\
         \dot{P}_3(t) = - \gamma P_3(t) - \gamma_0,
     \end{cases}
 \end{equation}
@@ -254,9 +256,9 @@ Assim, a solução do sistema de equações diferenciais é dada por
         P_1(t)\\
         P_2(t)
     \end{pmatrix}
-    = e^{-\gamma t}\begin{pmatrix}
-        \cos(\alpha \gamma_0 t) && \sin(\alpha \gamma_0 t)\\
-        -\sin(\alpha \gamma_0 t) && \cos(\alpha \gamma_0 t)
+    = e^{-\frac{\gamma t}{2}}\begin{pmatrix}
+        \cos\left(\frac{\alpha}{2} \omega_0 t\right) && -\sin\left(\frac{\alpha}{2} \omega_0 t\right)\\
+        \sin\left(\frac{\alpha}{2} \omega_0 t\right) && \cos\left(\frac{\alpha}{2} \omega_0 t\right)
     \end{pmatrix}
     \begin{pmatrix}
         P_1(0)\\
@@ -276,9 +278,12 @@ e do estado fundamental por
     \rho_g(t) = 1 - \rho_e(t) = \frac{N + 1}{2N + 1} - \frac12\left[\frac{1}{2N+1} + P_3(0)\right] e^{-\gamma t},
 \end{equation}
 com as coerências dadas por
-\begin{equation}
-    \rho_{ge}(t) = \frac{P_1(t) + i P_2(t)}{2} = e^{-\gamma t} \left[\frac{P_1(0) + i P_2(0)}{2}\cos(\alpha \gamma_0 t) - \frac{P_1(0) - i P_2(0)}{2}\sin(\alpha \gamma_0 t)\right]
-\end{equation}
+\begin{align}
+    \rho_{ge}(t) &= \frac{P_1(t) + i P_2(t)}{2}\\
+                 &= e^{-\frac{\gamma t}{2}}  \left[\frac{P_1(0) + i P_2(0)}{2}\cos\left(\frac\alpha2 \omega_0 t\right) + \frac{iP_1(0) - P_2(0)}{2} \sin\left(\frac{\alpha}{2} \omega_0 t\right)\right]\\
+                 &= e^{-\frac{\gamma t}{2}} \frac{P_1(0) + i P_2(0)}{2} \left[\cos\left(\frac\alpha2 \omega_0 t\right) + i \sin\left(\frac{\alpha}{2} \omega_0 t\right)\right]\\
+                 &= e^{-\frac{\gamma t}{2} + i\frac{\alpha}{2} \omega_0 t} \rho_{ge}(0)
+\end{align}
 Para um estado inicial \(\rho(0) = \ketbra{g}{g}\) temos
 \begin{equation}
     \rho_e(t) = \frac{N}{2N + 1} \left(1 - e^{- \gamma t}\right)
