@@ -23,7 +23,7 @@ e podemos, portanto, escrever
 \end{equation}
 onde \(\mathscr{L}(t)\) é o chamado \emph{gerador de Lindblad}. Agora, a equação diferencial para o estado do sistema reduzido é
 \begin{equation}
-    i\diff{\rho_\reduced(t)}{t} = \mathcal{L}(t) \rho_\reduced(t),
+    \diff{\rho_\reduced(t)}{t} = \mathcal{L}(t) \rho_\reduced(t),
 \end{equation}
 que é dita na forma de Lindblad. Essa equação é uma generalização da equação de Liouville-von Neumann para sistemas fechados.
 
@@ -86,11 +86,11 @@ Para escrever o Lindbladiano em uma forma familiar ao operador de Liouville-von 
 \end{equation}
 e temos
 \begin{align}
-    \mathcal{L}\rho_\reduced(t_0) &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
-                           &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + \frac{F + \herm{F}}{2} \rho_\reduced + \frac{F - \herm{F}}{2}\rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
-                           &= G \rho_\reduced + \frac{a_{N^2 N^2}}{2N} - i H \rho_\reduced + \rho_\reduced \herm{F} + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
-                           &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
-                           &= \anticommutator{G(t_0)}{\rho_\reduced(t_0)} - i \commutator{H(t_0)}{\rho_\reduced(t_0)} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij}(t_0) F_i \rho_\reduced(t_0) \herm{F}_j.
+    \mathcal{L}\rho_\reduced &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + F \rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                             &= \frac{a_{N^2 N^2}}{N}\rho_\reduced + \frac{F + \herm{F}}{2} \rho_\reduced + \frac{F - \herm{F}}{2}\rho_\reduced + \rho_\reduced \herm{F} +  \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                             &= G \rho_\reduced + \frac{a_{N^2 N^2}}{2N} - i H \rho_\reduced + \rho_\reduced \herm{F} + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                             &= G\rho_\reduced + \rho_\reduced G + i \rho_\reduced H - i H \rho_\reduced + \sum_{i = 1}^{N^2- 1} \sum_{j = 1}^{N^2 - 1} a_{ij} F_i \rho_\reduced \herm{F}_j\\
+                             &= \anticommutator{G}{\rho_\reduced} - i \commutator{H}{\rho_\reduced} + \sum_{i = 1}^{N^2-1} \sum_{j = 1}^{N^2 -1} a_{ij} F_i \rho_\reduced \herm{F}_j.
 \end{align}
 Como o mapa dinâmico preserva o traço, temos
 \begin{equation}
@@ -120,21 +120,21 @@ de forma que
 \end{equation}
 e
 \begin{equation}
-    \sum_{i = 1}^{N^2 - 1} \sum_{j = 1}^{N^2 - 1} a_{ij} \anticommutator{\herm{F}_j F_i}{\rho_\reduced(t_0)} = \sum_{k = 1}^{N^2 - 1} \gamma_k \anticommutator{\herm{A}_k A_k}{\rho_\reduced}
+    \sum_{i = 1}^{N^2 - 1} \sum_{j = 1}^{N^2 - 1} a_{ij} \anticommutator{\herm{F}_j F_i}{\rho_\reduced} = \sum_{k = 1}^{N^2 - 1} \gamma_k \anticommutator{\herm{A}_k A_k}{\rho_\reduced}
 \end{equation}
 analogamente. Assim, o Lindbladiano é dado por
 \begin{align}
-    \mathcal{L}\rho_\reduced(t_0) &= - i \commutator*{H}{\rho_\reduced(t_0)} + \sum_{i=1}^{N^2 - 1} \sum_{j = 1}^{N^2-1} a_{ij} \left[F_i \rho_\reduced(t_0) \herm{F}_j - \frac12 \anticommutator*{\herm{F}_j F_i}{\rho_\reduced(t_0)}\right]\\
-                                  &= -i \commutator*{H}{\rho_\reduced(t_0)} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right)
+    \mathcal{L}\rho_\reduced &= - i \commutator*{H}{\rho_\reduced} + \sum_{i=1}^{N^2 - 1} \sum_{j = 1}^{N^2-1} a_{ij} \left[F_i \rho_\reduced \herm{F}_j - \frac12 \anticommutator*{\herm{F}_j F_i}{\rho_\reduced}\right]\\
+                                  &= -i \commutator*{H}{\rho_\reduced} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced}\right)
                                   &
 \end{align}
 e podemos escrever a equação de Lindblad
 \begin{equation}
-    \diff{\rho_\reduced(t)}{t} = -i \commutator*{H}{\rho_\reduced(t_0)} + \mathcal{D}\rho_\reduced(t_0),
+    \diff{\rho_\reduced(t)}{t} = -i \commutator*{H}{\rho_\reduced(t)} + \mathcal{D}\rho_\reduced(t),
 \end{equation}
 onde definimos o \emph{dissipador} por
 \begin{equation}
-    \mathcal{D}\rho_\reduced(t_0) = \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced(t_0)}\right).
+    \mathcal{D}\rho_\reduced = \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced}\right).
 \end{equation}
 É importante ter claro que \(H\) não é, em geral, o Hamiltoniano do sistema livre, já que pode conter termos extras devido ao acoplamento com o ambiente.
 
@@ -207,7 +207,7 @@ Consideramos dois estados \(\rho(t)\) e \(\rho_0(t)\) do sistema reduzido induzi
                                &= \entropy{\rho(t_0) \otimes \rho_\bath(t_0)}{\rho_0(t_0) \otimes \rho_\bath(t_0)}\\
                                &= \entropy{\rho(t_0)}{\rho_0(t_0)},
 \end{align}
-onde usamos a propriedade \todo[entropia relativa]. Vamos supor agora que \(\rho_0(t_0) = \rho_0\) é um estado estacionário de \(\reduced,\) com \(\mathcal{V}(t,t_0) \rho_0 = \rho_0\) para todo \(t > t_0,\) então
+onde usamos a propriedade \eqref{eq:relS}. Vamos supor agora que \(\rho_0(t_0) = \rho_0\) é um estado estacionário de \(\reduced,\) com \(\mathcal{V}(t,t_0) \rho_0 = \rho_0\) para todo \(t > t_0,\) então
 \begin{equation}
     \entropy{\rho(t)}{\rho_0} \leq \entropy{\rho(t_0)}{\rho_0} \implies \sigma(\rho(t)) = -\diff*{\entropy{\rho(t)}{\rho_0}}{t} \geq 0,
 \end{equation}
