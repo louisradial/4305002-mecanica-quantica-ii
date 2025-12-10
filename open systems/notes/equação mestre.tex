@@ -2,22 +2,22 @@
 \chapter{Equação mestre Markoviana}
 Partindo da equação de Liouville-von Neumann para o estado do sistema composto,
 \begin{equation}
-    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)}
+    \diff{\rho(t)}{t} = -i\commutator{H(t)}{\rho(t)},
 \end{equation}
 podemos tomar o traço parcial e obter
 \begin{equation}
-    i\diff{\rho_\reduced(t)}{t} = \Tr_\bath\commutator{H(t)}{\rho(t)}.
+    \diff{\rho_\reduced(t)}{t} = -i\Tr_\bath\commutator{H(t)}{\rho(t)}.
 \end{equation}
-Gostaríamos de expressar a equação acima apenas em termos de operadores que agem no sistema \(\reduced,\) já que a equação acima pode ser tecnicamente difícil de se resolver e, mais importante, podemos não saber a dinâmica do sistema ambiente. 
+Gostaríamos de expressar a equação acima apenas em termos de operadores que agem no sistema \(\reduced,\) já que podemos não saber a dinâmica do sistema ambiente.
 
 \section{Equação de Lindblad}
 Vamos considerar o caso em que as correlações a partir do instante \(t_0\) não são significativas para a dinâmica de \(\reduced.\) Podemos ter essa condição se a correlação do ambiente decai muito mais rapidamente do que o tempo característico do processo considerado para o sistema. Assim, efeitos de memória não são significativos e conseguimos desenvolver uma teoria Markoviana.\cite{breuer} 
 
-No caso considerado, a família de mapas dinâmicos universais satisfaz a propriedade 
+No caso considerado, vamos supor que a família de mapas dinâmicos universais satisfaz a propriedade
 \begin{equation}
-    V(t, t') V(t', t_0) = V(t,t_0)
+    V(t, t') V(t', t_0) = V(t,t_0),
 \end{equation}
-e podemos, portanto, escrever
+onde tomamos a correlação do sistema composto em \(t'\) como aproximadamente nula. Dessa forma, portanto, escrevemos em analogia à \eqref{eq:liouville} que o mapa dinâmico é dado por
 \begin{equation}
     \mathcal{V}(t,t_0) = \texpl\left[\int_{t_0}^{t} \dli{s} \mathcal{L}(s)\right],
 \end{equation}
@@ -25,7 +25,7 @@ onde \(\mathscr{L}(t)\) é o chamado \emph{gerador de Lindblad}. Agora, a equaç
 \begin{equation}
     \diff{\rho_\reduced(t)}{t} = \mathcal{L}(t) \rho_\reduced(t),
 \end{equation}
-que é dita na forma de Lindblad. Essa equação é uma generalização da equação de Liouville-von Neumann para sistemas fechados.
+que é dita na forma de Lindblad. Essa equação é uma generalização para sistemas abertos da equação de Liouville-von Neumann.
 
 A fim de evitar tecnicalidades, vamos tomar o caso de um espaço de Hilbert de dimensão finita para o sistema reduzido, \(\dim\mathscr{H}_\reduced = N \in \mathbb{N}\) e o caso de que o sistema reduzido não está em contato com um campo externo dependente do tempo, em que podemos tomar \(\mathcal{L}(t) = \mathcal{L}.\) Seja então \(\family{F_i}{1 \leq N^2}\) uma base ortonormal de operadores agindo em \(\mathscr{H}_\reduced,\) com
 \begin{equation}
@@ -55,8 +55,8 @@ onde definimos os coeficientes
 e positiva,
 \begin{align}
     \sum_{i=1}^{N^2} \sum_{j=1}^{N^2} v_i^* c_{ij}  v_j &= \sum_{i=1}^{N^2} \sum_{j=1}^{N^2}{v_i^* v_j \sum_{\alpha\beta}{\inner{F_i}{K_{\alpha\beta}(t)} \inner{F_j}{K_{\alpha\beta}(t)}^*}}\\
-                                &= \sum_{\alpha\beta}{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)} \inner*{\sum_{j = 1}^{N^2} v_j F_j}{K_{\alpha\beta}(t)}^*}\\
-                                &= \sum_{\alpha\beta}{\abs*{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)}}^2} \geq 0.
+                                                        &= \sum_{\alpha\beta}{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)} \inner*{\sum_{j = 1}^{N^2} v_j F_j}{K_{\alpha\beta}(t)}^*}\\
+                                                        &= \sum_{\alpha\beta}{\abs*{\inner*{\sum_{i = 1}^{N^2} v_i F_i}{K_{\alpha\beta}(t)}}^2} \geq 0.
 \end{align}
 
 Para que haja um gerador\cite{reedsimon1}, vamos supor que a família \(\family{\mathcal{V}(t,t_0)}{t \geq t_0}\) é contínua e então 
@@ -125,8 +125,8 @@ e
 analogamente. Assim, o Lindbladiano é dado por
 \begin{align}
     \mathcal{L}\rho_\reduced &= - i \commutator*{H}{\rho_\reduced} + \sum_{i=1}^{N^2 - 1} \sum_{j = 1}^{N^2-1} a_{ij} \left[F_i \rho_\reduced \herm{F}_j - \frac12 \anticommutator*{\herm{F}_j F_i}{\rho_\reduced}\right]\\
-                                  &= -i \commutator*{H}{\rho_\reduced} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced}\right)
-                                  &
+                             &= -i \commutator*{H}{\rho_\reduced} + \sum_{k = 1}^{N^2 -1} \gamma_k \left(A_k \rho_\reduced \herm{A}_k - \frac12 \anticommutator*{\herm{A}_k A_k}{\rho_\reduced}\right)
+                             &
 \end{align}
 e podemos escrever a equação de Lindblad
 \begin{equation}
@@ -166,7 +166,7 @@ Dessa forma, os operadores na representação de Heisenberg satisfazem
 \end{equation}
 que é a chamada equação adjunta. 
 
-Notamos que a equação adjunta não é escrita, em geral, em termos de \(B_H(t),\) então devemos conhecer o gerador \(\herm{\mathcal{L}}(t).\) No contexto da equação de Lindblad, o gerador \(\herm{\mathcal{L}}\) não depende do tempo e, portanto, comuta com \(\herm{\mathcal{V}}(t,t_0)\) e temos
+Notamos que a equação adjunta não é escrita, em geral, em termos de \(B_H(t),\) então devemos conhecer o gerador \(\herm{\mathcal{L}}(t).\) No contexto da equação de Lindblad, o gerador \(\herm{\mathcal{L}}\) não depende do tempo e, portanto, comuta com \(\herm{\mathcal{V}}(t,t_0).\) Neste caso, temos
 \begin{align}
     \diff{B_H(t)}{t} &= \herm{\mathcal{L}} \herm{\mathcal{V}}(t,t_0) B\\
                      &= \herm{\mathcal{L}} B_H(t)\\
@@ -196,16 +196,16 @@ Assim, as funções de correlação de dois pontos satisfazem o mesmo sistema de
                                           &= \sum_{j} G_{ij} \Tr\left\{\herm{\mathcal{V}}(t+s,t) B_j B_\ell(t) \rho\right\}\\
                                           &= \sum_j G_{ij} \mean{B_j(t + s) B_\ell(t)},
 \end{align}
-e este resultado é conhecido como o teorema de regressão.
+resultado conhecido como o teorema de regressão.
 
 \section{Produção de entropia}
 Consideramos dois estados \(\rho(t)\) e \(\rho_0(t)\) do sistema reduzido induzidos a partir de \(\mathcal{V}(t,t_0)\). A entropia relativa entre esses estados satisfaz
 \begin{align}
     \entropy{\rho(t)}{\rho_0(t)} &= \entropy{\mathcal{V}(t,t_0)\rho(t_0)}{\mathcal{V}(t,t_0) \rho_0(t)}\\
-                               &= \entropy{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0) \right]}{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0) \right]}\\
-                               &\leq \entropy{\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0)}{\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0)}\\
-                               &= \entropy{\rho(t_0) \otimes \rho_\bath(t_0)}{\rho_0(t_0) \otimes \rho_\bath(t_0)}\\
-                               &= \entropy{\rho(t_0)}{\rho_0(t_0)},
+                                 &= \entropy{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0) \right]}{\Tr_\bath\left[\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0) \right]}\\
+                                 &\leq \entropy{\mathcal{U}(t,t_0) \rho(t_0) \otimes \rho_\bath(t_0)}{\mathcal{U}(t,t_0) \rho_0(t_0) \otimes \rho_\bath(t_0)}\\
+                                 &= \entropy{\rho(t_0) \otimes \rho_\bath(t_0)}{\rho_0(t_0) \otimes \rho_\bath(t_0)}\\
+                                 &= \entropy{\rho(t_0)}{\rho_0(t_0)},
 \end{align}
 onde usamos a propriedade \eqref{eq:relS}. Vamos supor agora que \(\rho_0(t_0) = \rho_0\) é um estado estacionário de \(\reduced,\) com \(\mathcal{V}(t,t_0) \rho_0 = \rho_0\) para todo \(t > t_0,\) então
 \begin{equation}
@@ -221,7 +221,7 @@ Consideramos o contexto da equação de Lindblad novamente e vamos supor que o e
 \begin{equation}
     \mathcal{L}\rho_T = \mathcal{D} \rho_T = 0.
 \end{equation}
-Queremos identificar \(\sigma(\rho)\) com o balanço de entropia
+Assumindo que o sistema \(\reduced\) está em contato com um banho térmico \(\bath\) à temperatura \(T\), tal escolha é justificada\cite{breuer} se assumirmos que o sistema é ergódico. Queremos identificar \(\sigma(\rho)\) com o balanço de entropia
 \begin{equation}
     \sigma = \diff{S}{t} + J
 \end{equation}
@@ -231,7 +231,7 @@ Notemos que a entropia de von Neumann para um estado \(\rho(t)\) satisfaz
 \begin{equation}
     \diff{S(\rho)}{t} = - \Tr\left[ (\mathcal{L}\rho) \ln \rho + \mathcal{L} \rho\right] = - \Tr \left[(\mathcal{L}\rho) \ln \rho\right],
 \end{equation}
-já que \(\Tr(\mathcal{L}\rho) = 0.\) O fluxo de entropia é dado pelas variação da energia interna \(E = \Tr(H \rho)\) resultante de efeitos dissipativos,
+já que \(\Tr(\mathcal{L}\rho) = 0.\) O fluxo de entropia é fruto da variação da energia interna \(E = \Tr(H \rho)\) resultante de efeitos dissipativos,
 \begin{equation}
     J = -\frac1T \diff{E}{t}[\mathrm{dissipativo}] = - \frac1T \Tr(H \mathcal{D}\rho) = - \frac1T \Tr(H \mathcal{L}\rho).
 \end{equation}
@@ -252,11 +252,11 @@ portanto
 como desejado.
 
 \section{Limite de acoplamento fraco}
-Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o hamiltoniano livre \(H_\reduced\) do hamiltoniano do sistema total
+Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o Hamiltoniano livre \(H_\reduced\) do sistema total
 \begin{equation}
     H_{\reduced\bath} = H_\reduced \otimes \unity_\bath + \unity_\reduced \otimes H_\bath + V.
 \end{equation}
-Vamos assumir que o sistema \(\reduced\) é fracamente acoplado com o ambiente \(\bath\) para determinar condições que induzem as condições da equação de Lindblad, assim como expressar \(H\) em termos de \(H_\reduced.\)
+Vamos assumir que o sistema \(\reduced\) é fracamente acoplado com o ambiente \(\bath\) para determinar condições que induzem a dinâmica da equação de Lindblad, assim como expressar \(H\) em termos de \(H_\reduced.\)
 
 Na representação de interação, temos a equação de Liouville-von Neumann
 \begin{equation}
@@ -278,7 +278,8 @@ assumindo que
 \begin{equation}
     \Tr_\bath \commutator{V_I(t)}{\rho^I_{\reduced\bath}(t_0)} = 0,
 \end{equation}
-que mostraremos que se resume a dizer que as médias no ambiente da interação são nulas.
+que mostraremos que se resume a dizer que as médias no ambiente da interação são nulas. Vale observar que o valor deste traço deve apenas ser conhecido para que o resto do tratamento seja válido, mas que o valor tomado simplifica o resultado.
+
 Consideramos a aproximação de Born, assumindo que a influência do sistema no ambiente seja pequena graças ao fraco acoplamento, e tomar \(\rho_{\reduced\bath}(t) \approx \rho(t) \otimes \rho_\bath(t_0).\) Nesse caso, temos
 \begin{equation}
     \rho^I_{\reduced\bath}(t) = e^{i H_\reduced t}\rho(t)e^{-i H_\reduced t} \otimes e^{i H_\bath t}\rho_\bath e^{-i H_\bath t}
@@ -300,7 +301,7 @@ Por ora vamos limpar a notação e escrever \(\rho(t)\) para a matriz densidade 
 Ainda, tomamos a aproximação de Markov em que substituímos \(\rho(s) \to \rho(t)\) na integral, obtendo
 \begin{align}
     \diff*{\rho(t)}{t} &= - \int_{t_0}^t \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(s)}{\rho(t) \otimes \rho_\bath}}\\
-                         &= - \int_{0}^{t - t_0} \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(t - s)}{\rho(t) \otimes \rho_\bath}}
+                       &= - \int_{0}^{t - t_0} \dli{s} \Tr_\bath\commutator*{V_I(t)}{\commutator{V_I(t - s)}{\rho(t) \otimes \rho_\bath}}
 \end{align}
 chamada de equação de Redfield. Para obter uma equação Markoviana, precisamos eliminar a dependência com o instante \(t_0\) em que o estado foi preparado no estado produto. Seja \(\tau_\bath\) a escala de tempo de decaimento das funções de correlação do ambiente, então se para \(s \gg \tau_\bath\) o integrando da equação de Redfield cai rapidamente e se a escala de tempo da dinâmica do sistema de interesse é muito maior que \(\tau_\bath,\) aproximamos a equação de Redfield para
 \begin{equation}
@@ -312,7 +313,7 @@ Vamos escrever o potencial de interação como
 \begin{equation}
     V = \sum_{\alpha} A_\alpha \otimes B_\alpha,
 \end{equation}
-com os operadores autoadjuntos \(A_\alpha\) e \(B_\beta\) agindo nos sistemas \(\reduced\) e \(\bath,\) respectivamente. Consideramos os operadores definidos por
+com os operadores \(A_\alpha\) e \(B_\beta\) agindo nos sistemas \(\reduced\) e \(\bath,\) respectivamente. Consideramos os operadores definidos por
 \begin{equation}
     A_\alpha(\omega) = \sum_{\epsilon' - \epsilon = \omega} \Pi(\epsilon) A_\alpha \Pi(\epsilon')
     \quad\text{e}\quad
@@ -360,7 +361,11 @@ Agora vemos que a condição assumida implica que as médias do ambiente \(\mean
                                                                  &\implies \sum_{\alpha,\omega} e^{-i \omega t} \commutator{A_\alpha(\omega)}{\rho(t_0)} \mean{B_\alpha(t)} = 0\\
                                                                  &\implies \mean{B_\alpha(t)} = 0,
 \end{align}
-onde usamos a independência linear da família de funções exponenciais \(e^{-i \omega t}\) assim como invocamos a liberdade de escolha do estado reduzido \(\rho(t_0).\)
+onde usamos a independência linear da família de funções exponenciais \(e^{-i \omega t}\) assim como invocamos a liberdade de escolha do estado reduzido \(\rho(t_0).\) Ademais, se as médias \(\mean{B_\alpha(t)}\) forem não nulas mas conhecidas e dadas por funções \(f_\alpha(t),\) poderíamos apenas somar a quantidade
+\begin{equation*}
+    \sum_{\alpha,\omega} e^{-i \omega t} \commutator{A_\alpha(\omega)}{\rho(t_0)} f_\alpha(t)
+\end{equation*}
+à equação de Redfield.
 
 Podemos agora substituir a expressão deste hamiltoniano na equação mestre. Temos
 \begin{align}
@@ -390,7 +395,7 @@ Neste momento retornamos às condições da aproximação de Born-Markov. Primei
                                              &= \Tr_\bath\left[\herm{B}_\alpha(s) B_\beta(0) \rho_\bath\right]\\
                                              &= \mean{\herm{B}_\alpha(s) B_\beta(0)},
 \end{align}
-e então as quantidades \(\Gamma_{\alpha\beta}(t, \omega)\) não dependem de \(t\) e escrevemos apenas \(\Gamma_{\alpha\beta}(\omega).\) Além disso, consideramos a escala de tempo típica da evolução do sistema reduzido, \(\tau_\reduced \sim \abs{\omega' - \omega}^{-1},\) e impomos que \(\tau_\reduced\) é muito maior que o tempo de relaxamento \(\tau_R,\) então podemos desprezar os termos com \(\omega \neq \omega',\) por oscilarem muito durante o período \(\tau_R\) em que o estado \(\rho_\reduced\) varia de forma significativa. Essa aproximação é conhecida como a aproximação de onda rotante\cite{fleming}, e obtemos
+e então as quantidades \(\Gamma_{\alpha\beta}(t, \omega)\) não dependem de \(t\) e escrevemos apenas \(\Gamma_{\alpha\beta}(\omega).\) Além disso, consideramos a escala de tempo típica da evolução do sistema reduzido, \(\tau_\reduced \sim \abs{\omega' - \omega}^{-1},\) e impomos que \(\tau_\reduced\) é muito maior que o tempo de relaxamento \(\tau_R.\) Podemos assim desprezar os termos com \(\omega \neq \omega',\) por oscilarem muito durante o período \(\tau_R\) em que o estado \(\rho_\reduced\) varia de forma significativa. Essa aproximação é conhecida como a aproximação de onda rotante\cite{fleming}, e obtemos
 \begin{equation}
     \diff*{\rho(t)}{t} = \sum_{\omega} \sum_{\alpha, \beta} \left(\Gamma_{\alpha\beta}(\omega) \commutator{A_\beta(\omega) \rho(t)}{\herm{A}_\alpha(\omega)} + \Gamma_{\alpha\beta}^*(\omega) \commutator{A_\alpha(\omega)}{\rho(t)\herm{A}_\beta(\omega)}\right).
 \end{equation}
@@ -403,8 +408,8 @@ Para obter uma equação na forma de Lindblad, definimos as matrizes hermitianas
 então, suprimindo a dependência de \(t\) e de \(\omega,\) temos
 \begin{align}
     \diff*{\rho(t)}{t} &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \left(\gamma_{\alpha\beta}\commutator{A_\beta \rho}{\herm{A}_\alpha} + \gamma^*_{\alpha\beta}\commutator{A_\alpha}{\rho \herm{A}_\beta}\right) + i \left(S_{\alpha\beta}\commutator{A_\beta \rho}{\herm{A}_\alpha} - S_{\alpha \beta}^*\commutator{A_\alpha}{\rho \herm{A}_\beta}\right)\right]\\
-    &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(\commutator{A_\beta \rho}{\herm{A}_\alpha} + \commutator{A_\beta}{\rho \herm{A}_\alpha}\right) + i S_{\alpha\beta} \left(\commutator{A_\beta \rho}{\herm{A}_\alpha} - \commutator{A_\beta}{\rho \herm{A}_\alpha}\right)\right]\\
-    &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(2 A_\beta\rho \herm{A}_\alpha - \anticommutator{\herm{A}_\alpha A_\beta}{\rho}\right) - iS_{\alpha\beta} \commutator{\herm{A}_\alpha A_\beta}{\rho}\right].
+                       &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(\commutator{A_\beta \rho}{\herm{A}_\alpha} + \commutator{A_\beta}{\rho \herm{A}_\alpha}\right) + i S_{\alpha\beta} \left(\commutator{A_\beta \rho}{\herm{A}_\alpha} - \commutator{A_\beta}{\rho \herm{A}_\alpha}\right)\right]\\
+                       &= \sum_{\omega} \sum_{\alpha,\beta} \left[\frac12 \gamma_{\alpha\beta}\left(2 A_\beta\rho \herm{A}_\alpha - \anticommutator{\herm{A}_\alpha A_\beta}{\rho}\right) - iS_{\alpha\beta} \commutator{\herm{A}_\alpha A_\beta}{\rho}\right].
 \end{align}
 Definindo o Hamiltoniano 
 \begin{equation}
