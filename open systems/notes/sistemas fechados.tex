@@ -40,13 +40,14 @@ temos a evolução temporal
 \end{equation}
 logo a matriz densidade satisfaz a equação de Liouville-von Neumann
 \begin{equation}
-    i\diff{\rho(t)}{t} = \commutator{H(t)}{\rho(t)} = \mathcal{L}(t)\left\{\rho(t)\right\}
+    \diff{\rho(t)}{t} = -i\commutator{H(t)}{\rho(t)} = \mathcal{L}(t)\left\{\rho(t)\right\}
 \end{equation}
-onde \(\mathcal{L}(t)\) é o operador linear agindo no espaço de operadores dado por \(\mathcal{L}(t)\left\{A\right\} = \commutator{H(t)}{A}\). Podemos escrever a solução formal
+onde \(\mathcal{L}(t)\) é o operador linear agindo no espaço de operadores dado por \(\mathcal{L}(t)\left\{A\right\} = -i\commutator{H(t)}{A}\). Podemos escrever a solução formal
 \begin{equation}
-    \rho(t) = \texpl\left[-i \int_{t_0}^t\dli{s} \mathcal{L}(t)\right]\left\{\rho(t_0)\right\},
+    \rho(t) = \texpl\left[\int_{t_0}^t\dli{s} \mathcal{L}(t)\right]\left\{\rho(t_0)\right\},
+    \label{eq:liouville}
 \end{equation}
-e temos pelo lema de Campbell
+e temos pelo lema de Campbell,
 \begin{equation}
     e^{sX} Y e^{-sX} = Y + \sum_{m = 1}^\infty \frac{s^m\commutator{X}{Y}^{[m]}}{m!},
     \;\text{com}\;
@@ -56,7 +57,7 @@ e temos pelo lema de Campbell
 \end{equation}
 que no caso de sistemas isolados vale
 \begin{align}
-    \rho(t) &= \exp\left[-i (t-t_0) \mathcal{L}\right]\left\{\rho(t_0)\right\}\\
+    \rho(t) &= \exp\left[(t-t_0) \mathcal{L}\right]\left\{\rho(t_0)\right\}\\
             &= \rho(t_0) + \sum_{m = 1}^\infty \frac{[-i(t - t_0)]^m}{m!} \commutator{H}{\rho(t_0)}^{[m]}\\
             &= e^{-i (t-t_0) H} \rho(t_0) e^{i (t - t_0) H}
             % &= U(t, t_0) \rho(t_0) \herm{U}(t, t_0)
