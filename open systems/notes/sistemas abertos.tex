@@ -1,27 +1,36 @@
 % vim: spl=pt
 \chapter{Evolução temporal de sistemas abertos}
 \nocite{susana}
-Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho,\) já que medidas de tais quantidades são dadas por
+Vamos considerar agora sistemas compostos por um sistema de interesse \(\reduced\), ou sistema \emph{reduzido}, e um sistema ambiente \(\bath,\) de forma que o espaço de Hilbert do sistema total é \(\mathscr{H} = \mathscr{H}_\reduced \otimes \mathscr{H}_\bath.\) O Hamiltoniano mais geral que podemos escrever para o sistema composto é
+\begin{equation*}
+    H = H_\reduced \otimes \unity_\bath + \unity_\reduced \otimes H_\bath + V,
+\end{equation*}
+onde \(H_\reduced\) e \(H_\bath\) são os Hamiltonianos livres dos sistemas de interesse e ambiente e onde \(V\) é o termo de interação, se houver, entre os subsistemas.
+
+Se os sistemas de interesse e ambiente interagem, dizemos que são \emph{sistemas abertos}. Relacionando com os postulados da Mecânica Quântica, a interação do sistema aberto \(\reduced\) não pode ser escrita como um operador agindo apenas no espaço de Hilbert \(\mathscr{H}_\reduced\). Esta observação deve ser contrastada com o postulado de que em \emph{sistemas fechados} todos os observáveis são descritos por operadores agindo no espaço de Hilbert \(\mathscr{H}\) que descreve o sistema.
+
+Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto já que medidas de tais quantidades são dadas por
 \begin{equation}
-    \mean{A} = \Tr\left[\rho(A \otimes \unity_\bath) \right] = \Tr_\reduced(\rho_\reduced A).
+    \mean{A} = \Tr\left[\rho(A \otimes \unity_\bath) \right] = \Tr_\reduced(\rho_\reduced A),
 \end{equation}
+a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho.\) Assim, se soubermos como o estado reduzido \(\rho_\reduced\) evolui temporalmente, podemos tratar o sistema aberto sem menção do sistema composto ou do sistema ambiente.
+
 Tomando o caso em que em algum instante \(t_0\) o estado do sistema total \(\rho(t_0)\) é não correlacionado e o estado do sistema reduzido é \(\rho_\reduced(t_0),\) então podemos escrever \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0).\) Da evolução temporal, temos \(\rho(t) = U(t, t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\) e então o estado do sistema reduzido é dado por
 \begin{equation}
     \rho_\reduced(t) = \Tr_\bath\left\{U(t,t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\right\}.
 \end{equation}
-No caso particular em que o operador evolução se fatora \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) sabemos que
+No caso particular em que não há interação, \(V = 0,\) o operador evolução se fatora \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) portanto sabemos que
 \begin{equation}
-    \rho_\reduced(t) = U_\reduced(t,t_0) \rho_\reduced(t_0) \herm{U}_\reduced(t, t_0) = \mathcal{V}(t,t_0)\rho_\reduced(t_0),
+    \rho_\reduced(t) = U_\reduced(t,t_0) \rho_\reduced(t_0) \herm{U}_\reduced(t, t_0) = \mathcal{U}_\reduced(t,t_0)\rho_\reduced(t_0),
 \end{equation}
-onde definimos o superoperador \(\mathcal{V}(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\)
-
+onde definimos o superoperador \(\mathcal{U}_\reduced(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\) De acordo com a definição dada, esse é o caso em que os sistemas \(\reduced\) e \(\bath\) são fechados, portanto esse é o resultado esperado. 
 
 \section{Mapa dinâmico}
 É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
 \begin{equation}
     \rho_\reduced(t) = \mathcal{V}(t,t_0) \rho_\reduced(t_0),
 \end{equation}
-isto é, uma aplicação que codifica toda a dinâmica com o subsistema \(\bath\). Entretanto, no caso geral o mapa dinâmico não depende apenas do operador de evolução \(U(t,t_0)\) e de \(\bath,\) mas também depende do estado inicial de \(\reduced.\) Para ver isso, consideramos que no instante \(t_0\) os estados de \(\reduced\) e de \(\bath\) são \(\rho_\reduced(t_0)\) e \(\rho_\bath(t_0)\) mas que possivelmente há correlação
+isto é, uma aplicação que codifica toda a dinâmica de \(\reduced\) devido à interação com o subsistema \(\bath\). Entretanto, no caso geral o mapa dinâmico não depende apenas do operador de evolução \(U(t,t_0)\) e de \(\bath,\) mas também depende do estado inicial de \(\reduced,\) e em particular da correlação entre os estados dos subsistemas. Para ver isso, consideramos que no instante \(t_0\) os estados de \(\reduced\) e de \(\bath\) são \(\rho_\reduced(t_0)\) e \(\rho_\bath(t_0)\) mas que possivelmente há correlação
 \begin{equation}
     \rho_c(t_0) = \rho(t_0) - \rho_\reduced(t_0) \otimes \rho_\bath(t_0),
 \end{equation}
@@ -46,7 +55,7 @@ e então a evolução do sistema reduzida é dada por
                      &= \sum_{\alpha,\beta} K_{\alpha \beta}(t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0) + \Tr_\bath\left[\mathcal{U}(t,t_0) \rho_c(t_0)\right]\\
                      &= \mathcal{V}(t,t_0) \rho_\reduced(t_0),
 \end{align}
-onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \rho = U(t,t_0) \rho \herm{U}(t,t_0).\) O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, do estado inicial \(\rho_\reduced(t_0).\) 
+onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \rho = U(t,t_0) \rho \herm{U}(t,t_0).\) O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, de forma não trivial dos estados iniciais \(\rho_\reduced(t_0),\) \(\rho_\bath(t_0)\) e da correlação \(\rho_c(t_0)\) neste instante.
 
 \begin{example}{Evolução temporal de um qubit com ambiente de um qubit\cite{piotr}}{qubit}
     Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial dado pelo estado produto \(\rho(0) = \ketbra{\rightarrow}{\rightarrow} \otimes \ketbra{\rightarrow}{\rightarrow},\) onde \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t)\) assim como a entropia de von Neumann, \(S(t) = -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right].\)
@@ -101,7 +110,7 @@ O \cref{exam:qubit} exibe uma clara diferença entre sistemas abertos e sistemas
     S\left(\frac{n\pi}{\omega}\right) = 0\quad\text{e}\quad
     S\left(\frac{(n + \frac12)\pi}{\omega}\right) = \ln2,
 \end{equation}
-portanto o sistema reduzido alterna periodicamente entre o estado de máxima entropia \(\rho(\frac{\pi}{2\omega})= \frac12 \unity\) e os estados puros \(\rho(0) = \ketbra{\rightarrow}{\rightarrow}\) e \(\rho(\frac{\pi}{\omega}) = \ketbra{\leftarrow}{\leftarrow}\). Dessa forma, a evolução temporal de um sistema aberto não é, em geral, unitária.
+portanto o sistema reduzido alterna periodicamente entre o estado de máxima entropia \(\rho(\frac{\pi}{2\omega})= \frac12 \unity\) e os estados puros \(\rho(0) = \ketbra{\rightarrow}{\rightarrow}\) e \(\rho(\frac{\pi}{\omega}) = \ketbra{\leftarrow}{\leftarrow}\). Dessa forma, a evolução temporal de um sistema aberto não é, em geral, unitária, por permitir a transição de estados de mistura para estados puros e vice-versa.
 
 \section{Mapas dinâmicos universais}
 Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
@@ -147,4 +156,4 @@ já que \(\rho_\reduced(t_0)\) é positiva.
 \begin{equation}
     U(t,t_0) = U(t,t') U(t', t_0)
 \end{equation}
-para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity.\)
+para mapas dinâmicos universais. De fato, o estado do sistema no instante \(t'\) pode ter correlação, e então um mapa dinâmico \(\mathcal{V}(t, t')\) não seria universal. De toda forma, a dinâmica do sistema reduzido é dada pela família a \emph{um} parâmetro de superoperadores \(\family{\mathcal{V}(t,t_0)}{t \geq t_0},\) com \(\mathcal{V}(t_0,t_0) = \unity,\) onde \(t_0\) é fixo por ser o instante em que o estado inicial não apresenta correlação.
