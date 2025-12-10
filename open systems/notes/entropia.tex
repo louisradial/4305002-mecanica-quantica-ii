@@ -32,14 +32,15 @@ Para um sistema bipartite \(\mathscr{H} = \mathscr{H}_1 \otimes \mathscr{H}_2\),
 \begin{equation}
     S(\rho) \leq S(\rho^{(1)}) + S(\rho^{(2)}),
 \end{equation}
-onde \(\rho^{(1)} = \Tr_2 \rho\) e \(\rho^{(2)} = \Tr_1 \rho\) são os estados reduzidos dos subsistemas. A igualdade se dá no caso em que o estado \(\rho\) não apresenta correlação, \(\rho = \rho^{(1)} \otimes \rho^{(2)},\) já que
+onde \(\rho^{(1)} = \Tr_2 \rho\) e \(\rho^{(2)} = \Tr_1 \rho\) são os estados reduzidos dos subsistemas. A subaditividade da entropia de von Neumann estabelece que ao tomar o traço parcial de cada componente do sistema perdemos informação. A igualdade se dá no caso em que o estado \(\rho\) não apresenta correlação, \(\rho = \rho^{(1)} \otimes \rho^{(2)},\) já que
 \begin{align}
     S(\rho^{(1)} \otimes \rho^{(2)}) &= -\sum_i \sum_j p^{(1)}_i p_j^{(2)} \ln(p^{(1)}_i p^{(2)}_j)\\
                                      &= - \sum_i p^{(1)}_i \ln p^{(1)}_i \sum_j p^{(2)}_j - \sum_i p^{(1)}_i  \sum_j p^{(2)}_j\ln p^{(2)}_j\\
                                      &= S(\rho^{(1)}) + S(\rho^{(2)}).
 \end{align}
-A subaditividade da entropia de von Neumann estabelece que ao tomar o traço parcial de cada componente do sistema perdemos informação, com a aditividade de sistemas sem correlação sendo familiar à extensividade da entropia na Termodinâmica.
+Assim, a aditividade da entropia de von Neumann de sistemas sem correlação é familiar à extensividade da entropia na Termodinâmica.
 
+\section{Estados de mistura e evolução unitária}
 Uma matriz densidade \(\rho\) representa um estado puro se tem um único autovalor igual a 1. Essa condição é equivalente a entropia de von Neumann se anular. De fato, da expressão
 \begin{equation}
     S(\rho) = -\sum_i p_i \ln p_i,
@@ -79,7 +80,7 @@ onde \(d\) é a dimensão do espaço de Hilbert e a matriz densidade que maximiz
 \begin{equation}
     S(U \rho \herm{U}) = S(\rho)
 \end{equation}
-para qualquer operador unitário \(U\). Em particular, a entropia de von Neumann é constante no tempo para sistemas fechados, e, portanto, a evolução temporal leva estados puros em estados puros.
+para qualquer operador unitário \(U\). Em particular, a entropia de von Neumann é constante no tempo para sistemas fechados, e, portanto, a evolução temporal unitária leva estados puros em estados puros e estados de mistura em estados de mistura.
 
 \section{Entropia relativa}
 Relacionada com a entropia de von Neumann, definimos a \emph{entropia relativa} entre matrizes densidade \(\rho\) e \(\sigma\) por
