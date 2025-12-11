@@ -15,15 +15,15 @@ Os observáveis de interesse são da forma \(A \otimes \unity_\bath,\) portanto 
 \end{equation}
 a descrição de sistemas abertos se baseia na matriz densidade reduzida \(\rho_\reduced = \Tr_\bath\rho.\) Assim, se soubermos como o estado reduzido \(\rho_\reduced\) evolui temporalmente, podemos tratar o sistema aberto sem menção do sistema composto ou do sistema ambiente.
 
-Tomando o caso em que em algum instante \(t_0\) o estado do sistema total \(\rho(t_0)\) é não correlacionado e o estado do sistema reduzido é \(\rho_\reduced(t_0),\) então podemos escrever \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0).\) Da evolução temporal, temos \(\rho(t) = U(t, t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\) e então o estado do sistema reduzido é dado por
+Tomando o caso em que há um instante \(t_0\) no qual o estado do sistema total \(\rho(t_0)\) não possui correlação, podemos escrever \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0).\) Tal caso pode ser interpretado como o preparo do sistema composto em tal instante no estado produto apresentado. Da evolução temporal, temos \(\rho(t) = U(t, t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\) e então o estado do sistema reduzido é dado por
 \begin{equation}
     \rho_\reduced(t) = \Tr_\bath\left\{U(t,t_0) [\rho_\reduced(t_0) \otimes \rho_\bath(t_0)] \herm{U}(t, t_0)\right\}.
 \end{equation}
-No caso particular em que não há interação, \(V = 0,\) o operador evolução se fatora \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) portanto sabemos que
+No caso particular em que não há interação, \(V = 0,\) o operador evolução se fatora nas evoluções \emph{unitárias} dos sistemas componentes, \(U(t,t_0) = U_\reduced(t,t_0) \otimes U_\bath(t,t_0),\) portanto sabemos que
 \begin{equation}
     \rho_\reduced(t) = U_\reduced(t,t_0) \rho_\reduced(t_0) \herm{U}_\reduced(t, t_0) = \mathcal{U}_\reduced(t,t_0)\rho_\reduced(t_0),
 \end{equation}
-onde definimos o superoperador \(\mathcal{U}_\reduced(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\) De acordo com a definição dada, esse é o caso em que os sistemas \(\reduced\) e \(\bath\) são fechados, portanto esse é o resultado esperado. 
+onde definimos o superoperador \(\mathcal{U}_\reduced(t,t_0)\) pela conjugação por \(U_\reduced(t,t_0).\) De acordo com a definição dada, esse é o caso em que os sistemas \(\reduced\) e \(\bath\) são fechados, portanto esse é o resultado esperado.
 
 \section{Mapa dinâmico}
 É desejável então definir um mapa dinâmico \(\mathcal{V}(t,t_0)\) de tal forma que 
@@ -81,7 +81,7 @@ onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \r
         K_{\leftarrow\rightarrow} \ket{\rightarrow} = -i\sin\left(\frac12 \omega t\right) \ket{\leftarrow}.
     \end{equation}
     Dessa forma, temos
-    \begin{align*}
+    \begin{align}
         \rho_\reduced(t) &= K_{\rightarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\rightarrow\rightarrow}(t) + K_{\leftarrow\rightarrow}(t) \rho_\reduced(0) \herm{K}_{\leftarrow\rightarrow}(t)\\
                          &= \ketbra{\rightarrow}{\rightarrow} \cos^2\left(\frac12 \omega t\right) + \ketbra{\leftarrow}{\leftarrow} \sin^2\left(\frac12 \omega t\right)\\
                          &= \sin^2\left(\frac12 \omega t\right) \unity + \cos(\omega t) \ketbra{\rightarrow}{\rightarrow}\\
@@ -90,7 +90,7 @@ onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \r
                              1 && \cos(\omega t)\\
                              \cos(\omega t) && 1
                          \end{pmatrix}
-    \end{align*}
+    \end{align}
     como o estado do sistema reduzido no instante \(t\).
 
     Mostramos que
@@ -114,12 +114,12 @@ portanto o sistema reduzido alterna periodicamente entre o estado de máxima ent
 
 \section{Mapas dinâmicos universais}
 Vamos doravante supor que existe um instante \(t_0\) em que não há correlação. A partir disso definimos \emph{mapas dinâmicos universais} que agem como mapas dinâmicos, mas que, pelo cômputo anterior, dependem apenas da evolução do sistema composto e do estado do sistema ambiente.
-\begin{equation}
+\begin{equation*}
     \begin{tikzcd}[column sep = large, row sep = large]
         \rho(t_0) = \rho_\reduced(t_0) \otimes \rho_B(t_0) \arrow{rr}{\text{evolução unitária}} \arrow{d}{\Tr_\bath} && \rho(t) = \mathcal{U}(t,t_0) \rho(t_0)\arrow{d}{\Tr_\bath}\\
         \rho_\reduced(t_0) \arrow{rr}{\text{mapa dinâmico universal}} && \rho_\reduced(t) = \mathcal{V}(t,t_0)\rho_\reduced(t_0)
     \end{tikzcd}
-\end{equation}
+\end{equation*}
 \cite{susana} mostra que uma condição necessária e suficiente para que um mapa dinâmico seja universal é de que o estado \(\rho_\reduced(t_0)\) seja induzido por um estado produto \(\rho(t_0) = \rho_\reduced(t_0) \otimes \rho_\bath(t_0)\) com \(\rho_\bath(t_0)\) fixo para qualquer \(\rho_\reduced(t_0).\) 
 
 Como feito acima,
