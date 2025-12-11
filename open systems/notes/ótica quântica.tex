@@ -20,7 +20,7 @@ onde \(\vetor{D}\) é o operador de dipolo de \(\reduced\) e o campo elétrico \
 \end{equation}
 na representação de Schrödinger e por
 \begin{equation}
-    \vetor{E}(t) = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{L}} \mode{\vetor{e}}{k}{\lambda} \left(e^{-i \omega_k t} \mode{b}{k}{\lambda} - e^{i \omega_k t} \mode{\herm{b}}{k}{\lambda}\right)
+    \vetor{E}(t) = i \sum_{\vetor{k}} \sum_{\lambda = 1}^2 \sqrt{\frac{2\pi \omega_k}{\Omega}} \mode{\vetor{e}}{k}{\lambda} \left(e^{-i \omega_k t} \mode{b}{k}{\lambda} - e^{i \omega_k t} \mode{\herm{b}}{k}{\lambda}\right)
 \end{equation}
 na representação de interação.
 
@@ -146,7 +146,7 @@ Como o campo elétrico é linear nos operadores de criação e de aniquilação,
 \end{align}
 logo com a aproximação de onda rotante, obtemos
 \begin{equation}
-    \diff*{\rho(t)}{t} = -i\commutator{H_\mathrm{LS}}{\rho(t)} + \mathcal{D} \rho(t),
+    \diff*{\rho(t)}{t} = -i\commutator{H_\reduced + H_\mathrm{LS}}{\rho(t)} + \mathcal{D} \rho(t),
 \end{equation}
 onde a correção para o Hamiltoniano é dada por
 \begin{equation}
@@ -227,6 +227,7 @@ onde
 \begin{equation}
     \alpha = 1 + \frac{\abs{\vetor{d}}^2 \Delta S}{2 \omega_0} = 1 + \frac{3 \gamma_0 \Delta S}{8\omega_0^4}.
 \end{equation}
+Vale notar que no limite de acoplamento fraco temos \(\gamma_0 \ll \omega_0,\) portanto \(\alpha \simeq 1,\) e a separação entre os níveis não é afetada de forma significativa.
 Para o dissipador, temos os termos
 \begin{equation}
     \sigma_- \rho(t) \sigma_+ = \ketbra{g}{e}\rho(t)\ketbra{e}{g} = \rho_e(t) \sigma_- \sigma_+ = \frac12 [1 + P_3(t)] \sigma_- \sigma_+
