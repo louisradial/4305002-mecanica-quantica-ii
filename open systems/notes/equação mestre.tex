@@ -17,15 +17,15 @@ No caso considerado, vamos supor que a família de mapas dinâmicos universais s
 \begin{equation}
     V(t, t') V(t', t_0) = V(t,t_0),
 \end{equation}
-onde tomamos a correlação do sistema composto em \(t'\) como aproximadamente nula. Dessa forma, portanto, escrevemos em analogia à \eqref{eq:liouville} que o mapa dinâmico é dado por
+onde tomamos a correlação do sistema composto em \(t'\) como aproximadamente nula. Dessa forma, escrevemos em analogia à \eqref{eq:liouville} que o mapa dinâmico é dado por
 \begin{equation}
     \mathcal{V}(t,t_0) = \texpl\left[\int_{t_0}^{t} \dli{s} \mathcal{L}(s)\right],
 \end{equation}
-onde \(\mathscr{L}(t)\) é o chamado \emph{gerador de Lindblad}. Agora, a equação diferencial para o estado do sistema reduzido é
+onde \(\mathcal{L}(t)\) é o \emph{gerador de Lindblad}. Agora, a equação diferencial para o estado do sistema reduzido é
 \begin{equation}
     \diff{\rho_\reduced(t)}{t} = \mathcal{L}(t) \rho_\reduced(t),
 \end{equation}
-que é dita na forma de Lindblad. Essa equação é uma generalização para sistemas abertos da equação de Liouville-von Neumann.
+isto é, o superoperador \(\mathcal{L}(t)\) generaliza para sistemas abertos o superoperador da equação de Liouville-von Neumann \(-i \commutator{H(t)}{\noarg}\).
 
 A fim de evitar tecnicalidades, vamos tomar o caso de um espaço de Hilbert de dimensão finita para o sistema reduzido, \(\dim\mathscr{H}_\reduced = N \in \mathbb{N}\) e o caso de que o sistema reduzido não está em contato com um campo externo dependente do tempo, em que podemos tomar \(\mathcal{L}(t) = \mathcal{L}.\) Seja então \(\family{F_i}{1 \leq N^2}\) uma base ortonormal de operadores agindo em \(\mathscr{H}_\reduced,\) com
 \begin{equation}
@@ -252,7 +252,7 @@ portanto
 como desejado.
 
 \section{Limite de acoplamento fraco}
-Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o Hamiltoniano livre \(H_\reduced\) do sistema total
+Como notado, o termo \(H\) da equação mestre que cumpre o papel da evolução hamiltoniana não é o Hamiltoniano livre \(H_\reduced\) do sistema total, um dos termos do Hamiltoniano do sistema composto,
 \begin{equation}
     H_{\reduced\bath} = H_\reduced \otimes \unity_\bath + \unity_\reduced \otimes H_\bath + V.
 \end{equation}
@@ -280,13 +280,13 @@ assumindo que
 \end{equation}
 que mostraremos que se resume a dizer que as médias no ambiente da interação são nulas. Vale observar que o valor deste traço deve apenas ser conhecido para que o resto do tratamento seja válido, mas que o valor tomado simplifica o resultado.
 
-Consideramos a aproximação de Born, assumindo que a influência do sistema no ambiente seja pequena graças ao fraco acoplamento, e tomar \(\rho_{\reduced\bath}(t) \approx \rho(t) \otimes \rho_\bath(t_0).\) Nesse caso, temos
+Consideramos a aproximação de Born, assumindo que a influência do sistema no ambiente é pequena graças ao fraco acoplamento, e tomamos \(\rho_{\reduced\bath}(t) \approx \rho(t) \otimes \rho_\bath(t_0).\) Nesse caso, temos
 \begin{equation}
-    \rho^I_{\reduced\bath}(t) = e^{i H_\reduced t}\rho(t)e^{-i H_\reduced t} \otimes e^{i H_\bath t}\rho_\bath e^{-i H_\bath t}
+    \rho^I_{\reduced\bath}(t) = e^{i (t-t_0)H_\reduced }\rho(t)e^{-i (t-t_0)H_\reduced} \otimes e^{i(t-t_0) H_\bath}\rho_\bath e^{-i(t-t_0) H_\bath}
 \end{equation}
 e então
 \begin{equation}
-    \rho_I(t) = \Tr_\bath \rho^I_{\reduced\bath}(t) = e^{i H_\reduced t} \rho(t) e^{-i H_\reduced t},
+    \rho_I(t) = \Tr_\bath \rho^I_{\reduced\bath}(t) = e^{i (t-t_0)H_\reduced} \rho(t) e^{-i(t-t_0) H_\reduced},
 \end{equation}
 logo
 \begin{equation}
@@ -294,7 +294,7 @@ logo
 \end{equation}
 com 
 \begin{equation}
-    \diff*{\rho_I(t)}{t} = e^{i H_\reduced t} \diff{\rho(t)}{t}e^{-i H_\reduced t} + i \commutator{H_\reduced}{\rho_I(t)}.
+    \diff*{\rho_I(t)}{t} = e^{i (t-t_0)H_\reduced} \diff{\rho(t)}{t}e^{-i(t- t_0) H_\reduced} + i \commutator{H_\reduced}{\rho_I(t)}.
 \end{equation}
 Por ora vamos limpar a notação e escrever \(\rho(t)\) para a matriz densidade reduzida na representação de interação, e no fim vamos recuperar o resultado na representação de Schrödinger subtraindo \(i \commutator{H_\reduced}{\rho_I(t)}\) da equação diferencial obtida e conjugando por \(\exp(i H_\reduced t)\).
 
@@ -386,7 +386,7 @@ obtemos com as trocas \(\omega \to - \omega\) e \(\omega' \to - \omega'\) no pri
     \diff*{\rho(t)}{t} &= \sum_{\alpha, \beta} \sum_{\omega, \omega'} \left[e^{i( \omega' - \omega)t} \commutator{A_\alpha(\omega)}{\rho(t) \herm{A}_\beta(\omega')} \Gamma_{\alpha \beta}^*(t, \omega') - e^{i (\omega - \omega')t}\commutator{\herm{A}_\alpha(\omega)}{A_\beta(\omega') \rho(t)} \Gamma_{\alpha \beta}(t, \omega')\right]\\
                        &= \sum_{\alpha, \beta} \sum_{\omega, \omega'} e^{i(\omega - \omega') t} \Gamma_{\alpha \beta}(t,\omega') \commutator{A_\beta(\omega') \rho(t)}{\herm{A}_\alpha(\omega)} + \mathrm{h.c.},
 \end{align}
-já que \(\commutator{X}{Y}^\dag = \commutator{\herm{Y}}{\herm{X}}.\)
+já que \(\commutator{X}{Y}^\dag = \commutator{\herm{Y}}{\herm{X}}.\) Como a dependência da evolução temporal é fatorada no tensor \(\Gamma_{\alpha\beta},\) que contém a dependência temporal das funções de correlação do ambiente, justificamos a passagem de substituir \(t - t_0 \to \infty\) no limite de integração da equação de Redfield.
 
 Neste momento retornamos às condições da aproximação de Born-Markov. Primeiro, vamos supor que \(\rho_\bath\) é um estado estacionário do ambiente, \(\commutator{H_\bath}{\rho_\bath} = 0\), então as funções de correlação do ambiente satisfazem 
 \begin{align}
@@ -395,7 +395,7 @@ Neste momento retornamos às condições da aproximação de Born-Markov. Primei
                                              &= \Tr_\bath\left[\herm{B}_\alpha(s) B_\beta(0) \rho_\bath\right]\\
                                              &= \mean{\herm{B}_\alpha(s) B_\beta(0)},
 \end{align}
-e então as quantidades \(\Gamma_{\alpha\beta}(t, \omega)\) não dependem de \(t\) e escrevemos apenas \(\Gamma_{\alpha\beta}(\omega).\) Além disso, consideramos a escala de tempo típica da evolução do sistema reduzido, \(\tau_\reduced \sim \abs{\omega' - \omega}^{-1},\) e impomos que \(\tau_\reduced\) é muito maior que o tempo de relaxamento \(\tau_R.\) Podemos assim desprezar os termos com \(\omega \neq \omega',\) por oscilarem muito durante o período \(\tau_R\) em que o estado \(\rho_\reduced\) varia de forma significativa. Essa aproximação é conhecida como a aproximação de onda rotante\cite{fleming}, e obtemos
+e então as quantidades \(\Gamma_{\alpha\beta}(t, \omega)\) não dependem de \(t\) e escrevemos apenas \(\Gamma_{\alpha\beta}(\omega).\) Além disso, consideramos a escala de tempo típica da evolução do sistema reduzido, \(\tau_\reduced \sim \abs{\omega' - \omega}^{-1},\) e impomos que \(\tau_\reduced\) é muito maior que o tempo de relaxamento \(\tau_R\) do sistema ao equilíbrio. Podemos assim desprezar os termos com \(\omega \neq \omega',\) por oscilarem muito durante o período \(\tau_R\) em que o estado \(\rho_\reduced\) varia de forma significativa. Essa aproximação é conhecida como a aproximação de onda rotante\cite{fleming,stefanini}, e obtemos
 \begin{equation}
     \diff*{\rho(t)}{t} = \sum_{\omega} \sum_{\alpha, \beta} \left(\Gamma_{\alpha\beta}(\omega) \commutator{A_\beta(\omega) \rho(t)}{\herm{A}_\alpha(\omega)} + \Gamma_{\alpha\beta}^*(\omega) \commutator{A_\alpha(\omega)}{\rho(t)\herm{A}_\beta(\omega)}\right).
 \end{equation}
@@ -423,11 +423,11 @@ temos
 \begin{equation}
     \diff*{\rho(t)}{t} = -i \commutator{H_\mathrm{LS}}{\rho(t)} + \mathcal{D} \rho(t),
 \end{equation}
-na representação de interação.
+na representação de interação. 
 
 Retornando à representação de Schrödinger, temos
 \begin{equation}
-    \diff*{\rho(t)}{t} = -i e^{-iH_\reduced t}\commutator{H_\reduced + H_\mathrm{LS}}{\rho_I(t)} e^{i H_\reduced t} + e^{-iH_\reduced t}[\mathcal{D}\rho_I(t)]e^{i H_\reduced t},
+    \diff*{\rho(t)}{t} = -i e^{-i(t-t_0)H_\reduced }\commutator{H_\reduced + H_\mathrm{LS}}{\rho_I(t)} e^{i(t-t_0) H_\reduced} + e^{-i(t-t_0)H_\reduced}[\mathcal{D}\rho_I(t)]e^{i (t-t_0)H_\reduced},
 \end{equation}
 onde recuperamos a notação \(\rho_I(t)\) para a representação de interação. Como os operadores \(A_\alpha(\omega)\) são auto-operadores da Hamiltoniana livre \(H_\reduced,\) temos
 \begin{equation}
