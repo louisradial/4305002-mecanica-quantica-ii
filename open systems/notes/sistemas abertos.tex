@@ -51,11 +51,11 @@ e definimos os operadores
 e então a evolução do sistema reduzida é dada por
 \begin{align}
     \rho_\reduced(t) &= \Tr_\bath\left\{ U(t,t_0) \left[\rho_\reduced(t_0) \otimes \rho_\bath(t_0) + \rho_c(t_0)\right] \herm{U}(t,t_0)\right\}\\
-                     &= \sum_{\alpha,\beta} \lambda_\beta \bra{\alpha} U(t, t_0) [\rho_\reduced(t_0) \otimes \ketbra{\beta}{\beta} + \rho_c(t_0)] \herm{U}(t, t_0) \ket{\alpha} + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
+                     &= \sum_{\alpha,\beta} \lambda_\beta \bra{\alpha} U(t, t_0) \rho_\reduced(t_0) \otimes \ketbra{\beta}{\beta} \herm{U}(t, t_0) \ket{\alpha} + \Tr_\bath\left[U(t,t_0) \rho_c(t_0) \herm{U}(t,t_0)\right]\\
                      &= \sum_{\alpha,\beta} K_{\alpha \beta}(t,t_0) \rho_\reduced(t_0) \herm{K}_{\alpha \beta}(t,t_0) + \Tr_\bath\left[\mathcal{U}(t,t_0) \rho_c(t_0)\right]\\
                      &= \mathcal{V}(t,t_0) \rho_\reduced(t_0),
 \end{align}
-onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \rho = U(t,t_0) \rho \herm{U}(t,t_0).\) O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, de forma não trivial dos estados iniciais \(\rho_\reduced(t_0),\) \(\rho_\bath(t_0)\) e da correlação \(\rho_c(t_0)\) neste instante.
+onde introduzimos o superoperador de evolução temporal \(\mathcal{U}(t,t_0) \rho = U(t,t_0) \rho \herm{U}(t,t_0).\) O primeiro termo do mapa dinâmico \(\mathcal{V}(t,t_0)\) depende apenas do operador de evolução e do estado de \(\bath,\) como desejado, enquanto que o outro termo depende de \(\rho_c(t_0),\) e, portanto, de forma não trivial dos estados iniciais \(\rho_\reduced(t_0)\) e \(\rho_\bath(t_0)\).
 
 \begin{example}{Evolução temporal de um qubit com ambiente de um qubit\cite{piotr}}{qubit}
     Considere um sistema de dois qubits com hamiltoniana \(H = \frac12\omega \sigma_z \otimes \sigma_z\) e estado inicial dado pelo estado produto \(\rho(0) = \ketbra{\rightarrow}{\rightarrow} \otimes \ketbra{\rightarrow}{\rightarrow},\) onde \(\sigma_x\ket{\rightarrow} = \ket{\rightarrow}.\) Determine a evolução temporal do sistema reduzido \(\rho_\reduced(t) = \Tr_\bath\rho(t)\) assim como a entropia de von Neumann, \(S(t) = -\Tr_\reduced\left[\rho_\reduced(t) \ln \rho_\reduced(t)\right].\)
